@@ -1,0 +1,1 @@
+import('./src/data/offlineQuestionBank.js').then(m => { for(let i=0; i<100; i++) { m.getOfflineQuestions('biology', 50); m.getOfflineQuestions('english-language', 50); } console.log('Done'); }).catch(console.error);

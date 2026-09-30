@@ -1,0 +1,18 @@
+<USER_REQUEST>
+now, there are 13 subjects namely biology, physics, futher math, chemistry, agric, physical education, health education, food nutrition, geography, technical drawing, computer studies, digital technologies, physical and health education,,,,,, all should be placed in there respective practice and cbt pages
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-09-29T14:28:15+01:00.
+
+The user's current state is as follows:
+Active Document: c:\Users\USER\Desktop\EduDrill\package-lock.json (LANGUAGE_JSON)
+Cursor is on line: 1
+Other open documents:
+- c:\Users\USER\Desktop\EduDrill\package-lock.json (LANGUAGE_JSON)
+- c:\Users\USER\Desktop\EduDrill\src\App.css (LANGUAGE_CSS)
+- c:\Users\USER\Desktop\EduDrill\src\components\Calculator.jsx (LANGUAGE_JAVASCRIPT)
+- c:\Users\USER\Desktop\EduDrill\src\pages\AdminDashboard.jsx (LANGUAGE_JAVASCRIPT)
+Running terminal commands:
+- npm run dev (in c:\Users\USER\Desktop\EduDrill, running for 11h22m36s)
+- npm run dev (in c:\Users\USER\Desktop\EduDrill\server, running for 11h21m38s)
+</ADDITIONAL_METADATA>

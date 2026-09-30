@@ -1,0 +1,33 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "EduDrill backend",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "import-question-bank": "node scripts/importQuestionBank.js",
+    "link-imported-papers": "node linkImportedQuestionsToPapers.js",
+    "generate-preset-questions": "node scripts/generatePresetQuestionBank.js",
+    "build-preset-question-bank": "node scripts/buildPresetQuestionBank.js",
+    "seed-preset-questions": "node scripts/seedPresetQuestionBank.js",
+    "seed-core-lessons": "node scripts/seedEnglishMathLessons.js",
+    "seed-draft-syllabuses": "node scripts/seedDraftSyllabuses.js",
+    "check-syllabus-coverage": "node checkSyllabusCoverage.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "openai": "^7.20.0",
+    "pdf-parse": "^1.1.1",
+    "pdf2json": "^4.1.0",
+    "pg": "^8.23.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

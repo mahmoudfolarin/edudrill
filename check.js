@@ -1,0 +1,1 @@
+const fs = require('fs'); const content = fs.readFileSync('./src/data/offlineQuestionBank.js', 'utf8'); console.log('Questions:', (content.match(/question/g) || []).length); console.log('Options:', (content.match(/options/g) || []).length);

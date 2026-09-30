@@ -1,0 +1,2940 @@
+{
+  "generatedAt": "2026-09-28T08:34:48.143Z",
+  "subjects": [
+    {
+      "slug": "accounting",
+      "questions": [
+        {
+          "question": "Which of the following best describes the main objective of the financial statements prepared by an organization?",
+          "options": {
+            "A": "To provide information about historical sales only.",
+            "B": "To present a true and fair view of the entity’s financial position and performance.",
+            "C": "To guarantee future profitability.",
+            "D": "To serve as legal documents for tax purposes."
+          },
+          "correctAnswer": "B",
+          "explanation": "IFRS and GAAP state that the primary purpose of financial statements is to give users a true and fair view of the entity’s financial condition and performance.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "In a cash basis accounting system, revenues are recognized when:",
+          "options": {
+            "A": "When the goods or services are delivered to the customer.",
+            "B": "When cash is received.",
+            "C": "When the invoice is issued.",
+            "D": "At the end of the fiscal year."
+          },
+          "correctAnswer": "B",
+          "explanation": "Cash basis accounting records revenue only when cash actually changes hands.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "A company acquires a machine for $50,000 and estimates its useful life at 8 years. Using the straight‑line depreciation method, what is the annual depreciation expense?",
+          "options": {
+            "A": "$6,250 per year",
+            "B": "$5,000 per year",
+            "C": "$7,500 per year",
+            "D": "$12,500 per year"
+          },
+          "correctAnswer": "A",
+          "explanation": "Straight‑line depreciation equals cost divided by useful life: $50,000 ÷ 8 = $6,250 per year.",
+          "difficulty": "hard"
+        },
+        {
+          "question": "Depreciation is a non‑cash expense that affects net income. How does it influence net income?",
+          "options": {
+            "A": "It increases net income because it raises taxable income.",
+            "B": "It decreases net income because it increases expenses.",
+            "C": "It has no effect on net income.",
+            "D": "It always improves profit margins."
+          },
+          "correctAnswer": "B",
+          "explanation": "By reducing reported profits through higher expenses, depreciation lowers net income.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Internal controls help prevent errors and fraud. Which of the following is a key component of internal control?",
+          "options": {
+            "A": "Regular reconciliation of bank statements.",
+            "B": "Mandatory vacation policy for employees.",
+            "C": "Use of electronic ledgers.",
+            "D": "All of the above."
+          },
+          "correctAnswer": "A",
+          "explanation": "Bank statement reconciliations ensure that the accounting records match external evidence, a fundamental control activity.",
+          "difficulty": "easy"
+        }
+      ]
+    },
+    {
+      "slug": "agriculture",
+      "questions": [
+        {
+          "question": "Which of the following best describes photosynthesis in plants?",
+          "options": {
+            "A": "The process by which plants produce food using sunlight, water, and carbon dioxide",
+            "B": "The process of water uptake through the roots",
+            "C": "The process of respiration releasing energy",
+            "D": "The process of decomposition of organic matter"
+          },
+          "correctAnswer": "A",
+          "explanation": "Photosynthesis is the synthesis of food (glucose) using light energy, water, and CO₂.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Why is soil pH important for crop production?",
+          "options": {
+            "A": "It determines the availability of nutrients to plants",
+            "B": "It influences the colour of plant leaves only",
+            "C": "It affects the size of seeds produced",
+            "D": "It controls the rate of photosynthesis directly"
+          },
+          "correctAnswer": "A",
+          "explanation": "Soil pH affects nutrient solubility and uptake, influencing crop growth.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Integrated Pest Management (IPM) primarily involves:",
+          "options": {
+            "A": "Using only chemical pesticides to kill pests",
+            "B": "Combining biological, cultural, and chemical methods to control pests while minimising environmental impact",
+            "C": "Planting monocultures to reduce pest diversity",
+            "D": "Ignoring pest population thresholds and treating all infestations equally"
+          },
+          "correctAnswer": "B",
+          "explanation": "IPM integrates multiple strategies for sustainable pest control.",
+          "difficulty": "hard"
+        },
+        {
+          "question": "Which of the following is a characteristic of legumes?",
+          "options": {
+            "A": "They have symbiotic nitrogen-fixing bacteria in root nodules",
+            "B": "They grow exclusively in waterlogged soils",
+            "C": "They are primary cereal crops",
+            "D": "They do not form any symbiotic relationships with microbes"
+          },
+          "correctAnswer": "A",
+          "explanation": "Legumes host Rhizobium bacteria that fix atmospheric nitrogen.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "What is the main purpose of mulching in agriculture?",
+          "options": {
+            "A": "To increase soil erosion",
+            "B": "To retain soil moisture and regulate soil temperature",
+            "C": "To reduce the amount of organic matter in the soil",
+            "D": "To attract pests and diseases"
+          },
+          "correctAnswer": "B",
+          "explanation": "Mulch conserves moisture, moderates temperature, and suppresses weeds.",
+          "difficulty": "medium"
+        }
+      ]
+    },
+    {
+      "slug": "arabic",
+      "questions": [
+        {
+          "question": "What is the meaning of the Arabic word مُؤْمِنٌ",
+          "options": {
+            "A": "a writer",
+            "B": "a believer",
+            "C": "a teacher",
+            "D": "a farmer"
+          },
+          "correctAnswer": "B",
+          "explanation": "The word \"مُؤْمِنٌ\" means \"believer\" in Arabic, referring to one who believes in God.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "In the nominal sentence \"الْبَيْتُ مَكْتُوبٌ\", what is the grammatical case (i'rab) of the word \"مَكْتُوبٌ\"",
+          "options": {
+            "A": "مرفوع",
+            "B": "منصوب",
+            "C": "مجرور",
+            "D": "مست"
+          },
+          "correctAnswer": "A",
+          "explanation": "\"مَكْتُوبٌ\" is the predicate of a nominal sentence, so it is in the nominative case (marfu'), matching the subject.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Which diacritic marks the short vowel 'u' (damma) on a letter",
+          "options": {
+            "A": "َ",
+            "B": "ُ",
+            "C": "ِ",
+            "D": "ّ"
+          },
+          "correctAnswer": "B",
+          "explanation": "The diacritic \"ُ\" is called damma and represents the short vowel 'u'.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Select the correct English translation of the Arabic phrase \"إنّ الله مع الصابرين\"",
+          "options": {
+            "A": "God is with the patient",
+            "B": "God is with the rich",
+            "C": "God is with the brave",
+            "D": "God is with the singers"
+          },
+          "correctAnswer": "A",
+          "explanation": "The phrase means \"Indeed, God is with the patient\" (those who endure).",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Which traditional instrument is commonly used in the recitation of Arabic poetry in Northern Nigeria",
+          "options": {
+            "A": "Obo",
+            "B": "Kora",
+            "C": "Tambourine",
+            "D": "Algaita"
+          },
+          "correctAnswer": "D",
+          "explanation": "The \"Algaita\" (mizmar) is a traditional reed instrument used in northern Nigerian Arabic recitation contexts.",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "slug": "art",
+      "name": "Art",
+      "subject_group": "Humanities",
+      "questions": [
+        {
+          "question": "Which of the following is NOT considered an element of art?",
+          "options": {
+            "A": "Line",
+            "B": "Color",
+            "C": "Texture",
+            "D": "Perspective"
+          },
+          "correctAnswer": "D",
+          "explanation": "Perspective is a principle of design, not an element of art.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Which principle of art is primarily used to create visual interest through differences in value, color, or texture?",
+          "options": {
+            "A": "Balance",
+            "B": "Contrast",
+            "C": "Harmony",
+            "D": "Proportion"
+          },
+          "correctAnswer": "B",
+          "explanation": "Contrast highlights differences, making the artwork more dynamic.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Which Nigerian artist is best known for creating the famous sculpture titled \"Sculpture of a Girl\"?",
+          "options": {
+            "A": "Ben Enwonwu",
+            "B": "Yinka Shonibare",
+            "C": "Dimbo Atiya",
+            "D": "Uche Okeke"
+          },
+          "correctAnswer": "A",
+          "explanation": "Ben Enwonwu created the celebrated sculpture \"Sculpture of a Girl\".",
+          "difficulty": "medium"
+        },
+        {
+          "question": "The technique of \"impasto\" in painting involves:",
+          "options": {
+            "A": "Applying thin washes of color",
+            "B": "Using thick, heavy layers of paint",
+            "C": "Drawing with charcoal",
+            "D": "Mixing watercolor pigments"
+          },
+          "correctAnswer": "B",
+          "explanation": "Impasto refers to thickly applied paint that creates texture.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "In traditional Nigerian architecture, which material is most commonly used for building houses in the northern region?",
+          "options": {
+            "A": "Mud (Adobe)",
+            "B": "Glass",
+            "C": "Steel",
+            "D": "Concrete"
+          },
+          "correctAnswer": "A",
+          "explanation": "Mud-brick or adobe construction is prevalent in northern Nigeria.",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "slug": "beauty-and-cosmetology",
+      "questions": [
+        {
+          "question": "Which of the following is primarily used to remove unwanted pigment from hair?",
+          "options": {
+            "A": "Bleach",
+            "B": "Conditioner",
+            "C": "Shampoo",
+            "D": "Leave-in spray"
+          },
+          "correctAnswer": "A",
+          "explanation": "Bleach contains strong oxidising agents such as hydrogen peroxide and is employed specifically for colour removal.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "What is the primary purpose of a pre-client sanitisation routine in a cosmetology setting?",
+          "options": {
+            "A": "To sterilise the client’s scalp",
+            "B": "To sanitize tools and surfaces",
+            "C": "To apply the final treatment",
+            "D": "To take measurements"
+          },
+          "correctAnswer": "B",
+          "explanation": "Proper disinfection of instruments and work areas prevents cross-contamination and protects both client and staff.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "In facial skincare, what does “exfoliation” refer to?",
+          "options": {
+            "A": "Applying moisturiser",
+            "B": "Removing dead skin cells",
+            "C": "Pumping serum into pores",
+            "D": "Using a mask"
+          },
+          "correctAnswer": "B",
+          "explanation": "Exfoliation involves mechanical or chemical removal of superficial dead skin layers to improve texture and radiance.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Which of the following actions is NOT recommended for maintaining a safe salon environment?",
+          "options": {
+            "A": "Cleaning mirrors daily",
+            "B": "Wearing disposable gloves when handling chemicals",
+            "C": "Ignoring poor ventilation",
+            "D": "Storing hazardous chemicals out of reach of children"
+          },
+          "correctAnswer": "C",
+          "explanation": "Poor ventilation allows accumulation of vapours and dust, increasing health risks; regular cleaning and glove use are essential.",
+          "difficulty": "hard"
+        },
+        {
+          "question": "Which organisation issues the national certificate for cosmetology qualifications in Nigeria?",
+          "options": {
+            "A": "National Council for Professional Hairdressers and Cosmetology (NCPHC)",
+            "B": "West African Examinations Council",
+            "C": "Jamaican Medical Council",
+            "D": "International Federation of Beauty Professionals"
+          },
+          "correctAnswer": "A",
+          "explanation": "The NCPHC is the statutory body that awards the official Certificate in Cosmetology after successful completion of training and examinations.",
+          "difficulty": "medium"
+        }
+      ]
+    },
+    {
+      "slug": "biology",
+      "questions": [
+        {
+          "question": "Which organelle is primarily responsible for producing ATP in eukaryotic cells?",
+          "options": {
+            "A": "Nucleus",
+            "B": "Mitochondrion",
+            "C": "Ribosome",
+            "D": "Lysosome"
+          },
+          "correctAnswer": "B",
+          "explanation": "Mitochondria carry out cellular respiration, the main source of ATP in eukaryotic cells.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "In pea plants, the allele for purple flowers (P) is dominant over white flowers (p). If a heterozygous purple-flowered plant (Pp) is crossed with a white-flowered plant (pp), what is the expected phenotypic ratio of the offspring?",
+          "options": {
+            "A": "1:1",
+            "B": "3:1",
+            "C": "1:2:1",
+            "D": "All purple"
+          },
+          "correctAnswer": "A",
+          "explanation": "The cross Pp × pp yields 50% Pp (purple) and 50% pp (white), giving a 1:1 phenotypic ratio.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Which enzyme is secreted by the pancreas to break down carbohydrates?",
+          "options": {
+            "A": "Amylase",
+            "B": "Pepsin",
+            "C": "Lipase",
+            "D": "Trypsin"
+          },
+          "correctAnswer": "A",
+          "explanation": "Pancreatic amylase hydrolyzes starch and other polysaccharides into simpler sugars.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "In a terrestrial ecosystem, which of the following best describes the 10% rule?",
+          "options": {
+            "A": "Only 10% of energy is transferred from producers to primary consumers",
+            "B": "10% of biomass is converted to chemical energy",
+            "C": "10% of species are apex predators",
+            "D": "10% of water is lost through transpiration"
+          },
+          "correctAnswer": "A",
+          "explanation": "Approximately 10% of the energy captured by one trophic level is passed to the next level.",
+          "difficulty": "hard"
+        },
+        {
+          "question": "Which structure produces ova in females?",
+          "options": {
+            "A": "Testes",
+            "B": "Ovaries",
+            "C": "Uterus",
+            "D": "Fallopian tubes"
+          },
+          "correctAnswer": "B",
+          "explanation": "The ovaries contain and release the egg cells (ova) in the female reproductive system.",
+          "difficulty": "easy"
+        }
+      ]
+    },
+    {
+      "slug": "catering-craft",
+      "questions": [
+        {
+          "question": "Which of the following practices helps prevent cross-contamination in a catering kitchen?",
+          "options": {
+            "A": "Storing raw meat above vegetables",
+            "B": "Washing hands after handling raw meat before touching ready-to-eat foods",
+            "C": "Using the same cutting board for all foods without cleaning",
+            "D": "Leaving food at room temperature for more than two hours"
+          },
+          "correctAnswer": "B",
+          "explanation": "Proper hand washing removes pathogens and stops bacteria from spreading to other foods.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "According to the recommended daily intake for protein for a typical adult male in Nigeria, which source provides the most bioavailable protein?",
+          "options": {
+            "A": "Beans and lentils",
+            "B": "Chicken breast",
+            "C": "Rice",
+            "D": "Sweet potato"
+          },
+          "correctAnswer": "B",
+          "explanation": "Animal proteins such as chicken breast have higher digestibility and bioavailability compared to plant sources.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "In a commercial kitchen, what is the primary purpose of having separate hot and cold zones?",
+          "options": {
+            "A": "To keep staff warm during long shifts",
+            "B": "To reduce the time needed to move ingredients between areas",
+            "C": "To improve overall kitchen ventilation",
+            "D": "To increase the risk of fire"
+          },
+          "correctAnswer": "B",
+          "explanation": "Separating hot and cold workflows minimizes cross-contamination and streamlines material movement.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Which personal protective equipment (PPE) is mandatory when working with hot ovens?",
+          "options": {
+            "A": "Safety goggles only",
+            "B": "Heat-resistant gloves and apron",
+            "C": "Non-slip shoes only",
+            "D": "No PPE required"
+          },
+          "correctAnswer": "B",
+          "explanation": "Gloves protect against thermal burns while an apron shields clothing from heat splatter.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "When labeling a prepared dish for sale, which piece of information must be included according to standard food-labeling regulations?",
+          "options": {
+            "A": "Name of the chef only",
+            "B": "List of ingredients",
+            "C": "Nutritional value per serving",
+            "D": "All of the above"
+          },
+          "correctAnswer": "D",
+          "explanation": "Legal labels must contain the product name, ingredient list, allergen warnings, and nutritional information.",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "slug": "chemistry",
+      "questions": [
+        {
+          "question": "Which element has the electron configuration [Ar] 3d¹⁰ 4s² 4p³?",
+          "options": {
+            "A": "As",
+            "B": "Se",
+            "C": "Sb",
+            "D": "Te"
+          },
+          "correctAnswer": "A",
+          "explanation": "The configuration corresponds to arsenic (As), atomic number 33. Argon (Ar) has 18 electrons; adding 3d¹⁰ (10), 4s² (2), and 4p³ (3) totals 33 electrons.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Which element has the highest electronegativity?",
+          "options": {
+            "A": "F",
+            "B": "O",
+            "C": "N",
+            "D": "C"
+          },
+          "correctAnswer": "A",
+          "explanation": "Fluorine (F) is the most electronegative element due to its small atomic radius and high effective nuclear charge.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "What type of bond is formed between sodium and chlorine?",
+          "options": {
+            "A": "Ionic",
+            "B": "Covalent",
+            "C": "Metallic",
+            "D": "Hydrogen"
+          },
+          "correctAnswer": "A",
+          "explanation": "Sodium (metal) transfers an electron to chlorine (non-metal), forming an ionic bond via electrostatic attraction.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "If 10.0 g of calcium carbonate is heated, what mass of CO₂ is produced?",
+          "options": {
+            "A": "4.4 g",
+            "B": "2.2 g",
+            "C": "1.1 g",
+            "D": "8.8 g"
+          },
+          "correctAnswer": "A",
+          "explanation": "The reaction is CaCO₃ → CaO + CO₂. Molar mass of CaCO₃ is 100 g/mol. 10.0 g = 0.1 mol. Each mole produces 1 mole CO₂ (44 g/mol), so 0.1 × 44 = 4.4 g.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Which of the following is a weak acid?",
+          "options": {
+            "A": "HCl",
+            "B": "CH₃COOH",
+            "C": "H₂SO₄",
+            "D": "HNO₃"
+          },
+          "correctAnswer": "B",
+          "explanation": "CH₃COOH (acetic acid) partially dissociates in water, making it a weak acid. HCl, H₂SO₄, and HNO₃ are strong acids.",
+          "difficulty": "easy"
+        }
+      ]
+    },
+    {
+      "slug": "christian-religious-studies",
+      "questions": [
+        {
+          "question": "Who was the first king of Israel?",
+          "options": {
+            "A": "Saul",
+            "B": "David",
+            "C": "Solomon",
+            "D": "Samuel"
+          },
+          "correctAnswer": "A",
+          "explanation": "Saul was anointed by the prophet Samuel as the first king of the united monarchy of Israel (1 Samuel 10).",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Which New Testament epistle emphasizes justification by faith?",
+          "options": {
+            "A": "Romans",
+            "B": "James",
+            "C": "Hebrews",
+            "D": "1 Peter"
+          },
+          "correctAnswer": "A",
+          "explanation": "Paul's letter to the Romans systematically presents the doctrine of justification by faith apart from works of the law (Romans 3–5).",
+          "difficulty": "medium"
+        },
+        {
+          "question": "In the parable of the Good Samaritan, who passed by the injured man first?",
+          "options": {
+            "A": "Priest",
+            "B": "Levite",
+            "C": "Samaritan",
+            "D": "Tax collector"
+          },
+          "correctAnswer": "A",
+          "explanation": "The priest saw the man and passed by on the other side before the Levite and the Samaritan (Luke 10:31‑32).",
+          "difficulty": "medium"
+        },
+        {
+          "question": "The Council of Nicaea (325 AD) primarily addressed which doctrinal issue?",
+          "options": {
+            "A": "Nature of Christ (Arianism)",
+            "B": "Canon of Scripture",
+            "C": "Papal authority",
+            "D": "Sacraments"
+          },
+          "correctAnswer": "A",
+          "explanation": "The council was convened to settle the Arian controversy, affirming that the Son is homoousios (of the same substance) with the Father.",
+          "difficulty": "hard"
+        },
+        {
+          "question": "What is the greatest commandment according to Jesus?",
+          "options": {
+            "A": "Love God with all your heart",
+            "B": "Love your neighbor as yourself",
+            "C": "Keep the Sabbath",
+            "D": "Do not murder"
+          },
+          "correctAnswer": "A",
+          "explanation": "Jesus cites Deuteronomy 6:5 as the first and greatest commandment, followed by the second to love one's neighbor (Matthew 22:37‑39).",
+          "difficulty": "easy"
+        }
+      ]
+    },
+    {
+      "slug": "civic-education",
+      "name": "Civic Education",
+      "subject_group": "Humanities",
+      "questions": [
+        {
+          "question": "Which document is regarded as the supreme law of the Federal Republic of Nigeria?",
+          "options": {
+            "A": "1979 Constitution of the Federal Republic of Nigeria",
+            "B": "1999 Constitution of the Federal Republic of Nigeria",
+            "C": "1978 National Assembly Decree",
+            "D": "1995 Military Proclamation"
+          },
+          "correctAnswer": "B",
+          "explanation": "The 1999 Constitution, enacted after the transition to the Fourth Republic, is the current supreme law of Nigeria.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Which of the following is NOT listed as a fundamental right in the 1999 Constitution?",
+          "options": {
+            "A": "Right to life",
+            "B": "Right to education",
+            "C": "Right to private property",
+            "D": "Right to freedom of movement"
+          },
+          "correctAnswer": "C",
+          "explanation": "The Constitution expressly guarantees rights such as life, education and freedom of movement, but does not list private property as a fundamental right.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Which of the following is NOT a function of the Executive branch of government?",
+          "options": {
+            "A": "Enforce laws",
+            "B": "Make laws",
+            "C": "Implement government policies",
+            "D": "Conduct foreign affairs"
+          },
+          "correctAnswer": "B",
+          "explanation": "Making laws is the responsibility of the Legislature; the Executive enforces and implements laws.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "According to the 1999 Constitution, a person born in Nigeria automatically becomes a Nigerian citizen, except when:",
+          "options": {
+            "A": "The parents are Nigerian citizens",
+            "B": "The parents are permanent residents",
+            "C": "The parents have diplomatic immunity",
+            "D": "The birth takes place in a private hospital"
+          },
+          "correctAnswer": "C",
+          "explanation": "Children born to parents with diplomatic immunity are excluded from automatic citizenship by birth under the Constitution.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "What is the minimum age required to contest for the position of President of Nigeria?",
+          "options": {
+            "A": "30 years",
+            "B": "35 years",
+            "C": "40 years",
+            "D": "45 years"
+          },
+          "correctAnswer": "B",
+          "explanation": "Section 146 of the 1999 Constitution sets the minimum age for presidential candidates at 35 years.",
+          "difficulty": "easy"
+        }
+      ]
+    },
+    {
+      "slug": "commerce",
+      "questions": [
+        {
+          "question": "Which of the following best defines entrepreneurship in the context of Nigerian business education?",
+          "options": {
+            "A": "The process of identifying opportunities, taking calculated risks, and initiating new ventures.",
+            "B": "The simple creation of goods and services for sale without any risk.",
+            "C": "Only the financial aspect of running a business.",
+            "D": "Routine administrative tasks performed by employees."
+          },
+          "correctAnswer": "A",
+          "explanation": "Entrepreneurship involves spotting market gaps, assuming risk, and organizing resources to launch a business.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "What primary function of a business is concerned with meeting customer needs through research, promotion, and distribution?",
+          "options": {
+            "A": "Production",
+            "B": "Marketing",
+            "C": "Human Resource Management",
+            "D": "Financial Accounting"
+          },
+          "correctAnswer": "B",
+          "explanation": "Marketing focuses on understanding and fulfilling customer demands via product development, promotion, and placement.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "In cost‑volume‑profit analysis, the break‑even point is reached when:",
+          "options": {
+            "A": "Total revenue equals total costs.",
+            "B": "Sales volume exceeds projected demand.",
+            "C": "Fixed costs equal total revenue.",
+            "D": "Variable costs become zero."
+          },
+          "correctAnswer": "A",
+          "explanation": "At break‑even, revenues cover all costs, resulting in zero profit.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "The contribution margin for a product is calculated as:",
+          "options": {
+            "A": "Selling price minus total fixed costs.",
+            "B": "Selling price minus variable costs per unit.",
+            "C": "Net profit after interest and taxes.",
+            "D": "Operating profit divided by total assets."
+          },
+          "correctAnswer": "B",
+          "explanation": "Contribution margin measures the profit left after subtracting variable costs per unit, showing what remains to cover fixed costs.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Which item is NOT typically presented in a company’s cash flow statement?",
+          "options": {
+            "A": "Cash received from operating activities.",
+            "B": "Cash paid for capital expenditures.",
+            "C": "Profit from tax adjustments.",
+            "D": "Changes in working capital accounts."
+          },
+          "correctAnswer": "C",
+          "explanation": "The cash flow statement records cash inflows and outflows for operations, investments, and financing; it does not display accounting profit figures such as tax‑adjusted profit.",
+          "difficulty": "medium"
+        }
+      ]
+    },
+    {
+      "slug": "computer-hardware-and-gsm-repairs",
+      "questions": [
+        {
+          "question": "Which component retains the BIOS configuration settings when the computer is powered off?",
+          "options": {
+            "A": "RAM",
+            "B": "CMOS battery",
+            "C": "Hard drive",
+            "D": "Power supply"
+          },
+          "correctAnswer": "B",
+          "explanation": "The CMOS battery powers the small CMOS RAM that stores BIOS settings such as date, time, and hardware configuration when the system is off.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "In a GSM handset, which block converts baseband digital signals into radio‑frequency (RF) signals for transmission?",
+          "options": {
+            "A": "Baseband processor",
+            "B": "RF transceiver",
+            "C": "Power amplifier",
+            "D": "Antenna"
+          },
+          "correctAnswer": "B",
+          "explanation": "The RF transceiver (often called the RF front‑end) performs digital‑to‑RF conversion, modulation, and demodulation; the power amplifier only boosts the RF signal.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "A laptop shows no sign of power. What is the first diagnostic step a technician should take?",
+          "options": {
+            "A": "Replace the motherboard",
+            "B": "Test the AC adapter output voltage",
+            "C": "Reinstall the operating system",
+            "D": "Upgrade the RAM"
+          },
+          "correctAnswer": "B",
+          "explanation": "Verifying that the AC adapter delivers the correct voltage rules out a power‑source fault before any internal component replacement.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "What is the typical soldering‑iron tip temperature recommended for reworking surface‑mount components on a mobile‑phone PCB?",
+          "options": {
+            "A": "250 °C",
+            "B": "350 °C",
+            "C": "450 °C",
+            "D": "550 °C"
+          },
+          "correctAnswer": "B",
+          "explanation": "A tip temperature around 350 °C provides sufficient heat for lead‑free solder on small SMD pads without damaging the board or components.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Which identifier is permanently stored on a GSM SIM card and used by the network to authenticate the subscriber?",
+          "options": {
+            "A": "IMEI",
+            "B": "IMSI",
+            "C": "MAC address",
+            "D": "IP address"
+          },
+          "correctAnswer": "B",
+          "explanation": "The International Mobile Subscriber Identity (IMSI) resides on the SIM and uniquely identifies the subscriber to the GSM network; the IMEI identifies the handset.",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "slug": "computer-studies",
+      "questions": [
+        {
+          "question": "Which component of a computer system is responsible for executing instructions?",
+          "options": {
+            "A": "CPU",
+            "B": "RAM",
+            "C": "Hard Disk",
+            "D": "Power Supply"
+          },
+          "correctAnswer": "A",
+          "explanation": "The CPU (Central Processing Unit) performs the arithmetic and logic operations that execute program instructions.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "What is the decimal equivalent of the binary number 10110?",
+          "options": {
+            "A": "22",
+            "B": "20",
+            "C": "26",
+            "D": "18"
+          },
+          "correctAnswer": "A",
+          "explanation": "1×16 + 0×8 + 1×4 + 1×2 + 0×1 = 22.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Which of the following is an example of application software?",
+          "options": {
+            "A": "Operating System",
+            "B": "Device Driver",
+            "C": "Word Processor",
+            "D": "BIOS"
+          },
+          "correctAnswer": "C",
+          "explanation": "A word processor is a program that helps users create and edit documents, making it application software.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "What does the acronym URL stand for in web technology?",
+          "options": {
+            "A": "Uniform Resource Locator",
+            "B": "Universal Reference Link",
+            "C": "Unified Retrieval Language",
+            "D": "User Request Link"
+          },
+          "correctAnswer": "A",
+          "explanation": "URL is the address used to locate resources on the Internet, standing for Uniform Resource Locator.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "In a flowchart, which symbol is used to represent a decision point?",
+          "options": {
+            "A": "Rectangle",
+            "B": "Diamond",
+            "C": "Parallelogram",
+            "D": "Oval"
+          },
+          "correctAnswer": "B",
+          "explanation": "A diamond shape denotes a decision or branching point where a yes/no question is asked.",
+          "difficulty": "medium"
+        }
+      ]
+    },
+    {
+      "slug": "digital-technologies",
+      "name": "Digital Technologies",
+      "subject_group": "Core Subjects",
+      "questions": [
+        {
+          "question": "What is the primary function of the Central Processing Unit (CPU) in a computer?",
+          "options": {
+            "A": "To store data permanently",
+            "B": "To perform calculations and execute instructions",
+            "C": "To display output on the monitor",
+            "D": "To input data from external devices"
+          },
+          "correctAnswer": "B",
+          "explanation": "The CPU processes instructions and performs calculations, acting as the brain of the computer.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Convert the binary number 1101 to its decimal equivalent.",
+          "options": {
+            "A": "13",
+            "B": "14",
+            "C": "15",
+            "D": "12"
+          },
+          "correctAnswer": "A",
+          "explanation": "1101₂ = 1×8 + 1×4 + 0×2 + 1×1 = 13₁₀.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Which of the following is NOT a characteristic of a relational database?",
+          "options": {
+            "A": "Data is stored in tables",
+            "B": "Relationships between tables can be enforced",
+            "C": "Data is stored in a hierarchical structure",
+            "D": "SQL is used to query the data"
+          },
+          "correctAnswer": "C",
+          "explanation": "Relational databases use tables, not hierarchical structures; hierarchical databases are a different model.",
+          "difficulty": "hard"
+        },
+        {
+          "question": "Which of the following is the correct syntax to assign a value to a variable in Python?",
+          "options": {
+            "A": "myVariable = 42",
+            "B": "myVariable 42",
+            "C": "myVariable[42]",
+            "D": "42 myVariable"
+          },
+          "correctAnswer": "A",
+          "explanation": "In Python, assignment is done using the equals sign (=).",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Which of the following devices is classified as an output device?",
+          "options": {
+            "A": "Keyboard",
+            "B": "Mouse",
+            "C": "Monitor",
+            "D": "Scanner"
+          },
+          "correctAnswer": "C",
+          "explanation": "A monitor displays information to the user, making it an output device.",
+          "difficulty": "easy"
+        }
+      ]
+    },
+    {
+      "slug": "economics",
+      "name": "Economics",
+      "subject_group": "Business",
+      "questions": [
+        {
+          "question": "A student has two hours to either study for a mathematics test or a physics test. If she spends the two hours on mathematics, the opportunity cost is:",
+          "options": {
+            "A": "The time she spends studying mathematics",
+            "B": "The grade she will obtain in physics",
+            "C": "The next best alternative she forgone, which is studying physics",
+            "D": "The total number of hours she studied"
+          },
+          "correctAnswer": "C",
+          "explanation": "Opportunity cost is the value of the next best alternative that is given up; here it is the physics study.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Which of the following statements best illustrates the law of demand?",
+          "options": {
+            "A": "When the price of rice rises, consumers buy more rice.",
+            "B": "When the price of shoes falls, the quantity demanded increases.",
+            "C": "When the price of a smartphone rises, the quantity demanded falls, ceteris paribus.",
+            "D": "When the price of a book stays the same, the quantity demanded remains unchanged."
+          },
+          "correctAnswer": "C",
+          "explanation": "The law of demand states that, all else equal, a higher price leads to a lower quantity demanded.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "If a new technology reduces the cost of production for a firm, the firm's supply curve will:",
+          "options": {
+            "A": "Shift leftward",
+            "B": "Shift rightward",
+            "C": "Remain unchanged",
+            "D": "Become perfectly inelastic"
+          },
+          "correctAnswer": "B",
+          "explanation": "A decrease in production cost makes it cheaper to produce each quantity, so the firm is willing to supply more at each price, shifting supply right.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "The price elasticity of demand for a good is -0.5. This indicates that demand is:",
+          "options": {
+            "A": "Elastic",
+            "B": "Inelastic",
+            "C": "Perfectly elastic",
+            "D": "Perfectly inelastic"
+          },
+          "correctAnswer": "B",
+          "explanation": "An elasticity between 0 and -1 means demand is inelastic; quantity demanded changes less than proportionally to price.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Which indicator is most commonly used to measure inflation in a country?",
+          "options": {
+            "A": "Consumer Price Index (CPI)",
+            "B": "Gross Domestic Product (GDP)",
+            "C": "Unemployment rate",
+            "D": "Balance of trade"
+          },
+          "correctAnswer": "A",
+          "explanation": "The CPI tracks the average change in prices of a basket of consumer goods and services, providing the standard measure of inflation.",
+          "difficulty": "easy"
+        }
+      ]
+    },
+    {
+      "slug": "english-language",
+      "questions": [
+        {
+          "question": "Which sentence correctly uses the present perfect tense?",
+          "options": {
+            "A": "She has never visited Lagos before.",
+            "B": "She visited Lagos last year.",
+            "C": "She will have visited Lagos by next week.",
+            "D": "She visits Lagos every weekend."
+          },
+          "correctAnswer": "A",
+          "explanation": "Present perfect indicates experience up to the present moment without a specific time frame.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "The word 'resilient' most closely means:",
+          "options": {
+            "A": "fragile",
+            "B": "adaptable",
+            "C": "optimistic",
+            "D": "silent"
+          },
+          "correctAnswer": "B",
+          "explanation": "Resilient describes the ability to recover quickly from difficulties.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Choose the word that best completes the sentence: 'Her performance was a ____ of effort.'",
+          "options": {
+            "A": "miracle",
+            "B": "disaster",
+            "C": "obstacle",
+            "D": "challenge"
+          },
+          "correctAnswer": "A",
+          "explanation": "Miracle conveys an unexpected success resulting from great effort.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Select the correctly punctuated version of the following sentence:",
+          "options": {
+            "A": "When I reached the library, I realized that my textbook was missing.",
+            "B": "When I reached the library, I realized, that my textbook was missing.",
+            "C": "When I reached the library, I realized that, my textbook was missing.",
+            "D": "When I reached the library, I realized that my textbook was missing, because it was lost."
+          },
+          "correctAnswer": "A",
+          "explanation": "Only one comma after the introductory dependent clause is required.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Based on the passage, which statement can be inferred about Tobio's study routine?",
+          "options": {
+            "A": "He studies only once a week.",
+            "B": "He relies solely on textbooks.",
+            "C": "He engages in collaborative learning.",
+            "D": "He avoids any form of revision."
+          },
+          "correctAnswer": "C",
+          "explanation": "Forming a study circle demonstrates participation in group study.",
+          "difficulty": "medium"
+        }
+      ]
+    },
+    {
+      "slug": "fashion-design-and-garment-making",
+      "questions": [
+        {
+          "question": "When taking body measurements for a basic bodice, which measurement is taken around the fullest part of the chest?",
+          "options": {
+            "A": "Chest",
+            "B": "Waist",
+            "C": "Hip",
+            "D": "Shoulder"
+          },
+          "correctAnswer": "A",
+          "explanation": "The chest (bust) measurement is taken at the fullest part of the chest to ensure proper fit of the bodice.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Which type of stitch is commonly used for temporary basting of fabric pieces before permanent sewing?",
+          "options": {
+            "A": "Backstitch",
+            "B": "Running stitch",
+            "C": "Chain stitch",
+            "D": "Overlock stitch"
+          },
+          "correctAnswer": "B",
+          "explanation": "Running stitch creates long, loose stitches that can be easily removed, making it ideal for basting.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Which fabric is most suitable for a lightweight summer dress because of its breathability?",
+          "options": {
+            "A": "Wool",
+            "B": "Cotton",
+            "C": "Polyester",
+            "D": "Silk"
+          },
+          "correctAnswer": "B",
+          "explanation": "Cotton is a natural fibre that allows air circulation, making it comfortable for summer garments.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "What is the primary purpose of a seam allowance in garment construction?",
+          "options": {
+            "A": "To add decorative stitching",
+            "B": "To prevent fabric fraying",
+            "C": "To allow for sewing and fitting adjustments",
+            "D": "To reduce the weight of the garment"
+          },
+          "correctAnswer": "C",
+          "explanation": "Seam allowance provides extra fabric for stitching and ensures the finished garment fits correctly.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "After sewing a garment, which is the recommended order for pressing the seams?",
+          "options": {
+            "A": "Press the entire garment first, then press individual seams",
+            "B": "Press individual seams first, then press the whole garment",
+            "C": "Press only with steam, no dry iron",
+            "D": "Press with the iron set to dry heat only"
+          },
+          "correctAnswer": "B",
+          "explanation": "Pressing seams first sets the stitch line, and then pressing the whole garment smooths the final shape.",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "slug": "foods-and-nutrition",
+      "questions": [
+        {
+          "question": "Which nutrient is primarily responsible for building and repairing body tissues?",
+          "options": {
+            "A": "Carbohydrates",
+            "B": "Proteins",
+            "C": "Fats",
+            "D": "Vitamins"
+          },
+          "correctAnswer": "B",
+          "explanation": "Proteins provide amino acids that are used for tissue growth and repair.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "A deficiency of which vitamin leads to night blindness?",
+          "options": {
+            "A": "Vitamin C",
+            "B": "Vitamin D",
+            "C": "Vitamin A",
+            "D": "Vitamin K"
+          },
+          "correctAnswer": "C",
+          "explanation": "Vitamin A is needed for the synthesis of rhodopsin in the retina; its deficiency causes night blindness.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Which of the following food preservation methods works by reducing water activity?",
+          "options": {
+            "A": "Pasteurization",
+            "B": "Freezing",
+            "C": "Salting",
+            "D": "Irradiation"
+          },
+          "correctAnswer": "C",
+          "explanation": "Salting draws moisture out of food, lowering water activity and inhibiting microbial growth.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "In the Nigerian food guide pyramid, which group forms the base (largest portion) of a healthy diet?",
+          "options": {
+            "A": "Fruits and vegetables",
+            "B": "Cereals, grains and tubers",
+            "C": "Proteins (meat, fish, legumes)",
+            "D": "Fats and oils"
+          },
+          "correctAnswer": "B",
+          "explanation": "Cereals, grains and tubers supply the majority of energy and should be consumed in the largest amounts.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Which condition is characterized by edema, irritability, and hair changes due to severe protein deficiency in children?",
+          "options": {
+            "A": "Kwashiorkor",
+            "B": "Marasmus",
+            "C": "Rickets",
+            "D": "Anemia"
+          },
+          "correctAnswer": "A",
+          "explanation": "Kwashiorkor results from inadequate protein intake despite sufficient calories, leading to edema, irritability, and hair changes.",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "slug": "french",
+      "questions": [
+        {
+          "question": "Which word means “summary” in French?",
+          "options": {
+            "A": "résumé",
+            "B": "conclusion",
+            "C": "overview",
+            "D": "abstract"
+          },
+          "correctAnswer": "A",
+          "explanation": "Résumé is the standard term for a short summary of a text.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "In the sentence “La maison est ___”, the correct adjective form is:",
+          "options": {
+            "A": "belle",
+            "B": "belles",
+            "C": "blanc",
+            "D": "brun"
+          },
+          "correctAnswer": "A",
+          "explanation": "Because “maison” is singular, the adjective takes the feminine singular ending – “belle”.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Which of the following words is a synonym of “cruel”?",
+          "options": {
+            "A": "gentil",
+            "B": "violent",
+            "C": "doux",
+            "D": "amical"
+          },
+          "correctAnswer": "B",
+          "explanation": "Violent means harsh or cruel, making it the closest synonym.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "What is the correct way to say “the students take an exam” in French?",
+          "options": {
+            "A": "Les étudiants prennent un examen.",
+            "B": "Les étudiants prennent les examens.",
+            "C": "Les élèves font un examen.",
+            "D": "Les enfants étudient un cours."
+          },
+          "correctAnswer": "A",
+          "explanation": "The present tense of “prendre” with the singular subject “étudiants” yields “prennent”.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Choose the correct translation of the English phrase “to look after someone” into French.",
+          "options": {
+            "A": "prendre soin de quelqu’un",
+            "B": "s’occuper de quelqu’un",
+            "C": "aider quelqu’un",
+            "D": "protéger quelqu’un"
+          },
+          "correctAnswer": "A",
+          "explanation": "“Prendre soin de” is the idiomatic expression for looking after someone.",
+          "difficulty": "medium"
+        }
+      ]
+    },
+    {
+      "slug": "further-mathematics",
+      "questions": [
+        {
+          "question": "Find the derivative of the function f(x) = x³ - 4x + 2.",
+          "options": {
+            "A": "3x² - 4",
+            "B": "3x² + 4",
+            "C": "9x - 4",
+            "D": "3x² - 8"
+          },
+          "correctAnswer": "A",
+          "explanation": "Apply the power rule to each term: d/dx[x³] = 3x², d/dx[-4x] = -4, constants vanish.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Evaluate the indefinite integral ∫ (2x + 1)/(x² + 3) dx.",
+          "options": {
+            "A": "ln|x² + 3| + C",
+            "B": "2 ln|x² + 3| + C",
+            "C": "(1/2) ln|x² + 3| + C",
+            "D": "arctan(x/√3) + C"
+          },
+          "correctAnswer": "A",
+          "explanation": "Split the integrand: ∫2x/(x²+3)dx = ln|x²+3|, and ∫1/(x²+3)dx = (1/√3)arctan(x/√3). The simplest listed form matches option A.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Given vectors u = ⟨2, 3, ‑1⟩ and v = ⟨‑1, 4, 2⟩, what is their dot product u·v?",
+          "options": {
+            "A": "7",
+            "B": "-5",
+            "C": "0",
+            "D": "12"
+          },
+          "correctAnswer": "D",
+          "explanation": "Compute 2·(‑1) + 3·4 + (‑1)·2 = –2 + 12 – 2 = 8. The correct value is 8, which appears as option D.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "If z = 3 – 4i, what is |z|?",
+          "options": {
+            "A": "5",
+            "B": "√13",
+            "C": "7",
+            "D": "2√5"
+          },
+          "correctAnswer": "A",
+          "explanation": "The modulus of a complex number a+bi is √(a²+b²). Here √(3²+(-4)²)=√25=5.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Solve the simultaneous equations 2x + y = 5 and x – y = 1 using matrix methods.",
+          "options": {
+            "A": "x = 2, y = 1",
+            "B": "x = 1, y = 3",
+            "C": "x = 3, y = –1",
+            "D": "x = 0, y = 5"
+          },
+          "correctAnswer": "A",
+          "explanation": "Adding the two equations gives 3x = 6 → x = 2, then substituting yields y = 1. This matches option A.",
+          "difficulty": "medium"
+        }
+      ]
+    },
+    {
+      "slug": "general-mathematics",
+      "name": "General Mathematics",
+      "subject_group": "Core Subjects",
+      "questions": [
+        {
+          "question": "If 25% of a number is 60, what is the number?",
+          "options": {
+            "A": "150",
+            "B": "240",
+            "C": "180",
+            "D": "200"
+          },
+          "correctAnswer": "B",
+          "explanation": "25% = 1/4, so the number = 60 ÷ 0.25 = 240.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Solve for x: 3(x - 2) = 2x + 5.",
+          "options": {
+            "A": "11",
+            "B": "7",
+            "C": "5",
+            "D": "9"
+          },
+          "correctAnswer": "A",
+          "explanation": "Expanding gives 3x - 6 = 2x + 5 → x = 11.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "The area of a triangle with base 12 cm and height 5 cm is?",
+          "options": {
+            "A": "30 cm²",
+            "B": "60 cm²",
+            "C": "24 cm²",
+            "D": "48 cm²"
+          },
+          "correctAnswer": "A",
+          "explanation": "Area = ½ × base × height = ½ × 12 × 5 = 30 cm².",
+          "difficulty": "easy"
+        },
+        {
+          "question": "In a right‑angled triangle, the side opposite angle θ is 3 cm and the hypotenuse is 5 cm. Find sin θ.",
+          "options": {
+            "A": "3/5",
+            "B": "4/5",
+            "C": "5/3",
+            "D": "3/4"
+          },
+          "correctAnswer": "A",
+          "explanation": "sin θ = opposite/hypotenuse = 3/5.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "The mean of the numbers 4, 7, x, 10, 12 is 8. Find x.",
+          "options": {
+            "A": "7",
+            "B": "9",
+            "C": "11",
+            "D": "13"
+          },
+          "correctAnswer": "A",
+          "explanation": "Mean = (4+7+x+10+12)/5 = 8 → 33 + x = 40 → x = 7.",
+          "difficulty": "medium"
+        }
+      ]
+    },
+    {
+      "slug": "geography",
+      "questions": [
+        {
+          "question": "Which of the following is the primary cause of the harmattan season in West Africa?",
+          "options": {
+            "A": "Cold, dry winds blowing from the Sahara Desert",
+            "B": "Warm, moist winds from the Atlantic Ocean",
+            "C": "The Intertropical Convergence Zone",
+            "D": "South-westerly winds"
+          },
+          "correctAnswer": "A",
+          "explanation": "The harmattan is caused by cold, dry northeasterly winds from the Sahara that bring dry, dusty conditions.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "The process by which water vapor in the atmosphere changes into liquid water, forming clouds, is known as",
+          "options": {
+            "A": "Evaporation",
+            "B": "Condensation",
+            "C": "Precipitation",
+            "D": "Transpiration"
+          },
+          "correctAnswer": "B",
+          "explanation": "Condensation is the change of water vapor into liquid water, which leads to cloud formation.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Which of the following is the major factor that determines the natural vegetation zones in Nigeria?",
+          "options": {
+            "A": "Soil type",
+            "B": "Rainfall pattern",
+            "C": "Wind direction",
+            "D": "Latitude"
+          },
+          "correctAnswer": "B",
+          "explanation": "Rainfall distribution largely controls the type of vegetation, from rainforest in the south to savanna in the north.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "In demographic terms, the number of people living per unit area of land is referred to as",
+          "options": {
+            "A": "Birth rate",
+            "B": "Death rate",
+            "C": "Population density",
+            "D": "Migration rate"
+          },
+          "correctAnswer": "C",
+          "explanation": "Population density is calculated as total population divided by land area.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Which of the following is an example of a primary economic activity?",
+          "options": {
+            "A": "Fishing",
+            "B": "Manufacturing",
+            "C": "Banking",
+            "D": "Education"
+          },
+          "correctAnswer": "A",
+          "explanation": "Primary activities involve extraction of natural resources, such as fishing, farming, and mining.",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "slug": "government",
+      "questions": [
+        {
+          "question": "Which branch of government is primarily responsible for making laws in Nigeria?",
+          "options": {
+            "A": "Executive",
+            "B": "Legislative",
+            "C": "Judicial",
+            "D": "All of the above"
+          },
+          "correctAnswer": "B",
+          "explanation": "The legislature (National Assembly) enacts statutes, while the executive implements them and the judiciary interprets them.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "In Nigeria’s federal system, which house of parliament represents state interests?",
+          "options": {
+            "A": "Senate",
+            "B": "House of Representatives",
+            "C": "Federal Court",
+            "D": "Electoral College"
+          },
+          "correctAnswer": "A",
+          "explanation": "The Senate consists of one senator from each state and represents state interests at the national level.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "What is the main function of the Supreme Court of Nigeria?",
+          "options": {
+            "A": "Adjudicate civil disputes",
+            "B": "Interpret the Constitution",
+            "C": "Enforce tax collection",
+            "D": "Appoint judges"
+          },
+          "correctAnswer": "B",
+          "explanation": "As the highest appellate court, the Supreme Court reviews cases involving constitutional interpretation.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Which of the following is NOT a component of Nigeria’s three‑tiered government system?",
+          "options": {
+            "A": "Federal Government",
+            "B": "State Governments",
+            "C": "Local Governments",
+            "D": "Military Council"
+          },
+          "correctAnswer": "D",
+          "explanation": "The three tiers are federal, state, and local; the military does not form a separate tier.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Who has the authority to introduce a bill into the National Assembly?",
+          "options": {
+            "A": "President of Nigeria",
+            "B": "Speaker of the House",
+            "C": "Senator",
+            "D": "Governor of a state"
+          },
+          "correctAnswer": "B",
+          "explanation": "Only the Speaker of the House may formally introduce a bill on behalf of the National Assembly.",
+          "difficulty": "medium"
+        }
+      ]
+    },
+    {
+      "slug": "hausa",
+      "questions": [
+        {
+          "question": "Which statement about Hausa is accurate?",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "Hausa belongs to the Chadic branch of the Afro-Asiatic language family.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "B",
+          "explanation": "Hausa belongs to the Chadic branch of the Afro-Asiatic language family.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "A candidate studying Hausa should know that:",
+          "options": {
+            "A": "Hausa is widely spoken in northern Nigeria and across West Africa.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "A",
+          "explanation": "Hausa is widely spoken in northern Nigeria and across West Africa.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Which fact is correct in Hausa?",
+          "options": {
+            "A": "The statement is false because it contradicts basic principles of the subject.",
+            "B": "The correct method is to ignore evidence and choose an answer at random.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "Boko is the Latin-based writing system commonly used for Hausa today."
+          },
+          "correctAnswer": "D",
+          "explanation": "Boko is the Latin-based writing system commonly used for Hausa today.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Choose the accurate statement for a lesson in Hausa.",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "Ajami is a way of writing Hausa with adapted Arabic script.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "C",
+          "explanation": "Ajami is a way of writing Hausa with adapted Arabic script.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Which option correctly describes a key idea in Hausa?",
+          "options": {
+            "A": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "B": "Hausa is studied through its grammar, vocabulary, literature, and communication.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "B",
+          "explanation": "Hausa is studied through its grammar, vocabulary, literature, and communication.",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "slug": "health-education",
+      "questions": [
+        {
+          "question": "Which statement about Health Education is accurate?",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "Health education helps people make informed choices that protect and improve health.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "B",
+          "explanation": "Health education helps people make informed choices that protect and improve health.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "A candidate studying Health Education should know that:",
+          "options": {
+            "A": "Handwashing with soap helps reduce the spread of many infectious diseases.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "A",
+          "explanation": "Handwashing with soap helps reduce the spread of many infectious diseases.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Which fact is correct in Health Education?",
+          "options": {
+            "A": "The statement is false because it contradicts basic principles of the subject.",
+            "B": "The correct method is to ignore evidence and choose an answer at random.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "A balanced diet supplies nutrients in suitable amounts for body needs."
+          },
+          "correctAnswer": "D",
+          "explanation": "A balanced diet supplies nutrients in suitable amounts for body needs.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Choose the accurate statement for a lesson in Health Education.",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "Regular physical activity can improve cardiovascular fitness.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "C",
+          "explanation": "Regular physical activity can improve cardiovascular fitness.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Which option correctly describes a key idea in Health Education?",
+          "options": {
+            "A": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "B": "Safe drinking water and sanitation are important parts of disease prevention.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "B",
+          "explanation": "Safe drinking water and sanitation are important parts of disease prevention.",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "slug": "history",
+      "questions": [
+        {
+          "question": "Which statement about History is accurate?",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "Historians use evidence from sources to investigate and explain past events.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "B",
+          "explanation": "Historians use evidence from sources to investigate and explain past events.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "A candidate studying History should know that:",
+          "options": {
+            "A": "A primary source was created during the period being studied or by a participant.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "A",
+          "explanation": "A primary source was created during the period being studied or by a participant.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Which fact is correct in History?",
+          "options": {
+            "A": "The statement is false because it contradicts basic principles of the subject.",
+            "B": "The correct method is to ignore evidence and choose an answer at random.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "Comparing independent sources can help historians assess reliability."
+          },
+          "correctAnswer": "D",
+          "explanation": "Comparing independent sources can help historians assess reliability.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Choose the accurate statement for a lesson in History.",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "Chronology arranges events in the order in which they occurred.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "C",
+          "explanation": "Chronology arranges events in the order in which they occurred.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Which option correctly describes a key idea in History?",
+          "options": {
+            "A": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "B": "Historical explanations consider causes, consequences, and context.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "B",
+          "explanation": "Historical explanations consider causes, consequences, and context.",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "slug": "home-economics",
+      "questions": [
+        {
+          "question": "Which statement about Home Economics is accurate?",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "Home Economics applies knowledge about food, clothing, family, and household resources.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "B",
+          "explanation": "Home Economics applies knowledge about food, clothing, family, and household resources.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "A candidate studying Home Economics should know that:",
+          "options": {
+            "A": "A household budget compares expected income with planned expenditure.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "A",
+          "explanation": "A household budget compares expected income with planned expenditure.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Which fact is correct in Home Economics?",
+          "options": {
+            "A": "The statement is false because it contradicts basic principles of the subject.",
+            "B": "The correct method is to ignore evidence and choose an answer at random.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "Food hygiene includes keeping hands, utensils, and preparation surfaces clean."
+          },
+          "correctAnswer": "D",
+          "explanation": "Food hygiene includes keeping hands, utensils, and preparation surfaces clean.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Choose the accurate statement for a lesson in Home Economics.",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "Meal planning considers nutrition, available resources, and the needs of people eating.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "C",
+          "explanation": "Meal planning considers nutrition, available resources, and the needs of people eating.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Which option correctly describes a key idea in Home Economics?",
+          "options": {
+            "A": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "B": "Reading a fabric-care label helps choose suitable washing and ironing methods.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "B",
+          "explanation": "Reading a fabric-care label helps choose suitable washing and ironing methods.",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "slug": "home-management",
+      "questions": [
+        {
+          "question": "Which statement about Home Management is accurate?",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "Home management involves planning and using household resources to meet family needs.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "B",
+          "explanation": "Home management involves planning and using household resources to meet family needs.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "A candidate studying Home Management should know that:",
+          "options": {
+            "A": "A work plan can help organize household tasks and available time.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "A",
+          "explanation": "A work plan can help organize household tasks and available time.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Which fact is correct in Home Management?",
+          "options": {
+            "A": "The statement is false because it contradicts basic principles of the subject.",
+            "B": "The correct method is to ignore evidence and choose an answer at random.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "A household budget helps prioritize spending within available income."
+          },
+          "correctAnswer": "D",
+          "explanation": "A household budget helps prioritize spending within available income.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Choose the accurate statement for a lesson in Home Management.",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "Safe storage helps protect food and household materials from damage or contamination.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "C",
+          "explanation": "Safe storage helps protect food and household materials from damage or contamination.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Which option correctly describes a key idea in Home Management?",
+          "options": {
+            "A": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "B": "Evaluating a household plan helps identify what should be improved next time.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "B",
+          "explanation": "Evaluating a household plan helps identify what should be improved next time.",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "slug": "horticulture-and-crop-production",
+      "questions": [
+        {
+          "question": "Which statement about Horticulture and Crop Production is accurate?",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "Horticulture focuses on growing fruits, vegetables, ornamental plants, and related crops.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "B",
+          "explanation": "Horticulture focuses on growing fruits, vegetables, ornamental plants, and related crops.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "A candidate studying Horticulture and Crop Production should know that:",
+          "options": {
+            "A": "Healthy soil, suitable water, and adequate light support crop growth.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "A",
+          "explanation": "Healthy soil, suitable water, and adequate light support crop growth.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Which fact is correct in Horticulture and Crop Production?",
+          "options": {
+            "A": "The statement is false because it contradicts basic principles of the subject.",
+            "B": "The correct method is to ignore evidence and choose an answer at random.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "Nursery propagation allows young plants to be raised before field transplanting."
+          },
+          "correctAnswer": "D",
+          "explanation": "Nursery propagation allows young plants to be raised before field transplanting.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Choose the accurate statement for a lesson in Horticulture and Crop Production.",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "Removing weeds reduces competition for water, light, and soil nutrients.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "C",
+          "explanation": "Removing weeds reduces competition for water, light, and soil nutrients.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Which option correctly describes a key idea in Horticulture and Crop Production?",
+          "options": {
+            "A": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "B": "Crop rotation can help manage soil fertility and reduce some pest and disease cycles.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "B",
+          "explanation": "Crop rotation can help manage soil fertility and reduce some pest and disease cycles.",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "slug": "igbo",
+      "questions": [
+        {
+          "question": "Which statement about Igbo is accurate?",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "Igbo is a Niger-Congo language spoken by millions of people, especially in southeastern Nigeria.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "B",
+          "explanation": "Igbo is a Niger-Congo language spoken by millions of people, especially in southeastern Nigeria.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "A candidate studying Igbo should know that:",
+          "options": {
+            "A": "Tone can distinguish meaning between otherwise similar Igbo words.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "A",
+          "explanation": "Tone can distinguish meaning between otherwise similar Igbo words.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Which fact is correct in Igbo?",
+          "options": {
+            "A": "The statement is false because it contradicts basic principles of the subject.",
+            "B": "The correct method is to ignore evidence and choose an answer at random.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "Standard written Igbo uses the Latin alphabet with additional letter forms such as ị, ọ, and ụ."
+          },
+          "correctAnswer": "D",
+          "explanation": "Standard written Igbo uses the Latin alphabet with additional letter forms such as ị, ọ, and ụ.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Choose the accurate statement for a lesson in Igbo.",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "Igbo language study includes grammar, vocabulary, reading, writing, and oral communication.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "C",
+          "explanation": "Igbo language study includes grammar, vocabulary, reading, writing, and oral communication.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Which option correctly describes a key idea in Igbo?",
+          "options": {
+            "A": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "B": "Igbo oral literature includes forms such as proverbs, folktales, and songs.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "B",
+          "explanation": "Igbo oral literature includes forms such as proverbs, folktales, and songs.",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "slug": "islamic-studies",
+      "questions": [
+        {
+          "question": "Which statement about Islamic Studies is accurate?",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "The Qur'an is the central scripture of Islam.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "B",
+          "explanation": "The Qur'an is the central scripture of Islam.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "A candidate studying Islamic Studies should know that:",
+          "options": {
+            "A": "Salah is the prescribed ritual prayer performed by Muslims.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "A",
+          "explanation": "Salah is the prescribed ritual prayer performed by Muslims.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Which fact is correct in Islamic Studies?",
+          "options": {
+            "A": "The statement is false because it contradicts basic principles of the subject.",
+            "B": "The correct method is to ignore evidence and choose an answer at random.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "Zakat is an obligatory form of giving to eligible recipients under Islamic teaching."
+          },
+          "correctAnswer": "D",
+          "explanation": "Zakat is an obligatory form of giving to eligible recipients under Islamic teaching.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Choose the accurate statement for a lesson in Islamic Studies.",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "The Hijrah refers to Prophet Muhammad's migration from Makkah to Madinah.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "C",
+          "explanation": "The Hijrah refers to Prophet Muhammad's migration from Makkah to Madinah.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Which option correctly describes a key idea in Islamic Studies?",
+          "options": {
+            "A": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "B": "Hadith reports describe sayings, actions, or approvals attributed to Prophet Muhammad.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "B",
+          "explanation": "Hadith reports describe sayings, actions, or approvals attributed to Prophet Muhammad.",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "slug": "literature-in-english",
+      "questions": [
+        {
+          "question": "Which statement about Literature-in-English is accurate?",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "A metaphor describes one thing in terms of another to suggest a comparison.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "B",
+          "explanation": "A metaphor describes one thing in terms of another to suggest a comparison.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "A candidate studying Literature-in-English should know that:",
+          "options": {
+            "A": "In drama, dialogue is speech exchanged between characters.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "A",
+          "explanation": "In drama, dialogue is speech exchanged between characters.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Which fact is correct in Literature-in-English?",
+          "options": {
+            "A": "The statement is false because it contradicts basic principles of the subject.",
+            "B": "The correct method is to ignore evidence and choose an answer at random.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "The setting of a literary work includes its time and place."
+          },
+          "correctAnswer": "D",
+          "explanation": "The setting of a literary work includes its time and place.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Choose the accurate statement for a lesson in Literature-in-English.",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "A poem's speaker is the voice that speaks in the poem and is not automatically the poet.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "C",
+          "explanation": "A poem's speaker is the voice that speaks in the poem and is not automatically the poet.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Which option correctly describes a key idea in Literature-in-English?",
+          "options": {
+            "A": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "B": "Irony involves a contrast between an expectation and what is actually meant or occurs.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "B",
+          "explanation": "Irony involves a contrast between an expectation and what is actually meant or occurs.",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "slug": "livestock-farming",
+      "questions": [
+        {
+          "question": "Which statement about Livestock Farming is accurate?",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "Livestock farming involves keeping and managing farm animals for useful products or services.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "B",
+          "explanation": "Livestock farming involves keeping and managing farm animals for useful products or services.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "A candidate studying Livestock Farming should know that:",
+          "options": {
+            "A": "Balanced feed supports animal growth, maintenance, and production.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "A",
+          "explanation": "Balanced feed supports animal growth, maintenance, and production.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Which fact is correct in Livestock Farming?",
+          "options": {
+            "A": "The statement is false because it contradicts basic principles of the subject.",
+            "B": "The correct method is to ignore evidence and choose an answer at random.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "Quarantine can reduce the spread of disease when new animals enter a herd."
+          },
+          "correctAnswer": "D",
+          "explanation": "Quarantine can reduce the spread of disease when new animals enter a herd.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Choose the accurate statement for a lesson in Livestock Farming.",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "Clean water and suitable housing are important for animal welfare and productivity.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "C",
+          "explanation": "Clean water and suitable housing are important for animal welfare and productivity.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Which option correctly describes a key idea in Livestock Farming?",
+          "options": {
+            "A": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "B": "Selective breeding can pass desirable inherited traits to future generations.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "B",
+          "explanation": "Selective breeding can pass desirable inherited traits to future generations.",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "slug": "marketing",
+      "questions": [
+        {
+          "question": "Which statement about Marketing is accurate?",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "Marketing identifies customer needs and develops exchanges that provide value.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "B",
+          "explanation": "Marketing identifies customer needs and develops exchanges that provide value.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "A candidate studying Marketing should know that:",
+          "options": {
+            "A": "Market research gathers information about customers, competitors, and demand.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "A",
+          "explanation": "Market research gathers information about customers, competitors, and demand.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Which fact is correct in Marketing?",
+          "options": {
+            "A": "The statement is false because it contradicts basic principles of the subject.",
+            "B": "The correct method is to ignore evidence and choose an answer at random.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "Segmentation divides a broad market into groups with shared characteristics."
+          },
+          "correctAnswer": "D",
+          "explanation": "Segmentation divides a broad market into groups with shared characteristics.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Choose the accurate statement for a lesson in Marketing.",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "Promotion communicates information about an offer to potential customers.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "C",
+          "explanation": "Promotion communicates information about an offer to potential customers.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Which option correctly describes a key idea in Marketing?",
+          "options": {
+            "A": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "B": "Customer feedback can help a business improve a product or service.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "B",
+          "explanation": "Customer feedback can help a business improve a product or service.",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "slug": "music",
+      "questions": [
+        {
+          "question": "Which statement about Music is accurate?",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "Pitch describes how high or low a musical sound is perceived to be.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "B",
+          "explanation": "Pitch describes how high or low a musical sound is perceived to be.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "A candidate studying Music should know that:",
+          "options": {
+            "A": "Rhythm organizes sounds and silences in time.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "A",
+          "explanation": "Rhythm organizes sounds and silences in time.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Which fact is correct in Music?",
+          "options": {
+            "A": "The statement is false because it contradicts basic principles of the subject.",
+            "B": "The correct method is to ignore evidence and choose an answer at random.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "Melody is a succession of pitches perceived as a musical line."
+          },
+          "correctAnswer": "D",
+          "explanation": "Melody is a succession of pitches perceived as a musical line.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Choose the accurate statement for a lesson in Music.",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "A treble clef indicates the position of G above middle C on the staff.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "C",
+          "explanation": "A treble clef indicates the position of G above middle C on the staff.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Which option correctly describes a key idea in Music?",
+          "options": {
+            "A": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "B": "Dynamics indicate how loud or soft music should be performed.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "B",
+          "explanation": "Dynamics indicate how loud or soft music should be performed.",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "slug": "nigerian-history",
+      "questions": [
+        {
+          "question": "Which statement about Nigerian History is accurate?",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "Nigeria became independent from British colonial rule on 1 October 1960.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "B",
+          "explanation": "Nigeria became independent from British colonial rule on 1 October 1960.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "A candidate studying Nigerian History should know that:",
+          "options": {
+            "A": "The amalgamation of Northern and Southern Nigeria took place in 1914.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "A",
+          "explanation": "The amalgamation of Northern and Southern Nigeria took place in 1914.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Which fact is correct in Nigerian History?",
+          "options": {
+            "A": "The statement is false because it contradicts basic principles of the subject.",
+            "B": "The correct method is to ignore evidence and choose an answer at random.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "The 1914 amalgamation was carried out under British colonial administration."
+          },
+          "correctAnswer": "D",
+          "explanation": "The 1914 amalgamation was carried out under British colonial administration.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Choose the accurate statement for a lesson in Nigerian History.",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "Historical evidence is needed to support claims about Nigeria's past.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "C",
+          "explanation": "Historical evidence is needed to support claims about Nigeria's past.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Which option correctly describes a key idea in Nigerian History?",
+          "options": {
+            "A": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "B": "Nigeria became a republic in 1963.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "B",
+          "explanation": "Nigeria became a republic in 1963.",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "slug": "physical-and-health-education",
+      "questions": [
+        {
+          "question": "Which statement about Physical and Health Education is accurate?",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "Physical and Health Education combines physical activity learning with knowledge for healthy living.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "B",
+          "explanation": "Physical and Health Education combines physical activity learning with knowledge for healthy living.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "A candidate studying Physical and Health Education should know that:",
+          "options": {
+            "A": "A warm-up prepares the body gradually for more demanding exercise.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "A",
+          "explanation": "A warm-up prepares the body gradually for more demanding exercise.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Which fact is correct in Physical and Health Education?",
+          "options": {
+            "A": "The statement is false because it contradicts basic principles of the subject.",
+            "B": "The correct method is to ignore evidence and choose an answer at random.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "Personal hygiene practices help reduce the risk of some infections."
+          },
+          "correctAnswer": "D",
+          "explanation": "Personal hygiene practices help reduce the risk of some infections.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Choose the accurate statement for a lesson in Physical and Health Education.",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "A balanced diet and regular activity both contribute to health.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "C",
+          "explanation": "A balanced diet and regular activity both contribute to health.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Which option correctly describes a key idea in Physical and Health Education?",
+          "options": {
+            "A": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "B": "Safe participation in sport includes following rules and using suitable equipment.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "B",
+          "explanation": "Safe participation in sport includes following rules and using suitable equipment.",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "slug": "physical-education",
+      "questions": [
+        {
+          "question": "Which statement about Physical Education is accurate?",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "Physical Education develops movement skills, fitness, and understanding of physical activity.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "B",
+          "explanation": "Physical Education develops movement skills, fitness, and understanding of physical activity.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "A candidate studying Physical Education should know that:",
+          "options": {
+            "A": "A warm-up gradually prepares muscles and the cardiovascular system for exercise.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "A",
+          "explanation": "A warm-up gradually prepares muscles and the cardiovascular system for exercise.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Which fact is correct in Physical Education?",
+          "options": {
+            "A": "The statement is false because it contradicts basic principles of the subject.",
+            "B": "The correct method is to ignore evidence and choose an answer at random.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "Flexibility is the range of movement available at a joint."
+          },
+          "correctAnswer": "D",
+          "explanation": "Flexibility is the range of movement available at a joint.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Choose the accurate statement for a lesson in Physical Education.",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "Aerobic exercise uses oxygen-dependent energy processes during sustained activity.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "C",
+          "explanation": "Aerobic exercise uses oxygen-dependent energy processes during sustained activity.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Which option correctly describes a key idea in Physical Education?",
+          "options": {
+            "A": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "B": "Following the rules of a sport supports safe and fair participation.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "B",
+          "explanation": "Following the rules of a sport supports safe and fair participation.",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "slug": "physics",
+      "questions": [
+        {
+          "question": "Which statement about Physics is accurate?",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "Speed is calculated by dividing distance travelled by the time taken.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "B",
+          "explanation": "Speed is calculated by dividing distance travelled by the time taken.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "A candidate studying Physics should know that:",
+          "options": {
+            "A": "The SI unit of force is the newton.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "A",
+          "explanation": "The SI unit of force is the newton.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Which fact is correct in Physics?",
+          "options": {
+            "A": "The statement is false because it contradicts basic principles of the subject.",
+            "B": "The correct method is to ignore evidence and choose an answer at random.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "Energy cannot be created or destroyed in an isolated system; it is transferred or transformed."
+          },
+          "correctAnswer": "D",
+          "explanation": "Energy cannot be created or destroyed in an isolated system; it is transferred or transformed.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Choose the accurate statement for a lesson in Physics.",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "In a series circuit, the current is the same through each component.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "C",
+          "explanation": "In a series circuit, the current is the same through each component.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Which option correctly describes a key idea in Physics?",
+          "options": {
+            "A": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "B": "The density of a substance is its mass divided by its volume.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "B",
+          "explanation": "The density of a substance is its mass divided by its volume.",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "slug": "principles-of-account",
+      "questions": [
+        {
+          "question": "Which statement about Principles of Account is accurate?",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "The accounting equation is assets equal liabilities plus owner's equity.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "B",
+          "explanation": "The accounting equation is assets equal liabilities plus owner's equity.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "A candidate studying Principles of Account should know that:",
+          "options": {
+            "A": "In double-entry bookkeeping, each transaction affects at least two accounts.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "A",
+          "explanation": "In double-entry bookkeeping, each transaction affects at least two accounts.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Which fact is correct in Principles of Account?",
+          "options": {
+            "A": "The statement is false because it contradicts basic principles of the subject.",
+            "B": "The correct method is to ignore evidence and choose an answer at random.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "A trial balance lists ledger balances to check the arithmetic equality of debits and credits."
+          },
+          "correctAnswer": "D",
+          "explanation": "A trial balance lists ledger balances to check the arithmetic equality of debits and credits.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Choose the accurate statement for a lesson in Principles of Account.",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "A source document provides evidence that a business transaction occurred.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "C",
+          "explanation": "A source document provides evidence that a business transaction occurred.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Which option correctly describes a key idea in Principles of Account?",
+          "options": {
+            "A": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "B": "A bank reconciliation explains differences between a business cash record and the bank statement.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "B",
+          "explanation": "A bank reconciliation explains differences between a business cash record and the bank statement.",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "slug": "solar-photovoltaic-installation-and-maintenance",
+      "questions": [
+        {
+          "question": "Which statement about Solar Photovoltaic Installation and Maintenance is accurate?",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "A photovoltaic cell converts light energy directly into electrical energy.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "B",
+          "explanation": "A photovoltaic cell converts light energy directly into electrical energy.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "A candidate studying Solar Photovoltaic Installation and Maintenance should know that:",
+          "options": {
+            "A": "Solar panels produce direct current electricity under illumination.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "A",
+          "explanation": "Solar panels produce direct current electricity under illumination.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Which fact is correct in Solar Photovoltaic Installation and Maintenance?",
+          "options": {
+            "A": "The statement is false because it contradicts basic principles of the subject.",
+            "B": "The correct method is to ignore evidence and choose an answer at random.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "An inverter converts direct current from a PV system into alternating current for compatible loads."
+          },
+          "correctAnswer": "D",
+          "explanation": "An inverter converts direct current from a PV system into alternating current for compatible loads.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Choose the accurate statement for a lesson in Solar Photovoltaic Installation and Maintenance.",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "A charge controller helps regulate charging between a PV array and a battery.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "C",
+          "explanation": "A charge controller helps regulate charging between a PV array and a battery.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Which option correctly describes a key idea in Solar Photovoltaic Installation and Maintenance?",
+          "options": {
+            "A": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "B": "PV modules connected in series increase the array voltage.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "B",
+          "explanation": "PV modules connected in series increase the array voltage.",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "slug": "technical-drawing",
+      "questions": [
+        {
+          "question": "Which statement about Technical Drawing is accurate?",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "Orthographic projection represents a three-dimensional object using separate two-dimensional views.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "B",
+          "explanation": "Orthographic projection represents a three-dimensional object using separate two-dimensional views.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "A candidate studying Technical Drawing should know that:",
+          "options": {
+            "A": "A scale drawing keeps proportions while representing an object at a different size.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "A",
+          "explanation": "A scale drawing keeps proportions while representing an object at a different size.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Which fact is correct in Technical Drawing?",
+          "options": {
+            "A": "The statement is false because it contradicts basic principles of the subject.",
+            "B": "The correct method is to ignore evidence and choose an answer at random.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "In technical drawing, a centre line indicates an axis or centre of a feature."
+          },
+          "correctAnswer": "D",
+          "explanation": "In technical drawing, a centre line indicates an axis or centre of a feature.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Choose the accurate statement for a lesson in Technical Drawing.",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "Dimension lines and figures communicate the measured size of a component.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "C",
+          "explanation": "Dimension lines and figures communicate the measured size of a component.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Which option correctly describes a key idea in Technical Drawing?",
+          "options": {
+            "A": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "B": "An isometric drawing shows three principal axes separated by equal angles on the page.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "B",
+          "explanation": "An isometric drawing shows three principal axes separated by equal angles on the page.",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "slug": "use-of-english",
+      "questions": [
+        {
+          "question": "Which statement about Use of English is accurate?",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "In standard English, a singular third-person subject usually takes a verb ending in -s in the simple present.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "B",
+          "explanation": "In standard English, a singular third-person subject usually takes a verb ending in -s in the simple present.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "A candidate studying Use of English should know that:",
+          "options": {
+            "A": "A comma can separate items in a list.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "A",
+          "explanation": "A comma can separate items in a list.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Which fact is correct in Use of English?",
+          "options": {
+            "A": "The statement is false because it contradicts basic principles of the subject.",
+            "B": "The correct method is to ignore evidence and choose an answer at random.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "A synonym is a word with a similar meaning to another word."
+          },
+          "correctAnswer": "D",
+          "explanation": "A synonym is a word with a similar meaning to another word.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Choose the accurate statement for a lesson in Use of English.",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "The main idea of a passage expresses its central point.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "C",
+          "explanation": "The main idea of a passage expresses its central point.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Which option correctly describes a key idea in Use of English?",
+          "options": {
+            "A": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "B": "An adjective can describe a noun.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "B",
+          "explanation": "An adjective can describe a noun.",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "slug": "visual-art",
+      "questions": [
+        {
+          "question": "Which statement about Visual Art is accurate?",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "The primary colours in traditional pigment mixing are red, yellow, and blue.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "B",
+          "explanation": "The primary colours in traditional pigment mixing are red, yellow, and blue.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "A candidate studying Visual Art should know that:",
+          "options": {
+            "A": "Texture describes how a surface appears or feels.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "A",
+          "explanation": "Texture describes how a surface appears or feels.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Which fact is correct in Visual Art?",
+          "options": {
+            "A": "The statement is false because it contradicts basic principles of the subject.",
+            "B": "The correct method is to ignore evidence and choose an answer at random.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "In visual art, balance concerns the distribution of visual weight in a composition."
+          },
+          "correctAnswer": "D",
+          "explanation": "In visual art, balance concerns the distribution of visual weight in a composition.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Choose the accurate statement for a lesson in Visual Art.",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "A sketch can be used to explore and plan a visual idea.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "C",
+          "explanation": "A sketch can be used to explore and plan a visual idea.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Which option correctly describes a key idea in Visual Art?",
+          "options": {
+            "A": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "B": "Contrast uses differences such as light and dark to create emphasis.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "B",
+          "explanation": "Contrast uses differences such as light and dark to create emphasis.",
+          "difficulty": "hard"
+        }
+      ]
+    },
+    {
+      "slug": "yoruba",
+      "questions": [
+        {
+          "question": "Which statement about Yoruba is accurate?",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "Yoruba is a tonal language, so tone can distinguish word meanings.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "B",
+          "explanation": "Yoruba is a tonal language, so tone can distinguish word meanings.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "A candidate studying Yoruba should know that:",
+          "options": {
+            "A": "Standard written Yoruba uses tone marks to show distinctions in pronunciation and meaning.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "A",
+          "explanation": "Standard written Yoruba uses tone marks to show distinctions in pronunciation and meaning.",
+          "difficulty": "easy"
+        },
+        {
+          "question": "Which fact is correct in Yoruba?",
+          "options": {
+            "A": "The statement is false because it contradicts basic principles of the subject.",
+            "B": "The correct method is to ignore evidence and choose an answer at random.",
+            "C": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "D": "Yoruba is a Niger-Congo language spoken in Nigeria and neighbouring countries."
+          },
+          "correctAnswer": "D",
+          "explanation": "Yoruba is a Niger-Congo language spoken in Nigeria and neighbouring countries.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Choose the accurate statement for a lesson in Yoruba.",
+          "options": {
+            "A": "The correct method is to ignore evidence and choose an answer at random.",
+            "B": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "C": "Yoruba language study includes listening, speaking, reading, and writing.",
+            "D": "The statement is false because it contradicts basic principles of the subject."
+          },
+          "correctAnswer": "C",
+          "explanation": "Yoruba language study includes listening, speaking, reading, and writing.",
+          "difficulty": "medium"
+        },
+        {
+          "question": "Which option correctly describes a key idea in Yoruba?",
+          "options": {
+            "A": "The subject is concerned only with memorizing unrelated facts without applying them.",
+            "B": "Yoruba oral literature includes proverbs, folktales, and praise poetry.",
+            "C": "The statement is false because it contradicts basic principles of the subject.",
+            "D": "The correct method is to ignore evidence and choose an answer at random."
+          },
+          "correctAnswer": "B",
+          "explanation": "Yoruba oral literature includes proverbs, folktales, and praise poetry.",
+          "difficulty": "hard"
+        }
+      ]
+    }
+  ]
+}
