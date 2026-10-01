@@ -53,25 +53,25 @@ function AdminDashboard() {
 
   const statCards = [
     {
-      icon: "👥",
+      icon: <img src="/assets/icons/users.svg" alt="Users" style={{ width: 24, height: 24 }} />,
       label: "Total Users",
       value: displayValue(stats?.users),
       path: "/admin/users"
     },
     {
-      icon: "🔑",
+      icon: <img src="/assets/icons/key.svg" alt="Key" style={{ width: 24, height: 24 }} />,
       label: "Active Licenses",
       value: displayValue(stats?.activeLicenses),
       path: "/admin/product-licenses"
     },
     {
-      icon: "📝",
+      icon: <img src="/assets/icons/document.svg" alt="Questions" style={{ width: 24, height: 24 }} />,
       label: "Questions",
       value: displayValue(stats?.questions),
       path: "/admin/questions"
     },
     {
-      icon: "📚",
+      icon: <img src="/assets/icons/book.svg" alt="Subjects" style={{ width: 24, height: 24 }} />,
       label: "Subjects",
       value: displayValue(stats?.subjects),
       path: "/admin/subjects"
@@ -80,56 +80,56 @@ function AdminDashboard() {
 
   const managementItems = [
     {
-      icon: "🔑",
+      icon: <img src="/assets/icons/key.svg" alt="Keys" style={{ width: 24, height: 24 }} />,
       title: "Activation Keys",
       description:
         "Create, view, activate, revoke and manage activation keys.",
       path: "/admin/activation-keys",
     },
     {
-      icon: "💻",
+      icon: <img src="/assets/icons/desktop.svg" alt="Licenses" style={{ width: 24, height: 24 }} />,
       title: "Product Licenses",
       description:
         "Manage product keys, devices and activated installations.",
       path: "/admin/product-licenses",
     },
     {
-      icon: "👥",
+      icon: <img src="/assets/icons/users.svg" alt="Users" style={{ width: 24, height: 24 }} />,
       title: "Users",
       description:
         "View and manage EduDrill users and their accounts.",
       path: "/admin/users",
     },
     {
-      icon: "📝",
+      icon: <img src="/assets/icons/document.svg" alt="Questions" style={{ width: 24, height: 24 }} />,
       title: "Questions",
       description:
         "Manage verified past questions and approved practice content.",
       path: "/admin/questions",
     },
     {
-      icon: "📚",
+      icon: <img src="/assets/icons/book.svg" alt="Subjects" style={{ width: 24, height: 24 }} />,
       title: "Exams & Subjects",
       description:
         "Control examinations, subjects, courses and availability.",
       path: "/admin/subjects",
     },
     {
-      icon: "📖",
+      icon: <img src="/assets/icons/book.svg" alt="Lessons" style={{ width: 24, height: 24 }} />,
       title: "Topics & Lessons",
       description:
         "Manage topics, lessons and learning materials.",
       path: "/admin/lessons",
     },
     {
-      icon: "🤖",
+      icon: <img src="/assets/icons/robot.svg" alt="AI Tutor" style={{ width: 24, height: 24 }} />,
       title: "AI Tutor",
       description:
         "Manage AI Tutor settings and generated practice content.",
       path: "/admin/ai-tutor",
     },
     {
-      icon: "📊",
+      icon: <img src="/assets/icons/activity.svg" alt="Analytics" style={{ width: 24, height: 24 }} />,
       title: "Analytics",
       description:
         "View platform activity, usage and performance statistics.",
@@ -145,7 +145,7 @@ function AdminDashboard() {
           className="admin-dashboard-brand"
         >
           <div className="admin-dashboard-logo">
-            E
+            <img src="/assets/edudrill_logo.jpg" alt="EduDrill" style={{ width: '100%', height: '100%', borderRadius: 'inherit' }} />
           </div>
 
           <div>
@@ -185,7 +185,7 @@ function AdminDashboard() {
           </div>
 
           <div className="admin-welcome-icon">
-            ⚙️
+            <img src="/assets/icons/cog.svg" alt="Settings" style={{ width: 48, height: 48 }} />
           </div>
         </div>
 
@@ -281,7 +281,7 @@ function AdminDashboard() {
         <section className="admin-system-section">
           <div className="admin-system-card">
             <div className="admin-system-icon">
-              ✓
+              <img src="/assets/icons/check.svg" alt="Check" style={{ width: 32, height: 32 }} />
             </div>
 
             <div>
