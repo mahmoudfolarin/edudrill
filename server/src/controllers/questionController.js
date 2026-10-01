@@ -9,6 +9,7 @@ async function getQuestions(req, res) {
     sourceType,
     sourceProvider,
     year,
+    text,
     limit = 20,
   } = req.query
 
@@ -52,6 +53,13 @@ async function getQuestions(req, res) {
     if (year) {
       values.push(year)
       conditions.push(`q.year = $${values.length}`)
+    }
+
+    if (text) {
+      if (text !== 'General Appreciation') {
+        values.push(`%${text}%`)
+        conditions.push(`q.question_text ILIKE $${values.length}`)
+      }
     }
 
     const safeLimit = Math.min(

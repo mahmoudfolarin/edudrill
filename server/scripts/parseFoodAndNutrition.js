@@ -7,7 +7,7 @@ const pool = require('../src/config/database');
 
 const userUploadedDir = 'C:\\Users\\USER\\.gemini\\antigravity-ide\\brain\\1b370a40-af59-4ef6-be24-829ac475f47f\\.user_uploaded';
 
-const filesToProcess = fs.readdirSync(userUploadedDir).filter(f => f.endsWith('.pdf') || f.endsWith('.txt'));
+const filesToProcess = ['media_1790848725303.pdf'];
 
 async function main() {
   const examsData = [];
@@ -16,13 +16,8 @@ async function main() {
     const filePath = path.join(userUploadedDir, filename);
     const dataBuffer = fs.readFileSync(filePath);
     try {
-      let fullText = '';
-      if (filename.endsWith('.pdf')) {
-        const data = await pdfParse(dataBuffer);
-        fullText = data.text;
-      } else if (filename.endsWith('.txt')) {
-        fullText = dataBuffer.toString('utf8');
-      }
+      const data = await pdfParse(dataBuffer);
+      let fullText = data.text;
       
       const titleMatch = fullText.match(/COMPREHENSIVE ([\s\S]*?) EXAMINATION/i);
       if (!titleMatch) {

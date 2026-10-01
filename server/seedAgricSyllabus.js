@@ -3,7 +3,7 @@ const pool = require('./src/config/database');
 
 const agricSyllabus = {
   exam: 'WAEC',
-  subject: 'agricultural-science', // MUST MATCH slug in DB
+  subject: 'agriculture', // MUST MATCH slug in DB
   syllabus_year: '2026/2027',
   title: 'Agricultural Science Comprehensive Syllabus',
   description: 'Aligned with Nigerian Senior Secondary School teaching and examination preparation.',
