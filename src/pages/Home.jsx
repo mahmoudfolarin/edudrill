@@ -167,12 +167,20 @@ function Home() {
           <div className="contact-divider"></div>
           <div className="contact-item">
             <span>Contact</span>
-            <strong>+2349135055095</strong>
+            <strong>
+              <a href="https://wa.me/2349135055095" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>
+                +2349135055095
+              </a>
+            </strong>
           </div>
           <div className="contact-divider"></div>
           <div className="contact-item">
             <span>Email</span>
-            <strong>olanrewajumahmoud3@gmail.com</strong>
+            <strong>
+              <a href="mailto:olanrewajumahmoud3@gmail.com" style={{ color: 'inherit', textDecoration: 'none' }}>
+                olanrewajumahmoud3@gmail.com
+              </a>
+            </strong>
           </div>
         </div>
         
