@@ -11,7 +11,7 @@ async function getAdminStats(req, res) {
         (SELECT COUNT(*) FROM topics WHERE is_active = TRUE) AS topics,
         (SELECT COUNT(*) FROM lessons WHERE is_active = TRUE) AS lessons,
         (SELECT COUNT(*) FROM activation_keys) AS activation_keys,
-        (SELECT COUNT(*) FROM product_licenses WHERE is_active = TRUE) AS active_licenses
+        (SELECT COUNT(*) FROM product_licenses WHERE status = 'active') AS active_licenses
     `)
 
     const stats = result.rows[0]
