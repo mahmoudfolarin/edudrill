@@ -307,7 +307,7 @@ function Activation() {
         <div className="activation-card">
 
           <div className="activation-logo">
-            <div>E</div>
+            <div><img src="/assets/edudrill_logo.jpg" alt="EduDrill" style={{ width: "100%", height: "100%", borderRadius: "inherit" }} /></div>
 
             <span>
               Edu<span>Drill</span>
@@ -350,7 +350,7 @@ function Activation() {
 
           <div className="activation-logo">
 
-            <div>E</div>
+            <div><img src="/assets/edudrill_logo.jpg" alt="EduDrill" style={{ width: "100%", height: "100%", borderRadius: "inherit" }} /></div>
 
             <span>
               Edu<span>Drill</span>

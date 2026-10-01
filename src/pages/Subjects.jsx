@@ -376,7 +376,7 @@ function Subjects() {
       <footer className="subjects-footer">
 
         <div className="subjects-footer-brand">
-          <div>E</div>
+          <div><img src="/assets/edudrill_logo.jpg" alt="EduDrill" style={{ width: "100%", height: "100%", borderRadius: "inherit" }} /></div>
 
           <div>
             <strong>EduDrill</strong>

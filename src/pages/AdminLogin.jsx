@@ -24,7 +24,7 @@ function AdminLogin() {
       <div className="admin-login-card">
 
         <div className="admin-login-logo">
-          <div>E</div>
+          <div><img src="/assets/edudrill_logo.jpg" alt="EduDrill" style={{ width: "100%", height: "100%", borderRadius: "inherit" }} /></div>
 
           <span>
             Edu<span>Drill</span>

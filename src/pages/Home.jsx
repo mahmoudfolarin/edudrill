@@ -14,7 +14,7 @@ import img8 from "../assets/students_practicing.jpg";
 function EduDrillLogo() {
   return (
     <div className="splash-logo">
-      <img src="/assets/icons/logo.svg" alt="EduDrill Logo" className="splash-logo-icon" />
+      <img src="/assets/edudrill_logo.jpg" alt="EduDrill Logo" className="splash-logo-icon" style={{ borderRadius: '50%' }} />
       <h1>
         Edu<span>Drill</span>
       </h1>

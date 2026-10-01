@@ -19,7 +19,7 @@ function Dashboard() {
           className="dashboard-brand"
         >
           <div className="dashboard-logo">
-            E
+            <img src="/assets/edudrill_logo.jpg" alt="EduDrill" style={{ width: '100%', height: '100%', borderRadius: 'inherit' }} />
           </div>
 
           <div>
@@ -711,7 +711,7 @@ function Dashboard() {
         <div className="dashboard-footer-logo">
 
           <div>
-            E
+            <img src="/assets/edudrill_logo.jpg" alt="EduDrill" style={{ width: '100%', height: '100%', borderRadius: 'inherit' }} />
           </div>
 
           <strong>

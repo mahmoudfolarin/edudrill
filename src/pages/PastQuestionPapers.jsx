@@ -63,7 +63,7 @@ function PastQuestionPapers() {
         </Link>
 
         <Link to="/" className="past-papers-brand">
-          <div className="past-papers-brand-icon">E</div>
+          <div className="past-papers-brand-icon"><img src="/assets/edudrill_logo.jpg" alt="EduDrill" style={{ width: "100%", height: "100%", borderRadius: "inherit" }} /></div>
 
           <div>
             <strong>EduDrill</strong>

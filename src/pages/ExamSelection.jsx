@@ -174,7 +174,7 @@ function ExamSelection() {
       <footer className="exam-footer">
 
         <div className="footer-brand">
-          <div>E</div>
+          <div><img src="/assets/edudrill_logo.jpg" alt="EduDrill" style={{ width: "100%", height: "100%", borderRadius: "inherit" }} /></div>
           <strong>EduDrill</strong>
         </div>
 

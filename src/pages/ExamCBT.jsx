@@ -396,7 +396,7 @@ function ExamCBT() {
         {/* Top Navbar */}
         <header style={{ background: 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(10px)', padding: '20px 6%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: `1px solid rgba(255,255,255,0.2)` }}>
           <Link to={`/dashboard/${exam}`} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <div style={{ width: 40, height: 40, borderRadius: 8, background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})`, color: theme.surface, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '20px' }}>E</div>
+            <div style={{ width: 40, height: 40, borderRadius: 8, background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})`, color: theme.surface, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '20px' }}><img src="/assets/edudrill_logo.jpg" alt="EduDrill" style={{ width: "100%", height: "100%", borderRadius: "inherit" }} /></div>
             <div>
               <strong style={{ display: 'block', color: theme.primary, fontSize: '18px' }}>EduDrill</strong>
               <span style={{ fontSize: '12px', color: theme.accent, fontWeight: 'bold', letterSpacing: '1px' }}>{exam?.toUpperCase()} CBT MODE</span>
@@ -558,7 +558,7 @@ function ExamCBT() {
         
         <header style={{ background: 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(10px)', padding: '20px 6%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: `1px solid rgba(255,255,255,0.2)` }}>
           <Link to={`/dashboard/${exam}`} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <div style={{ width: 40, height: 40, borderRadius: 8, background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})`, color: theme.surface, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '20px' }}>E</div>
+            <div style={{ width: 40, height: 40, borderRadius: 8, background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})`, color: theme.surface, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '20px' }}><img src="/assets/edudrill_logo.jpg" alt="EduDrill" style={{ width: "100%", height: "100%", borderRadius: "inherit" }} /></div>
             <div>
               <strong style={{ display: 'block', color: theme.primary, fontSize: '18px' }}>EduDrill</strong>
               <span style={{ fontSize: '12px', color: theme.accent, fontWeight: 'bold', letterSpacing: '1px' }}>{exam?.toUpperCase()} CBT</span>
@@ -633,7 +633,7 @@ function ExamCBT() {
         
         <header style={{ background: 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(10px)', padding: '20px 6%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: `1px solid rgba(255,255,255,0.2)` }}>
           <Link to={`/dashboard/${exam}`} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <div style={{ width: 40, height: 40, borderRadius: 8, background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})`, color: theme.surface, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '20px' }}>E</div>
+            <div style={{ width: 40, height: 40, borderRadius: 8, background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})`, color: theme.surface, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '20px' }}><img src="/assets/edudrill_logo.jpg" alt="EduDrill" style={{ width: "100%", height: "100%", borderRadius: "inherit" }} /></div>
             <div>
               <strong style={{ display: 'block', color: theme.primary, fontSize: '18px' }}>EduDrill</strong>
               <span style={{ fontSize: '12px', color: theme.accent, fontWeight: 'bold', letterSpacing: '1px' }}>{exam?.toUpperCase()} CBT</span>
@@ -773,7 +773,7 @@ function ExamCBT() {
        
        <header style={{ height: '70px', padding: '0 24px', background: `linear-gradient(90deg, ${theme.primary}, ${theme.secondary})`, color: theme.surface, display: 'flex', justifyContent: 'space-between', alignItems: 'center', boxShadow: '0 4px 20px rgba(11,36,71,0.15)', zIndex: 50 }}>
            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-             <div style={{ width: 36, height: 36, background: 'rgba(255,255,255,0.1)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '18px' }}>E</div>
+             <div style={{ width: 36, height: 36, background: 'rgba(255,255,255,0.1)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '18px' }}><img src="/assets/edudrill_logo.jpg" alt="EduDrill" style={{ width: "100%", height: "100%", borderRadius: "inherit" }} /></div>
              <div>
                <h1 style={{ margin: 0, fontSize: '16px', fontWeight: '600' }}>EduDrill CBT</h1>
                <span style={{ fontSize: '12px', opacity: 0.8 }}>{exam?.toUpperCase()} Module</span>
