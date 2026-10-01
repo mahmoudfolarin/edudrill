@@ -195,7 +195,7 @@ function AdminDashboard() {
               marginBottom: "20px",
               padding: "12px 15px",
               borderRadius: "10px",
-              background: "#fff5f5",
+              background: "#93c5fd",
               border: "1px solid #f0dada",
               color: "#a34a4a",
               fontSize: "11px",

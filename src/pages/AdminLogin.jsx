@@ -45,7 +45,7 @@ function AdminLogin() {
   className="admin-login-form"
   onSubmit={handleLogin}
 >
-          {error && <div style={{color: '#dc2626', background: '#fee2e2', padding: '10px', borderRadius: '8px', fontSize: '14px', marginBottom: '16px'}}>{error}</div>}
+          {error && <div style={{color: '#93c5fd', background: '#93c5fd', padding: '10px', borderRadius: '8px', fontSize: '14px', marginBottom: '16px'}}>{error}</div>}
 
           <div className="admin-field">
             <label htmlFor="adminEmail">

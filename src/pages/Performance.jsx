@@ -49,7 +49,7 @@ export default function Performance() {
         <div style={{ background: 'white', padding: '24px', borderRadius: '16px', border: '1px solid #e2e8f0', marginBottom: '32px', display: 'flex', gap: '48px', alignItems: 'center', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)' }}>
           <div>
             <span style={{ display: 'block', color: '#64748b', fontSize: '14px', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '1px' }}>Average Score</span>
-            <div style={{ fontSize: '48px', fontWeight: '800', color: calculateAverage() >= 70 ? '#10b981' : calculateAverage() >= 50 ? '#f59e0b' : '#ef4444' }}>
+            <div style={{ fontSize: '48px', fontWeight: '800', color: calculateAverage() >= 70 ? '#3b82f6' : calculateAverage() >= 50 ? '#60a5fa' : '#93c5fd' }}>
               {calculateAverage()}%
             </div>
           </div>
@@ -82,7 +82,7 @@ export default function Performance() {
                   </div>
                 </div>
                 <div style={{ textAlign: 'right' }}>
-                  <div style={{ fontSize: '24px', fontWeight: '800', color: perf.percentage >= 70 ? '#10b981' : perf.percentage >= 50 ? '#f59e0b' : '#ef4444' }}>
+                  <div style={{ fontSize: '24px', fontWeight: '800', color: perf.percentage >= 70 ? '#3b82f6' : perf.percentage >= 50 ? '#60a5fa' : '#93c5fd' }}>
                     {perf.percentage}%
                   </div>
                   <div style={{ color: '#64748b', fontSize: '13px' }}>

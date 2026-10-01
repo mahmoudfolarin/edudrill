@@ -135,7 +135,7 @@ export default function Calculator({ onClose }) {
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '0 12px', color: 'white' }}>
-          <svg style={{ width: '12px', height: '12px' }} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+          <img src="/assets/icons/calculator.svg" alt="calc" style={{ width: '14px', height: '14px' }} />
           <span style={{ fontSize: '13px', fontWeight: '600', letterSpacing: '0.5px' }}>Calculator</span>
         </div>
         <button 
@@ -152,10 +152,10 @@ export default function Calculator({ onClose }) {
             cursor: 'pointer',
             transition: 'background 0.2s, color 0.2s'
           }}
-          onMouseEnter={(e) => { e.currentTarget.style.background = '#e53e3e'; e.currentTarget.style.color = 'white'; }}
+          onMouseEnter={(e) => { e.currentTarget.style.background = '#93c5fd'; e.currentTarget.style.color = 'white'; }}
           onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#d1d5db'; }}
         >
-          <svg style={{ width: '14px', height: '14px' }} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+          <img src="/assets/icons/close.svg" alt="close" style={{ width: '14px', height: '14px' }} />
         </button>
       </div>
       

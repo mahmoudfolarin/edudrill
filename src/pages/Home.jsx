@@ -14,45 +14,7 @@ import img8 from "../assets/students_practicing.jpg";
 function EduDrillLogo() {
   return (
     <div className="splash-logo">
-      <svg
-        className="splash-logo-icon"
-        viewBox="0 0 100 100"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <circle
-          cx="50"
-          cy="50"
-          r="44"
-          fill="#123b72"
-        />
-
-        <path
-          d="M24 31 C35 27 43 29 50 35 C57 29 65 27 76 31 V69 C65 65 57 66 50 73 C43 66 35 65 24 69 Z"
-          fill="white"
-        />
-
-        <path
-          d="M50 35 V73"
-          stroke="#2563eb"
-          strokeWidth="4"
-          strokeLinecap="round"
-        />
-
-        <path
-          d="M63 44 L72 44"
-          stroke="#d62828"
-          strokeWidth="5"
-          strokeLinecap="round"
-        />
-
-        <path
-          d="M66 52 L76 52"
-          stroke="#d62828"
-          strokeWidth="5"
-          strokeLinecap="round"
-        />
-      </svg>
-
+      <img src="/assets/icons/logo.svg" alt="EduDrill Logo" className="splash-logo-icon" />
       <h1>
         Edu<span>Drill</span>
       </h1>
@@ -146,7 +108,7 @@ function Home() {
             animation: textFade 1s ease-in-out;
           }
         `}</style>
-        <div style={{ display: 'flex', gap: '8px', color: '#f59e0b', marginBottom: '8px', fontSize: '18px' }}>
+        <div style={{ display: 'flex', gap: '8px', color: '#60a5fa', marginBottom: '8px', fontSize: '18px' }}>
           ★ ★ ★ ★ ★
         </div>
         <div key={currentIndex} className="animate-text">

@@ -312,7 +312,7 @@ body {
 }
 
 .ai-card {
-  border-top: 4px solid #d62828;
+  border-top: 4px solid #93c5fd;
 }
 
 .activity-grid {
@@ -361,7 +361,7 @@ body {
   display: inline-block;
   font-size: 11px;
   font-weight: 700;
-  color: #d62828;
+  color: #93c5fd;
   letter-spacing: 1px;
   margin-bottom: 8px;
 }
@@ -813,7 +813,7 @@ body {
 
   border-radius: 50%;
 
-  background: #d62828;
+  background: #93c5fd;
 }
 
 .hero-content h1 {
@@ -930,7 +930,7 @@ body {
 
   border-radius: 50%;
 
-  background: #d62828;
+  background: #93c5fd;
 
   position: absolute;
 
@@ -1140,7 +1140,7 @@ body {
 }
 
 .card-bottom span {
-  color: #d62828;
+  color: #93c5fd;
 }
 
 /* =================================
@@ -1412,7 +1412,7 @@ body {
   width: 7px;
   height: 7px;
 
-  background: #d62828;
+  background: #93c5fd;
 
   border-radius: 50%;
 
@@ -1793,7 +1793,7 @@ body {
 }
 
 .cbt-card::before {
-  background: #d62828;
+  background: #93c5fd;
 }
 
 .ai-card::before {
@@ -1962,7 +1962,7 @@ body {
 
   border: 1px solid #e1e7f0;
 
-  border-left: 4px solid #d62828;
+  border-left: 4px solid #93c5fd;
 
   border-radius: 16px;
 
@@ -1977,7 +1977,7 @@ body {
   align-items: center;
   justify-content: center;
 
-  background: #fff1f1;
+  background: #93c5fd;
 
   border-radius: 13px;
 
@@ -1993,7 +1993,7 @@ body {
 .recommendation-content > span {
   display: block;
 
-  color: #d62828;
+  color: #93c5fd;
 
   font-size: 10px;
 
@@ -2325,7 +2325,7 @@ body {
 
   border-radius: 50%;
 
-  background: #d62828;
+  background: #93c5fd;
 
   top: 6px;
   right: 6px;
@@ -2445,7 +2445,7 @@ body {
   width: 7px;
   height: 7px;
 
-  background: #d62828;
+  background: #93c5fd;
 
   border-radius: 50%;
 }
@@ -2887,7 +2887,7 @@ body {
 .glow-two {
   width: 260px;
   height: 260px;
-  background: #d62828;
+  background: #93c5fd;
   right: -100px;
   bottom: -100px;
 }
@@ -3635,7 +3635,7 @@ body {
 
 .admin-login-heading p {
   margin: 0 0 9px;
-  color: #d62828;
+  color: #93c5fd;
   font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.16em;
@@ -3938,7 +3938,7 @@ body {
 }
 
 .admin-section-heading > div > span {
-  color: #d62828;
+  color: #93c5fd;
   font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 0.15em;
@@ -4186,7 +4186,7 @@ body {
 }
 
 .activation-keys-heading > div > span {
-  color: #d62828;
+  color: #93c5fd;
   font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 0.15em;
@@ -4350,7 +4350,7 @@ body {
 }
 
 .license-status.unused {
-  background: #fff7df;
+  background: #60a5fa;
   color: #a16207;
 }
 
@@ -4475,7 +4475,7 @@ body {
 
 .generator-header span,
 .generated-result-heading span {
-  color: #d62828;
+  color: #93c5fd;
   font-size: 0.66rem;
   font-weight: 800;
   letter-spacing: 0.14em;
@@ -4660,7 +4660,7 @@ body {
 }
 
 .product-licenses-heading > div > span {
-  color: #d62828;
+  color: #93c5fd;
   font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 0.15em;
@@ -4692,7 +4692,7 @@ body {
 }
 
 .license-flow-header > span {
-  color: #d62828;
+  color: #93c5fd;
   font-size: 0.66rem;
   font-weight: 800;
   letter-spacing: 0.14em;
@@ -4986,8 +4986,8 @@ body {
   padding: 12px 14px;
   border-radius: 10px;
   background: #fef2f2;
-  border: 1px solid #fecaca;
-  color: #b91c1c;
+  border: 1px solid #93c5fd;
+  color: #93c5fd;
   font-size: 0.82rem;
   line-height: 1.5;
 }
@@ -5511,7 +5511,7 @@ body {
   width: 28px;
   height: 3px;
   border-radius: 999px;
-  background: #dc2626;
+  background: #93c5fd;
 }
 
 .subjects-intro h1 {
@@ -5646,8 +5646,8 @@ body {
 .subject-new {
   padding: 5px 8px;
   border-radius: 999px;
-  background: #fee2e2;
-  color: #b91c1c;
+  background: #93c5fd;
+  color: #93c5fd;
   font-size: 0.58rem;
   font-weight: 900;
   letter-spacing: 0.08em;
@@ -5811,7 +5811,7 @@ body {
 }
 
 .subjects-error .subjects-state-icon {
-  background: #fff1f1;
+  background: #93c5fd;
   color: #d92d20;
 }
 
@@ -6157,7 +6157,7 @@ body {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #ff5c62;
+  background: #93c5fd;
   box-shadow: 0 0 0 4px rgba(255, 92, 98, 0.15);
 }
 
@@ -6510,7 +6510,7 @@ body {
 }
 
 .subjects-message-icon.error {
-  background: #fff1f2;
+  background: #93c5fd;
   color: #d92d20;
 }
 
@@ -6657,7 +6657,7 @@ body {
 .subject-new-badge {
   padding: 5px 8px;
   border-radius: 20px;
-  background: #fff0f1;
+  background: #93c5fd;
   color: #d92d42;
   font-size: 8px;
   font-weight: 900;
@@ -13585,7 +13585,7 @@ body {
 }
 
 .subjects-state-error .subjects-state-icon {
-  background: #fff1f1;
+  background: #93c5fd;
   color: #d64545;
 }
 

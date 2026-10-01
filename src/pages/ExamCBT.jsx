@@ -796,7 +796,7 @@ function ExamCBT() {
                   className="premium-btn"
                   style={{ background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.4)', color: theme.surface, padding: '8px 16px', borderRadius: 8, cursor: 'pointer', fontWeight: '600', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '6px' }}
                 >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+                  <img src="/assets/icons/calculator.svg" alt="calc" className="w-4 h-4" style={{ width: '16px', height: '16px', filter: 'invert(1)' }} />
                   Calculator
                 </button>
               )}
@@ -835,9 +835,9 @@ function ExamCBT() {
             )}
 
             {!isSubmitted && (
-              <div className="fade-in" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '12px', marginBottom: '24px', background: 'rgba(255, 255, 255, 0.9)', backdropFilter: 'blur(10px)', padding: '16px 32px', borderRadius: '16px', maxWidth: '300px', margin: '0 auto 24px', border: `2px solid ${timeLeft < 300 ? '#ef4444' : theme.border}`, boxShadow: '0 4px 15px rgba(0,0,0,0.1)' }}>
-                <svg style={{ width: 24, height: 24, color: timeLeft < 300 ? '#ef4444' : theme.accent }} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <span style={{ fontSize: '24px', fontWeight: '800', color: timeLeft < 300 ? '#ef4444' : theme.primary, fontFamily: 'monospace' }}>
+              <div className="fade-in" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '12px', marginBottom: '24px', background: 'rgba(255, 255, 255, 0.9)', backdropFilter: 'blur(10px)', padding: '16px 32px', borderRadius: '16px', maxWidth: '300px', margin: '0 auto 24px', border: `2px solid ${timeLeft < 300 ? '#93c5fd' : theme.border}`, boxShadow: '0 4px 15px rgba(0,0,0,0.1)' }}>
+              <img src="/assets/icons/clock.svg" alt="clock" style={{ width: 24, height: 24, filter: timeLeft < 300 ? 'invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%)' : 'none' }} />
+                <span style={{ fontSize: '24px', fontWeight: '800', color: timeLeft < 300 ? '#93c5fd' : theme.primary, fontFamily: 'monospace' }}>
                   {formatTime(timeLeft)}
                 </span>
               </div>

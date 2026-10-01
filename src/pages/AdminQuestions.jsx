@@ -64,7 +64,7 @@ export default function AdminQuestions() {
                     </div>
                   </td>
                   <td style={{ padding: '16px' }}>
-                    <span style={{ background: q.is_active ? '#dcfce7' : '#fee2e2', color: q.is_active ? '#166534' : '#991b1b', padding: '4px 8px', borderRadius: '4px', fontSize: '12px', fontWeight: '600' }}>
+                    <span style={{ background: q.is_active ? '#3b82f6' : '#93c5fd', color: q.is_active ? '#166534' : '#991b1b', padding: '4px 8px', borderRadius: '4px', fontSize: '12px', fontWeight: '600' }}>
                       {q.is_active ? 'Active' : 'Inactive'}
                     </span>
                   </td>

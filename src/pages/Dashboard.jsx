@@ -173,7 +173,7 @@ function Dashboard() {
             >
 
               <div className="action-card-icon">
-                📚
+                <img src="/assets/icons/book.svg" alt="Learn" style={{ width: 24, height: 24 }} />
               </div>
 
               <div className="action-card-content">
@@ -206,7 +206,7 @@ function Dashboard() {
             >
 
               <div className="action-card-icon">
-                📝
+                <img src="/assets/icons/practice.svg" alt="Practice" style={{ width: 24, height: 24 }} />
               </div>
 
               <div className="action-card-content">
@@ -239,7 +239,7 @@ function Dashboard() {
             >
 
               <div className="action-card-icon">
-                📄
+                <img src="/assets/icons/document.svg" alt="Past Questions" style={{ width: 24, height: 24 }} />
               </div>
 
               <div className="action-card-content">
@@ -272,7 +272,7 @@ function Dashboard() {
             >
 
               <div className="action-card-icon">
-                🎯
+                <img src="/assets/icons/target.svg" alt="CBT" style={{ width: 24, height: 24 }} />
               </div>
 
               <div className="action-card-content">
@@ -305,7 +305,7 @@ function Dashboard() {
             >
 
               <div className="action-card-icon">
-                🤖
+                <img src="/assets/icons/robot.svg" alt="AI Tutor" style={{ width: 24, height: 24 }} />
               </div>
 
               <div className="action-card-content">
@@ -359,10 +359,9 @@ function Dashboard() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontSize: '24px',
               marginBottom: '8px'
             }}>
-              📄
+              <img src="/assets/icons/document.svg" alt="Archive" style={{ width: 24, height: 24 }} />
             </div>
 
             <div style={{ zIndex: 1 }}>
@@ -441,17 +440,15 @@ function Dashboard() {
               Browse Papers →
             </Link>
 
-            {/* Decorative element */}
             <div style={{
               position: 'absolute',
               right: '-5%',
               bottom: '-20%',
-              fontSize: '200px',
               opacity: '0.05',
               transform: 'rotate(-15deg)',
               pointerEvents: 'none'
             }}>
-              📄
+              <img src="/assets/icons/document.svg" alt="" style={{ width: 200, height: 200 }} />
             </div>
           </div>
 
@@ -503,7 +500,7 @@ function Dashboard() {
             >
 
               <div>
-                📐
+                <img src="/assets/icons/math.svg" alt="Math" style={{ width: 24, height: 24 }} />
               </div>
 
               <section>
@@ -533,7 +530,7 @@ function Dashboard() {
             >
 
               <div>
-                📖
+                <img src="/assets/icons/book.svg" alt="English" style={{ width: 24, height: 24 }} />
               </div>
 
               <section>
@@ -563,7 +560,7 @@ function Dashboard() {
             >
 
               <div>
-                🧬
+                <img src="/assets/icons/biology.svg" alt="Biology" style={{ width: 24, height: 24 }} />
               </div>
 
               <section>
@@ -593,7 +590,7 @@ function Dashboard() {
             >
 
               <div>
-                ⚗️
+                <img src="/assets/icons/chemistry.svg" alt="Chemistry" style={{ width: 24, height: 24 }} />
               </div>
 
               <section>
@@ -628,7 +625,7 @@ function Dashboard() {
           <div className="recommendation-box">
 
             <div className="recommendation-icon">
-              🚀
+              <img src="/assets/icons/rocket.svg" alt="Start" style={{ width: 32, height: 32 }} />
             </div>
 
             <div className="recommendation-content">
@@ -686,7 +683,7 @@ function Dashboard() {
           <div className="empty-activity">
 
             <div>
-              📊
+              <img src="/assets/icons/activity.svg" alt="Activity" style={{ width: 32, height: 32 }} />
             </div>
 
             <h3>

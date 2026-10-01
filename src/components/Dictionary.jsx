@@ -120,7 +120,7 @@ export default function Dictionary({ onClose }) {
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '0 12px', color: 'white' }}>
-          <svg style={{ width: '12px', height: '12px' }} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477-4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+          <img src="/assets/icons/dictionary.svg" alt="dict" style={{ width: '14px', height: '14px' }} />
           <span style={{ fontSize: '13px', fontWeight: '600', letterSpacing: '0.5px' }}>Dictionary</span>
         </div>
         <button 
@@ -137,10 +137,10 @@ export default function Dictionary({ onClose }) {
             cursor: 'pointer',
             transition: 'background 0.2s, color 0.2s'
           }}
-          onMouseEnter={(e) => { e.currentTarget.style.background = '#e53e3e'; e.currentTarget.style.color = 'white'; }}
+          onMouseEnter={(e) => { e.currentTarget.style.background = '#93c5fd'; e.currentTarget.style.color = 'white'; }}
           onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#d1d5db'; }}
         >
-          <svg style={{ width: '14px', height: '14px' }} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+          <img src="/assets/icons/close.svg" alt="close" style={{ width: '14px', height: '14px' }} />
         </button>
       </div>
 
@@ -206,7 +206,7 @@ export default function Dictionary({ onClose }) {
           {loading ? (
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', color: '#64748b', fontSize: '14px', fontWeight: '500' }}>Asking AI...</div>
           ) : error ? (
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', color: '#ef4444', fontSize: '14px', fontWeight: '500', textAlign: 'center' }}>{error}</div>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', color: '#93c5fd', fontSize: '14px', fontWeight: '500', textAlign: 'center' }}>{error}</div>
           ) : definition ? (
             <div style={{ color: '#0B2447' }}>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: '12px', marginBottom: '12px', borderBottom: '1px solid #e2e8f0', paddingBottom: '12px' }}>

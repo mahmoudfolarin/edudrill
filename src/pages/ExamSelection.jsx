@@ -6,28 +6,28 @@ const exams = [
     title: "WAEC",
     description:
       "Prepare for the West African Senior School Certificate Examination with focused learning and practice.",
-    icon: "📘",
+    icon: <img src="/assets/waec_logo.png" alt="WAEC Logo" style={{ width: "40px", height: "40px", objectFit: "contain" }} />,
   },
   {
     name: "NECO",
     title: "NECO",
     description:
       "Build your confidence and prepare effectively for your National Examinations Council examination.",
-    icon: "🎓",
+    icon: <img src="/assets/neco_logo.png" alt="NECO Logo" style={{ width: "40px", height: "40px", objectFit: "contain" }} />,
   },
   {
     name: "GCE",
     title: "GCE",
     description:
       "Strengthen your knowledge with structured preparation, practice questions and tests.",
-    icon: "📚",
+    icon: <img src="/assets/gce_logo.png" alt="GCE Logo" style={{ width: "40px", height: "40px", objectFit: "contain" }} />,
   },
   {
     name: "JAMB",
     title: "JAMB",
     description:
       "Prepare for UTME with your required four-subject combination, with English Language compulsory.",
-    icon: "🎯",
+    icon: <img src="/assets/jamb_logo.png" alt="JAMB Logo" style={{ width: "40px", height: "40px", objectFit: "contain" }} />,
   },
 ]
 

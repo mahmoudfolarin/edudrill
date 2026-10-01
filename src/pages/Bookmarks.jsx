@@ -82,9 +82,9 @@ export default function Bookmarks() {
                 </Link>
                 <button 
                   onClick={() => removeBookmark(bookmark.lesson_id)}
-                  style={{ background: '#fee2e2', color: '#dc2626', border: 'none', padding: '10px 16px', borderRadius: '8px', cursor: 'pointer', fontWeight: '600', transition: 'background 0.2s' }}
-                  onMouseEnter={e => e.currentTarget.style.background = '#fecaca'}
-                  onMouseLeave={e => e.currentTarget.style.background = '#fee2e2'}
+                  style={{ background: '#93c5fd', color: '#93c5fd', border: 'none', padding: '10px 16px', borderRadius: '8px', cursor: 'pointer', fontWeight: '600', transition: 'background 0.2s' }}
+                  onMouseEnter={e => e.currentTarget.style.background = '#93c5fd'}
+                  onMouseLeave={e => e.currentTarget.style.background = '#93c5fd'}
                   title="Remove Bookmark"
                 >
                   Delete

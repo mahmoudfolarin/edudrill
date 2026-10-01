@@ -570,7 +570,7 @@ function Lesson() {
               <p
                 style={{
                   marginTop: "12px",
-                  color: "#b91c1c",
+                  color: "#93c5fd",
                 }}
               >
                 {progressError}
