@@ -13,7 +13,7 @@ function AdminDashboard() {
         setStatsError("")
 
         const response = await fetch(
-          "http://localhost:5000/api/admin/stats",
+          "/api/admin/stats",
         )
 
         const data = await response.json()

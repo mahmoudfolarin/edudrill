@@ -36,7 +36,7 @@ function Learn() {
 
         // Get the active syllabus for this exam + subject
         const response = await fetch(
-          `http://localhost:5000/api/syllabuses/${exam}/${subject}`,
+          `/api/syllabuses/${exam}/${subject}`,
         )
 
         const data = await response.json()
@@ -61,7 +61,7 @@ function Learn() {
         let completedLessonIds = []
         if (deviceIdentifier) {
           try {
-            const progressRes = await fetch(`http://localhost:5000/api/progress/all?deviceIdentifier=${deviceIdentifier}`)
+            const progressRes = await fetch(`/api/progress/all?deviceIdentifier=${deviceIdentifier}`)
             const progressData = await progressRes.json()
             if (progressData.success) {
               completedLessonIds = progressData.completedLessonIds || []
@@ -76,7 +76,7 @@ function Learn() {
             syllabusTopics.map(async (topic) => {
               try {
                 const topicResponse = await fetch(
-                  `http://localhost:5000/api/topics/${topic.id}`,
+                  `/api/topics/${topic.id}`,
                 )
 
                 const topicData =

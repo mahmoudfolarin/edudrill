@@ -17,7 +17,7 @@ function Lesson() {
   // Load bookmark state on mount
   useEffect(() => {
     if (lessonId) {
-      fetch('http://localhost:5000/api/user/bookmarks')
+      fetch('/api/user/bookmarks')
         .then(res => res.json())
         .then(data => {
           setIsBookmarked(data.some(b => b.lesson_id === lessonId));
@@ -29,12 +29,12 @@ function Lesson() {
   const toggleBookmark = async () => {
     try {
       if (isBookmarked) {
-        await fetch(`http://localhost:5000/api/user/bookmarks/${lessonId}`, {
+        await fetch(`/api/user/bookmarks/${lessonId}`, {
           method: 'DELETE'
         });
         setIsBookmarked(false);
       } else {
-        await fetch('http://localhost:5000/api/user/bookmarks', {
+        await fetch('/api/user/bookmarks', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -61,7 +61,7 @@ function Lesson() {
         setError("")
 
         const lessonResponse = await fetch(
-          `http://localhost:5000/api/topics/lessons/${lessonId}`,
+          `/api/topics/lessons/${lessonId}`,
         )
 
         const lessonData = await lessonResponse.json()
@@ -75,7 +75,7 @@ function Lesson() {
         setLesson(lessonData.lesson)
 
         const topicResponse = await fetch(
-          `http://localhost:5000/api/topics/${topicId}`,
+          `/api/topics/${topicId}`,
         )
 
         const topicData = await topicResponse.json()
@@ -118,7 +118,7 @@ function Lesson() {
         }
 
         const response = await fetch(
-          `http://localhost:5000/api/progress/lesson?deviceIdentifier=${encodeURIComponent(
+          `/api/progress/lesson?deviceIdentifier=${encodeURIComponent(
             deviceIdentifier,
           )}&lessonId=${lessonId}`,
         )
@@ -173,7 +173,7 @@ function Lesson() {
       }
 
       const response = await fetch(
-        "http://localhost:5000/api/progress/lesson/complete",
+        "/api/progress/lesson/complete",
         {
           method: "POST",
           headers: {

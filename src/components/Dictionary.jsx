@@ -56,7 +56,7 @@ export default function Dictionary({ onClose }) {
     setDefinition(null);
     
     try {
-      const response = await fetch('http://localhost:5000/api/ai-tutor/chat', {
+      const response = await fetch('/api/ai-tutor/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

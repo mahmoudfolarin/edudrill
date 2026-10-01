@@ -15,7 +15,7 @@ function PastQuestions() {
         setError("")
 
        const response = await fetch(
-  `http://localhost:5000/api/exams/${exam}/subjects`,
+  `/api/exams/${exam}/subjects`,
 )
 
         const data = await response.json()

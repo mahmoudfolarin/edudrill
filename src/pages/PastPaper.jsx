@@ -14,7 +14,7 @@ function PastPaper() {
   useEffect(() => {
     async function loadPaper() {
       try {
-        const response = await fetch(`http://localhost:5000/api/past-papers/${paperId}`)
+        const response = await fetch(`/api/past-papers/${paperId}`)
         const data = await response.json()
         if (!response.ok || !data.success) throw new Error(data.message || "Failed to load paper")
         if (!["authorized", "licensed", "public_domain"].includes(data.paper.license_status)) {

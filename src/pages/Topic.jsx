@@ -15,7 +15,7 @@ function Topic() {
         setError("")
 
         const response = await fetch(
-          `http://localhost:5000/api/topics/${topicId}`,
+          `/api/topics/${topicId}`,
         )
 
         const data = await response.json()

@@ -6,7 +6,7 @@ export default function Performance() {
   const [performances, setPerformances] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/user/performance')
+    fetch('/api/user/performance')
       .then(res => res.json())
       .then(data => {
         const filtered = data

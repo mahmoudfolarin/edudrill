@@ -80,7 +80,7 @@ function Activation() {
         // -------------------------------------------------
 
         const response = await fetch(
-          "http://localhost:5000/api/products/register",
+          "/api/products/register",
           {
             method: "POST",
 
@@ -175,7 +175,7 @@ function Activation() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/activation-keys/activate",
+        "/api/activation-keys/activate",
         {
           method: "POST",
 

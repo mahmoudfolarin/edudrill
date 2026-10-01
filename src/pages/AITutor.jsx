@@ -256,7 +256,7 @@ function AITutor() {
           }))
 
       const response = await fetch(
-        "http://localhost:5000/api/ai-tutor/chat",
+        "/api/ai-tutor/chat",
         {
           method: "POST",
 

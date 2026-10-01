@@ -6,7 +6,7 @@ export default function Bookmarks() {
   const [bookmarks, setBookmarks] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/user/bookmarks')
+    fetch('/api/user/bookmarks')
       .then(res => res.json())
       .then(data => {
         // Filter bookmarks for current exam and subject
@@ -18,7 +18,7 @@ export default function Bookmarks() {
 
   const removeBookmark = async (lessonId) => {
     try {
-      await fetch(`http://localhost:5000/api/user/bookmarks/${lessonId}`, {
+      await fetch(`/api/user/bookmarks/${lessonId}`, {
         method: 'DELETE'
       });
       setBookmarks(prev => prev.filter(b => b.lesson_id !== lessonId));

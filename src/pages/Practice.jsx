@@ -22,10 +22,10 @@ function Practice() {
         setLoading(true)
         setError("")
 
-        let url = `http://localhost:5000/api/questions?exam=${exam.toUpperCase()}&topicId=${topicId}`
+        let url = `/api/questions?exam=${exam.toUpperCase()}&topicId=${topicId}`
         
         if (lessonId) {
-          url = `http://localhost:5000/api/questions/lesson-practice?lessonId=${lessonId}&exam=${exam.toUpperCase()}`
+          url = `/api/questions/lesson-practice?lessonId=${lessonId}&exam=${exam.toUpperCase()}`
         }
 
         const response = await fetch(url)
@@ -80,7 +80,7 @@ function Practice() {
     const percentage = Math.round((score / questions.length) * 100)
     
     try {
-      await fetch('http://localhost:5000/api/user/performance', {
+      await fetch('/api/user/performance', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

@@ -15,7 +15,7 @@ function ActivationKeys() {
       setLoadingKeys(true)
 
       const response = await fetch(
-        "http://localhost:5000/api/activation-keys",
+        "/api/activation-keys",
       )
 
       const data = await response.json()
@@ -52,7 +52,7 @@ function ActivationKeys() {
 
       for (let i = 0; i < Number(quantity); i++) {
         const response = await fetch(
-          "http://localhost:5000/api/activation-keys",
+          "/api/activation-keys",
           {
             method: "POST",
             headers: {

@@ -183,7 +183,7 @@ function ExamPractice() {
     if (sub === 'physical-and-health-education') dbSub = 'physical-education';
     if (sub === 'foods-and-nutrition') dbSub = 'food-and-nutrition';
     
-    let url = `http://localhost:5000/api/questions?exam=${exam.toUpperCase()}&subject=${dbSub}&limit=${count}`;
+    let url = `/api/questions?exam=${exam.toUpperCase()}&subject=${dbSub}&limit=${count}`;
     if (text) {
       url += `&text=${encodeURIComponent(text)}`;
     }

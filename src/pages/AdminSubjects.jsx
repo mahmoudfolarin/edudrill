@@ -9,7 +9,7 @@ export default function AdminSubjects() {
 
   const fetchSubjects = () => {
     setLoading(true);
-    fetch("http://localhost:5000/api/subjects")
+    fetch("/api/subjects")
       .then(res => res.json())
       .then(data => {
         if (data.success) setSubjects(data.subjects);
@@ -24,7 +24,7 @@ export default function AdminSubjects() {
 
   const handleAdd = (e) => {
     e.preventDefault();
-    fetch("http://localhost:5000/api/subjects", {
+    fetch("/api/subjects", {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -48,7 +48,7 @@ export default function AdminSubjects() {
   const handleDelete = (id) => {
     if (!window.confirm("Are you sure you want to remove this subject? It will be removed from all exams.")) return;
     
-    fetch(`http://localhost:5000/api/subjects/${id}`, { method: 'DELETE' })
+    fetch(`/api/subjects/${id}`, { method: 'DELETE' })
       .then(res => res.json())
       .then(data => {
         if (data.success) fetchSubjects();

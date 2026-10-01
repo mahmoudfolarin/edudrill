@@ -178,7 +178,7 @@ function ExamCBT() {
     if (sub === 'physical-and-health-education') dbSub = 'physical-education';
     if (sub === 'foods-and-nutrition') dbSub = 'food-and-nutrition';
     
-    let url = `http://localhost:5000/api/questions?exam=${exam.toUpperCase()}&subject=${dbSub}&limit=${count}`;
+    let url = `/api/questions?exam=${exam.toUpperCase()}&subject=${dbSub}&limit=${count}`;
     if (text) {
       url += `&text=${encodeURIComponent(text)}`;
     }
@@ -322,7 +322,7 @@ function ExamCBT() {
       const percentage = Math.round((score / questions.length) * 100);
       const subjectName = isJamb ? 'Multiple Subjects' : (questions[0]?.subjectName || 'Mock Exam');
       
-      await fetch('http://localhost:5000/api/user/performance', {
+      await fetch('/api/user/performance', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

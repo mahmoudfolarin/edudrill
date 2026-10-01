@@ -15,7 +15,7 @@ function PastQuestionPapers() {
         setError("")
 
         const response = await fetch(
-          `http://localhost:5000/api/past-papers?exam=${exam.toUpperCase()}&subject=${subject}&year=${year}`,
+          `/api/past-papers?exam=${exam.toUpperCase()}&subject=${subject}&year=${year}`,
         )
 
         const data = await response.json()

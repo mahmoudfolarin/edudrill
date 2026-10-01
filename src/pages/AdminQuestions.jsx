@@ -7,7 +7,7 @@ export default function AdminQuestions() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/questions")
+    fetch("/api/questions")
       .then(res => res.json())
       .then(data => {
         if (data.success) {
