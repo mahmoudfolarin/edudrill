@@ -341,6 +341,15 @@ function Activation() {
   // ACTIVATION PAGE
   // =====================================================
 
+  const whatsappMessage = `Hello Acadex Support 👋  
+I want to activate my EduDrill product and would like to purchase an Activation Key.
+🔑 My Product Key: ${productKey || 'Not Generated Yet'}
+Please send me the payment information and activation key.
+Thank you.
+EduDrill | Acadex`;
+
+  const whatsappUrl = `https://wa.me/2349135055095?text=${encodeURIComponent(whatsappMessage)}`;
+
   return (
     <main className="activation-page">
 
@@ -468,7 +477,7 @@ function Activation() {
             </strong>
 
             <small>
-              <a href="https://wa.me/2349135055095" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>
+              <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>
                 +2349135055095
               </a>
             </small>
