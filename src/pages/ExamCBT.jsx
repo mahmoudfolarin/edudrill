@@ -699,8 +699,13 @@ function ExamCBT() {
 
   function calculateScore() {
     let score = 0;
+    const optionLetters = ['A', 'B', 'C', 'D'];
     questions.forEach((q, idx) => {
-      if (userAnswers[idx] === q.answer) score++;
+      let correctText = q.answer;
+      if (typeof q.answer === 'string' && ['A','B','C','D'].includes(q.answer.toUpperCase())) {
+        correctText = q.options[optionLetters.indexOf(q.answer.toUpperCase())];
+      }
+      if (userAnswers[idx] === correctText || userAnswers[idx] === q.answer) score++;
     });
     return score;
   }
@@ -905,20 +910,26 @@ function ExamCBT() {
                       letterColor = theme.surface;
                     }
 
-                    // Review Mode Styling - Strictly Blues
+                    // Review Mode Styling - Strictly Blues & Green/Red
+                    let isCorrectAnswer = false;
                     if (isSubmitted) {
-                      const isCorrectAnswer = opt === currentQ.answer;
+                      let correctText = currentQ.answer;
+                      if (typeof currentQ.answer === 'string' && ['A','B','C','D'].includes(currentQ.answer.toUpperCase())) {
+                        correctText = currentQ.options[optionLetters.indexOf(currentQ.answer.toUpperCase())];
+                      }
+                      isCorrectAnswer = (opt === correctText) || (opt === currentQ.answer);
+
                       if (isCorrectAnswer) {
-                        bg = theme.primary; 
+                        bg = '#10B981'; // Green
                         color = theme.surface;
-                        border = `2px solid ${theme.primary}`;
+                        border = `2px solid #10B981`;
                         letterBg = 'rgba(255,255,255,0.2)';
                         letterColor = theme.surface;
                       } else if (isSelected && !isCorrectAnswer) {
-                        bg = theme.lighter; 
-                        color = theme.primary;
-                        border = `2px solid ${theme.accent}`;
-                        letterBg = theme.accent;
+                        bg = '#EF4444'; // Red
+                        color = theme.surface;
+                        border = `2px solid #EF4444`;
+                        letterBg = 'rgba(255,255,255,0.2)';
                         letterColor = theme.surface;
                       } else {
                         bg = theme.surface;
@@ -966,25 +977,39 @@ function ExamCBT() {
                            {letter}
                          </span>
                          <span style={{ flex: 1, lineHeight: 1.5 }}>{opt}</span>
+                         {isSubmitted && isCorrectAnswer && (
+                           <span style={{ fontSize: '20px', fontWeight: 'bold' }}>✓</span>
+                         )}
+                         {isSubmitted && isSelected && !isCorrectAnswer && (
+                           <span style={{ fontSize: '20px', fontWeight: 'bold' }}>✗</span>
+                         )}
                       </label>
                     )
                  })}
                </div>
 
-               {isSubmitted && (
-                 <div className="slide-up" style={{ marginTop: '32px', padding: '24px', background: userAnswers[currentIndex] === currentQ?.answer ? theme.primary : theme.lighter, borderRadius: 16, border: `1px solid ${theme.border}` }}>
-                   <div style={{ color: userAnswers[currentIndex] === currentQ?.answer ? theme.surface : theme.primary, fontSize: '16px' }}>
-                     <strong style={{ display: 'block', marginBottom: '8px', fontSize: '13px', opacity: 0.9, letterSpacing: '1px' }}>CORRECT ANSWER</strong>
-                     {currentQ?.answer}
-                   </div>
-                   {userAnswers[currentIndex] !== currentQ?.answer && (
-                     <div style={{ marginTop: '20px', paddingTop: '20px', borderTop: `1px solid ${theme.border}`, color: theme.primary, fontSize: '16px' }}>
-                       <strong style={{ display: 'block', marginBottom: '8px', fontSize: '13px', opacity: 0.9, letterSpacing: '1px' }}>YOUR ANSWER</strong> 
-                       {userAnswers[currentIndex] || 'Not answered'}
+               {isSubmitted && (() => {
+                 let correctText = currentQ?.answer;
+                 if (typeof currentQ?.answer === 'string' && ['A','B','C','D'].includes(currentQ.answer.toUpperCase())) {
+                   correctText = currentQ.options[optionLetters.indexOf(currentQ.answer.toUpperCase())];
+                 }
+                 const isCurrentCorrect = (userAnswers[currentIndex] === correctText) || (userAnswers[currentIndex] === currentQ?.answer);
+                 
+                 return (
+                   <div className="slide-up" style={{ marginTop: '32px', padding: '24px', background: isCurrentCorrect ? '#10B981' : theme.lighter, borderRadius: 16, border: `1px solid ${isCurrentCorrect ? '#10B981' : theme.border}` }}>
+                     <div style={{ color: isCurrentCorrect ? theme.surface : theme.primary, fontSize: '16px' }}>
+                       <strong style={{ display: 'block', marginBottom: '8px', fontSize: '13px', opacity: 0.9, letterSpacing: '1px' }}>CORRECT ANSWER</strong>
+                       {correctText}
                      </div>
-                   )}
-                 </div>
-               )}
+                     {!isCurrentCorrect && (
+                       <div style={{ marginTop: '20px', paddingTop: '20px', borderTop: `1px solid ${theme.border}`, color: '#EF4444', fontSize: '16px' }}>
+                         <strong style={{ display: 'block', marginBottom: '8px', fontSize: '13px', opacity: 0.9, letterSpacing: '1px' }}>YOUR ANSWER</strong> 
+                         {userAnswers[currentIndex] || 'Not answered'}
+                       </div>
+                     )}
+                   </div>
+                 );
+               })()}
             </div>
 
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '32px', maxWidth: 900, width: '100%', margin: '32px auto 0' }}>
@@ -1062,10 +1087,15 @@ function ExamCBT() {
                 }
 
                 if (isSubmitted && isAnswered) {
-                   const correct = userAnswers[i] === questions[i].answer;
-                   bg = correct ? theme.primary : theme.lighter;
-                   color = correct ? theme.surface : theme.primary;
-                   border = correct ? 'none' : `1px solid ${theme.accent}`;
+                   const optionLetters = ['A', 'B', 'C', 'D'];
+                   let correctText = questions[i].answer;
+                   if (typeof questions[i].answer === 'string' && ['A','B','C','D'].includes(questions[i].answer.toUpperCase())) {
+                     correctText = questions[i].options[optionLetters.indexOf(questions[i].answer.toUpperCase())];
+                   }
+                   const correct = (userAnswers[i] === correctText) || (userAnswers[i] === questions[i].answer);
+                   bg = correct ? '#10B981' : '#EF4444';
+                   color = theme.surface;
+                   border = 'none';
                 }
 
                 return (
