@@ -32,11 +32,15 @@ import Bookmarks from "./pages/Bookmarks"
 import Performance from "./pages/Performance"
 import ErrorBoundary from "./components/ErrorBoundary"
 
+import StudentOnboarding from "./pages/StudentOnboarding"
+import UserHeader from "./components/UserHeader";
+
 function App() {
-  return (
+  return ( <>
+    <UserHeader />
     <Routes>
       <Route path="/" element={<Home />} />
-
+      <Route path="/onboarding" element={<StudentOnboarding />} />
       <Route path="/activate" element={<Activation />} />
 
       <Route path="/admin" element={<AdminLogin />} />
@@ -56,6 +60,7 @@ function App() {
 
       <Route path="/dashboard/:exam/practice" element={<ErrorBoundary><ExamPractice /></ErrorBoundary>} />
       <Route path="/dashboard/:exam/cbt" element={<ExamCBT />} />
+      <Route path="/dashboard/:exam/performance" element={<Performance />} />
 
       <Route
         path="/dashboard/:exam/subjects"
@@ -125,8 +130,8 @@ function App() {
   path="/dashboard/:exam/subjects/:subject/ai-tutor/history"
   element={<AITutorHistory />}
 />
+      <Route path="*" element={<Home />} />
     </Routes>
-  )
+  </> );
 }
-
 export default App

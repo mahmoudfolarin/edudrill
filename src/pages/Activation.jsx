@@ -341,12 +341,7 @@ function Activation() {
   // ACTIVATION PAGE
   // =====================================================
 
-  const whatsappMessage = `Hello Acadex Support 👋  
-I want to activate my EduDrill product and would like to purchase an Activation Key.
-🔑 My Product Key: ${productKey || 'Not Generated Yet'}
-Please send me the payment information and activation key.
-Thank you.
-EduDrill | Acadex`;
+  const whatsappMessage = `Hello Acadex Support 👋 I want to activate my EduDrill product and would like to purchase an Activation Key. 🔑 My Product Key: ${productKey || '[DYNAMIC_KEY]'} Please send me the payment information and activation key. Thank you. EduDrill | Acadex`;
 
   const whatsappUrl = `https://wa.me/2349135055095?text=${encodeURIComponent(whatsappMessage)}`;
 
@@ -476,11 +471,9 @@ EduDrill | Acadex`;
               Contact Acadex
             </strong>
 
-            <small>
-              <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>
-                +2349135055095
-              </a>
-            </small>
+            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', marginTop: '12px', background: '#25D366', color: 'white', padding: '12px 24px', borderRadius: '12px', textDecoration: 'none', fontWeight: 'bold', fontSize: '15px', boxShadow: '0 4px 10px rgba(37, 211, 102, 0.3)' }}>
+              Purchase on WhatsApp
+            </a>
 
           </div>
 

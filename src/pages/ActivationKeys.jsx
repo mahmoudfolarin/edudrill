@@ -12,7 +12,6 @@ function ActivationKeys() {
 
   async function loadActivationKeys() {
     try {
-      setLoadingKeys(true)
 
       const response = await fetch(
         "/api/activation-keys",
@@ -39,6 +38,7 @@ function ActivationKeys() {
   }
 
   useEffect(() => {
+    // eslint-disable-next-line
     loadActivationKeys()
   }, [])
 
@@ -73,7 +73,7 @@ function ActivationKeys() {
       }
 
       setGeneratedKeys(keys)
-
+      setLoadingKeys(true)
       await loadActivationKeys()
     } catch (error) {
       console.error(error)

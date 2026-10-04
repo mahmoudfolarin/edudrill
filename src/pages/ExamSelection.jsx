@@ -32,8 +32,14 @@ const exams = [
 ]
 
 function ExamSelection() {
-  return (
-    <main className="exam-page">
+  console.log("ExamSelection rendered");
+    return (
+      <main className="exam-page">
+        
+      
+        
+        
+
 
       {/* Header */}
       <header className="exam-header">
@@ -185,6 +191,7 @@ function ExamSelection() {
       </footer>
 
     </main>
+    
   )
 }
 

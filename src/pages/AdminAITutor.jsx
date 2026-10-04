@@ -28,7 +28,7 @@ export default function AdminAITutor() {
 
       <form onSubmit={handleSave} style={{ background: 'white', padding: '32px', borderRadius: '12px', border: '1px solid #e2e8f0', maxWidth: '800px' }}>
         {saved && (
-          <div style={{ background: '#3b82f6', color: '#166534', padding: '12px', borderRadius: '8px', marginBottom: '24px', fontWeight: '600' }}>
+          <div style={{ background: '#3b82f6', color: '#1e3a8a', padding: '12px', borderRadius: '8px', marginBottom: '24px', fontWeight: '600' }}>
             Settings saved successfully!
           </div>
         )}

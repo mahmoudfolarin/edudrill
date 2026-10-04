@@ -23,6 +23,7 @@ function ExamCBT() {
   const [visited, setVisited] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
+  const [showResults, setShowResults] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const [setupStep, setSetupStep] = useState(1);
@@ -314,12 +315,15 @@ function ExamCBT() {
   const handleConfirmSubmit = async () => {
     setIsSubmitted(true);
     setShowConfirm(false);
+    setShowResults(true); // Show results first
     setCurrentIndex(0); // Reset to first question for review
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
     try {
-      const score = calculateScore();
-      const percentage = Math.round((score / questions.length) * 100);
+      const stats = calculateDetailedScore();
+      const score = stats.totalScore;
+      const percentage = stats.percentage;
+      const maxScore = stats.maxScore;
       const subjectName = isJamb ? 'Multiple Subjects' : (questions[0]?.subjectName || 'Mock Exam');
       
       await fetch('/api/user/performance', {
@@ -331,8 +335,13 @@ function ExamCBT() {
           type: 'Mock Exam CBT',
           topic_id: null,
           score,
-          total: questions.length,
-          percentage
+          total: maxScore,
+          percentage,
+          correct_count: stats.totalCorrect,
+          wrong_count: stats.totalWrong,
+          unanswered_count: stats.totalUnanswered,
+          time_used: timerDuration - timeLeft,
+          detailed_responses: stats.detailedResponses
         })
       });
     } catch (err) {
@@ -697,17 +706,293 @@ function ExamCBT() {
     )
   }
 
-  function calculateScore() {
-    let score = 0;
+  const calculateDetailedScore = () => {
+    const subjectsMap = {};
     const optionLetters = ['A', 'B', 'C', 'D'];
+    let totalCorrect = 0;
+    let totalWrong = 0;
+    let totalUnanswered = 0;
+    const detailedResponses = [];
+    
     questions.forEach((q, idx) => {
       let correctText = q.answer;
       if (typeof q.answer === 'string' && ['A','B','C','D'].includes(q.answer.toUpperCase())) {
         correctText = q.options[optionLetters.indexOf(q.answer.toUpperCase())];
       }
-      if (userAnswers[idx] === correctText || userAnswers[idx] === q.answer) score++;
+      const isAnswered = !!userAnswers[idx];
+      const isCorrect = isAnswered && ((userAnswers[idx] === correctText) || (userAnswers[idx] === q.answer));
+      
+      detailedResponses.push({
+        question_id: q.id || idx,
+        question_text: q.question,
+        selected: userAnswers[idx] || null,
+        correct: correctText || q.answer,
+        is_correct: isCorrect,
+        is_answered: isAnswered
+      });
+
+      const subj = q.subjectName || 'General';
+      if (!subjectsMap[subj]) {
+        subjectsMap[subj] = { correct: 0, total: 0 };
+      }
+      subjectsMap[subj].total += 1;
+      if (isCorrect) {
+        subjectsMap[subj].correct += 1;
+        totalCorrect += 1;
+      } else if (isAnswered) {
+        totalWrong += 1;
+      } else {
+        totalUnanswered += 1;
+      }
     });
-    return score;
+
+    let totalScore = 0;
+    
+    const subjectStats = Object.keys(subjectsMap).map(subj => {
+      const stats = subjectsMap[subj];
+      const percent = Math.round((stats.correct / stats.total) * 100) || 0;
+      let jambScore = 0;
+      if (isJamb) {
+        jambScore = Math.round((stats.correct / stats.total) * 100) || 0;
+        totalScore += jambScore;
+      }
+      return { subject: subj, correct: stats.correct, total: stats.total, percent, jambScore };
+    });
+
+    if (!isJamb) {
+      totalScore = totalCorrect;
+    }
+    
+    const maxScore = isJamb ? (Object.keys(subjectsMap).length * 100) : questions.length;
+    const percentage = Math.round((totalScore / maxScore) * 100) || 0;
+
+    return { totalCorrect, totalWrong, totalUnanswered, detailedResponses, totalScore, maxScore, subjectStats, percentage };
+  };
+
+  // Result Page Screen
+  if (isSubmitted && showResults) {
+    const stats = calculateDetailedScore();
+    const timeUsed = timerDuration - timeLeft;
+    const avgTime = Math.round(timeUsed / questions.length) || 0;
+    
+    const formatTime = (secs) => {
+      const m = Math.floor(secs / 60);
+      const s = secs % 60;
+      return `${m}m ${s}s`;
+    };
+
+    return (
+      <main className="fade-in" style={{ minHeight: '100vh', background: `linear-gradient(rgba(11, 36, 71, 0.85), rgba(25, 55, 109, 0.9)), url(${StudentsBg}) no-repeat center center fixed`, backgroundSize: 'cover', fontFamily: "'Inter', sans-serif", padding: '40px 5%' }}>
+        <style>{customStyles}</style>
+        <div style={{ maxWidth: 1000, margin: '0 auto', background: 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(16px)', borderRadius: 24, overflow: 'hidden', boxShadow: '0 30px 60px rgba(0,0,0,0.2)' }}>
+          <div style={{ padding: '40px', textAlign: 'center', borderBottom: `1px solid rgba(0,0,0,0.05)`, background: 'rgba(240, 249, 255, 0.5)' }}>
+             <h1 style={{ color: theme.primary, margin: '0 0 8px 0', fontSize: '32px', fontWeight: '800' }}>Performance Result</h1>
+             <p style={{ color: theme.textMuted, margin: 0, fontSize: '16px' }}>{exam?.toUpperCase()} CBT {isJamb ? '(JAMB Mode)' : ''}</p>
+          </div>
+          
+          <div style={{ padding: '40px', display: 'flex', flexDirection: 'column', gap: '40px' }}>
+             {/* Total Score Summary */}
+             <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
+                <div style={{ flex: '1 1 300px', background: theme.surface, border: `1px solid ${theme.border}`, borderRadius: 16, padding: '32px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                   <div style={{ position: 'relative', width: 160, height: 160, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <svg viewBox="0 0 36 36" style={{ width: '100%', height: '100%', transform: 'rotate(-90deg)' }}>
+                         <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke={theme.light} strokeWidth="3" />
+                         <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke={stats.percentage >= 50 ? '#3B82F6' : '#1E40AF'} strokeWidth="3" strokeDasharray={`${stats.percentage}, 100`} />
+                      </svg>
+                      <div style={{ position: 'absolute', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                         <span style={{ fontSize: '36px', fontWeight: '800', color: theme.primary }}>{stats.percentage}%</span>
+                      </div>
+                   </div>
+                   <h3 style={{ marginTop: '24px', color: theme.textMain, fontSize: '18px' }}>Total Percentage</h3>
+                </div>
+
+                <div style={{ flex: '1 1 300px', background: theme.primary, color: theme.surface, borderRadius: 16, padding: '32px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                   <span style={{ fontSize: '14px', textTransform: 'uppercase', letterSpacing: '1px', opacity: 0.8 }}>Aggregate Score</span>
+                   <div style={{ display: 'flex', alignItems: 'baseline', marginTop: '16px' }}>
+                      <span style={{ fontSize: '64px', fontWeight: '800', lineHeight: 1 }}>{stats.totalScore}</span>
+                      <span style={{ fontSize: '24px', opacity: 0.7, marginLeft: '8px' }}>/ {stats.maxScore}</span>
+                   </div>
+                   {isJamb && <p style={{ marginTop: '16px', fontSize: '14px', opacity: 0.9, lineHeight: 1.5 }}>Calculated based on standard JAMB format (100 points per subject).</p>}
+                </div>
+             </div>
+
+             {/* Question & Time Stats */}
+             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '24px' }}>
+                <div style={{ background: theme.surface, borderRadius: 16, padding: '24px', border: `1px solid ${theme.border}`, display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span style={{ color: theme.textMain, fontWeight: '600' }}>✓ Correct</span>
+                      <span style={{ background: 'rgba(59, 130, 246, 0.1)', color: '#3B82F6', padding: '4px 12px', borderRadius: '12px', fontWeight: 'bold' }}>{stats.totalCorrect}</span>
+                   </div>
+                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span style={{ color: theme.textMain, fontWeight: '600' }}>✗ Wrong</span>
+                      <span style={{ background: 'rgba(30, 64, 175, 0.1)', color: '#1E40AF', padding: '4px 12px', borderRadius: '12px', fontWeight: 'bold' }}>{stats.totalWrong}</span>
+                   </div>
+                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span style={{ color: theme.textMain, fontWeight: '600' }}>○ Unanswered</span>
+                      <span style={{ background: 'rgba(100, 116, 139, 0.1)', color: '#64748B', padding: '4px 12px', borderRadius: '12px', fontWeight: 'bold' }}>{stats.totalUnanswered}</span>
+                   </div>
+                </div>
+
+                <div style={{ background: theme.surface, borderRadius: 16, padding: '24px', border: `1px solid ${theme.border}`, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
+                   <span style={{ color: theme.textMuted, fontSize: '14px', textTransform: 'uppercase', letterSpacing: '1px' }}>Time Used</span>
+                   <span style={{ color: theme.primary, fontSize: '32px', fontWeight: '800', marginTop: '8px' }}>{formatTime(timeUsed)}</span>
+                </div>
+
+                <div style={{ background: theme.surface, borderRadius: 16, padding: '24px', border: `1px solid ${theme.border}`, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
+                   <span style={{ color: theme.textMuted, fontSize: '14px', textTransform: 'uppercase', letterSpacing: '1px' }}>Average Speed</span>
+                   <span style={{ color: theme.primary, fontSize: '32px', fontWeight: '800', marginTop: '8px' }}>{avgTime}s</span>
+                   <span style={{ color: theme.textMuted, fontSize: '14px', marginTop: '4px' }}>per question</span>
+                </div>
+             </div>
+
+             {/* Subject Breakdown Charts & Table */}
+             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '40px' }}>
+               <div style={{ flex: '1 1 400px' }}>
+                 <h3 style={{ color: theme.primary, marginBottom: '24px', fontSize: '20px', fontWeight: '800' }}>Subject Breakdown (Bar Chart)</h3>
+                 <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+                   {stats.subjectStats.map((s, i) => (
+                     <div key={i} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                         <span style={{ fontWeight: '700', color: theme.textMain, textTransform: 'capitalize', fontSize: '15px' }}>{s.subject.replace(/-/g, ' ')}</span>
+                         <span style={{ fontWeight: '600', color: theme.primary, fontSize: '15px' }}>{isJamb ? `${s.jambScore} / 100` : `${s.correct} / ${s.total}`} ({s.percent}%)</span>
+                       </div>
+                       <div style={{ width: '100%', height: '12px', background: theme.light, borderRadius: '6px', overflow: 'hidden' }}>
+                         <div style={{ width: `${s.percent}%`, height: '100%', background: s.percent >= 50 ? '#3B82F6' : '#60A5FA', borderRadius: '6px', transition: 'width 1s ease-out' }}></div>
+                       </div>
+                     </div>
+                   ))}
+                 </div>
+               </div>
+
+               <div style={{ flex: '1 1 300px' }}>
+                 <h3 style={{ color: theme.primary, marginBottom: '24px', fontSize: '20px', fontWeight: '800' }}>Performance Pie Chart</h3>
+                 
+                 {(() => {
+                    const totalQ = questions.length;
+                    const cPct = (stats.totalCorrect / totalQ) * 100 || 0;
+                    const wPct = (stats.totalWrong / totalQ) * 100 || 0;
+                    const uPct = (stats.totalUnanswered / totalQ) * 100 || 0;
+                    
+                    return (
+                      <>
+                         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '200px' }}>
+                           <svg viewBox="0 0 31.831 31.831" style={{ width: '200px', height: '200px', transform: 'rotate(-90deg)', borderRadius: '50%' }}>
+                             {/* Background (Unanswered) */}
+                             <circle r="15.9155" cx="15.9155" cy="15.9155" fill="transparent" stroke="#64748B" strokeWidth="31.831" />
+                             
+                             {/* Middle Layer (Wrong) */}
+                             <circle r="15.9155" cx="15.9155" cy="15.9155" fill="transparent" stroke="#1E40AF" strokeWidth="31.831" strokeDasharray={`${cPct + wPct} 100`} />
+                             
+                             {/* Top Layer (Correct) */}
+                             <circle r="15.9155" cx="15.9155" cy="15.9155" fill="transparent" stroke="#3B82F6" strokeWidth="31.831" strokeDasharray={`${cPct} 100`} />
+                           </svg>
+                         </div>
+                         <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '16px', marginTop: '24px' }}>
+                           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><div style={{ width: 12, height: 12, background: '#3B82F6', borderRadius: '50%' }}></div><span style={{ fontSize: '14px', color: theme.textMain }}>Correct ({Math.round(cPct)}%)</span></div>
+                           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><div style={{ width: 12, height: 12, background: '#1E40AF', borderRadius: '50%' }}></div><span style={{ fontSize: '14px', color: theme.textMain }}>Wrong ({Math.round(wPct)}%)</span></div>
+                           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><div style={{ width: 12, height: 12, background: '#64748B', borderRadius: '50%' }}></div><span style={{ fontSize: '14px', color: theme.textMain }}>Unanswered ({Math.round(uPct)}%)</span></div>
+                         </div>
+                      </>
+                    )
+                 })()}
+               </div>
+             </div>
+
+             {/* Detailed Results Table */}
+             <div>
+               <h3 style={{ color: theme.primary, marginBottom: '16px', fontSize: '20px', fontWeight: '800' }}>Detailed Result Table</h3>
+               <div style={{ overflowX: 'auto', background: theme.surface, borderRadius: 16, border: `1px solid ${theme.border}` }}>
+                 <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+                   <thead>
+                     <tr style={{ background: theme.light, color: theme.primary }}>
+                       <th style={{ padding: '16px 24px', borderBottom: `1px solid ${theme.border}` }}>Subject</th>
+                       <th style={{ padding: '16px 24px', borderBottom: `1px solid ${theme.border}` }}>Total Questions</th>
+                       <th style={{ padding: '16px 24px', borderBottom: `1px solid ${theme.border}` }}>Correct Answers</th>
+                       {isJamb && <th style={{ padding: '16px 24px', borderBottom: `1px solid ${theme.border}` }}>JAMB Score (100)</th>}
+                       <th style={{ padding: '16px 24px', borderBottom: `1px solid ${theme.border}` }}>Percentage</th>
+                       <th style={{ padding: '16px 24px', borderBottom: `1px solid ${theme.border}` }}>Remark</th>
+                     </tr>
+                   </thead>
+                   <tbody>
+                     {stats.subjectStats.map((s, i) => (
+                       <tr key={i}>
+                         <td style={{ padding: '16px 24px', borderBottom: `1px solid ${theme.border}`, textTransform: 'capitalize', fontWeight: '600' }}>{s.subject.replace(/-/g, ' ')}</td>
+                         <td style={{ padding: '16px 24px', borderBottom: `1px solid ${theme.border}`, color: theme.textMuted }}>{s.total}</td>
+                         <td style={{ padding: '16px 24px', borderBottom: `1px solid ${theme.border}`, color: '#3B82F6', fontWeight: 'bold' }}>{s.correct}</td>
+                         {isJamb && <td style={{ padding: '16px 24px', borderBottom: `1px solid ${theme.border}`, color: theme.primary, fontWeight: 'bold' }}>{s.jambScore}</td>}
+                         <td style={{ padding: '16px 24px', borderBottom: `1px solid ${theme.border}`, color: theme.textMain }}>{s.percent}%</td>
+                         <td style={{ padding: '16px 24px', borderBottom: `1px solid ${theme.border}`, color: s.percent >= 50 ? '#3B82F6' : '#1E40AF', fontWeight: 'bold' }}>{s.percent >= 70 ? 'Excellent' : s.percent >= 50 ? 'Pass' : 'Fail'}</td>
+                       </tr>
+                     ))}
+                   </tbody>
+                 </table>
+               </div>
+             </div>
+
+             {/* EDUDRILL RECOMMENDATION */}
+             {(() => {
+                let strongest = stats.subjectStats[0];
+                let weakest = stats.subjectStats[0];
+                stats.subjectStats.forEach(s => {
+                  if (s.percent > strongest.percent) strongest = s;
+                  if (s.percent < weakest.percent) weakest = s;
+                });
+
+                return (
+                  <div style={{ background: 'linear-gradient(135deg, #0B2447 0%, #19376D 100%)', borderRadius: 24, padding: '40px', color: 'white', boxShadow: '0 20px 25px -5px rgba(11, 36, 71, 0.15)', marginTop: '24px' }}>
+                    <h3 style={{ margin: '0 0 24px 0', fontSize: '24px', fontWeight: '800', letterSpacing: '1px' }}>EDUDRILL RECOMMENDATION</h3>
+                    
+                    <div style={{ marginBottom: '24px', fontSize: '16px', lineHeight: 1.6 }}>
+                      <p style={{ marginBottom: '8px' }}>
+                        You performed strongly in <strong style={{ color: '#93C5FD' }}>{strongest?.subject?.replace(/-/g, ' ')}</strong> ({strongest?.percent}%).
+                      </p>
+                      {weakest && weakest.subject !== strongest.subject && (
+                        <p>
+                          Your weakest area in this attempt was <strong style={{ color: '#BFDBFE' }}>{weakest.subject.replace(/-/g, ' ')}</strong> ({weakest.percent}%).
+                        </p>
+                      )}
+                    </div>
+
+                    <div style={{ background: 'rgba(255,255,255,0.1)', padding: '24px', borderRadius: '16px', marginBottom: '32px' }}>
+                      <h4 style={{ margin: '0 0 16px 0', color: '#DCEBFF' }}>Recommended next steps:</h4>
+                      <ol style={{ margin: 0, paddingLeft: '20px', lineHeight: 1.8 }}>
+                        {weakest && weakest.subject !== strongest.subject && <li>Review lessons for {weakest.subject.replace(/-/g, ' ')}</li>}
+                        <li>Review Answers & Explanations for this test</li>
+                        <li>Ask AI Tutor about difficult concepts</li>
+                      </ol>
+                    </div>
+
+                    <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+                      <Link to={`/dashboard/${exam}/subjects/${weakest?.subject || examSubjects[0]}/learn`} style={{ padding: '12px 24px', background: 'white', color: '#0B2447', borderRadius: '12px', textDecoration: 'none', fontWeight: 'bold', fontSize: '15px' }}>
+                        Review Lesson
+                      </Link>
+                      <Link to={`/dashboard/${exam}/practice`} style={{ padding: '12px 24px', background: 'rgba(255,255,255,0.2)', color: 'white', borderRadius: '12px', textDecoration: 'none', fontWeight: 'bold', fontSize: '15px' }}>
+                        Practice Topic
+                      </Link>
+                      <Link to={`/dashboard/${exam}/ai-tutor`} style={{ padding: '12px 24px', background: 'rgba(255,255,255,0.2)', color: 'white', borderRadius: '12px', textDecoration: 'none', fontWeight: 'bold', fontSize: '15px' }}>
+                        Ask AI Tutor
+                      </Link>
+                    </div>
+                  </div>
+                )
+             })()}
+
+             <div style={{ display: 'flex', justifyContent: 'center', marginTop: '16px' }}>
+                <button 
+                  className="premium-btn"
+                  onClick={() => {
+                    setShowResults(false);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  style={{ padding: '16px 48px', background: theme.accent, color: theme.surface, border: 'none', borderRadius: 12, cursor: 'pointer', fontSize: '18px', fontWeight: 'bold', boxShadow: '0 8px 16px rgba(87,108,188,0.3)' }}
+                >
+                  Review Answers & Explanations
+                </button>
+             </div>
+          </div>
+        </div>
+      </main>
+    );
   }
 
   // Submit Confirmation Screen
@@ -834,7 +1119,7 @@ function ExamCBT() {
             {isSubmitted && currentIndex === 0 && (
               <div className="fade-in" style={{ maxWidth: 900, margin: '0 auto 32px', width: '100%', background: 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(10px)', padding: '32px', borderRadius: 24, textAlign: 'center', border: `1px solid rgba(255,255,255,0.4)`, boxShadow: '0 10px 30px rgba(0,0,0,0.15)' }}>
                 <span style={{ fontSize: '12px', fontWeight: 'bold', color: theme.accent, letterSpacing: '1px' }}>EXAMINATION RESULT</span>
-                <h2 style={{ color: theme.primary, margin: '8px 0', fontSize: '42px', fontWeight: '800' }}>{calculateScore()} <span style={{fontSize: '24px', color: theme.textMuted}}>/ {questions.length}</span></h2>
+                <h2 style={{ color: theme.primary, margin: '8px 0', fontSize: '42px', fontWeight: '800' }}>{calculateDetailedScore().totalScore} <span style={{fontSize: '24px', color: theme.textMuted}}>/ {calculateDetailedScore().maxScore}</span></h2>
                 <p style={{ color: theme.textMuted, fontSize: '15px' }}>Use the navigation grid to review your answers.</p>
               </div>
             )}
@@ -920,15 +1205,15 @@ function ExamCBT() {
                       isCorrectAnswer = (opt === correctText) || (opt === currentQ.answer);
 
                       if (isCorrectAnswer) {
-                        bg = '#10B981'; // Green
+                        bg = '#3B82F6'; // Green
                         color = theme.surface;
-                        border = `2px solid #10B981`;
+                        border = `2px solid #3B82F6`;
                         letterBg = 'rgba(255,255,255,0.2)';
                         letterColor = theme.surface;
                       } else if (isSelected && !isCorrectAnswer) {
-                        bg = '#EF4444'; // Red
+                        bg = '#1E40AF'; // Red
                         color = theme.surface;
-                        border = `2px solid #EF4444`;
+                        border = `2px solid #1E40AF`;
                         letterBg = 'rgba(255,255,255,0.2)';
                         letterColor = theme.surface;
                       } else {
@@ -990,23 +1275,50 @@ function ExamCBT() {
 
                {isSubmitted && (() => {
                  let correctText = currentQ?.answer;
+                 let correctLetter = '?';
                  if (typeof currentQ?.answer === 'string' && ['A','B','C','D'].includes(currentQ.answer.toUpperCase())) {
-                   correctText = currentQ.options[optionLetters.indexOf(currentQ.answer.toUpperCase())];
+                   correctLetter = currentQ.answer.toUpperCase();
+                   correctText = currentQ.options[optionLetters.indexOf(correctLetter)];
+                 } else if (currentQ?.options?.includes(currentQ?.answer)) {
+                   correctLetter = optionLetters[currentQ.options.indexOf(currentQ.answer)];
                  }
-                 const isCurrentCorrect = (userAnswers[currentIndex] === correctText) || (userAnswers[currentIndex] === currentQ?.answer);
+
+                 const userAnsText = userAnswers[currentIndex];
+                 const isAnswered = !!userAnsText;
+                 const isCurrentCorrect = isAnswered && ((userAnsText === correctText) || (userAnsText === currentQ?.answer));
                  
+                 let userLetter = '?';
+                 if (isAnswered && currentQ?.options?.includes(userAnsText)) {
+                   userLetter = optionLetters[currentQ.options.indexOf(userAnsText)];
+                 }
+
+                 let statusColor = theme.border;
+                 let statusLabel = 'Unanswered';
+                 if (isCurrentCorrect) {
+                   statusColor = '#3B82F6';
+                   statusLabel = 'Correct';
+                 } else if (isAnswered) {
+                   statusColor = '#1E40AF';
+                   statusLabel = 'Incorrect';
+                 }
+
                  return (
-                   <div className="slide-up" style={{ marginTop: '32px', padding: '24px', background: isCurrentCorrect ? '#10B981' : theme.lighter, borderRadius: 16, border: `1px solid ${isCurrentCorrect ? '#10B981' : theme.border}` }}>
-                     <div style={{ color: isCurrentCorrect ? theme.surface : theme.primary, fontSize: '16px' }}>
-                       <strong style={{ display: 'block', marginBottom: '8px', fontSize: '13px', opacity: 0.9, letterSpacing: '1px' }}>CORRECT ANSWER</strong>
-                       {correctText}
-                     </div>
-                     {!isCurrentCorrect && (
-                       <div style={{ marginTop: '20px', paddingTop: '20px', borderTop: `1px solid ${theme.border}`, color: '#EF4444', fontSize: '16px' }}>
-                         <strong style={{ display: 'block', marginBottom: '8px', fontSize: '13px', opacity: 0.9, letterSpacing: '1px' }}>YOUR ANSWER</strong> 
-                         {userAnswers[currentIndex] || 'Not answered'}
-                       </div>
+                   <div className="slide-up" style={{ marginTop: '32px', padding: '24px', background: theme.surface, borderRadius: 16, border: `2px solid ${statusColor}` }}>
+                     <div style={{ fontWeight: 'bold', fontSize: '18px', color: statusColor, marginBottom: '16px', letterSpacing: '1px' }}>{statusLabel}:</div>
+                     
+                     {isAnswered ? (
+                        <div style={{ fontSize: '16px', color: theme.textMain, marginBottom: '8px' }}>
+                           {isCurrentCorrect ? <span style={{ color: '#3B82F6', fontWeight: 'bold' }}>✓</span> : <span style={{ color: '#1E40AF', fontWeight: 'bold' }}>✗</span>} Your answer: {userLetter} ({userAnsText})
+                        </div>
+                     ) : (
+                        <div style={{ fontSize: '16px', color: theme.textMuted, marginBottom: '8px' }}>
+                           <span style={{ color: '#64748B', fontWeight: 'bold' }}>○</span> Not answered
+                        </div>
                      )}
+
+                     <div style={{ fontSize: '16px', color: theme.textMain }}>
+                        <span style={{ color: '#3B82F6', fontWeight: 'bold' }}>✓</span> Correct answer: {correctLetter} ({correctText})
+                     </div>
                    </div>
                  );
                })()}
@@ -1093,7 +1405,7 @@ function ExamCBT() {
                      correctText = questions[i].options[optionLetters.indexOf(questions[i].answer.toUpperCase())];
                    }
                    const correct = (userAnswers[i] === correctText) || (userAnswers[i] === questions[i].answer);
-                   bg = correct ? '#10B981' : '#EF4444';
+                   bg = correct ? '#3B82F6' : '#1E40AF';
                    color = theme.surface;
                    border = 'none';
                 }

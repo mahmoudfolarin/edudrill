@@ -123,10 +123,10 @@ export default function AdminSubjects() {
               </div>
               <p style={{ color: '#64748b', fontSize: '14px', margin: '0 0 16px 0' }}>Group: {sub.subject_group}</p>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ background: sub.is_active ? '#3b82f6' : '#93c5fd', color: sub.is_active ? '#166534' : '#991b1b', padding: '4px 8px', borderRadius: '4px', fontSize: '12px', fontWeight: '600' }}>
+                <span style={{ background: sub.is_active ? '#3b82f6' : '#93c5fd', color: sub.is_active ? '#1e3a8a' : '#1e40af', padding: '4px 8px', borderRadius: '4px', fontSize: '12px', fontWeight: '600' }}>
                   {sub.is_active ? 'Active' : 'Inactive'}
                 </span>
-                <button onClick={() => handleDelete(sub.id)} style={{ background: '#93c5fd', color: '#991b1b', border: 'none', padding: '6px 12px', borderRadius: '6px', cursor: 'pointer', fontSize: '12px', fontWeight: '600' }}>Delete</button>
+                <button onClick={() => handleDelete(sub.id)} style={{ background: '#93c5fd', color: '#1e40af', border: 'none', padding: '6px 12px', borderRadius: '6px', cursor: 'pointer', fontSize: '12px', fontWeight: '600' }}>Delete</button>
               </div>
             </div>
           ))}

@@ -76,6 +76,30 @@ function AdminDashboard() {
       value: displayValue(stats?.subjects),
       path: "/admin/subjects"
     },
+    {
+      icon: <img src="/assets/icons/book.svg" alt="Past Papers" style={{ width: 24, height: 24 }} />,
+      label: "Past Papers",
+      value: displayValue(stats?.pastPapers),
+      path: "/admin/past-papers"
+    },
+    {
+      icon: <img src="/assets/icons/book.svg" alt="Topics" style={{ width: 24, height: 24 }} />,
+      label: "Topics",
+      value: displayValue(stats?.topics),
+      path: "/admin/lessons"
+    },
+    {
+      icon: <img src="/assets/icons/book.svg" alt="Lessons" style={{ width: 24, height: 24 }} />,
+      label: "Lessons",
+      value: displayValue(stats?.lessons),
+      path: "/admin/lessons"
+    },
+    {
+      icon: <img src="/assets/icons/key.svg" alt="Activation Keys" style={{ width: 24, height: 24 }} />,
+      label: "Activation Keys",
+      value: displayValue(stats?.activationKeys),
+      path: "/admin/activation-keys"
+    },
   ]
 
   const managementItems = [
@@ -195,10 +219,11 @@ function AdminDashboard() {
               marginBottom: "20px",
               padding: "12px 15px",
               borderRadius: "10px",
-              background: "#93c5fd",
-              border: "1px solid #f0dada",
-              color: "#a34a4a",
-              fontSize: "11px",
+              background: "#1E40AF",
+              border: "1px solid #3B82F6",
+              color: "white",
+              fontSize: "12px",
+              fontWeight: "600",
             }}
           >
             {statsError}

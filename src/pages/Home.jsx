@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // Import images for the background carousel
 import img1 from "../assets/testimony_1.jpg";
@@ -146,10 +146,16 @@ function Home() {
 
         <div className="splash-action">
           <div className="splash-buttons" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            <Link to="/exams" className="get-started-button" style={{ justifyContent: 'center' }}>
+            <button 
+              onClick={() => {
+                const isRegistered = localStorage.getItem("student_registered");
+                window.location.href = isRegistered ? "/exams" : "/onboarding";
+              }} 
+              className="get-started-button" 
+              style={{ justifyContent: 'center', cursor: 'pointer', border: 'none', fontFamily: 'inherit', fontSize: '16px' }}>
               Get Started
               <span>→</span>
-            </Link>
+            </button>
             <Link to="/activate" className="activate-button" style={{ justifyContent: 'center' }}>
               Activate Product
             </Link>

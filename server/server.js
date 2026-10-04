@@ -17,6 +17,8 @@ const progressRoutes = require("./src/routes/progressRoutes")
 const aiTutorRoutes = require("./src/routes/aiTutorRoutes")
 const userRoutes = require("./src/routes/userRoutes")
 
+const authRoutes = require("./src/routes/authRoutes")
+
 const app = express()
 
 
@@ -31,6 +33,9 @@ app.use(express.json())
 // =====================================================
 // API ROUTES
 // =====================================================
+
+// Auth routes
+app.use("/api/auth", authRoutes)
 
 // Activation Key routes
 app.use(

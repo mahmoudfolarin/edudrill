@@ -327,6 +327,38 @@ function Dashboard() {
 
             </Link>
 
+            {/* =================================
+                PERFORMANCE
+            ================================= */}
+
+            <Link
+              to={`/dashboard/${exam}/performance`}
+              className="dashboard-action-card performance-card"
+            >
+
+              <div className="action-card-icon">
+                <img src="/assets/icons/document.svg" alt="Performance" style={{ width: 24, height: 24 }} />
+              </div>
+
+              <div className="action-card-content">
+
+                <h3>
+                  Performance
+                </h3>
+
+                <p>
+                  View your scores, analytics, and track your
+                  overall progress.
+                </p>
+
+                <span>
+                  View Analytics →
+                </span>
+
+              </div>
+
+            </Link>
+
           </div>
 
         </section>

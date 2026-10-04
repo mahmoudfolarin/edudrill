@@ -7,14 +7,25 @@ function AdminLogin() {
   const [error, setError] = useState("")
   const navigate = useNavigate()
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault()
-    if (email === "olanrewajumahmoud3@gmail.com" && password === "mahmoudedudrill2010") {
-      // Create a simple session variable to protect the dashboard if needed
-      localStorage.setItem("admin_auth", "true")
-      navigate("/admin/dashboard")
-    } else {
-      setError("Invalid email or password.")
+    try {
+      const response = await fetch("http://localhost:5000/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+      })
+      const data = await response.json()
+      
+      if (data.success && data.user.role === "admin") {
+        localStorage.setItem("admin_auth", "true")
+        localStorage.setItem("admin_token", data.token)
+        navigate("/admin/dashboard")
+      } else {
+        setError(data.message || "Invalid credentials or not an admin.")
+      }
+    } catch (err) {
+      setError("Server error. Please try again later.")
     }
   }
 

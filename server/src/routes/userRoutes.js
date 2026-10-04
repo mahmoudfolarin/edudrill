@@ -60,11 +60,12 @@ router.get("/performance", async (req, res) => {
 
 // Add a performance
 router.post("/performance", async (req, res) => {
-  const { exam, subject, type, topic_id, score, total, percentage } = req.body;
+  const { exam, subject, type, topic_id, score, total, percentage, correct_count = 0, wrong_count = 0, unanswered_count = 0, time_used = 0, detailed_responses = null } = req.body;
   try {
     const result = await pool.query(
-      "INSERT INTO performance (exam, subject, type, topic_id, score, total, percentage) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *",
-      [exam, subject, type, topic_id, score, total, percentage]
+      `INSERT INTO performance (exam, subject, type, topic_id, score, total, percentage, correct_count, wrong_count, unanswered_count, time_used, detailed_responses) 
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *`,
+      [exam, subject, type, topic_id, score, total, percentage, correct_count, wrong_count, unanswered_count, time_used, detailed_responses ? JSON.stringify(detailed_responses) : null]
     );
     res.status(201).json(result.rows[0]);
   } catch (err) {
