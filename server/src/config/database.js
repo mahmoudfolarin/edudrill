@@ -6,6 +6,9 @@ const pool = new Pool({
   database: process.env.DB_NAME || "edudrill",
   user: process.env.DB_USER || "postgres",
   password: process.env.DB_PASSWORD,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 })
 
 module.exports = pool
