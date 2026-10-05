@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react"
-import { Link, useParams } from "react-router-dom"
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 
 function Practice() {
+
+
   const { exam, subject, topicId } = useParams()
   
   // Extract lessonId from query params

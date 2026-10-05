@@ -13855,3 +13855,40 @@ body {
   .dashboard-card h2 { background: var(--primary-mobile); color: #fff; }
 }
 
+
+/* ==== Mobile Wrapper ==== */
+@media (max-width: 600px) {
+  .mobile-wrapper {
+    max-width: 100%;
+    padding: 0 1rem;
+    margin: 0 auto;
+  }
+}
+/* ==== Mobile Responsive Pages ==== */
+@media (max-width: 600px) {
+  .practice-page .practice-container,
+  .learn-page .learn-container,
+  .exam-cbt-page .exam-container,
+  .past-questions-page .past-container {
+    max-width: 100% !important;
+    padding: 0 1rem !important;
+    margin: 0 auto !important;
+  }
+
+  .practice-header,
+  .learn-header,
+  .exam-cbt-header,
+  .past-questions-header,
+  .user-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+  }
+
+  button {
+    min-width: 0 !important;
+    padding: 0.5rem 1rem !important;
+    font-size: 0.9rem !important;
+  }
+}
+
