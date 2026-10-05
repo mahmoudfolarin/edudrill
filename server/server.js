@@ -26,7 +26,7 @@ const app = express()
 // MIDDLEWARE
 // =====================================================
 
-app.use(cors())
+app.use(cors({ origin: process.env.CLIENT_ORIGIN?.split(',') || ['http://localhost:5173'] }))
 app.use(express.json())
 
 
