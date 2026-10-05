@@ -13795,3 +13795,63 @@ body {
     min-height: 175px;
   }
 }
+
+/* Mobile UI – up to 600px */
+@media (max-width: 600px) {
+  /* 1️⃣ Single‑column layout */
+  .dashboard-grid,
+  .action-grid,
+  .subject-dashboard-page .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* 2️⃣ Larger, playful typography */
+  h1, .hero h1, .dashboard-card h2 {
+    font-size: 2.2rem;
+    line-height: 1.2;
+  }
+  p, .description, .action-card p {
+    font-size: 1.1rem;
+  }
+
+  /* 3️⃣ Touch‑friendly buttons */
+  button,
+  .start-button,
+  .exam-button,
+  .admin-login-button,
+  .dashboard-action-button {
+    padding: 1.2rem 1.6rem;
+    font-size: 1.1rem;
+    border-radius: 12px;
+  }
+
+  /* 4️⃣ Sticky mobile header with hamburger */
+  .user-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    justify-content: space-between;
+    padding: 0.8rem 1.2rem;
+  }
+  .hamburger { display: block; cursor: pointer; }
+  .nav-links { display: none; flex-direction: column; background: #fff; position: absolute; top: 100%; left: 0; width: 100%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+  .nav-links.active { display: flex; }
+
+  /* 5️⃣ Micro‑animation for cards */
+  .dashboard-card,
+  .action-card {
+    transition: transform 0.2s ease, box-shadow 0.2s;
+  }
+  .dashboard-card:hover,
+  .action-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+
+  /* 6️⃣ Mobile accent color */
+  :root { --primary-mobile: hsl(210,70%,55%); }
+  .hero,
+  .exam-button,
+  .dashboard-card h2 { background: var(--primary-mobile); color: #fff; }
+}
+
