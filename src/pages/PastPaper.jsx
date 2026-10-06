@@ -5,6 +5,7 @@ import MobilePastPaper from "./mobile/MobilePastPaper"
 
 function PastPaper() {
   const { isMobile } = useMobile()
+  if (isMobile) return <MobilePastPaper />;
   const { exam, subject, year, paperId } = useParams()
   const [paper, setPaper] = useState(null)
   const [answers, setAnswers] = useState({})

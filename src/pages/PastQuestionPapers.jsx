@@ -5,6 +5,7 @@ import MobilePastQuestionPapers from "./mobile/MobilePastQuestionPapers"
 
 function PastQuestionPapers() {
   const { isMobile } = useMobile()
+  if (isMobile) return <MobilePastQuestionPapers />;
   const { exam, subject, year } = useParams()
 
   const [papers, setPapers] = useState([])

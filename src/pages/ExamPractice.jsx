@@ -9,9 +9,13 @@ import Ad5 from "../assets/edudrill_ad_5.jpg";
 import StudentsBg from "../assets/students_bg.jpg";
 import Calculator from "../components/Calculator";
 import Dictionary from "../components/Dictionary";
+import useMobile from "../hooks/useMobile";
+import MobileExamPractice from "./mobile/MobileExamPractice";
 
 function ExamPractice() {
   const { exam } = useParams();
+  const { isMobile } = useMobile();
+  if (isMobile) return <MobileExamPractice />;
   const searchParams = new URLSearchParams(window.location.search);
   const subjectParam = searchParams.get('subject');
   

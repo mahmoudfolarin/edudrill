@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
+import useMobile from "../hooks/useMobile"
+import MobilePastQuestions from "./mobile/MobilePastQuestions"
 
 function PastQuestions() {
   const { exam } = useParams()
+  const { isMobile } = useMobile()
+  if (isMobile) return <MobilePastQuestions />;
 
   const [subjects, setSubjects] = useState([])
   const [loading, setLoading] = useState(true)
