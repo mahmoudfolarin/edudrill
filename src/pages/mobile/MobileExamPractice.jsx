@@ -8,6 +8,8 @@ import Ad4 from "../../assets/edudrill_ad_4.jpg";
 import Ad5 from "../../assets/edudrill_ad_5.jpg";
 import Calculator from "../../components/Calculator";
 import Dictionary from "../../components/Dictionary";
+import { ActivationLock, FREE_SUBJECTS, isProductActivated } from "../../components/ActivationLock";
+import { FaLock } from "react-icons/fa";
 
 function MobileExamPractice() {
   const { exam } = useParams();
@@ -362,6 +364,17 @@ function MobileExamPractice() {
 
   // SETUP VIEW 1
   if (!isPracticing && setupStep === 1) {
+    if (subjectParam && !isProductActivated() && !FREE_SUBJECTS.includes(subjectParam)) {
+       return (
+         <main style={{ minHeight: '100vh', background: '#f8fafc' }}>
+            <header style={{ padding: '16px', display: 'flex', background: 'rgba(255,255,255,0.9)' }}>
+               <Link to={`/dashboard/${exam}`} style={{ textDecoration: 'none', color: '#64748b', fontSize: '24px', fontWeight: 'bold' }}>← Back</Link>
+            </header>
+            <ActivationLock isAllowed={false} />
+         </main>
+       )
+    }
+
     return (
       <main style={{ minHeight: '100vh', background: '#f8fafc', paddingBottom: '40px' }}>
         <style>{customStyles}</style>
@@ -412,35 +425,49 @@ function MobileExamPractice() {
               .filter(sub => isJamb ? sub.id !== 'english-language' : sub.id !== 'use-of-english')
               .filter(sub => sub.name.toLowerCase().includes(searchTerm.toLowerCase()))
               .map(sub => {
+              const isAllowed = isProductActivated() || FREE_SUBJECTS.includes(sub.id);
               const isSelected = selectedSubjects.includes(sub.id);
               const isCompulsory = isJamb && sub.id === compulsorySubject;
               return (
                 <button 
                   key={sub.id}
-                  onClick={() => handleSubjectToggle(sub.id)}
+                  onClick={() => {
+                    if (!isAllowed) {
+                      alert("Not yet Activated. Please activate to unlock this subject.");
+                      return;
+                    }
+                    handleSubjectToggle(sub.id)
+                  }}
                   style={{ 
                     padding: '16px', 
                     border: `2px solid ${isSelected ? '#123b72' : '#e2e8f0'}`,
-                    background: isSelected ? '#f0f9ff' : 'white',
-                    color: '#1e293b',
+                    background: !isAllowed ? '#f1f5f9' : isSelected ? '#f0f9ff' : 'white',
+                    color: !isAllowed ? '#94a3b8' : '#1e293b',
                     borderRadius: '16px',
                     textAlign: 'left',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
                     minHeight: '64px',
+                    opacity: !isAllowed ? 0.7 : 1
                   }}
                 >
                   <div>
-                    <span style={{ fontSize: '15px', fontWeight: isSelected ? '700' : '500', color: isSelected ? '#123b72' : '#1e293b' }}>{sub.name}</span>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <span style={{ fontSize: '15px', fontWeight: isSelected ? '700' : '500', color: !isAllowed ? '#94a3b8' : isSelected ? '#123b72' : '#1e293b' }}>{sub.name}</span>
+                      {!isAllowed && <FaLock style={{ color: '#cbd5e1' }} />}
+                    </div>
                     {isCompulsory && (
                       <span style={{ display: 'block', fontSize: '11px', marginTop: '4px', color: '#3b82f6', fontWeight: 'bold' }}>COMPULSORY</span>
                     )}
+                    {!isAllowed && (
+                      <span style={{ display: 'block', fontSize: '11px', marginTop: '4px', color: '#ef4444', fontWeight: 'bold' }}>Not yet Activated</span>
+                    )}
                   </div>
-                  {isSelected && (
+                  {isAllowed && isSelected && (
                     <div style={{ width: '20px', height: '20px', borderRadius: '50%', background: '#123b72', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '12px' }}>✓</div>
                   )}
-                  {!isSelected && (
+                  {isAllowed && !isSelected && (
                     <div style={{ width: '20px', height: '20px', borderRadius: '50%', border: '2px solid #cbd5e1' }}></div>
                   )}
                 </button>

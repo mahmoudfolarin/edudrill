@@ -11,6 +11,8 @@ import Calculator from "../components/Calculator";
 import Dictionary from "../components/Dictionary";
 import useMobile from "../hooks/useMobile";
 import MobileExamPractice from "./mobile/MobileExamPractice";
+import { ActivationLock, FREE_SUBJECTS, isProductActivated } from "../components/ActivationLock";
+import { FaLock } from "react-icons/fa";
 
 function ExamPractice() {
   const { exam } = useParams();
@@ -472,13 +474,24 @@ function ExamPractice() {
               .filter(sub => isJamb ? sub.id !== 'english-language' : sub.id !== 'use-of-english')
               .filter(sub => sub.name.toLowerCase().includes(searchTerm.toLowerCase()))
               .map(sub => {
+              const isAllowed = isProductActivated() || FREE_SUBJECTS.includes(sub.id);
               const isSelected = selectedSubjects.includes(sub.id);
               const isCompulsory = isJamb && sub.id === compulsorySubject;
               return (
                 <button 
                   key={sub.id}
-                  onClick={() => handleSubjectToggle(sub.id)}
+                  onClick={() => {
+                    if (!isAllowed) {
+                      alert("Not yet Activated. Please activate to unlock this subject.");
+                      return;
+                    }
+                    handleSubjectToggle(sub.id)
+                  }}
                   onDoubleClick={() => {
+                    if (!isAllowed) {
+                      alert("Not yet Activated. Please activate to unlock this subject.");
+                      return;
+                    }
                     if (!isCompulsory) {
                       handleNextToConfig(sub.id);
                     }
@@ -486,10 +499,10 @@ function ExamPractice() {
                   style={{ 
                     padding: '20px', 
                     border: `2px solid ${isSelected ? theme.primary : theme.border}`,
-                    background: isSelected ? theme.primary : theme.surface,
-                    color: isSelected ? theme.surface : theme.textMain,
+                    background: !isAllowed ? '#f1f5f9' : isSelected ? theme.primary : theme.surface,
+                    color: !isAllowed ? '#94a3b8' : isSelected ? theme.surface : theme.textMain,
                     borderRadius: 16,
-                    cursor: isCompulsory ? 'default' : 'pointer',
+                    cursor: !isAllowed ? 'not-allowed' : isCompulsory ? 'default' : 'pointer',
                     fontWeight: isSelected ? '600' : '500',
                     textAlign: 'left',
                     transition: 'all 0.2s',
@@ -502,11 +515,17 @@ function ExamPractice() {
                     boxShadow: isSelected ? '0 10px 20px rgba(11,36,71,0.1)' : 'none',
                     userSelect: 'none'
                   }}
-                  onMouseOver={(e) => { if(!isSelected && !isCompulsory) e.currentTarget.style.borderColor = theme.accent; }}
-                  onMouseOut={(e) => { if(!isSelected && !isCompulsory) e.currentTarget.style.borderColor = theme.border; }}
-                  title="Double click to quick-start practice"
+                  onMouseOver={(e) => { if(isAllowed && !isSelected && !isCompulsory) e.currentTarget.style.borderColor = theme.accent; }}
+                  onMouseOut={(e) => { if(isAllowed && !isSelected && !isCompulsory) e.currentTarget.style.borderColor = theme.border; }}
+                  title={!isAllowed ? "Not yet Activated" : "Double click to quick-start practice"}
                 >
-                  <span style={{ fontSize: '15px' }}>{sub.name}</span>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                    <span style={{ fontSize: '15px' }}>{sub.name}</span>
+                    {!isAllowed && <FaLock style={{ color: '#cbd5e1' }} />}
+                  </div>
+                  {!isAllowed && (
+                    <span style={{ fontSize: '11px', marginTop: '4px', color: '#ef4444', fontWeight: 'bold' }}>Not yet Activated</span>
+                  )}
                   {isCompulsory && (
                     <span style={{ fontSize: '12px', marginTop: '4px', color: theme.light, fontWeight: 'bold' }}>COMPULSORY</span>
                   )}
@@ -720,6 +739,15 @@ function ExamPractice() {
   return (
     <main style={{ display: 'flex', flexDirection: 'column', height: '100vh', background: `linear-gradient(rgba(11, 36, 71, 0.8), rgba(25, 55, 109, 0.85)), url(${StudentsBg}) no-repeat center center fixed`, backgroundSize: 'cover', fontFamily: "'Inter', sans-serif" }}>
        <style>{customStyles}</style>
+
+       {subjectParam && !isProductActivated() && !FREE_SUBJECTS.includes(subjectParam) && (
+         <div style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'white' }}>
+           <header style={{ padding: '20px', background: 'rgba(255,255,255,0.9)', display: 'flex' }}>
+             <Link to={`/dashboard/${exam}`} style={{ textDecoration: 'none', fontWeight: 'bold' }}>← Back</Link>
+           </header>
+           <ActivationLock isAllowed={false} />
+         </div>
+       )}
        
        <header style={{ height: '70px', padding: '0 24px', background: `linear-gradient(90deg, ${theme.primary}, ${theme.secondary})`, color: theme.surface, display: 'flex', justifyContent: 'space-between', alignItems: 'center', boxShadow: '0 4px 20px rgba(11,36,71,0.15)', zIndex: 50 }}>
            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>

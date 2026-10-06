@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import useMobile from "../hooks/useMobile"
 import MobilePastQuestionYears from "./mobile/MobilePastQuestionYears"
+import { isProductActivated } from "../components/ActivationLock"
+import { FaLock } from "react-icons/fa"
 
 function PastQuestionYears() {
   const { isMobile } = useMobile()
@@ -277,10 +279,42 @@ function PastQuestionYears() {
 
               <div className="past-year-grid">
 
-                {years.map((year) => {
+                {years.map((year, index) => {
 
                   const yearPapers =
                     groupedYears[year] || []
+                  
+                  const isLocked = !isProductActivated() && index >= 4;
+
+                  if (isLocked) {
+                    return (
+                      <button
+                        key={year}
+                        onClick={() => alert("Not yet Activated. Please activate to unlock this year.")}
+                        className="past-year-card"
+                        style={{ background: '#f8fafc', borderColor: '#e2e8f0', cursor: 'not-allowed', textAlign: 'left', opacity: 0.8 }}
+                      >
+                        <div className="past-year-icon" style={{ background: '#f1f5f9' }}>
+                          <FaLock style={{ color: '#94a3b8' }} />
+                        </div>
+
+                        <div className="past-year-content">
+                          <span style={{ color: '#94a3b8' }}>
+                            {exam.toUpperCase()}
+                          </span>
+                          <h3 style={{ color: '#64748b' }}>
+                            {year}
+                          </h3>
+                          <p style={{ color: '#94a3b8' }}>
+                            Locked Year
+                          </p>
+                          <span style={{ color: '#ef4444', fontWeight: 'bold' }}>
+                            Not yet Activated
+                          </span>
+                        </div>
+                      </button>
+                    )
+                  }
 
                   return (
 

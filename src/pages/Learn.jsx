@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
+import { ActivationLock, FREE_SUBJECTS } from "../components/ActivationLock"
 
 function Learn() {
   const { exam, subject } = useParams()
@@ -209,6 +210,7 @@ function Learn() {
 
       </header>
 
+      <ActivationLock isAllowed={FREE_SUBJECTS.includes(subject)}>
 
       {/* =========================
           HERO
@@ -572,6 +574,8 @@ function Learn() {
         </Link>
 
       </footer>
+
+      </ActivationLock>
 
     </main>
   )

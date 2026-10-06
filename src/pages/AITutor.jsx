@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom"
 import "./AITutor.css"
 import useMobile from "../hooks/useMobile"
 import MobileAITutor from "./mobile/MobileAITutor"
+import { ActivationLock, FREE_SUBJECTS } from "../components/ActivationLock"
 
 function AITutor() {
   const { isMobile } = useMobile()
@@ -405,12 +406,19 @@ function AITutor() {
   // UI
   // ========================================
 
+  const isAllowed = !isGeneralTutor && FREE_SUBJECTS.includes(subject);
+
   if (isMobile) {
-    return <MobileAITutor />
+    return (
+      <ActivationLock isAllowed={isAllowed} message="The AI Tutor is locked. Activate your product to gain full access to the AI Tutor.">
+        <MobileAITutor />
+      </ActivationLock>
+    )
   }
 
   return (
-    <div className="ai-tutor-page">
+    <ActivationLock isAllowed={isAllowed} message="The AI Tutor is locked. Activate your product to gain full access to the AI Tutor.">
+      <div className="ai-tutor-page">
 
       {/* ==================================
           SIDEBAR
@@ -741,6 +749,7 @@ function AITutor() {
       </main>
 
     </div>
+    </ActivationLock>
   )
 }
 

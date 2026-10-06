@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { ActivationLock, FREE_SUBJECTS } from "../../components/ActivationLock";
 
 function MobileLearn() {
   const { exam, subject } = useParams();
@@ -101,6 +102,8 @@ function MobileLearn() {
         <div style={{ width: '24px' }} />
       </header>
 
+      <ActivationLock isAllowed={FREE_SUBJECTS.includes(subject)}>
+
       {/* HERO SECTION */}
       <div style={{ padding: '32px 24px', background: 'linear-gradient(135deg, #0ea5e9 0%, #1e40af 100%)', color: 'white', borderRadius: '0 0 32px 32px', boxShadow: '0 10px 30px rgba(14, 165, 233, 0.2)', marginBottom: '32px' }}>
         <div style={{ display: 'inline-block', background: 'rgba(255,255,255,0.2)', padding: '6px 12px', borderRadius: '20px', fontSize: '10px', fontWeight: '800', letterSpacing: '1px', marginBottom: '16px' }}>
@@ -196,6 +199,7 @@ function MobileLearn() {
         )}
 
       </div>
+      </ActivationLock>
     </main>
   );
 }

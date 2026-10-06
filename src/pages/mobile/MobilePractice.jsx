@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { ActivationLock, FREE_SUBJECTS } from "../../components/ActivationLock";
 
 export default function MobilePractice() {
   const { exam, subject, topicId } = useParams();
@@ -77,6 +78,20 @@ export default function MobilePractice() {
     setCurrentIndex(0);
     setSubmitted(false);
   };
+
+  const isAllowed = FREE_SUBJECTS.includes(subject);
+  if (!isAllowed) {
+    return (
+      <main style={{ minHeight: '100vh', background: '#f8fafc', display: 'flex', flexDirection: 'column' }}>
+        <header style={{ background: 'white', padding: '16px', borderBottom: '1px solid #f1f5f9', display: 'flex', alignItems: 'center', justifyContent: 'space-between', zIndex: 50 }}>
+          <Link to={`/dashboard/${exam}/subjects/${subject}/learn/${topicId}`} style={{ textDecoration: 'none', color: '#64748b', fontSize: '24px', fontWeight: 'bold' }}>✕</Link>
+          <div style={{ fontSize: '14px', fontWeight: '700', color: '#1e293b' }}>Practice</div>
+          <div style={{ fontSize: '13px', color: 'transparent', fontWeight: '600' }}>0 / 0</div>
+        </header>
+        <ActivationLock isAllowed={false} />
+      </main>
+    );
+  }
 
   if (loading) {
     return (

@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { isProductActivated } from "../../components/ActivationLock";
+import { FaLock } from "react-icons/fa";
 
 export default function MobilePastQuestionYears() {
   const { exam, subject } = useParams();
@@ -88,9 +90,41 @@ export default function MobilePastQuestionYears() {
           </div>
         ) : (
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(1, 1fr)', gap: '16px' }}>
-            {years.map((year) => {
+            {years.map((year, index) => {
               const yearPapers = groupedYears[year] || [];
               const hasVerified = yearPapers.some(p => p.verification_status === "verified");
+              const isLocked = !isProductActivated() && index >= 4;
+
+              if (isLocked) {
+                return (
+                  <button
+                    key={year}
+                    onClick={() => alert("Not yet Activated. Please activate to unlock this year.")}
+                    style={{
+                      background: '#f8fafc',
+                      borderRadius: '20px',
+                      padding: '20px',
+                      border: '1px solid #e2e8f0',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '16px',
+                      textAlign: 'left',
+                      cursor: 'not-allowed',
+                      opacity: 0.8
+                    }}
+                  >
+                    <div style={{ width: '48px', height: '48px', background: '#f1f5f9', color: '#94a3b8', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px' }}>
+                      <FaLock />
+                    </div>
+                    <div style={{ flex: 1 }}>
+                      <h3 style={{ margin: '0 0 4px 0', fontSize: '18px', color: '#64748b', fontWeight: '800' }}>{year}</h3>
+                      <div style={{ fontSize: '12px', color: '#ef4444', fontWeight: 'bold' }}>
+                        Not yet Activated
+                      </div>
+                    </div>
+                  </button>
+                )
+              }
 
               return (
                 <Link

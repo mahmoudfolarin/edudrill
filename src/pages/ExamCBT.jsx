@@ -10,16 +10,18 @@ import StudentsBg from "../assets/students_bg.jpg";
 
 import Calculator from "../components/Calculator";
 import Dictionary from "../components/Dictionary";
+import { isProductActivated, FREE_SUBJECTS } from "../components/ActivationLock";
+import { FaLock } from "react-icons/fa";
 
 import useMobile from "../hooks/useMobile";
 import MobileExamCBT from "./mobile/MobileExamCBT";
 
-function ExamCBT() {
-  const { isMobile } = useMobile();
+function ExamCBTDesktop() {
+  // const { isMobile } = useMobile();
   
-  if (isMobile) {
-    return <MobileExamCBT />;
-  }
+  // if (isMobile) {
+  //  return <MobileExamCBT />;
+  // }
   const { exam } = useParams();
   const isJamb = exam?.toLowerCase() === "jamb";
   const compulsorySubject = isJamb ? "use-of-english" : null;
@@ -499,13 +501,24 @@ function ExamCBT() {
               .filter(sub => isJamb ? sub.id !== 'english-language' : sub.id !== 'use-of-english')
               .filter(sub => sub.name.toLowerCase().includes(searchTerm.toLowerCase()))
               .map(sub => {
+              const isAllowed = isProductActivated() || FREE_SUBJECTS.includes(sub.id);
               const isSelected = selectedSubjects.includes(sub.id);
               const isCompulsory = isJamb && sub.id === compulsorySubject;
               return (
                 <button 
                   key={sub.id}
-                  onClick={() => handleSubjectToggle(sub.id)}
+                  onClick={() => {
+                    if (!isAllowed) {
+                      alert("Not yet Activated. Please activate to unlock this subject.");
+                      return;
+                    }
+                    handleSubjectToggle(sub.id)
+                  }}
                   onDoubleClick={() => {
+                    if (!isAllowed) {
+                      alert("Not yet Activated. Please activate to unlock this subject.");
+                      return;
+                    }
                     if (!isCompulsory) {
                       handleNextToConfig(sub.id);
                     }
@@ -513,10 +526,10 @@ function ExamCBT() {
                   style={{ 
                     padding: '20px', 
                     border: `2px solid ${isSelected ? theme.primary : theme.border}`,
-                    background: isSelected ? theme.primary : theme.surface,
-                    color: isSelected ? theme.surface : theme.textMain,
+                    background: !isAllowed ? '#f1f5f9' : isSelected ? theme.primary : theme.surface,
+                    color: !isAllowed ? '#94a3b8' : isSelected ? theme.surface : theme.textMain,
                     borderRadius: 16,
-                    cursor: isCompulsory ? 'default' : 'pointer',
+                    cursor: !isAllowed ? 'not-allowed' : isCompulsory ? 'default' : 'pointer',
                     fontWeight: isSelected ? '600' : '500',
                     textAlign: 'left',
                     transition: 'all 0.2s',
@@ -529,11 +542,17 @@ function ExamCBT() {
                     boxShadow: isSelected ? '0 10px 20px rgba(11,36,71,0.1)' : 'none',
                     userSelect: 'none'
                   }}
-                  onMouseOver={(e) => { if(!isSelected && !isCompulsory) e.currentTarget.style.borderColor = theme.accent; }}
-                  onMouseOut={(e) => { if(!isSelected && !isCompulsory) e.currentTarget.style.borderColor = theme.border; }}
-                  title="Double click to quick-start exam"
+                  onMouseOver={(e) => { if(isAllowed && !isSelected && !isCompulsory) e.currentTarget.style.borderColor = theme.accent; }}
+                  onMouseOut={(e) => { if(isAllowed && !isSelected && !isCompulsory) e.currentTarget.style.borderColor = theme.border; }}
+                  title={!isAllowed ? "Not yet Activated" : "Double click to quick-start exam"}
                 >
-                  <span style={{ fontSize: '15px' }}>{sub.name}</span>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                    <span style={{ fontSize: '15px' }}>{sub.name}</span>
+                    {!isAllowed && <FaLock style={{ color: '#cbd5e1' }} />}
+                  </div>
+                  {!isAllowed && (
+                    <span style={{ fontSize: '11px', marginTop: '4px', color: '#ef4444', fontWeight: 'bold' }}>Not yet Activated</span>
+                  )}
                   {isCompulsory && (
                     <span style={{ fontSize: '12px', marginTop: '4px', color: theme.light, fontWeight: 'bold' }}>COMPULSORY</span>
                   )}
@@ -715,7 +734,7 @@ function ExamCBT() {
     )
   }
 
-  const calculateDetailedScore = () => {
+  function calculateDetailedScore() {
     const subjectsMap = {};
     const optionLetters = ['A', 'B', 'C', 'D'];
     let totalCorrect = 0;
@@ -1465,4 +1484,7 @@ function ExamCBT() {
   );
 }
 
-export default ExamCBT;
+export default function ExamCBT() {
+  const { isMobile } = useMobile();
+  return isMobile ? <MobileExamCBT /> : <ExamCBTDesktop />;
+}

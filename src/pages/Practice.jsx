@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import useMobile from "../hooks/useMobile";
 import MobilePractice from "./mobile/MobilePractice";
+import { ActivationLock, FREE_SUBJECTS } from "../components/ActivationLock";
 
 function Practice() {
   const { isMobile } = useMobile();
@@ -122,6 +123,33 @@ function Practice() {
 
   if (isMobile) {
     return <MobilePractice />
+  }
+
+  const isAllowed = FREE_SUBJECTS.includes(subject);
+  if (!isAllowed) {
+    return (
+      <main className="practice-page">
+        <header className="practice-header">
+          <Link
+            to={`/dashboard/${exam}/subjects/${subject}/learn/${topicId}`}
+            className="practice-back"
+          >
+            ← Back to topic
+          </Link>
+
+          <div className="practice-brand">
+            <div className="practice-brand-icon">
+              E
+            </div>
+            <div>
+              <strong>EduDrill</strong>
+              <span>Practice Engine</span>
+            </div>
+          </div>
+        </header>
+        <ActivationLock isAllowed={false} />
+      </main>
+    )
   }
 
   if (loading) {
