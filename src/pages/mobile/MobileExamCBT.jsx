@@ -957,6 +957,38 @@ function MobileExamCBT() {
 
   
   // Submit Confirmation Screen
+  if (showConfirm) {
+    return (
+      <main className="fade-in" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', background: `linear-gradient(rgba(11, 36, 71, 0.8), rgba(25, 55, 109, 0.85)), url(${StudentsBg}) no-repeat center center fixed`, backgroundSize: 'cover', fontFamily: "'Inter', sans-serif" }}>
+        <style>{customStyles}</style>
+        <div style={{ background: 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(12px)', padding: '48px', borderRadius: 24, boxShadow: '0 30px 60px rgba(0,0,0,0.2)', textAlign: 'center', maxWidth: 500, width: '90%', border: `1px solid rgba(255,255,255,0.4)` }}>
+          <div style={{ width: 80, height: 80, background: theme.light, color: theme.primary, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '32px', fontWeight: 'bold', margin: '0 auto 24px' }}>
+            ?
+          </div>
+          <h2 style={{ color: theme.primary, marginBottom: '16px', fontSize: '28px', fontWeight: '800' }}>Submit Exam?</h2>
+          <p style={{ color: theme.textMuted, marginBottom: '40px', fontSize: '16px', lineHeight: 1.6 }}>
+            You have answered <strong>{Object.keys(userAnswers).length}</strong> out of <strong>{questions.length}</strong> questions. Once submitted, you cannot change your answers.
+          </p>
+          <div style={{ display: 'flex', gap: '16px', justifyContent: 'center' }}>
+            <button 
+              className="premium-btn"
+              onClick={() => setShowConfirm(false)}
+              style={{ flex: 1, padding: '16px', background: theme.surface, color: theme.primary, border: `2px solid ${theme.border}`, borderRadius: 12, fontSize: '16px', cursor: 'pointer', fontWeight: 'bold' }}
+            >
+              No, Return
+            </button>
+            <button 
+              className="premium-btn"
+              onClick={handleConfirmSubmit}
+              style={{ flex: 1, padding: '16px', background: theme.primary, color: 'white', border: 'none', borderRadius: 12, fontSize: '16px', cursor: 'pointer', fontWeight: 'bold', boxShadow: '0 8px 16px rgba(11,36,71,0.2)' }}
+            >
+              Yes, Submit
+            </button>
+          </div>
+        </div>
+      </main>
+    );
+  }
   
   // MAIN EXAM VIEW
   const currentQ = questions[currentIndex];
