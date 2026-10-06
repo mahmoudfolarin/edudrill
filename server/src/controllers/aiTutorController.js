@@ -164,6 +164,8 @@ Use the conversation history to understand what those follow-up questions refer 
     if (answer) {
       // Remove em dashes (—) and en dashes (–) by replacing them with regular hyphens
       answer = answer.replace(/—/g, '-').replace(/–/g, '-');
+      // Strip markdown bold (**), italics (*), and headers (#)
+      answer = answer.replace(/\*\*/g, '').replace(/\*/g, '').replace(/#/g, '');
     }
 
     if (!answer) {
