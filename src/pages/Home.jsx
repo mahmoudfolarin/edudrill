@@ -205,6 +205,6 @@ function DesktopHome() {
 }
 
 export default function Home() {
-  const isMobile = useMobile();
+  const { isMobile } = useMobile();
   return isMobile ? <MobileHome /> : <DesktopHome />;
 }

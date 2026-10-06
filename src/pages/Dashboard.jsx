@@ -766,6 +766,6 @@ function DesktopDashboard() {
 }
 
 export default function Dashboard() {
-  const isMobile = useMobile();
+  const { isMobile } = useMobile();
   return isMobile ? <MobileDashboard /> : <DesktopDashboard />;
 }

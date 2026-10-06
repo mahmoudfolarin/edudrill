@@ -640,6 +640,6 @@ function DesktopActivation() {
 }
 
 export default function Activation() {
-  const isMobile = useMobile();
+  const { isMobile } = useMobile();
   return isMobile ? <MobileActivation /> : <DesktopActivation />;
 }
