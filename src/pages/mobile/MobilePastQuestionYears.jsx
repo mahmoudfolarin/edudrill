@@ -93,7 +93,7 @@ export default function MobilePastQuestionYears() {
             {years.map((year, index) => {
               const yearPapers = groupedYears[year] || [];
               const hasVerified = yearPapers.some(p => p.verification_status === "verified");
-              const isLocked = !isProductActivated() && !FREE_SUBJECTS.includes(subject) && index >= 4;
+              const isLocked = !isProductActivated() && index >= 4;
 
               if (isLocked) {
                 return (
