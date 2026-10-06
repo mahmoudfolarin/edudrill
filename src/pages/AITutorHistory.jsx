@@ -1,17 +1,23 @@
 import { Link, useParams } from "react-router-dom"
 import useMobile from "../hooks/useMobile"
 import MobileAITutorHistory from "./mobile/MobileAITutorHistory"
+import { ActivationLock, isProductActivated } from "../components/ActivationLock"
 
 function AITutorHistory() {
   const { isMobile } = useMobile()
   const { exam, subject } = useParams()
 
   if (isMobile) {
-    return <MobileAITutorHistory />
+    return (
+      <ActivationLock isAllowed={isProductActivated()} message="The AI Tutor History is locked. Activate your product to gain full access.">
+        <MobileAITutorHistory />
+      </ActivationLock>
+    )
   }
 
   return (
-    <div
+    <ActivationLock isAllowed={isProductActivated()} message="The AI Tutor History is locked. Activate your product to gain full access.">
+      <div
       style={{
         minHeight: "100vh",
         padding: "40px",
@@ -38,6 +44,7 @@ function AITutorHistory() {
         Your previous AI Tutor conversations will appear here.
       </p>
     </div>
+    </ActivationLock>
   )
 }
 

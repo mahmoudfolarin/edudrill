@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import useMobile from "../hooks/useMobile"
 import MobileSubjects from "./mobile/MobileSubjects"
+import { isProductActivated, FREE_SUBJECTS } from "../components/ActivationLock"
 
 function Subjects() {
   const { isMobile } = useMobile()
@@ -312,11 +313,23 @@ function Subjects() {
                   <div className="subjects-grid">
 
                     {groupedSubjects[group].map(
-                      (subject, index) => (
+                      (subject, index) => {
+                        const isAllowed = isProductActivated() || FREE_SUBJECTS.includes(subject.slug || subject.id);
+                        return (
                         <Link
                           key={subject.id}
                           to={`/dashboard/${exam}/subjects/${subject.slug}`}
                           className="subject-card"
+                          onClick={(e) => {
+                            if (!isAllowed) {
+                              e.preventDefault();
+                              alert("Not yet Activated. Please activate to unlock this subject.");
+                            }
+                          }}
+                          style={{
+                            opacity: !isAllowed ? 0.6 : 1,
+                            cursor: !isAllowed ? 'not-allowed' : 'pointer'
+                          }}
                         >
 
                           <div className="subject-card-top">
@@ -365,7 +378,7 @@ function Subjects() {
                           </div>
 
                         </Link>
-                      ),
+                      )
                     )}
 
                   </div>

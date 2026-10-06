@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom"
 import "./AITutor.css"
 import useMobile from "../hooks/useMobile"
 import MobileAITutor from "./mobile/MobileAITutor"
-import { ActivationLock, FREE_SUBJECTS } from "../components/ActivationLock"
+import { ActivationLock, isProductActivated } from "../components/ActivationLock"
 
 function AITutor() {
   const { isMobile } = useMobile()
@@ -406,7 +406,7 @@ function AITutor() {
   // UI
   // ========================================
 
-  const isAllowed = !isGeneralTutor && FREE_SUBJECTS.includes(subject);
+  const isAllowed = isProductActivated();
 
   if (isMobile) {
     return (
