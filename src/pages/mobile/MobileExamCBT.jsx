@@ -6,26 +6,32 @@ import Ad2 from "../../assets/edudrill_ad_2.jpg";
 import Ad3 from "../../assets/edudrill_ad_3.jpg";
 import Ad4 from "../../assets/edudrill_ad_4.jpg";
 import Ad5 from "../../assets/edudrill_ad_5.jpg";
-import StudentsBg from "../../assets/students_bg.jpg";
-
 import Calculator from "../../components/Calculator";
 import Dictionary from "../../components/Dictionary";
-import { isProductActivated, FREE_SUBJECTS } from "../../components/ActivationLock";
+import { ActivationLock, FREE_SUBJECTS, isProductActivated } from "../../components/ActivationLock";
 import { FaLock } from "react-icons/fa";
 
 function MobileExamCBT() {
   const { exam } = useParams();
+  const searchParams = new URLSearchParams(window.location.search);
+  const subjectParam = searchParams.get('subject');
+  
   const isJamb = exam?.toLowerCase() === "jamb";
   const compulsorySubject = isJamb ? "use-of-english" : null;
   
-  const [selectedSubjects, setSelectedSubjects] = useState(isJamb ? [compulsorySubject] : []);
+  const initialSubjects = isJamb 
+    ? [compulsorySubject, ...(subjectParam && subjectParam !== compulsorySubject ? [subjectParam] : [])] 
+    : (subjectParam ? [subjectParam] : []);
+
+  const [selectedSubjects, setSelectedSubjects] = useState(initialSubjects);
   const [isStarted, setIsStarted] = useState(false);
-  const [questions, setQuestions] = useState([]);
-  const [userAnswers, setUserAnswers] = useState({});
-  const [visited, setVisited] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [showResults, setShowResults] = useState(false);
+  const [questions, setQuestions] = useState([]);
+  const [userAnswers, setUserAnswers] = useState({});
+  const [visited, setVisited] = useState({});
+  
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const [setupStep, setSetupStep] = useState(1);
@@ -37,7 +43,7 @@ function MobileExamCBT() {
   const [showDictionary, setShowDictionary] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [showMobileNav, setShowMobileNav] = useState(false);
-
+  
   const [selectedLitTexts, setSelectedLitTexts] = useState([]);
 
   const literatureCategories = [
@@ -76,16 +82,7 @@ function MobileExamCBT() {
   ];
 
   const adImages = [Ad1, Ad2, Ad3, Ad4, Ad5];
-  const [currentAd, setCurrentAd] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    if (isStarted) return;
-    const timer = setInterval(() => {
-      setCurrentAd(prev => (prev + 1) % adImages.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [isStarted]);
 
   // Premium UI Theme - Strictly Blues
   const theme = {
@@ -159,58 +156,6 @@ function MobileExamCBT() {
     ::-webkit-scrollbar-thumb:hover {
       background: ${theme.accent}; 
     }
-
-    /* Mobile UI Components */
-    .question-navigator {
-      position: fixed;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      width: 280px !important;
-      transform: translateX(100%);
-      transition: transform 0.3s ease;
-      z-index: 1000 !important;
-    }
-    .question-navigator.open {
-      transform: translateX(0);
-    }
-    .mobile-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0,0,0,0.5);
-      z-index: 999;
-    }
-    .mobile-fab {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      background: ${theme.primary};
-      color: white;
-      border: none;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 900;
-      cursor: pointer;
-    }
-    .mobile-nav-close {
-      position: absolute;
-      top: 16px;
-      left: 16px;
-      background: none;
-      border: none;
-      font-size: 28px;
-      color: ${theme.textMain};
-      cursor: pointer;
-      z-index: 1001;
-    }
   `;
   
   const handleSubjectToggle = (subjectId) => {
@@ -238,7 +183,7 @@ function MobileExamCBT() {
     if (text) {
       url += `&text=${encodeURIComponent(text)}`;
     }
-
+    
     try {
       const res = await fetch(url);
       const data = await res.json();
@@ -262,26 +207,29 @@ function MobileExamCBT() {
 
   const handleNextToConfig = (forceSubject = null) => {
     let subjectsToUse = forceSubject ? [forceSubject] : selectedSubjects;
-    if (isJamb) {
-      if (forceSubject) {
-        if (!subjectsToUse.includes(compulsorySubject)) {
-           subjectsToUse = [compulsorySubject, forceSubject];
-        }
-        if (subjectsToUse.length !== 4) {
-           alert("For JAMB CBT, please select exactly 4 subjects using the grid first.");
-           return;
-        }
-      } else {
-        if (selectedSubjects.length !== 4) {
-          alert("Please select exactly 4 subjects (including Use of English) for JAMB CBT.");
-          return;
-        }
-      }
-    } else {
-      if (subjectsToUse.length === 0) {
-        alert("Please select a subject.");
+    if (!forceSubject) {
+      if (isJamb && subjectsToUse.length !== 4) {
+        alert("Please select exactly 4 subjects (including Use of English) for full JAMB practice.");
         return;
       }
+      if (!isJamb && subjectsToUse.length === 0) {
+        alert("Please select a subject to practice.");
+        return;
+      }
+    } else {
+       if (isJamb && subjectsToUse.length !== 4) {
+          if (!subjectsToUse.includes(compulsorySubject)) {
+             subjectsToUse = [compulsorySubject, forceSubject];
+          }
+          if (subjectsToUse.length !== 4) {
+             alert("For JAMB, please select 3 other subjects before continuing.");
+             return;
+          }
+       }
+    }
+
+    if (forceSubject && !selectedSubjects.includes(forceSubject)) {
+      setSelectedSubjects(subjectsToUse);
     }
 
     if (subjectsToUse.includes('literature-in-english')) {
@@ -294,7 +242,7 @@ function MobileExamCBT() {
 
   const continueToSetup2 = (subjectsToUse = selectedSubjects) => {
     const newCounts = {};
-    if (isJamb) {
+    if (isJamb && subjectsToUse.length === 4) {
       subjectsToUse.forEach(sub => {
         newCounts[sub] = (sub === 'use-of-english' || sub === 'english-language') ? 60 : 40;
       });
@@ -310,7 +258,6 @@ function MobileExamCBT() {
   const startCBT = async () => {
     setIsLoading(true);
     let generated = [];
-    
     let subjectsSorted = isJamb && selectedSubjects.length === 4 ? 
                          [compulsorySubject, ...selectedSubjects.filter(s => s !== compulsorySubject)] : 
                          [selectedSubjects[0]];
@@ -345,19 +292,27 @@ function MobileExamCBT() {
 
     setQuestions(generated);
     setIsStarted(true);
-    setIsSubmitted(false);
     setUserAnswers({});
     setVisited({});
+    
     setCurrentIndex(0);
-    setShowConfirm(false);
     setIsLoading(false);
     setTimeLeft(timerDuration);
   };
 
+  // Auto-start if a specific subject was passed in the URL
+  useEffect(() => {
+    if (subjectParam && !isStarted && questions.length === 0) {
+      // eslint-disable-next-line
+      startCBT(subjectParam);
+    }
+  }, [subjectParam]);
+
   const handleAnswerSelect = (qIndex, answer) => {
-    if (isSubmitted) return;
     setUserAnswers(prev => ({ ...prev, [qIndex]: answer }));
   };
+
+  
 
   const goNext = () => {
     if (currentIndex < questions.length - 1) setCurrentIndex(prev => prev + 1);
@@ -367,80 +322,33 @@ function MobileExamCBT() {
     if (currentIndex > 0) setCurrentIndex(prev => prev - 1);
   };
 
-  const handleConfirmSubmit = async () => {
-    setIsSubmitted(true);
-    setShowConfirm(false);
-    setShowResults(true); // Show results first
-    setCurrentIndex(0); // Reset to first question for review
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    try {
-      const stats = calculateDetailedScore();
-      const score = stats.totalScore;
-      const percentage = stats.percentage;
-      const maxScore = stats.maxScore;
-      const subjectName = isJamb ? 'Multiple Subjects' : (questions[0]?.subjectName || 'Mock Exam');
-      
-      await fetch('/api/user/performance', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          exam,
-          subject: subjectName,
-          type: 'Mock Exam CBT',
-          topic_id: null,
-          score,
-          total: maxScore,
-          percentage,
-          correct_count: stats.totalCorrect,
-          wrong_count: stats.totalWrong,
-          unanswered_count: stats.totalUnanswered,
-          time_used: timerDuration - timeLeft,
-          detailed_responses: stats.detailedResponses
-        })
-      });
-    } catch (err) {
-      console.error("Error saving performance:", err);
-    }
-  };
+  useEffect(() => {
+    // eslint-disable-next-line
+    if (isStarted) setVisited(prev => ({ ...prev, [currentIndex]: true }));
+  }, [currentIndex, isStarted]);
 
   useEffect(() => {
-    if (isStarted && !isSubmitted && !showConfirm) {
-      // eslint-disable-next-line
-      setVisited(prev => ({ ...prev, [currentIndex]: true }));
-    }
-  }, [currentIndex, isStarted, isSubmitted, showConfirm]);
-
-  useEffect(() => {
-    if (isStarted && !isSubmitted) {
+    if (isStarted) {
       if (timeLeft > 0) {
         const timerId = setInterval(() => setTimeLeft(prev => prev - 1), 1000);
         return () => clearInterval(timerId);
-      } else if (timeLeft === 0) {
-        // eslint-disable-next-line
+      } else if (timeLeft === 0 && questions.length > 0) {
         handleConfirmSubmit();
       }
     }
-  }, [isStarted, isSubmitted, timeLeft]);
+  }, [isStarted, timeLeft, questions]);
 
   useEffect(() => {
-    if (!isStarted || isSubmitted) return;
-
+    if (!isStarted) return;
     const handleKeyDown = (e) => {
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
       const key = e.key.toUpperCase();
       
-      if (showConfirm) {
-        if (key === 'Y') handleConfirmSubmit();
-        if (key === 'R') setShowConfirm(false);
-        return;
-      }
-
       if (key === 'N' || key === 'ARROWRIGHT') goNext();
       if (key === 'P' || key === 'ARROWLEFT') goPrev();
       if (key === 'S') setShowConfirm(true);
       
-      const optionIndex = key.charCodeAt(0) - 65; // A=0, B=1, C=2, D=3
+      const optionIndex = key.charCodeAt(0) - 65;
       if (optionIndex >= 0 && optionIndex <= 3) {
         const currentQ = questions[currentIndex];
         if (currentQ && currentQ.options[optionIndex]) {
@@ -448,78 +356,130 @@ function MobileExamCBT() {
         }
       }
     };
-
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isStarted, showConfirm, currentIndex, questions, isSubmitted]);
+  }, [isStarted, currentIndex, questions]);
+
+
+  
+  const calculateDetailedScore = () => {
+    let totalCorrect = 0;
+    let totalWrong = 0;
+    let totalUnanswered = 0;
+    let detailedResponses = [];
+    const subjectsMap = {};
+
+    questions.forEach((q, index) => {
+      const subj = q.subjectName;
+      if (!subjectsMap[subj]) subjectsMap[subj] = { correct: 0, wrong: 0, unanswered: 0, total: 0 };
+      subjectsMap[subj].total += 1;
+
+      const userAns = userAnswers[index];
+      const correctAns = q.answer;
+      
+      let status = "unanswered";
+      if (userAns) {
+        if (userAns === correctAns) {
+          status = "correct";
+          totalCorrect += 1;
+          subjectsMap[subj].correct += 1;
+        } else {
+          status = "wrong";
+          totalWrong += 1;
+          subjectsMap[subj].wrong += 1;
+        }
+      } else {
+        totalUnanswered += 1;
+        subjectsMap[subj].unanswered += 1;
+      }
+      detailedResponses.push({ question: q, userAns, correctAns, status, index });
+    });
+
+    let totalScore = 0;
+    const subjectStats = Object.keys(subjectsMap).map(subj => {
+      const stats = subjectsMap[subj];
+      const percent = Math.round((stats.correct / stats.total) * 100) || 0;
+      let jambScore = 0;
+      if (isJamb) {
+        jambScore = Math.round((stats.correct / stats.total) * 100) || 0;
+        totalScore += jambScore;
+      }
+      return { subject: subj, correct: stats.correct, total: stats.total, percent, jambScore };
+    });
+
+    if (!isJamb) {
+      totalScore = totalCorrect;
+    }
+
+    const maxScore = isJamb ? (Object.keys(subjectsMap).length * 100) : questions.length;
+    const percentage = Math.round((totalScore / maxScore) * 100) || 0;
+
+    return { totalCorrect, totalWrong, totalUnanswered, detailedResponses, totalScore, maxScore, subjectStats, percentage };
+  };
+
+  const handleConfirmSubmit = async () => {
+    setIsSubmitted(true);
+    setShowConfirm(false);
+    setShowResults(true);
+    try {
+      const stats = calculateDetailedScore();
+      const payload = {
+        exam,
+        subjects: selectedSubjects,
+        score: stats.totalScore,
+        total: stats.maxScore,
+        timeSpent: timerDuration - timeLeft,
+        details: stats.subjectStats
+      };
+      await fetch('/api/progress/cbt', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+    } catch (error) {
+      console.error("Failed to record CBT score:", error);
+    }
+  };
+
 
   // SETUP VIEW 1
   if (!isStarted && setupStep === 1) {
+    if (subjectParam && !isProductActivated() && !FREE_SUBJECTS.includes(subjectParam)) {
+       return (
+         <main style={{ minHeight: '100vh', background: '#f8fafc' }}>
+            <header style={{ padding: '16px', display: 'flex', background: 'rgba(255,255,255,0.9)' }}>
+               <Link to={`/dashboard/${exam}`} style={{ textDecoration: 'none', color: '#64748b', fontSize: '24px', fontWeight: 'bold' }}>← Back</Link>
+            </header>
+            <ActivationLock isAllowed={false} />
+         </main>
+       )
+    }
+
     return (
-      <main style={{ minHeight: '100vh', background: `linear-gradient(rgba(11, 36, 71, 0.8), rgba(25, 55, 109, 0.85)), url(${StudentsBg}) no-repeat center center fixed`, backgroundSize: 'cover', fontFamily: "'Inter', sans-serif" }}>
+      <main style={{ minHeight: '100vh', background: '#f8fafc', paddingBottom: '40px' }}>
         <style>{customStyles}</style>
         
         {/* Top Navbar */}
-        <header style={{ background: 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(10px)', padding: '20px 6%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: `1px solid rgba(255,255,255,0.2)` }}>
-          <Link to={`/dashboard/${exam}`} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <div style={{ width: 40, height: 40, borderRadius: 8, background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})`, color: theme.surface, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '20px' }}><img src="/assets/edudrill_logo.jpg" alt="EduDrill" style={{ width: "100%", height: "100%", borderRadius: "inherit" }} /></div>
-            <div>
-              <strong style={{ display: 'block', color: theme.primary, fontSize: '18px' }}>EduDrill</strong>
-              <span style={{ fontSize: '12px', color: theme.accent, fontWeight: 'bold', letterSpacing: '1px' }}>{exam?.toUpperCase()} CBT MODE</span>
-            </div>
+        <header style={{ position: 'sticky', top: 0, zIndex: 50, background: 'rgba(255, 255, 255, 0.9)', backdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px', borderBottom: '1px solid #f1f5f9' }}>
+          <Link to={`/dashboard/${exam}`} style={{ textDecoration: 'none', color: '#64748b', fontSize: '24px', fontWeight: 'bold' }}>
+            ←
           </Link>
-          <Link to={`/dashboard/${exam}`} style={{ color: theme.primary, textDecoration: 'none', fontWeight: '600', padding: '10px 20px', borderRadius: '8px', border: `1px solid ${theme.border}`, transition: '0.2s', fontSize: '14px' }}>
-            ← Back to Dashboard
-          </Link>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <img src="/assets/edudrill_logo.jpg" alt="EduDrill" style={{ width: '28px', height: '28px', borderRadius: '50%' }} />
+            <strong style={{ color: '#1e293b', fontSize: '16px' }}>Setup CBT Test</strong>
+          </div>
+          <div style={{ width: '24px' }} /> {/* Spacer */}
         </header>
 
-        {/* Content Box */}
-        <div className="fade-in" style={{ maxWidth: 1000, margin: '60px auto', background: 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(12px)', padding: '40px 50px', borderRadius: 24, boxShadow: '0 30px 60px rgba(0, 0, 0, 0.2)', border: `1px solid rgba(255,255,255,0.4)` }}>
+        <div style={{ padding: '24px 16px' }}>
           
-          <div style={{ display: 'flex', gap: '40px', alignItems: 'center', marginBottom: '40px', flexWrap: 'wrap' }}>
-            <div className="past-papers-intro" style={{ flex: '1 1 400px', margin: 0 }}>
-              <div className="past-papers-label">
-                <span style={{ background: theme.accent }}></span>
-                EXAMINATION SETUP
-              </div>
-              
-              <h1>
-                Configure
-                <br />
-                <span>CBT Test</span>
-              </h1>
-              
-              <p style={{ fontSize: '16px' }}>
-                {isJamb 
-                  ? "Select 3 subjects to complete your JAMB combination. Use of English is already pre-selected. You will be timed and tested on exactly 180 questions." 
-                  : "Select a subject to generate a 50-question mock examination. Your answers won't be revealed until you submit."}
-              </p>
-            </div>
-
-            <div style={{ flex: '1 1 300px', display: 'flex', justifyContent: 'flex-end' }}>
-              <div style={{ position: 'relative', width: '100%', maxWidth: '380px', aspectRatio: '16/9' }}>
-                {adImages.map((img, idx) => (
-                  <img 
-                    key={idx}
-                    src={img} 
-                    alt={`EduDrill Ad ${idx + 1}`} 
-                    style={{ 
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      width: '100%', 
-                      height: '100%',
-                      objectFit: 'cover',
-                      borderRadius: '20px', 
-                      boxShadow: '0 16px 32px rgba(11, 36, 71, 0.1)', 
-                      border: `4px solid #ffffff`,
-                      opacity: currentAd === idx ? 1 : 0,
-                      transition: 'opacity 1s ease-in-out'
-                    }} 
-                  />
-                ))}
-              </div>
-            </div>
+          <div style={{ marginBottom: '24px', textAlign: 'center' }}>
+            <h1 style={{ fontSize: '24px', color: '#1e293b', marginBottom: '8px', fontWeight: '800' }}>Select Subjects</h1>
+            <p style={{ fontSize: '14px', color: '#64748b', lineHeight: '1.5' }}>
+              {isJamb 
+                ? "Select 3 subjects (Use of English is pre-selected)." 
+                : "Select the subject you want to master."}
+            </p>
           </div>
           
           <div style={{ marginBottom: '24px' }}>
@@ -530,19 +490,17 @@ function MobileExamCBT() {
               onChange={(e) => setSearchTerm(e.target.value)}
               style={{
                 width: '100%',
-                padding: '16px 20px',
-                borderRadius: '12px',
-                border: `2px solid ${theme.border}`,
+                padding: '16px',
+                borderRadius: '16px',
+                border: '2px solid #e2e8f0',
                 fontSize: '16px',
                 outline: 'none',
-                transition: 'border-color 0.2s'
+                background: 'white'
               }}
-              onFocus={(e) => e.target.style.borderColor = theme.accent}
-              onBlur={(e) => e.target.style.borderColor = theme.border}
             />
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: '16px', marginBottom: '40px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '40px' }}>
             {subjectsList
               .filter(sub => isJamb ? sub.id !== 'english-language' : sub.id !== 'use-of-english')
               .filter(sub => sub.name.toLowerCase().includes(searchTerm.toLowerCase()))
@@ -560,61 +518,47 @@ function MobileExamCBT() {
                     }
                     handleSubjectToggle(sub.id)
                   }}
-                  onDoubleClick={() => {
-                    if (!isAllowed) {
-                      alert("Not yet Activated. Please activate to unlock this subject.");
-                      return;
-                    }
-                    if (!isCompulsory) {
-                      handleNextToConfig(sub.id);
-                    }
-                  }}
                   style={{ 
-                    padding: '20px', 
-                    border: `2px solid ${isSelected ? theme.primary : theme.border}`,
-                    background: !isAllowed ? '#f1f5f9' : isSelected ? theme.primary : theme.surface,
-                    color: !isAllowed ? '#94a3b8' : isSelected ? theme.surface : theme.textMain,
-                    borderRadius: 16,
-                    cursor: !isAllowed ? 'not-allowed' : isCompulsory ? 'default' : 'pointer',
-                    fontWeight: isSelected ? '600' : '500',
+                    padding: '16px', 
+                    border: `2px solid ${isSelected ? '#123b72' : '#e2e8f0'}`,
+                    background: !isAllowed ? '#f1f5f9' : isSelected ? '#f0f9ff' : 'white',
+                    color: !isAllowed ? '#94a3b8' : '#1e293b',
+                    borderRadius: '16px',
                     textAlign: 'left',
-                    transition: 'all 0.2s',
-                    position: 'relative',
-                    overflow: 'hidden',
                     display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    minHeight: '80px',
-                    boxShadow: isSelected ? '0 10px 20px rgba(11,36,71,0.1)' : 'none',
-                    userSelect: 'none'
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    minHeight: '64px',
+                    opacity: !isAllowed ? 0.7 : 1
                   }}
-                  onMouseOver={(e) => { if(isAllowed && !isSelected && !isCompulsory) e.currentTarget.style.borderColor = theme.accent; }}
-                  onMouseOut={(e) => { if(isAllowed && !isSelected && !isCompulsory) e.currentTarget.style.borderColor = theme.border; }}
-                  title={!isAllowed ? "Not yet Activated" : "Double click to quick-start exam"}
                 >
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                    <span style={{ fontSize: '15px' }}>{sub.name}</span>
-                    {!isAllowed && <FaLock style={{ color: '#cbd5e1' }} />}
+                  <div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <span style={{ fontSize: '15px', fontWeight: isSelected ? '700' : '500', color: !isAllowed ? '#94a3b8' : isSelected ? '#123b72' : '#1e293b' }}>{sub.name}</span>
+                      {!isAllowed && <FaLock style={{ color: '#cbd5e1' }} />}
+                    </div>
+                    {isCompulsory && (
+                      <span style={{ display: 'block', fontSize: '11px', marginTop: '4px', color: '#3b82f6', fontWeight: 'bold' }}>COMPULSORY</span>
+                    )}
+                    {!isAllowed && (
+                      <span style={{ display: 'block', fontSize: '11px', marginTop: '4px', color: '#ef4444', fontWeight: 'bold' }}>Not yet Activated</span>
+                    )}
                   </div>
-                  {!isAllowed && (
-                    <span style={{ fontSize: '11px', marginTop: '4px', color: '#ef4444', fontWeight: 'bold' }}>Not yet Activated</span>
+                  {isAllowed && isSelected && (
+                    <div style={{ width: '20px', height: '20px', borderRadius: '50%', background: '#123b72', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '12px' }}>✓</div>
                   )}
-                  {isCompulsory && (
-                    <span style={{ fontSize: '12px', marginTop: '4px', color: theme.light, fontWeight: 'bold' }}>COMPULSORY</span>
-                  )}
-                  {isSelected && !isCompulsory && (
-                    <div style={{ position: 'absolute', top: 12, right: 12, width: 8, height: 8, borderRadius: '50%', background: theme.surface }}></div>
+                  {isAllowed && !isSelected && (
+                    <div style={{ width: '20px', height: '20px', borderRadius: '50%', border: '2px solid #cbd5e1' }}></div>
                   )}
                 </button>
               )
             })}
           </div>
           
-          <div style={{ textAlign: 'center' }}>
+          <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, padding: '16px', background: 'rgba(255, 255, 255, 0.95)', borderTop: '1px solid #e2e8f0' }}>
             <button 
-              className="premium-btn"
               onClick={() => handleNextToConfig()}
-              style={{ padding: '16px 48px', background: theme.primary, color: theme.surface, border: 'none', borderRadius: 12, cursor: 'pointer', fontSize: '18px', fontWeight: 'bold' }}
+              style={{ width: '100%', padding: '16px', background: '#123b72', color: 'white', border: 'none', borderRadius: '16px', fontSize: '16px', fontWeight: 'bold' }}
             >
               Continue to Settings
             </button>
@@ -636,30 +580,30 @@ function MobileExamCBT() {
     };
     
     return (
-      <main style={{ minHeight: '100vh', background: `linear-gradient(rgba(11, 36, 71, 0.8), rgba(25, 55, 109, 0.85)), url(${StudentsBg}) no-repeat center center fixed`, backgroundSize: 'cover', fontFamily: "'Inter', sans-serif" }}>
+      <main style={{ minHeight: '100vh', background: '#f8fafc', paddingBottom: '80px' }}>
         <style>{customStyles}</style>
         
-        <header style={{ background: 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(10px)', padding: '20px 6%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: `1px solid rgba(255,255,255,0.2)` }}>
-          <Link to={`/dashboard/${exam}`} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <div style={{ width: 40, height: 40, borderRadius: 8, background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})`, color: theme.surface, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '20px' }}><img src="/assets/edudrill_logo.jpg" alt="EduDrill" style={{ width: "100%", height: "100%", borderRadius: "inherit" }} /></div>
-            <div>
-              <strong style={{ display: 'block', color: theme.primary, fontSize: '18px' }}>EduDrill</strong>
-              <span style={{ fontSize: '12px', color: theme.accent, fontWeight: 'bold', letterSpacing: '1px' }}>{exam?.toUpperCase()} CBT</span>
-            </div>
-          </Link>
-          <button onClick={() => setSetupStep(1)} style={{ color: theme.primary, textDecoration: 'none', fontWeight: '600', padding: '10px 20px', borderRadius: '8px', border: `1px solid ${theme.border}`, background: 'transparent', transition: '0.2s', fontSize: '14px', cursor: 'pointer' }}>
-            ← Back to Subjects
+        <header style={{ position: 'sticky', top: 0, zIndex: 50, background: 'rgba(255, 255, 255, 0.9)', backdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px', borderBottom: '1px solid #f1f5f9' }}>
+          <button onClick={() => setSetupStep(1)} style={{ background: 'transparent', border: 'none', color: '#64748b', fontSize: '24px', fontWeight: 'bold' }}>
+            ←
           </button>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <img src="/assets/edudrill_logo.jpg" alt="EduDrill" style={{ width: '28px', height: '28px', borderRadius: '50%' }} />
+            <strong style={{ color: '#1e293b', fontSize: '16px' }}>Literature Setup</strong>
+          </div>
+          <div style={{ width: '24px' }} />
         </header>
 
-        <div className="fade-in" style={{ maxWidth: 900, margin: '60px auto', background: 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(12px)', padding: '40px 50px', borderRadius: 24, boxShadow: '0 30px 60px rgba(0, 0, 0, 0.2)', border: `1px solid rgba(255,255,255,0.4)` }}>
-          <h2 style={{ color: theme.primary, marginBottom: '16px', textAlign: 'center' }}>Select Literature Texts</h2>
-          <p style={{ textAlign: 'center', color: theme.textMuted, marginBottom: '32px' }}>Choose the literature texts you want to be tested on. You can select as many as you like.</p>
+        <div style={{ padding: '24px 16px' }}>
+          <div style={{ marginBottom: '24px', textAlign: 'center' }}>
+            <h2 style={{ color: '#1e293b', marginBottom: '8px', fontSize: '24px', fontWeight: '800' }}>Select Texts</h2>
+            <p style={{ color: '#64748b', fontSize: '14px', lineHeight: '1.5' }}>Choose the literature texts you want to be tested on.</p>
+          </div>
           
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: '24px', marginBottom: '40px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', marginBottom: '40px' }}>
             {literatureCategories.map(category => (
-              <div key={category.category} style={{ background: theme.background, padding: '20px', borderRadius: '16px', border: `1px solid ${theme.border}` }}>
-                <h3 style={{ color: theme.secondary, fontSize: '16px', marginBottom: '16px', paddingBottom: '8px', borderBottom: `1px solid ${theme.border}` }}>{category.category}</h3>
+              <div key={category.category} style={{ background: 'white', padding: '20px', borderRadius: '20px', border: '1px solid #e2e8f0' }}>
+                <h3 style={{ color: '#0f172a', fontSize: '16px', marginBottom: '16px', fontWeight: '700' }}>{category.category}</h3>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                   {category.texts.map(text => {
                     const isSelected = selectedLitTexts.includes(text);
@@ -669,22 +613,21 @@ function MobileExamCBT() {
                         onClick={() => handleTextToggle(text)}
                         style={{
                           textAlign: 'left',
-                          padding: '12px 16px',
-                          borderRadius: '8px',
-                          border: `1px solid ${isSelected ? theme.primary : theme.border}`,
-                          background: isSelected ? theme.light : theme.surface,
-                          color: isSelected ? theme.primary : theme.textMain,
-                          fontWeight: isSelected ? '600' : '400',
-                          cursor: 'pointer',
-                          transition: 'all 0.2s'
+                          padding: '16px',
+                          borderRadius: '16px',
+                          border: `2px solid ${isSelected ? '#123b72' : '#e2e8f0'}`,
+                          background: isSelected ? '#f0f9ff' : '#f8fafc',
+                          color: '#1e293b',
+                          fontWeight: isSelected ? '700' : '500',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '12px'
                         }}
                       >
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                          <div style={{ width: 18, height: 18, borderRadius: 4, border: `2px solid ${isSelected ? theme.primary : '#ccc'}`, background: isSelected ? theme.primary : 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                            {isSelected && <div style={{ width: 10, height: 10, background: '#fff', borderRadius: 2 }}></div>}
-                          </div>
-                          <span>{text}</span>
+                        <div style={{ width: 24, height: 24, borderRadius: 6, border: `2px solid ${isSelected ? '#123b72' : '#cbd5e1'}`, background: isSelected ? '#123b72' : 'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                          {isSelected && <div style={{ width: 10, height: 10, background: 'white', borderRadius: 2 }}></div>}
                         </div>
+                        <span style={{ fontSize: '14px', lineHeight: '1.4' }}>{text}</span>
                       </button>
                     )
                   })}
@@ -693,12 +636,11 @@ function MobileExamCBT() {
             ))}
           </div>
 
-          <div style={{ textAlign: 'center' }}>
+          <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, padding: '16px', background: 'rgba(255, 255, 255, 0.95)', borderTop: '1px solid #e2e8f0' }}>
             <button 
-              className="premium-btn"
               onClick={() => continueToSetup2(selectedSubjects)}
               disabled={selectedLitTexts.length === 0}
-              style={{ padding: '16px 48px', background: theme.accent, color: theme.surface, border: 'none', borderRadius: 12, cursor: selectedLitTexts.length === 0 ? 'not-allowed' : 'pointer', fontSize: '18px', fontWeight: 'bold', opacity: selectedLitTexts.length === 0 ? 0.6 : 1 }}
+              style={{ width: '100%', padding: '16px', background: '#123b72', color: 'white', border: 'none', borderRadius: '16px', fontSize: '16px', fontWeight: 'bold', opacity: selectedLitTexts.length === 0 ? 0.5 : 1 }}
             >
               Continue to Exam Settings
             </button>
@@ -711,52 +653,53 @@ function MobileExamCBT() {
   // SETUP VIEW 2 (Config)
   if (!isStarted && setupStep === 2) {
     return (
-      <main style={{ minHeight: '100vh', background: `linear-gradient(rgba(11, 36, 71, 0.8), rgba(25, 55, 109, 0.85)), url(${StudentsBg}) no-repeat center center fixed`, backgroundSize: 'cover', fontFamily: "'Inter', sans-serif" }}>
+      <main style={{ minHeight: '100vh', background: '#f8fafc', paddingBottom: '80px' }}>
         <style>{customStyles}</style>
         
-        <header style={{ background: 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(10px)', padding: '20px 6%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: `1px solid rgba(255,255,255,0.2)` }}>
-          <Link to={`/dashboard/${exam}`} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <div style={{ width: 40, height: 40, borderRadius: 8, background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})`, color: theme.surface, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '20px' }}><img src="/assets/edudrill_logo.jpg" alt="EduDrill" style={{ width: "100%", height: "100%", borderRadius: "inherit" }} /></div>
-            <div>
-              <strong style={{ display: 'block', color: theme.primary, fontSize: '18px' }}>EduDrill</strong>
-              <span style={{ fontSize: '12px', color: theme.accent, fontWeight: 'bold', letterSpacing: '1px' }}>{exam?.toUpperCase()} CBT</span>
-            </div>
-          </Link>
-          <button onClick={() => setSetupStep(1)} style={{ color: theme.primary, textDecoration: 'none', fontWeight: '600', padding: '10px 20px', borderRadius: '8px', border: `1px solid ${theme.border}`, background: 'transparent', transition: '0.2s', fontSize: '14px', cursor: 'pointer' }}>
-            ← Back to Subjects
+        <header style={{ position: 'sticky', top: 0, zIndex: 50, background: 'rgba(255, 255, 255, 0.9)', backdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px', borderBottom: '1px solid #f1f5f9' }}>
+          <button onClick={() => setSetupStep(1)} style={{ background: 'transparent', border: 'none', color: '#64748b', fontSize: '24px', fontWeight: 'bold' }}>
+            ←
           </button>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <img src="/assets/edudrill_logo.jpg" alt="EduDrill" style={{ width: '28px', height: '28px', borderRadius: '50%' }} />
+            <strong style={{ color: '#1e293b', fontSize: '16px' }}>Settings</strong>
+          </div>
+          <div style={{ width: '24px' }} />
         </header>
 
-        <div className="fade-in" style={{ maxWidth: 700, margin: '60px auto', background: 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(12px)', padding: '40px 50px', borderRadius: 24, boxShadow: '0 30px 60px rgba(0, 0, 0, 0.2)', border: `1px solid rgba(255,255,255,0.4)` }}>
-          <h2 style={{ color: theme.primary, marginBottom: '32px', textAlign: 'center' }}>Configure Exam Settings</h2>
+        <div style={{ padding: '24px 16px' }}>
+          <div style={{ marginBottom: '32px', textAlign: 'center' }}>
+            <h2 style={{ color: '#1e293b', marginBottom: '8px', fontSize: '24px', fontWeight: '800' }}>Practice Settings</h2>
+          </div>
           
           <div style={{ marginBottom: '32px' }}>
-            <h3 style={{ color: theme.textMain, fontSize: '18px', marginBottom: '16px', borderBottom: `1px solid ${theme.border}`, paddingBottom: '8px' }}>Number of Questions</h3>
-            {selectedSubjects.map(sub => {
-              const subName = subjectsList.find(s => s.id === sub)?.name || sub;
-              const isEng = sub === 'use-of-english' || sub === 'english-language';
-              let options = isJamb ? (isEng ? [10,20,30,40,50,60] : [10,20,30,40]) : [15,30,45,50];
-              return (
-                <div key={sub} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', padding: '12px 16px', background: theme.surface, borderRadius: '12px', border: `1px solid ${theme.border}` }}>
-                  <span style={{ fontWeight: '600', color: theme.primary }}>{subName}</span>
-                  <select 
-                    value={questionCounts[sub]}
-                    onChange={(e) => setQuestionCounts({...questionCounts, [sub]: Number(e.target.value)})}
-                    style={{ padding: '8px 16px', borderRadius: '8px', border: `1px solid ${theme.border}`, outline: 'none', fontWeight: 'bold', color: theme.accent }}
-                  >
-                    {options.map(opt => <option key={opt} value={opt}>{opt} Questions</option>)}
-                  </select>
-                </div>
-              )
-            })}
+            <h3 style={{ color: '#64748b', fontSize: '14px', marginBottom: '12px', textTransform: 'uppercase', fontWeight: 'bold' }}>Number of Questions</h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              {selectedSubjects.map(sub => {
+                const subName = subjectsList.find(s => s.id === sub)?.name || sub;
+                let options = [10, 20, 30, 40, 50];
+                return (
+                  <div key={sub} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px', background: 'white', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
+                    <span style={{ fontWeight: '600', color: '#1e293b', fontSize: '14px' }}>{subName}</span>
+                    <select 
+                      value={questionCounts[sub]}
+                      onChange={(e) => setQuestionCounts({...questionCounts, [sub]: Number(e.target.value)})}
+                      style={{ padding: '8px 12px', borderRadius: '12px', border: '2px solid #e2e8f0', outline: 'none', fontWeight: 'bold', color: '#123b72', background: '#f8fafc', fontSize: '14px' }}
+                    >
+                      {options.map(opt => <option key={opt} value={opt}>{opt} Qs</option>)}
+                    </select>
+                  </div>
+                )
+              })}
+            </div>
           </div>
 
           <div style={{ marginBottom: '40px' }}>
-            <h3 style={{ color: theme.textMain, fontSize: '18px', marginBottom: '16px', borderBottom: `1px solid ${theme.border}`, paddingBottom: '8px' }}>Timer Duration</h3>
+            <h3 style={{ color: '#64748b', fontSize: '14px', marginBottom: '12px', textTransform: 'uppercase', fontWeight: 'bold' }}>Timer Duration</h3>
             <select 
               value={timerDuration}
               onChange={(e) => setTimerDuration(Number(e.target.value))}
-              style={{ width: '100%', padding: '16px', borderRadius: '12px', border: `2px solid ${theme.border}`, fontSize: '16px', outline: 'none', fontWeight: 'bold', color: theme.accent }}
+              style={{ width: '100%', padding: '16px', borderRadius: '16px', border: '2px solid #e2e8f0', fontSize: '16px', outline: 'none', fontWeight: 'bold', color: '#123b72', background: 'white' }}
             >
               <option value={30 * 60}>30 Minutes</option>
               <option value={60 * 60}>1 Hour</option>
@@ -765,14 +708,13 @@ function MobileExamCBT() {
             </select>
           </div>
 
-          <div style={{ textAlign: 'center' }}>
+          <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, padding: '16px', background: 'rgba(255, 255, 255, 0.95)', borderTop: '1px solid #e2e8f0' }}>
             <button 
-              className="premium-btn"
               onClick={startCBT}
               disabled={isLoading}
-              style={{ padding: '16px 48px', background: theme.accent, color: theme.surface, border: 'none', borderRadius: 12, cursor: isLoading ? 'not-allowed' : 'pointer', fontSize: '18px', fontWeight: 'bold', width: '100%', opacity: isLoading ? 0.7 : 1 }}
+              style={{ width: '100%', padding: '16px', background: '#123b72', color: 'white', border: 'none', borderRadius: '16px', fontSize: '16px', fontWeight: 'bold', opacity: isLoading ? 0.7 : 1 }}
             >
-              {isLoading ? 'Preparing Test...' : 'Start CBT Test'}
+              {isLoading ? 'Preparing Exam...' : 'Start Exam Session'}
             </button>
           </div>
         </div>
@@ -780,70 +722,14 @@ function MobileExamCBT() {
     )
   }
 
-  function calculateDetailedScore() {
-    const subjectsMap = {};
-    const optionLetters = ['A', 'B', 'C', 'D'];
-    let totalCorrect = 0;
-    let totalWrong = 0;
-    let totalUnanswered = 0;
-    const detailedResponses = [];
-    
-    questions.forEach((q, idx) => {
-      let correctText = q.answer;
-      if (typeof q.answer === 'string' && ['A','B','C','D'].includes(q.answer.toUpperCase())) {
-        correctText = q.options[optionLetters.indexOf(q.answer.toUpperCase())];
-      }
-      const isAnswered = !!userAnswers[idx];
-      const isCorrect = isAnswered && ((userAnswers[idx] === correctText) || (userAnswers[idx] === q.answer));
-      
-      detailedResponses.push({
-        question_id: q.id || idx,
-        question_text: q.question,
-        selected: userAnswers[idx] || null,
-        correct: correctText || q.answer,
-        is_correct: isCorrect,
-        is_answered: isAnswered
-      });
-
-      const subj = q.subjectName || 'General';
-      if (!subjectsMap[subj]) {
-        subjectsMap[subj] = { correct: 0, total: 0 };
-      }
-      subjectsMap[subj].total += 1;
-      if (isCorrect) {
-        subjectsMap[subj].correct += 1;
-        totalCorrect += 1;
-      } else if (isAnswered) {
-        totalWrong += 1;
-      } else {
-        totalUnanswered += 1;
-      }
-    });
-
-    let totalScore = 0;
-    
-    const subjectStats = Object.keys(subjectsMap).map(subj => {
-      const stats = subjectsMap[subj];
-      const percent = Math.round((stats.correct / stats.total) * 100) || 0;
-      let jambScore = 0;
-      if (isJamb) {
-        jambScore = Math.round((stats.correct / stats.total) * 100) || 0;
-        totalScore += jambScore;
-      }
-      return { subject: subj, correct: stats.correct, total: stats.total, percent, jambScore };
-    });
-
-    if (!isJamb) {
-      totalScore = totalCorrect;
-    }
-    
-    const maxScore = isJamb ? (Object.keys(subjectsMap).length * 100) : questions.length;
-    const percentage = Math.round((totalScore / maxScore) * 100) || 0;
-
-    return { totalCorrect, totalWrong, totalUnanswered, detailedResponses, totalScore, maxScore, subjectStats, percentage };
+  const formatTime = (secs) => {
+    const h = Math.floor(secs / 3600);
+    const m = Math.floor((secs % 3600) / 60);
+    const s = secs % 60;
+    if (h > 0) return `${h}h ${m < 10 ? '0': ''}${m}m ${s < 10 ? '0' : ''}${s}s`;
+    return `${m < 10 ? '0': ''}${m}m ${s < 10 ? '0' : ''}${s}s`;
   };
 
-  // Result Page Screen
   if (isSubmitted && showResults) {
     const stats = calculateDetailedScore();
     const timeUsed = timerDuration - timeLeft;
@@ -1069,42 +955,13 @@ function MobileExamCBT() {
     );
   }
 
+  
   // Submit Confirmation Screen
-  if (showConfirm) {
-    return (
-      <main className="fade-in" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', background: `linear-gradient(rgba(11, 36, 71, 0.8), rgba(25, 55, 109, 0.85)), url(${StudentsBg}) no-repeat center center fixed`, backgroundSize: 'cover', fontFamily: "'Inter', sans-serif" }}>
-        <style>{customStyles}</style>
-        <div style={{ background: 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(12px)', padding: '48px', borderRadius: 24, boxShadow: '0 30px 60px rgba(0,0,0,0.2)', textAlign: 'center', maxWidth: 500, width: '90%', border: `1px solid rgba(255,255,255,0.4)` }}>
-          <div style={{ width: 80, height: 80, background: theme.light, color: theme.primary, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '32px', fontWeight: 'bold', margin: '0 auto 24px' }}>
-            ?
-          </div>
-          <h2 style={{ color: theme.primary, marginBottom: '16px', fontSize: '28px', fontWeight: '800' }}>Submit Exam?</h2>
-          <p style={{ color: theme.textMuted, marginBottom: '40px', fontSize: '16px', lineHeight: 1.6 }}>
-            You have answered <strong>{Object.keys(userAnswers).length}</strong> out of <strong>{questions.length}</strong> questions. Once submitted, you cannot change your answers.
-          </p>
-          <div style={{ display: 'flex', gap: '16px', justifyContent: 'center' }}>
-            <button 
-              className="premium-btn"
-              onClick={() => setShowConfirm(false)}
-              style={{ flex: 1, padding: '16px', background: theme.surface, color: theme.primary, border: `2px solid ${theme.border}`, borderRadius: 12, fontSize: '16px', cursor: 'pointer', fontWeight: 'bold' }}
-            >
-              No, Return (R)
-            </button>
-            <button 
-              className="premium-btn"
-              onClick={handleConfirmSubmit}
-              style={{ flex: 1, padding: '16px', background: theme.primary, color: theme.surface, border: 'none', borderRadius: 12, fontSize: '16px', cursor: 'pointer', fontWeight: 'bold', boxShadow: '0 8px 16px rgba(11,36,71,0.2)' }}
-            >
-              Yes, Submit (Y)
-            </button>
-          </div>
-        </div>
-      </main>
-    );
-  }
-
+  
+  // MAIN EXAM VIEW
   const currentQ = questions[currentIndex];
   const optionLetters = ['A', 'B', 'C', 'D'];
+  
   
   const examSubjects = [...new Set(questions.map(q => q.subjectName))].filter(Boolean);
   const currentSubject = currentQ?.subjectName;
@@ -1113,7 +970,7 @@ function MobileExamCBT() {
   const currentSubjectQuestions = questions.map((q, index) => ({ q, index })).filter(item => item.q.subjectName === currentSubject);
 
   // Handle case where questions are not loaded yet or invalid index
-  if (isStarted && !currentQ && !showConfirm && !isSubmitted) {
+  if (isStarted && !currentQ) {
     return (
       <main style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: `linear-gradient(rgba(11, 36, 71, 0.8), rgba(25, 55, 109, 0.85))`, fontFamily: "'Inter', sans-serif", color: 'white' }}>
         <h2>Loading Question Data...</h2>
@@ -1122,397 +979,243 @@ function MobileExamCBT() {
     )
   }
 
-  const formatTime = (secs) => {
-    const h = Math.floor(secs / 3600);
-    const m = Math.floor((secs % 3600) / 60);
-    const s = secs % 60;
-    if (h > 0) return `${h}h ${m < 10 ? '0': ''}${m}m ${s < 10 ? '0' : ''}${s}s`;
-    return `${m < 10 ? '0': ''}${m}m ${s < 10 ? '0' : ''}${s}s`;
-  };
-
-  // CBT Mode View
   return (
-    <main style={{ display: 'flex', flexDirection: 'column', height: '100vh', background: `linear-gradient(rgba(11, 36, 71, 0.8), rgba(25, 55, 109, 0.85)), url(${StudentsBg}) no-repeat center center fixed`, backgroundSize: 'cover', fontFamily: "'Inter', sans-serif" }}>
+    <main style={{ display: 'flex', flexDirection: 'column', height: '100vh', background: '#f8fafc' }}>
        <style>{customStyles}</style>
        
-       <header style={{ height: '70px', padding: '0 24px', background: `linear-gradient(90deg, ${theme.primary}, ${theme.secondary})`, color: theme.surface, display: 'flex', justifyContent: 'space-between', alignItems: 'center', boxShadow: '0 4px 20px rgba(11,36,71,0.15)', zIndex: 50 }}>
-           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-             <div style={{ width: 28, height: 28, background: 'rgba(255,255,255,0.1)', borderRadius: 6, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '14px' }}><img src="/assets/edudrill_logo.jpg" alt="EduDrill" style={{ width: "100%", height: "100%", borderRadius: "inherit" }} /></div>
-             <div>
-               <h1 style={{ margin: 0, fontSize: '14px', fontWeight: '600' }}>EduDrill CBT</h1>
+       <header style={{ padding: '16px', background: 'rgba(255, 255, 255, 0.9)', backdropFilter: 'blur(10px)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #f1f5f9', zIndex: 50 }}>
+           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+             <button 
+               onClick={() => { if(window.confirm("End your practice session?")) setIsStarted(false); }} 
+               style={{ background: 'transparent', border: 'none', color: '#64748b', fontSize: '24px', fontWeight: 'bold' }}
+             >
+               ✕
+             </button>
+             <div style={{ display: 'flex', flexDirection: 'column' }}>
+               <span style={{ fontSize: '12px', color: '#64748b', fontWeight: 'bold' }}>{exam?.toUpperCase()}</span>
+               <span style={{ fontSize: '14px', color: '#1e293b', fontWeight: '800' }}>Practice</span>
              </div>
            </div>
            
            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+
+          <button 
+            onClick={() => setShowConfirm(true)}
+            style={{ padding: '8px 16px', background: '#ef4444', color: 'white', border: 'none', borderRadius: '12px', fontWeight: 'bold', fontSize: '13px' }}
+          >
+            Submit
+          </button>
+
               {(exam === 'jamb' || ['General Mathematics', 'Further Mathematics', 'Physics', 'Chemistry', 'Geography'].includes(currentQ?.subjectName)) && (
                 <button 
                   onClick={() => setShowCalculator(!showCalculator)} 
-                  className="premium-btn"
-                  style={{ background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.4)', color: theme.surface, padding: '6px', borderRadius: 8, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                  style={{ background: '#f1f5f9', border: 'none', color: '#1e293b', width: '36px', height: '36px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 >
-                  <img src="/assets/icons/calculator.svg" alt="calc" style={{ width: '18px', height: '18px', filter: 'invert(1)' }} />
+                  🖩
                 </button>
               )}
 
               {(exam === 'jamb' || currentQ?.subjectName === 'English Language' || currentQ?.subjectName === 'Use of English') && (
                 <button 
                   onClick={() => setShowDictionary(!showDictionary)} 
-                  className="premium-btn"
-                  style={{ background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.4)', color: theme.surface, padding: '6px', borderRadius: 8, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                  style={{ background: '#f1f5f9', border: 'none', color: '#1e293b', width: '36px', height: '36px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 >
-                  <svg style={{ width: '18px', height: '18px' }} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477-4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+                  📖
                 </button>
               )}
-             <button 
-               onClick={() => { if(window.confirm("Are you sure you want to exit this exam?")) setIsStarted(false); }} 
-               className="premium-btn"
-               style={{ background: 'transparent', border: 'none', color: theme.surface, padding: '6px', borderRadius: 8, cursor: 'pointer', fontWeight: '600', fontSize: '24px', lineHeight: 1 }}
-             >
-               ×
-             </button>
+             
+             <div style={{ display: 'flex', alignItems: 'center', gap: '6px', background: timeLeft < 300 ? '#fee2e2' : '#f0f9ff', padding: '8px 12px', borderRadius: '16px' }}>
+               <span style={{ fontSize: '16px' }}>⏱️</span>
+               <span style={{ fontSize: '14px', fontWeight: '800', color: timeLeft < 300 ? '#ef4444' : '#123b72', fontFamily: 'monospace' }}>
+                 {formatTime(timeLeft)}
+               </span>
+             </div>
            </div>
-        </header>
-        
-        <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
-          
-          {/* Main Question Area */}
-          <div style={{ flex: 1, padding: '20px 16px', overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
-            
-            {isSubmitted && currentIndex === 0 && (
-              <div className="fade-in" style={{ maxWidth: 900, margin: '0 auto 32px', width: '100%', background: 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(10px)', padding: '32px', borderRadius: 24, textAlign: 'center', border: `1px solid rgba(255,255,255,0.4)`, boxShadow: '0 10px 30px rgba(0,0,0,0.15)' }}>
-                <span style={{ fontSize: '12px', fontWeight: 'bold', color: theme.accent, letterSpacing: '1px' }}>EXAMINATION RESULT</span>
-                <h2 style={{ color: theme.primary, margin: '8px 0', fontSize: '42px', fontWeight: '800' }}>{calculateDetailedScore().totalScore} <span style={{fontSize: '24px', color: theme.textMuted}}>/ {calculateDetailedScore().maxScore}</span></h2>
-                <p style={{ color: theme.textMuted, fontSize: '15px' }}>Use the navigation grid to review your answers.</p>
-              </div>
-            )}
-
-            {!isSubmitted && (
-              <div className="fade-in" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px', marginBottom: '20px', background: 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(10px)', padding: '12px 24px', borderRadius: '16px', maxWidth: '200px', margin: '0 auto 20px', border: `2px solid ${timeLeft < 300 ? '#93c5fd' : theme.border}`, boxShadow: '0 4px 10px rgba(0,0,0,0.05)' }}>
-              <img src="/assets/icons/clock.svg" alt="clock" style={{ width: 20, height: 20, filter: timeLeft < 300 ? 'invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%)' : 'none' }} />
-                <span style={{ fontSize: '18px', fontWeight: '800', color: timeLeft < 300 ? '#93c5fd' : theme.primary, fontFamily: 'monospace' }}>
-                  {formatTime(timeLeft)}
-                </span>
-              </div>
-            )}
-
-            {isJamb && examSubjects.length > 1 && (
-              <div className="fade-in" style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '8px', marginBottom: '16px', width: '100%', scrollbarWidth: 'none' }}>
-                {examSubjects.map(sub => {
-                  const firstIndex = questions.findIndex(q => q.subjectName === sub);
-                  const isActive = sub === currentSubject;
-                  return (
-                    <button
-                      key={sub}
-                      onClick={() => setCurrentIndex(firstIndex)}
-                      style={{
-                        padding: '8px 16px',
-                        background: isActive ? theme.primary : 'rgba(255,255,255,0.7)',
-                        color: isActive ? theme.surface : theme.primary,
-                        border: `1px solid ${isActive ? theme.primary : 'rgba(255,255,255,0.4)'}`,
-                        borderRadius: '20px',
-                        cursor: 'pointer',
-                        fontWeight: '700',
-                        fontSize: '13px',
-                        whiteSpace: 'nowrap',
-                        boxShadow: isActive ? '0 4px 10px rgba(11,36,71,0.1)' : 'none'
-                      }}
-                    >
-                      {sub}
-                    </button>
-                  )
-                })}
-              </div>
-            )}
-
-            <div className="fade-in" key={currentIndex} style={{ flex: 1, width: '100%', background: 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(10px)', padding: '24px 16px', borderRadius: 20, boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)', border: `1px solid rgba(255,255,255,0.4)`, display: 'flex', flexDirection: 'column' }}>
-               
-               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
-                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                   <span style={{ background: theme.light, color: theme.primary, padding: '6px 12px', borderRadius: 12, fontWeight: '700', fontSize: '13px' }}>{localIndex + 1} / {totalInSubject}</span>
-                   {currentQ?.litText && (
-                     <span style={{ background: theme.accent, color: theme.surface, padding: '6px 12px', borderRadius: 12, fontWeight: '700', fontSize: '12px' }}>{currentQ.litText}</span>
-                   )}
-                 </div>
-               </div>
-               
-               <p style={{ fontSize: '16px', margin: '0 0 24px 0', color: theme.primary, lineHeight: 1.5, fontWeight: '500' }}>{currentQ?.question}</p>
-               
-               <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', flex: 1 }}>
-                 {currentQ?.options?.map((opt, i) => {
-                    const letter = optionLetters[i];
-                    const isSelected = userAnswers[currentIndex] === opt;
-                    
-                    let bg = theme.surface;
-                    let border = `2px solid ${theme.border}`;
-                    let color = theme.textMain;
-                    let letterBg = theme.background;
-                    let letterColor = theme.textMuted;
-                    
-                    if (isSelected) {
-                      bg = theme.light;
-                      color = theme.primary;
-                      border = `2px solid ${theme.accent}`;
-                      letterBg = theme.accent;
-                      letterColor = theme.surface;
-                    }
-
-                    // Review Mode Styling - Strictly Blues & Green/Red
-                    let isCorrectAnswer = false;
-                    if (isSubmitted) {
-                      let correctText = currentQ.answer;
-                      if (typeof currentQ.answer === 'string' && ['A','B','C','D'].includes(currentQ.answer.toUpperCase())) {
-                        correctText = currentQ.options[optionLetters.indexOf(currentQ.answer.toUpperCase())];
-                      }
-                      isCorrectAnswer = (opt === correctText) || (opt === currentQ.answer);
-
-                      if (isCorrectAnswer) {
-                        bg = '#3B82F6'; // Green
-                        color = theme.surface;
-                        border = `2px solid #3B82F6`;
-                        letterBg = 'rgba(255,255,255,0.2)';
-                        letterColor = theme.surface;
-                      } else if (isSelected && !isCorrectAnswer) {
-                        bg = '#1E40AF'; // Red
-                        color = theme.surface;
-                        border = `2px solid #1E40AF`;
-                        letterBg = 'rgba(255,255,255,0.2)';
-                        letterColor = theme.surface;
-                      } else {
-                        bg = theme.surface;
-                        color = theme.textMuted;
-                        border = `1px solid ${theme.border}`;
-                      }
-                    }
-
-                    return (
-                      <label key={i} className={isSubmitted ? "" : "option-label"} style={{ 
-                        padding: '12px 16px', 
-                        background: bg, 
-                        color: color, 
-                        borderRadius: 16, 
-                        cursor: isSubmitted ? 'default' : 'pointer', 
-                        display: 'flex', 
-                        alignItems: 'center', 
-                        border: border, 
-                        fontSize: '14px',
-                        transition: 'all 0.2s',
-                        boxShadow: isSelected && !isSubmitted ? '0 2px 8px rgba(87,108,188,0.1)' : 'none'
-                      }}>
-                         <input 
-                            type="radio" 
-                            name={`q-${currentIndex}`} 
-                            value={opt} 
-                            checked={isSelected}
-                            onChange={() => handleAnswerSelect(currentIndex, opt)}
-                            disabled={isSubmitted}
-                            style={{ display: 'none' }} 
-                         />
-                         <span style={{ 
-                           fontWeight: '700', 
-                           marginRight: '12px', 
-                           width: '28px', 
-                           height: '28px', 
-                           display: 'flex', 
-                           alignItems: 'center', 
-                           justifyContent: 'center', 
-                           background: letterBg, 
-                           borderRadius: '8px', 
-                           color: letterColor,
-                           transition: 'all 0.2s'
-                         }}>
-                           {letter}
-                         </span>
-                         <span style={{ flex: 1, lineHeight: 1.5 }}>{opt}</span>
-                         {isSubmitted && isCorrectAnswer && (
-                           <span style={{ fontSize: '20px', fontWeight: 'bold' }}>✓</span>
-                         )}
-                         {isSubmitted && isSelected && !isCorrectAnswer && (
-                           <span style={{ fontSize: '20px', fontWeight: 'bold' }}>✗</span>
-                         )}
-                      </label>
-                    )
-                 })}
-               </div>
-
-               {isSubmitted && (() => {
-                 let correctText = currentQ?.answer;
-                 let correctLetter = '?';
-                 if (typeof currentQ?.answer === 'string' && ['A','B','C','D'].includes(currentQ.answer.toUpperCase())) {
-                   correctLetter = currentQ.answer.toUpperCase();
-                   correctText = currentQ.options[optionLetters.indexOf(correctLetter)];
-                 } else if (currentQ?.options?.includes(currentQ?.answer)) {
-                   correctLetter = optionLetters[currentQ.options.indexOf(currentQ.answer)];
-                 }
-
-                 const userAnsText = userAnswers[currentIndex];
-                 const isAnswered = !!userAnsText;
-                 const isCurrentCorrect = isAnswered && ((userAnsText === correctText) || (userAnsText === currentQ?.answer));
-                 
-                 let userLetter = '?';
-                 if (isAnswered && currentQ?.options?.includes(userAnsText)) {
-                   userLetter = optionLetters[currentQ.options.indexOf(userAnsText)];
-                 }
-
-                 let statusColor = theme.border;
-                 let statusLabel = 'Unanswered';
-                 if (isCurrentCorrect) {
-                   statusColor = '#3B82F6';
-                   statusLabel = 'Correct';
-                 } else if (isAnswered) {
-                   statusColor = '#1E40AF';
-                   statusLabel = 'Incorrect';
-                 }
-
-                 return (
-                   <div className="slide-up" style={{ marginTop: '32px', padding: '24px', background: theme.surface, borderRadius: 16, border: `2px solid ${statusColor}` }}>
-                     <div style={{ fontWeight: 'bold', fontSize: '18px', color: statusColor, marginBottom: '16px', letterSpacing: '1px' }}>{statusLabel}:</div>
-                     
-                     {isAnswered ? (
-                        <div style={{ fontSize: '16px', color: theme.textMain, marginBottom: '8px' }}>
-                           {isCurrentCorrect ? <span style={{ color: '#3B82F6', fontWeight: 'bold' }}>✓</span> : <span style={{ color: '#1E40AF', fontWeight: 'bold' }}>✗</span>} Your answer: {userLetter} ({userAnsText})
-                        </div>
-                     ) : (
-                        <div style={{ fontSize: '16px', color: theme.textMuted, marginBottom: '8px' }}>
-                           <span style={{ color: '#64748B', fontWeight: 'bold' }}>○</span> Not answered
-                        </div>
-                     )}
-
-                     <div style={{ fontSize: '16px', color: theme.textMain }}>
-                        <span style={{ color: '#3B82F6', fontWeight: 'bold' }}>✓</span> Correct answer: {correctLetter} ({correctText})
-                     </div>
-                   </div>
-                 );
-               })()}
-            </div>
-
-            <div style={{ display: 'flex', gap: '8px', marginTop: '24px', width: '100%' }}>
-               <button 
-                 className="premium-btn"
-                 onClick={goPrev} 
-                 disabled={currentIndex === 0}
-                 style={{ flex: 1, padding: '12px', background: currentIndex === 0 ? theme.border : theme.surface, color: currentIndex === 0 ? theme.textMuted : theme.primary, border: `1px solid ${theme.border}`, borderRadius: 12, fontSize: '14px', fontWeight: '700', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-               >
-                 Prev
-               </button>
-
-               {!isSubmitted && (
-                 <button 
-                   className="premium-btn"
-                   onClick={() => setShowConfirm(true)}
-                   style={{ flex: 1, padding: '12px', background: theme.surface, color: theme.primary, border: `2px solid ${theme.primary}`, borderRadius: 12, fontSize: '14px', fontWeight: '800' }}
-                 >
-                   Submit
-                 </button>
-               )}
-
-               <button 
-                 className="premium-btn"
-                 onClick={goNext} 
-                 disabled={currentIndex === questions.length - 1}
-                 style={{ flex: 1, padding: '12px', background: currentIndex === questions.length - 1 ? theme.border : theme.primary, color: currentIndex === questions.length - 1 ? theme.textMuted : theme.surface, border: 'none', borderRadius: 12, fontSize: '14px', fontWeight: '700', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-               >
-                 Next
-               </button>
-            </div>
-
-          </div>
-
-          {/* Premium Side Navigation */}
-          <div className={`question-navigator ${showMobileNav ? 'open' : ''}`} style={{ width: '340px', background: 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(10px)', borderLeft: `1px solid rgba(255,255,255,0.2)`, display: 'flex', flexDirection: 'column', zIndex: 100 }}>
-            
-            {/* Mobile Close Button */}
-            <button className="mobile-nav-close" onClick={() => setShowMobileNav(false)}>×</button>
-
-            <div style={{ padding: '32px 24px', borderBottom: `1px solid rgba(0,0,0,0.05)`, background: 'rgba(240, 249, 255, 0.7)' }}>
-              <h3 style={{ margin: '0 0 20px 0', color: theme.primary, fontSize: '18px', fontWeight: '800' }}>Question Navigator</h3>
-              
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '13px', fontWeight: '600' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <div style={{ width: 14, height: 14, borderRadius: '4px', background: theme.accent, border: `1px solid ${theme.accent}` }}></div>
-                  <span style={{color: theme.textMain}}>Answered</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <div style={{ width: 14, height: 14, borderRadius: '4px', background: theme.light, border: `1px solid ${theme.accent}` }}></div>
-                  <span style={{color: theme.textMain}}>Skipped (Viewed)</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <div style={{ width: 14, height: 14, borderRadius: '4px', background: theme.surface, border: `1px solid ${theme.border}` }}></div>
-                  <span style={{color: theme.textMuted}}>Unanswered</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="question-grid" style={{ flex: 1, overflowY: 'auto', padding: '16px', display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '6px', alignContent: 'start' }}> 
-              {currentSubjectQuestions.map((item, localIdx) => {
-                const i = item.index;
-                const isAnswered = !!userAnswers[i];
-                const isVisited = !!visited[i];
-                const isCurrent = i === currentIndex;
-                
-                let bg = theme.surface;
-                let color = theme.textMuted;
-                let border = `1px solid ${theme.border}`;
-                
-                if (isAnswered) {
-                  bg = theme.accent;
-                  color = theme.surface;
-                  border = `1px solid ${theme.accent}`;
-                } else if (isVisited) {
-                  bg = theme.light;
-                  color = theme.primary;
-                  border = `1px solid ${theme.accent}`;
-                }
-
-                if (isSubmitted && isAnswered) {
-                   const optionLetters = ['A', 'B', 'C', 'D'];
-                   let correctText = questions[i].answer;
-                   if (typeof questions[i].answer === 'string' && ['A','B','C','D'].includes(questions[i].answer.toUpperCase())) {
-                     correctText = questions[i].options[optionLetters.indexOf(questions[i].answer.toUpperCase())];
-                   }
-                   const correct = (userAnswers[i] === correctText) || (userAnswers[i] === questions[i].answer);
-                   bg = correct ? '#3B82F6' : '#1E40AF';
-                   color = theme.surface;
-                   border = 'none';
-                }
-
+       </header>
+       
+       <div style={{ display: 'flex', flex: 1, flexDirection: 'column', overflow: 'hidden' }}>
+         
+         {/* Sub-header navigation (Subjects) */}
+         {isJamb && examSubjects.length > 1 && (
+            <div style={{ display: 'flex', overflowX: 'auto', padding: '12px 16px', gap: '8px', background: 'white', borderBottom: '1px solid #f1f5f9', flexShrink: 0 }} className="hide-scrollbar">
+              {examSubjects.map(sub => {
+                const firstIndex = questions.findIndex(q => q.subjectName === sub);
+                const isActive = sub === currentSubject;
                 return (
                   <button
-                    key={i}
-                    className="grid-btn"
-                    onClick={() => setCurrentIndex(i)}
+                    key={sub}
+                    onClick={() => setCurrentIndex(firstIndex)}
                     style={{
-                      aspectRatio: '1',
-                      background: bg,
-                      color: color,
-                      border: border,
-                      borderRadius: 6,
+                      padding: '8px 16px',
+                      background: isActive ? '#123b72' : '#f1f5f9',
+                      color: isActive ? 'white' : '#64748b',
+                      border: 'none',
+                      borderRadius: '20px',
                       fontWeight: '700',
                       fontSize: '12px',
-                      cursor: 'pointer',
-                      outline: isCurrent ? `2px solid ${theme.primary}` : 'none',
-                      outlineOffset: '2px',
-                      padding: 0
+                      whiteSpace: 'nowrap'
                     }}
                   >
-                    {localIdx + 1}
+                    {sub}
                   </button>
                 )
               })}
             </div>
-          </div>
+          )}
 
-        </div>
-        
-        {/* Floating Action Button for Mobile */}
-        <button className="mobile-fab" onClick={() => setShowMobileNav(true)}>
-          <span style={{fontSize: '24px'}}>☰</span>
-        </button>
+         {/* Main Question Area */}
+         <div style={{ flex: 1, padding: '24px 16px 120px 16px', overflowY: 'auto' }}>
+            <div style={{ background: 'white', padding: '24px', borderRadius: '24px', boxShadow: '0 4px 20px rgba(0, 0, 0, 0.05)', marginBottom: '24px' }}>
+              
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span style={{ background: '#f0f9ff', color: '#123b72', padding: '6px 12px', borderRadius: '12px', fontWeight: '700', fontSize: '12px' }}>Q {localIndex + 1} / {totalInSubject}</span>
+                  {currentQ?.litText && (
+                    <span style={{ background: '#e0e7ff', color: '#3730a3', padding: '6px 12px', borderRadius: '12px', fontWeight: '700', fontSize: '12px' }}>{currentQ.litText}</span>
+                  )}
+                </div>
+              </div>
+              
+              <p style={{ fontSize: '16px', margin: '0 0 24px 0', color: '#1e293b', lineHeight: 1.6, fontWeight: '600' }}>{currentQ?.question}</p>
+              
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                {currentQ?.options?.map((opt, i) => {
+                   const letter = optionLetters[i];
+                   const isSelected = userAnswers[currentIndex] === opt;
+                   
+                   return (
+                     <button key={i} onClick={() => handleAnswerSelect(currentIndex, opt)} style={{ 
+                       padding: '16px', 
+                       background: isSelected ? '#f0f9ff' : 'white', 
+                       color: isSelected ? '#123b72' : '#475569', 
+                       borderRadius: '16px', 
+                       display: 'flex', 
+                       alignItems: 'center', 
+                       border: `2px solid ${isSelected ? '#123b72' : '#e2e8f0'}`,
+                       fontSize: '15px',
+                       textAlign: 'left'
+                     }}>
+                        <span style={{ 
+                          fontWeight: '800', 
+                          marginRight: '16px', 
+                          width: '28px', 
+                          height: '28px', 
+                          display: 'flex', 
+                          alignItems: 'center', 
+                          justifyContent: 'center', 
+                          background: isSelected ? '#123b72' : '#f1f5f9', 
+                          borderRadius: '8px', 
+                          color: isSelected ? 'white' : '#64748b',
+                          flexShrink: 0
+                        }}>
+                          {letter}
+                        </span>
+                        <span style={{ lineHeight: 1.4 }}>{opt}</span>
+                     </button>
+                   )
+                })}
+              </div>
 
-        {/* Mobile Overlay */}
-        {showMobileNav && <div className="mobile-overlay" onClick={() => setShowMobileNav(false)}></div>}
 
-        {showCalculator && <Calculator onClose={() => setShowCalculator(false)} />}
-        {showDictionary && <Dictionary onClose={() => setShowDictionary(false)} />}
+           </div>
+         </div>
+       </div>
+       
+       {/* Bottom Navigation */}
+       <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, background: 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(10px)', borderTop: '1px solid #e2e8f0', padding: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', zIndex: 40 }}>
+          <button 
+            onClick={goPrev} 
+            disabled={currentIndex === 0}
+            style={{ width: '48px', height: '48px', borderRadius: '16px', background: currentIndex === 0 ? '#f1f5f9' : 'white', border: `2px solid ${currentIndex === 0 ? '#e2e8f0' : '#cbd5e1'}`, color: currentIndex === 0 ? '#94a3b8' : '#1e293b', fontSize: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          >
+            ←
+          </button>
+          
+          <button 
+            onClick={() => setShowMobileNav(true)}
+            style={{ padding: '12px 24px', borderRadius: '16px', background: '#f1f5f9', border: 'none', color: '#1e293b', fontWeight: '700', fontSize: '14px', display: 'flex', alignItems: 'center', gap: '8px' }}
+          >
+            <span>Q {currentIndex + 1}/{questions.length}</span>
+            <span>☰</span>
+          </button>
+
+          <button 
+            onClick={goNext} 
+            disabled={currentIndex === questions.length - 1}
+            style={{ width: '48px', height: '48px', borderRadius: '16px', background: currentIndex === questions.length - 1 ? '#f1f5f9' : '#123b72', border: 'none', color: currentIndex === questions.length - 1 ? '#94a3b8' : 'white', fontSize: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          >
+            →
+          </button>
+       </div>
+
+       {/* Mobile Question Navigator Overlay */}
+       {showMobileNav && (
+         <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, zIndex: 100, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
+           <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.5)' }} onClick={() => setShowMobileNav(false)}></div>
+           
+           <div style={{ background: 'white', borderTopLeftRadius: '24px', borderTopRightRadius: '24px', maxHeight: '80vh', display: 'flex', flexDirection: 'column', position: 'relative', padding: '24px' }}>
+             <div style={{ width: '40px', height: '6px', background: '#e2e8f0', borderRadius: '3px', margin: '0 auto 16px' }}></div>
+             
+             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+               <h3 style={{ margin: 0, color: '#1e293b', fontSize: '18px', fontWeight: '800' }}>Questions Map</h3>
+               <button onClick={() => setShowMobileNav(false)} style={{ background: 'transparent', border: 'none', fontSize: '24px', color: '#64748b' }}>×</button>
+             </div>
+             
+             <div style={{ display: 'flex', gap: '16px', marginBottom: '24px', fontSize: '12px', fontWeight: '600' }}>
+               <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><div style={{ width: 12, height: 12, borderRadius: 4, background: '#123b72' }}></div> <span style={{color: '#1e293b'}}>Done</span></div>
+               <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><div style={{ width: 12, height: 12, borderRadius: 4, background: '#e0e7ff' }}></div> <span style={{color: '#1e293b'}}>Seen</span></div>
+               <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><div style={{ width: 12, height: 12, borderRadius: 4, border: '1px solid #cbd5e1' }}></div> <span style={{color: '#64748b'}}>Skip</span></div>
+             </div>
+
+             <div style={{ overflowY: 'auto', display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '8px' }}>
+                {currentSubjectQuestions.map((item, localIdx) => {
+                  const i = item.index;
+                  const isAnswered = !!userAnswers[i];
+                  const isVisited = !!visited[i];
+                  const isCurrent = i === currentIndex;
+                  
+                  let bg = 'white';
+                  let color = '#64748b';
+                  let border = '1px solid #e2e8f0';
+                  
+                  if (isAnswered) {
+                    bg = '#123b72';
+                    color = 'white';
+                    border = '1px solid #123b72';
+                  } else if (isVisited) {
+                    bg = '#e0e7ff';
+                    color = '#1e293b';
+                    border = '1px solid #c7d2fe';
+                  }
+
+                  return (
+                    <button
+                      key={i}
+                      onClick={() => { setCurrentIndex(i); setShowMobileNav(false); }}
+                      style={{
+                        aspectRatio: '1',
+                        background: bg,
+                        color: color,
+                        border: border,
+                        borderRadius: '10px',
+                        fontWeight: '700',
+                        fontSize: '13px',
+                        outline: isCurrent ? '2px solid #3b82f6' : 'none',
+                        outlineOffset: '2px',
+                        padding: 0
+                      }}
+                    >
+                      {localIdx + 1}
+                    </button>
+                  )
+                })}
+             </div>
+           </div>
+         </div>
+       )}
+
+       {showCalculator && <Calculator onClose={() => setShowCalculator(false)} />}
+       {showDictionary && <Dictionary onClose={() => setShowDictionary(false)} />}
     </main>
   );
 }
