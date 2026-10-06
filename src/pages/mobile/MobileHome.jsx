@@ -10,6 +10,7 @@ import img5 from "../../assets/edudrill_ad_3.jpg";
 import img6 from "../../assets/edudrill_ad_4.jpg";
 import img7 from "../../assets/edudrill_ad_5.jpg";
 import img8 from "../../assets/students_practicing.jpg";
+import newHero from "../../assets/new_hero.jpg";
 
 function EduDrillLogo() {
   return (
@@ -24,7 +25,7 @@ function EduDrillLogo() {
 
 function MobileHome() {
   const navigate = useNavigate();
-  const testimonials = [img1];
+  const testimonials = [newHero, img1, img2, img3, img4, img5, img6, img7, img8];
   
   const testimonialsData = [
     { text: "The website is user-friendly and easy to navigate. i love how it makes accessing past questions and practicing much easier. Definitely a useful tool for students", name: "Tijani Hameedah", role: "Undergraduate", initial: "T" }
@@ -35,7 +36,7 @@ function MobileHome() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
+    }, 4000);
     return () => clearInterval(timer);
   }, [testimonials.length]);
 
@@ -131,15 +132,15 @@ function MobileHome() {
           
           <div key={currentIndex} style={{ animation: 'fadeIn 0.5s ease-in-out' }}>
             <p style={{ color: '#1e293b', fontStyle: 'italic', fontSize: '15px', lineHeight: '1.5', margin: '0 0 16px 0' }}>
-              "{testimonialsData[currentIndex].text}"
+              "{testimonialsData[0].text}"
             </p>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
               <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: '#2563eb', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '16px' }}>
-                {testimonialsData[currentIndex].initial}
+                {testimonialsData[0].initial}
               </div>
               <div>
-                <div style={{ fontWeight: 'bold', fontSize: '14px', color: '#1e293b' }}>{testimonialsData[currentIndex].name}</div>
-                <div style={{ fontSize: '12px', color: '#64748b' }}>{testimonialsData[currentIndex].role}</div>
+                <div style={{ fontWeight: 'bold', fontSize: '14px', color: '#1e293b' }}>{testimonialsData[0].name}</div>
+                <div style={{ fontSize: '12px', color: '#64748b' }}>{testimonialsData[0].role}</div>
               </div>
             </div>
           </div>
