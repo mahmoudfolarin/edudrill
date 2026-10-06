@@ -378,7 +378,8 @@ function Subjects() {
                           </div>
 
                         </Link>
-                      )
+                        );
+                      }
                     )}
 
                   </div>
