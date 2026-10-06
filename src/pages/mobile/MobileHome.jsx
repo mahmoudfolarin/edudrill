@@ -28,7 +28,8 @@ function MobileHome() {
   const testimonials = [newHero, img1, img2, img3, img4, img5, img6, img7, img8];
   
   const testimonialsData = [
-    { text: "The website is user-friendly and easy to navigate. i love how it makes accessing past questions and practicing much easier. Definitely a useful tool for students", name: "Tijani Hameedah", role: "Undergraduate", initial: "T" }
+    { text: "The website is user-friendly and easy to navigate. i love how it makes accessing past questions and practicing much easier. Definitely a useful tool for students", name: "Tijani Hameedah", role: "Undergraduate", initial: "T" },
+    { text: "EduDrill looks really good and well put together. The design layout is okay and easy to navigate for sudent. Informations presented clearly, in a clean and professional appearance", name: "Akinleye Haleemah", role: "Undergraduate", initial: "A" }
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -130,17 +131,17 @@ function MobileHome() {
             ★ ★ ★ ★ ★
           </div>
           
-          <div key={currentIndex} style={{ animation: 'fadeIn 0.5s ease-in-out' }}>
+          <div key={currentIndex % testimonialsData.length} style={{ animation: 'fadeIn 0.5s ease-in-out' }}>
             <p style={{ color: '#1e293b', fontStyle: 'italic', fontSize: '15px', lineHeight: '1.5', margin: '0 0 16px 0' }}>
-              "{testimonialsData[0].text}"
+              "{testimonialsData[currentIndex % testimonialsData.length].text}"
             </p>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
               <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: '#2563eb', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '16px' }}>
-                {testimonialsData[0].initial}
+                {testimonialsData[currentIndex % testimonialsData.length].initial}
               </div>
               <div>
-                <div style={{ fontWeight: 'bold', fontSize: '14px', color: '#1e293b' }}>{testimonialsData[0].name}</div>
-                <div style={{ fontSize: '12px', color: '#64748b' }}>{testimonialsData[0].role}</div>
+                <div style={{ fontWeight: 'bold', fontSize: '14px', color: '#1e293b' }}>{testimonialsData[currentIndex % testimonialsData.length].name}</div>
+                <div style={{ fontSize: '12px', color: '#64748b' }}>{testimonialsData[currentIndex % testimonialsData.length].role}</div>
               </div>
             </div>
           </div>
