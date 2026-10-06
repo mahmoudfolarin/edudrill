@@ -26,19 +26,10 @@ import MobileHome from "./mobile/MobileHome";
 import useMobile from "../hooks/useMobile";
 
 function DesktopHome() {
-  const testimonials = [img1, img2, img3, img4, img5, img6, img7, img8, img1, img2];
+  const testimonials = [img1];
   
   const testimonialsData = [
-    { text: "EduDrill completely transformed how I prepare for my CBT exams. The interface is stunning.", name: "Sarah Johnson", role: "Top Scorer, 2026", initial: "S" },
-    { text: "The practice tests are incredibly realistic. I felt so much more confident on exam day!", name: "David Olayinka", role: "Science Student", initial: "D" },
-    { text: "I love the detailed performance tracking. It showed me exactly where I needed to improve.", name: "Aisha Bello", role: "University Freshman", initial: "A" },
-    { text: "Studying used to be boring, but the interactive UI on EduDrill keeps me focused for hours.", name: "Michael Adebayo", role: "Art Student", initial: "M" },
-    { text: "The offline mode is a lifesaver. I can practice anywhere without worrying about data.", name: "Chisom Nnamdi", role: "JAMB Candidate", initial: "C" },
-    { text: "Best educational platform I've used. It's fast, beautiful, and the questions are top-notch.", name: "Fatima Umar", role: "High School Senior", initial: "F" },
-    { text: "The UI design is so modern and clean. It makes navigating through subjects a breeze.", name: "Emmanuel Eze", role: "Engineering Student", initial: "E" },
-    { text: "I highly recommend EduDrill to anyone preparing for WAEC or JAMB. It's a game changer.", name: "Grace Ojo", role: "Medical Student", initial: "G" },
-    { text: "The keyboard shortcuts saved me so much time during the actual CBT exam.", name: "Kingsley Obi", role: "Top Scorer, 2025", initial: "K" },
-    { text: "A truly premium experience. EduDrill makes learning feel like a breeze rather than a chore.", name: "Zainab Aliyu", role: "Law Student", initial: "Z" }
+    { text: "The website is user-friendly and easy to navigate. i love how it makes accessing past questions and practicing much easier. Definitely a useful tool for students", name: "Tijani Hameedah", role: "Undergraduate", initial: "T" }
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
