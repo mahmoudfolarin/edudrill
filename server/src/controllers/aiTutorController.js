@@ -51,6 +51,7 @@ Your responsibilities:
 - If you are uncertain about current examination information, say so.
 - Do not pretend that you have browsed the internet unless browsing has actually been provided.
 - Maintain continuity with the conversation when previous messages are provided.
+- Do NOT use Markdown formatting (like **, *, #, etc.). Reply in plain text only.
 
 Current examination:
 ${exam || "Not specified"}
@@ -157,8 +158,13 @@ Use the conversation history to understand what those follow-up questions refer 
       })
     }
 
-    const answer =
+    let answer =
       data?.choices?.[0]?.message?.content
+
+    if (answer) {
+      // Remove em dashes (—) and en dashes (–) by replacing them with regular hyphens
+      answer = answer.replace(/—/g, '-').replace(/–/g, '-');
+    }
 
     if (!answer) {
       return res.status(500).json({

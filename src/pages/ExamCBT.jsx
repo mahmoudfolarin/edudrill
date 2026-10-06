@@ -1357,7 +1357,7 @@ function ExamCBT() {
           </div>
 
           {/* Premium Side Navigation */}
-          <div style={{ width: '340px', background: 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(10px)', borderLeft: `1px solid rgba(255,255,255,0.2)`, display: 'flex', flexDirection: 'column', zIndex: 10 }}>
+          <div className="question-navigator" style={{ width: '340px', background: 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(10px)', borderLeft: `1px solid rgba(255,255,255,0.2)`, display: 'flex', flexDirection: 'column', zIndex: 10 }}>
             <div style={{ padding: '32px 24px', borderBottom: `1px solid rgba(0,0,0,0.05)`, background: 'rgba(240, 249, 255, 0.7)' }}>
               <h3 style={{ margin: '0 0 20px 0', color: theme.primary, fontSize: '18px', fontWeight: '800' }}>Question Navigator</h3>
               
@@ -1377,7 +1377,7 @@ function ExamCBT() {
               </div>
             </div>
 
-            <div style={{ flex: 1, overflowY: 'auto', padding: '16px', display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '6px', alignContent: 'start' }}>
+            <div className="question-grid" style={{ flex: 1, overflowY: 'auto', padding: '16px', display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '6px', alignContent: 'start' }}> 
               {currentSubjectQuestions.map((item, localIdx) => {
                 const i = item.index;
                 const isAnswered = !!userAnswers[i];

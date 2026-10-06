@@ -13892,3 +13892,41 @@ body {
   }
 }
 
+@media (max-width: 420px) {
+  /* Ensure side navigation fits screen width */
+  .exam-cbt-page .exam-container,
+  .practice-page .practice-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 0.5rem !important;
+  }
+
+  /* Reduce grid columns for better tap targets */
+  .exam-cbt-page .exam-container button.grid-btn,
+  .practice-page .practice-container button.grid-btn {
+    min-width: 44px;
+    height: 44px;
+    font-size: 0.9rem;
+    padding: 0;
+  }
+
+  /* Adjust grid layout to fewer columns */
+  .exam-cbt-page .exam-container > div[style*="gridTemplateColumns"],
+  .practice-page .practice-container > div[style*="gridTemplateColumns"] {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 4px !important;
+  }
+
+  /* Header spacing to avoid clipping under browser UI */
+  .exam-cbt-header,
+  .practice-header {
+    padding-top: env(safe-area-inset-top);
+    margin-top: 0.5rem;
+  }
+
+  /* Increase button tap area and reduce empty space */
+  button {
+    min-height: 44px !important;
+  }
+}
