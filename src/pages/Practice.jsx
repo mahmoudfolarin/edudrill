@@ -5,7 +5,7 @@ import MobilePractice from "./mobile/MobilePractice";
 
 function Practice() {
   const { isMobile } = useMobile();
-  if (isMobile) return <MobilePractice />;
+
 
 
   const { exam, subject, topicId } = useParams()

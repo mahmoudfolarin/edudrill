@@ -5,7 +5,7 @@ import MobilePastPaper from "./mobile/MobilePastPaper"
 
 function PastPaper() {
   const { isMobile } = useMobile()
-  if (isMobile) return <MobilePastPaper />;
+
   const { exam, subject, year, paperId } = useParams()
   const [paper, setPaper] = useState(null)
   const [answers, setAnswers] = useState({})
@@ -34,6 +34,7 @@ function PastPaper() {
     loadPaper()
   }, [paperId])
 
+  if (isMobile) return <MobilePastPaper />;
   if (loading) return <main className="practice-page"><div className="practice-loading"><h2>Loading paper...</h2><p>EduDrill is preparing the verified paper.</p></div></main>
   if (error || !paper || paper.questions.length === 0) return <main className="practice-page"><div className="practice-error"><div className="practice-error-icon">!</div><h2>Paper unavailable</h2><p>{error || "Questions for this verified paper are not available yet."}</p><Link to={backToPapers} className="practice-back-button">Back to papers</Link></div></main>
 

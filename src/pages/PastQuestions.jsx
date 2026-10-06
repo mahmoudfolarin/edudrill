@@ -6,7 +6,7 @@ import MobilePastQuestions from "./mobile/MobilePastQuestions"
 function PastQuestions() {
   const { exam } = useParams()
   const { isMobile } = useMobile()
-  if (isMobile) return <MobilePastQuestions />;
+
 
   const [subjects, setSubjects] = useState([])
   const [loading, setLoading] = useState(true)
@@ -44,6 +44,7 @@ function PastQuestions() {
 
     fetchSubjects()
   }, [])
+  if (isMobile) return <MobilePastQuestions />;
 
   return (
     <main className="past-questions-page">
