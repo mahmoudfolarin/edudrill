@@ -11,7 +11,8 @@ async function getAdminStats(req, res) {
         (SELECT COUNT(*) FROM topics WHERE is_active = TRUE) AS topics,
         (SELECT COUNT(*) FROM lessons WHERE is_active = TRUE) AS lessons,
         (SELECT COUNT(*) FROM activation_keys) AS activation_keys,
-        (SELECT COUNT(*) FROM product_licenses WHERE status = 'active') AS active_licenses
+        (SELECT COUNT(*) FROM product_licenses WHERE status = 'active') AS active_licenses,
+        (SELECT COUNT(*) FROM users) AS users
     `)
 
     const stats = result.rows[0]
@@ -27,7 +28,7 @@ async function getAdminStats(req, res) {
         lessons: Number(stats.lessons),
         activationKeys: Number(stats.activation_keys),
         activeLicenses: Number(stats.active_licenses),
-        users: 0,
+        users: Number(stats.users),
       },
     })
   } catch (error) {
