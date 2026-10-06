@@ -9,7 +9,7 @@ export function isProductActivated() {
   if (!licenseStr) return false;
   try {
     const license = JSON.parse(licenseStr);
-    return license.status === 'active';
+    return license.status && license.status.toLowerCase() === 'active';
   } catch(e) {
     return false;
   }
