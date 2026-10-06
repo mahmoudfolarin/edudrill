@@ -9,8 +9,12 @@ export function isProductActivated() {
   if (!licenseStr) return false;
   try {
     const license = JSON.parse(licenseStr);
-    return license.status && license.status.toLowerCase() === 'active';
+    console.log("EduDrill License found:", license);
+    const isActive = license.status && license.status.toLowerCase().includes('activ');
+    console.log("Is active?", isActive);
+    return isActive;
   } catch(e) {
+    console.error("Error parsing license", e);
     return false;
   }
 }
