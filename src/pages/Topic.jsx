@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
+import useMobile from "../hooks/useMobile"
+import MobileTopic from "./mobile/MobileTopic"
 
 function Topic() {
+  const { isMobile } = useMobile()
   const { exam, subject, topicId } = useParams()
 
   const [topic, setTopic] = useState(null)
@@ -78,6 +81,10 @@ function Topic() {
 
   const totalLessons = topic.lessons?.length || 0
   const totalSubtopics = topic.subtopics?.length || 0
+
+  if (isMobile) {
+    return <MobileTopic />
+  }
 
   return (
     <main className="topic-page">

@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom"
+import useMobile from "../hooks/useMobile"
+import MobileExamSelection from "./mobile/MobileExamSelection"
 
 const exams = [
   {
@@ -32,7 +34,12 @@ const exams = [
 ]
 
 function ExamSelection() {
-  console.log("ExamSelection rendered");
+  const { isMobile } = useMobile();
+
+  if (isMobile) {
+    return <MobileExamSelection />;
+  }
+
     return (
       <main className="exam-page">
         

@@ -1,4 +1,6 @@
 import { Link, useParams } from "react-router-dom"
+import useMobile from "../hooks/useMobile"
+import MobileSubjectDashboard from "./mobile/MobileSubjectDashboard"
 
 const subjectNames = {
   "english-language": "English Language",
@@ -20,6 +22,7 @@ const subjectNames = {
 }
 
 function SubjectDashboard() {
+  const { isMobile } = useMobile()
   const { exam, subject } = useParams()
 
   const subjectName =
@@ -80,6 +83,10 @@ function SubjectDashboard() {
   path: `/dashboard/${exam}/subjects/${subject}/ai-tutor`,
 },
   ]
+
+  if (isMobile) {
+    return <MobileSubjectDashboard />
+  }
 
   return (
     <main className="subject-dashboard-page">

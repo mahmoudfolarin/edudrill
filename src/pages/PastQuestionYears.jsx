@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
+import useMobile from "../hooks/useMobile"
+import MobilePastQuestionYears from "./mobile/MobilePastQuestionYears"
 
 function PastQuestionYears() {
+  const { isMobile } = useMobile()
   const { exam, subject } = useParams()
 
   const [papers, setPapers] = useState([])
@@ -70,6 +73,10 @@ function PastQuestionYears() {
   const years = Object.keys(groupedYears).sort(
     (a, b) => Number(b) - Number(a),
   )
+
+  if (isMobile) {
+    return <MobilePastQuestionYears />
+  }
 
   return (
     <main className="past-years-page">

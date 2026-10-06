@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import "./AITutor.css"
+import useMobile from "../hooks/useMobile"
+import MobileAITutor from "./mobile/MobileAITutor"
 
 function AITutor() {
+  const { isMobile } = useMobile()
   const { exam, subject } = useParams()
 
   const isGeneralTutor = !subject
@@ -401,6 +404,10 @@ function AITutor() {
   // ========================================
   // UI
   // ========================================
+
+  if (isMobile) {
+    return <MobileAITutor />
+  }
 
   return (
     <div className="ai-tutor-page">

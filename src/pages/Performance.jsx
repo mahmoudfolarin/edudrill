@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import useMobile from "../hooks/useMobile";
+import MobilePerformance from "./mobile/MobilePerformance";
 
 export default function Performance() {
+  const { isMobile } = useMobile();
   const { exam, subject } = useParams();
   const [performances, setPerformances] = useState([]);
   const [selectedPerf, setSelectedPerf] = useState(null);
@@ -30,6 +33,10 @@ export default function Performance() {
     const s = (secs % 60).toString().padStart(2, '0');
     return `${m}:${s}`;
   };
+
+  if (isMobile) {
+    return <MobilePerformance />;
+  }
 
   if (selectedPerf) {
     const cPct = (selectedPerf.correct_count / selectedPerf.total) * 100 || 0;

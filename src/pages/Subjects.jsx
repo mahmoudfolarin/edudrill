@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
+import useMobile from "../hooks/useMobile"
+import MobileSubjects from "./mobile/MobileSubjects"
 
 function Subjects() {
+  const { isMobile } = useMobile()
   const { exam } = useParams()
 
   const [subjects, setSubjects] = useState([])
@@ -83,6 +86,10 @@ function Subjects() {
       )
     },
   )
+
+  if (isMobile) {
+    return <MobileSubjects />
+  }
 
   return (
     <main className="subjects-page">

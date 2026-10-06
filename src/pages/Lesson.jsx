@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
+import useMobile from "../hooks/useMobile"
+import MobileLesson from "./mobile/MobileLesson"
 
 function Lesson() {
+  const { isMobile } = useMobile()
   const { exam, subject, topicId, lessonId } = useParams()
 
   const [lesson, setLesson] = useState(null)
@@ -271,6 +274,10 @@ function Lesson() {
     currentIndex < topicLessons.length - 1
       ? topicLessons[currentIndex + 1]
       : null
+
+  if (isMobile) {
+    return <MobileLesson />
+  }
 
   return (
     <main className="study-lesson-page">

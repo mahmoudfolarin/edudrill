@@ -1,7 +1,14 @@
 import { Link, useParams } from "react-router-dom"
+import useMobile from "../hooks/useMobile"
+import MobileAITutorHistory from "./mobile/MobileAITutorHistory"
 
 function AITutorHistory() {
+  const { isMobile } = useMobile()
   const { exam, subject } = useParams()
+
+  if (isMobile) {
+    return <MobileAITutorHistory />
+  }
 
   return (
     <div

@@ -1,25 +1,17 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { getOfflineQuestions, subjectsList } from "../data/offlineQuestionBank";
-import Ad1 from "../assets/edudrill_ad_1.jpg";
-import Ad2 from "../assets/edudrill_ad_2.jpg";
-import Ad3 from "../assets/edudrill_ad_3.jpg";
-import Ad4 from "../assets/edudrill_ad_4.jpg";
-import Ad5 from "../assets/edudrill_ad_5.jpg";
-import StudentsBg from "../assets/students_bg.jpg";
+import { getOfflineQuestions, subjectsList } from "../../data/offlineQuestionBank";
+import Ad1 from "../../assets/edudrill_ad_1.jpg";
+import Ad2 from "../../assets/edudrill_ad_2.jpg";
+import Ad3 from "../../assets/edudrill_ad_3.jpg";
+import Ad4 from "../../assets/edudrill_ad_4.jpg";
+import Ad5 from "../../assets/edudrill_ad_5.jpg";
+import StudentsBg from "../../assets/students_bg.jpg";
 
-import Calculator from "../components/Calculator";
-import Dictionary from "../components/Dictionary";
+import Calculator from "../../components/Calculator";
+import Dictionary from "../../components/Dictionary";
 
-import useMobile from "../hooks/useMobile";
-import MobileExamCBT from "./mobile/MobileExamCBT";
-
-function ExamCBT() {
-  const { isMobile } = useMobile();
-  
-  if (isMobile) {
-    return <MobileExamCBT />;
-  }
+function MobileExamCBT() {
   const { exam } = useParams();
   const isJamb = exam?.toLowerCase() === "jamb";
   const compulsorySubject = isJamb ? "use-of-english" : null;
@@ -360,6 +352,7 @@ function ExamCBT() {
 
   useEffect(() => {
     if (isStarted && !isSubmitted && !showConfirm) {
+      // eslint-disable-next-line
       setVisited(prev => ({ ...prev, [currentIndex]: true }));
     }
   }, [currentIndex, isStarted, isSubmitted, showConfirm]);
@@ -370,6 +363,7 @@ function ExamCBT() {
         const timerId = setInterval(() => setTimeLeft(prev => prev - 1), 1000);
         return () => clearInterval(timerId);
       } else if (timeLeft === 0) {
+        // eslint-disable-next-line
         handleConfirmSubmit();
       }
     }
@@ -715,7 +709,7 @@ function ExamCBT() {
     )
   }
 
-  const calculateDetailedScore = () => {
+  function calculateDetailedScore() {
     const subjectsMap = {};
     const optionLetters = ['A', 'B', 'C', 'D'];
     let totalCorrect = 0;
@@ -1465,4 +1459,4 @@ function ExamCBT() {
   );
 }
 
-export default ExamCBT;
+export default MobileExamCBT;

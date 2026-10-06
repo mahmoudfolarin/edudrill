@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // Import images for the background carousel
 import img1 from "../assets/testimony_1.jpg";
@@ -23,7 +23,7 @@ function EduDrillLogo() {
 }
 
 import MobileHome from "./mobile/MobileHome";
-import { useMobile } from "../hooks/useMobile";
+import useMobile from "../hooks/useMobile";
 
 function DesktopHome() {
   const testimonials = [img1, img2, img3, img4, img5, img6, img7, img8, img1, img2];

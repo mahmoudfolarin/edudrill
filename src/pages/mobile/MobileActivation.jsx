@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 
-import MobileActivation from "./mobile/MobileActivation"
-import useMobile from "../hooks/useMobile"
-
-function DesktopActivation() {
+function MobileActivation() {
   const [productKey, setProductKey] = useState("")
   const [activationKey, setActivationKey] = useState("")
   const [loading, setLoading] = useState(false)
@@ -306,35 +303,11 @@ function DesktopActivation() {
 
   if (loadingProduct) {
     return (
-      <main className="activation-page">
-        <div className="activation-card">
-
-          <div className="activation-logo">
-            <div><img src="/assets/edudrill_logo.jpg" alt="EduDrill" style={{ width: "100%", height: "100%", borderRadius: "inherit" }} /></div>
-
-            <span>
-              Edu<span>Drill</span>
-            </span>
-          </div>
-
-          <div className="activation-heading">
-            <p>PRODUCT ACTIVATION</p>
-
-            <h1>
-              Preparing your
-              <span> Product</span>
-            </h1>
-
-            <p className="activation-description">
-              EduDrill is securely preparing this
-              installation.
-            </p>
-          </div>
-
-          <div className="activation-loading">
-            Generating Product Key...
-          </div>
-
+      <main style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', backgroundColor: '#f8fafc', padding: '24px' }}>
+        <div style={{ background: 'white', padding: '32px 24px', borderRadius: '24px', width: '100%', boxShadow: '0 10px 30px rgba(0,0,0,0.05)', textAlign: 'center' }}>
+          <img src="/assets/edudrill_logo.jpg" alt="EduDrill" style={{ width: "80px", height: "80px", borderRadius: "50%", marginBottom: '16px' }} />
+          <h1 style={{ fontSize: '24px', color: '#1e293b', marginBottom: '8px' }}>Preparing Product</h1>
+          <p style={{ color: '#64748b', fontSize: '15px' }}>EduDrill is securely preparing this installation...</p>
         </div>
       </main>
     )
@@ -349,143 +322,74 @@ function DesktopActivation() {
   const whatsappUrl = `https://wa.me/2349135055095?text=${encodeURIComponent(whatsappMessage)}`;
 
   return (
-    <main className="activation-page">
+    <main style={{ minHeight: '100vh', backgroundColor: '#f8fafc', padding: '16px', display: 'flex', flexDirection: 'column' }}>
 
       {!license ? (
 
-        <div className="activation-card">
-
-          <div className="activation-logo">
-
-            <div><img src="/assets/edudrill_logo.jpg" alt="EduDrill" style={{ width: "100%", height: "100%", borderRadius: "inherit" }} /></div>
-
-            <span>
-              Edu<span>Drill</span>
-            </span>
-
-          </div>
-
-          <div className="activation-heading">
-
-            <p>PRODUCT ACTIVATION</p>
-
-            <h1>
-              Activate your
-              <span> EduDrill</span>
-            </h1>
-
-            <p className="activation-description">
-              This installation has been assigned a
-              unique Product Key. Enter your Activation
-              Key to activate EduDrill.
-            </p>
-
+        <div style={{ background: 'white', borderRadius: '24px', padding: '24px', boxShadow: '0 10px 30px rgba(0,0,0,0.05)', flex: 1, display: 'flex', flexDirection: 'column' }}>
+          
+          {/* Header */}
+          <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+            <img src="/assets/edudrill_logo.jpg" alt="EduDrill" style={{ width: "64px", height: "64px", borderRadius: "50%", marginBottom: '12px' }} />
+            <p style={{ color: '#2563eb', fontSize: '12px', fontWeight: 'bold', letterSpacing: '1px', marginBottom: '4px' }}>PRODUCT ACTIVATION</p>
+            <h1 style={{ fontSize: '24px', color: '#1e293b', marginBottom: '8px' }}>Activate EduDrill</h1>
+            <p style={{ fontSize: '14px', color: '#64748b', lineHeight: '1.5' }}>Enter your Activation Key to activate EduDrill for this device.</p>
           </div>
 
           {/* PRODUCT KEY */}
-
-          <div className="generated-product-box">
-
+          <div style={{ background: '#f1f5f9', borderRadius: '16px', padding: '16px', marginBottom: '24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div>
-
-              <span>
-                YOUR PRODUCT KEY
-              </span>
-
-              <strong>
-                {productKey}
-              </strong>
-
+              <span style={{ fontSize: '11px', color: '#64748b', fontWeight: 'bold', textTransform: 'uppercase' }}>Your Product Key</span>
+              <strong style={{ display: 'block', fontSize: '16px', color: '#0f172a', marginTop: '4px', wordBreak: 'break-all' }}>{productKey}</strong>
             </div>
-
             <button
               type="button"
-              onClick={() =>
-                copyKey(
-                  productKey,
-                  "product",
-                )
-              }
+              onClick={() => copyKey(productKey, "product")}
+              style={{ background: 'white', border: '1px solid #e2e8f0', borderRadius: '8px', padding: '8px 12px', fontSize: '12px', fontWeight: 'bold', color: '#475569' }}
             >
-              {copied === "product"
-                ? "Copied"
-                : "Copy"}
+              {copied === "product" ? "Copied" : "Copy"}
             </button>
-
           </div>
 
           {/* ACTIVATION FORM */}
-
-          <form
-            className="activation-form"
-            onSubmit={handleActivation}
-          >
-
-            <div className="activation-field">
-
-              <label htmlFor="activationKey">
-                Activation Key
-              </label>
-
+          <form onSubmit={handleActivation} style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
+            <div style={{ marginBottom: '24px' }}>
+              <label htmlFor="activationKey" style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: '#1e293b', marginBottom: '8px' }}>Activation Key</label>
               <input
                 id="activationKey"
                 type="text"
                 placeholder="XXXX-XXXX-XXXX-XXXX"
                 value={activationKey}
-                onChange={(event) =>
-                  setActivationKey(
-                    event.target.value,
-                  )
-                }
+                onChange={(e) => setActivationKey(e.target.value)}
                 disabled={loading}
+                style={{ width: '100%', padding: '16px', borderRadius: '12px', border: '2px solid #e2e8f0', fontSize: '16px', outline: 'none' }}
               />
-
             </div>
 
             {message && (
-              <div className="activation-message error">
+              <div style={{ padding: '12px', background: '#fee2e2', color: '#b91c1c', borderRadius: '8px', fontSize: '14px', marginBottom: '24px', textAlign: 'center' }}>
                 {message}
               </div>
             )}
 
             <button
               type="submit"
-              className="activation-submit"
               disabled={loading}
+              style={{ width: '100%', background: '#123b72', color: 'white', padding: '16px', borderRadius: '16px', fontSize: '16px', fontWeight: 'bold', border: 'none', marginBottom: '24px' }}
             >
-              {loading
-                ? "Activating..."
-                : "Activate Product"}
-
-              <span>→</span>
+              {loading ? "Activating..." : "Activate Product"}
             </button>
-
           </form>
 
           {/* HELP */}
-
-          <div className="activation-help">
-
-            <span>
-              Need an activation key?
-            </span>
-
-            <strong>
-              Contact Acadex
-            </strong>
-
-            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', marginTop: '12px', background: '#25D366', color: 'white', padding: '12px 24px', borderRadius: '12px', textDecoration: 'none', fontWeight: 'bold', fontSize: '15px', boxShadow: '0 4px 10px rgba(37, 211, 102, 0.3)' }}>
+          <div style={{ textAlign: 'center', marginTop: 'auto', paddingTop: '24px', borderTop: '1px solid #f1f5f9' }}>
+            <p style={{ fontSize: '13px', color: '#64748b', marginBottom: '12px' }}>Need an activation key? Contact Acadex</p>
+            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', width: '100%', background: '#25D366', color: 'white', padding: '16px', borderRadius: '16px', textDecoration: 'none', fontWeight: 'bold', fontSize: '15px' }}>
               Purchase on WhatsApp
             </a>
-
           </div>
 
-          {/* BACK */}
-
-          <Link
-            to="/"
-            className="activation-back"
-          >
+          <Link to="/" style={{ display: 'block', textAlign: 'center', color: '#64748b', textDecoration: 'none', fontSize: '14px', fontWeight: 'bold', marginTop: '24px' }}>
             ← Back to EduDrill
           </Link>
 
@@ -497,140 +401,45 @@ function DesktopActivation() {
            ALREADY ACTIVATED
            ================================================= */
 
-        <div className="activation-already-card">
-
-          <div className="activation-already-icon">
+        <div style={{ background: 'white', borderRadius: '24px', padding: '24px', boxShadow: '0 10px 30px rgba(0,0,0,0.05)', textAlign: 'center' }}>
+          
+          <div style={{ width: '64px', height: '64px', background: '#dcfce7', color: '#16a34a', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '32px', margin: '0 auto 24px auto' }}>
             ✓
           </div>
 
-          <div className="activation-already-heading">
+          <p style={{ color: '#16a34a', fontSize: '12px', fontWeight: 'bold', letterSpacing: '1px', marginBottom: '4px' }}>ACTIVE LICENSE</p>
+          <h1 style={{ fontSize: '24px', color: '#1e293b', marginBottom: '12px' }}>Product Activated</h1>
+          <p style={{ fontSize: '14px', color: '#64748b', lineHeight: '1.5', marginBottom: '32px' }}>This product is linked to an active EduDrill license.</p>
 
-            <span>
-              PRODUCT ACTIVATION
-            </span>
-
-            <h1>
-              Product Already
-              <strong> Activated</strong>
-            </h1>
-
-            <p>
-              This product has already been activated.
-              This installation is linked to an active
-              EduDrill license.
-            </p>
-
-          </div>
-
-          <div className="activation-already-status">
-
-            <span>●</span>
-
-            <strong>
-              ACTIVE LICENSE
-            </strong>
-
-          </div>
-
-          {/* ACTIVATION INFORMATION */}
-
-          <div className="activation-info-box">
-
-            <div className="activation-info-row">
-
+          <div style={{ background: '#f8fafc', borderRadius: '16px', padding: '16px', textAlign: 'left', marginBottom: '32px' }}>
+            
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', paddingBottom: '16px', borderBottom: '1px solid #e2e8f0' }}>
               <div>
-
-                <span>
-                  ACTIVATION KEY
-                </span>
-
-                <strong>
-                  {license.activationKey}
-                </strong>
-
+                <span style={{ fontSize: '11px', color: '#64748b', fontWeight: 'bold' }}>ACTIVATION KEY</span>
+                <strong style={{ display: 'block', fontSize: '14px', color: '#0f172a', marginTop: '4px' }}>{license.activationKey}</strong>
               </div>
-
-              <button
-                type="button"
-                onClick={() =>
-                  copyKey(
-                    license.activationKey,
-                    "activation",
-                  )
-                }
-              >
-                {copied === "activation"
-                  ? "Copied"
-                  : "Copy"}
+              <button onClick={() => copyKey(license.activationKey, "activation")} style={{ background: 'white', border: '1px solid #e2e8f0', borderRadius: '8px', padding: '6px 10px', fontSize: '11px', fontWeight: 'bold', color: '#475569' }}>
+                {copied === "activation" ? "Copied" : "Copy"}
               </button>
-
             </div>
 
-            <div className="activation-info-divider" />
-
-            <div className="activation-info-row">
-
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div>
-
-                <span>
-                  PRODUCT KEY
-                </span>
-
-                <strong>
-                  {license.productKey}
-                </strong>
-
+                <span style={{ fontSize: '11px', color: '#64748b', fontWeight: 'bold' }}>PRODUCT KEY</span>
+                <strong style={{ display: 'block', fontSize: '14px', color: '#0f172a', marginTop: '4px' }}>{license.productKey}</strong>
               </div>
-
-              <button
-                type="button"
-                onClick={() =>
-                  copyKey(
-                    license.productKey,
-                    "product",
-                  )
-                }
-              >
-                {copied === "product"
-                  ? "Copied"
-                  : "Copy"}
+              <button onClick={() => copyKey(license.productKey, "product")} style={{ background: 'white', border: '1px solid #e2e8f0', borderRadius: '8px', padding: '6px 10px', fontSize: '11px', fontWeight: 'bold', color: '#475569' }}>
+                {copied === "product" ? "Copied" : "Copy"}
               </button>
-
             </div>
 
           </div>
 
-          {/* ALREADY ACTIVATED MESSAGE */}
-
-          <div className="activation-already-message">
-
-            <div>
-              ✓
-            </div>
-
-            <p>
-              This product does not need to be
-              activated again.
-            </p>
-
-          </div>
-
-          {/* CLOSE */}
-
-          <button
-            type="button"
-            className="activation-close-button"
-            onClick={closeActivation}
-          >
+          <button onClick={closeActivation} style={{ width: '100%', background: '#f1f5f9', color: '#1e293b', padding: '16px', borderRadius: '16px', fontSize: '16px', fontWeight: 'bold', border: 'none', marginBottom: '16px' }}>
             Close
-            <span>×</span>
           </button>
-
-          <p className="activation-success-note">
-            Your activation information is saved
-            for this installation.
-          </p>
-
+          
+          <p style={{ fontSize: '12px', color: '#94a3b8' }}>Your activation information is safely stored.</p>
         </div>
 
       )}
@@ -639,7 +448,4 @@ function DesktopActivation() {
   )
 }
 
-export default function Activation() {
-  const isMobile = useMobile();
-  return isMobile ? <MobileActivation /> : <DesktopActivation />;
-}
+export default MobileActivation

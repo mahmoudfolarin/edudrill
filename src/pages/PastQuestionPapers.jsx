@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
+import useMobile from "../hooks/useMobile"
+import MobilePastQuestionPapers from "./mobile/MobilePastQuestionPapers"
 
 function PastQuestionPapers() {
+  const { isMobile } = useMobile()
   const { exam, subject, year } = useParams()
 
   const [papers, setPapers] = useState([])
@@ -51,6 +54,10 @@ function PastQuestionPapers() {
               word.charAt(0).toUpperCase() + word.slice(1),
           )
           .join(" ")
+
+  if (isMobile) {
+    return <MobilePastQuestionPapers />
+  }
 
   return (
     <main className="past-papers-page">

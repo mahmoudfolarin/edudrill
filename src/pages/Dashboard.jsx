@@ -1,6 +1,9 @@
 import { Link, useParams } from "react-router-dom"
 
-function Dashboard() {
+import MobileDashboard from "./mobile/MobileDashboard"
+import useMobile from "../hooks/useMobile"
+
+function DesktopDashboard() {
   const { exam } = useParams()
 
   const examName = exam.toUpperCase()
@@ -762,4 +765,7 @@ function Dashboard() {
   )
 }
 
-export default Dashboard
+export default function Dashboard() {
+  const isMobile = useMobile();
+  return isMobile ? <MobileDashboard /> : <DesktopDashboard />;
+}

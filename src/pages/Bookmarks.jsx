@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import useMobile from "../hooks/useMobile";
+import MobileBookmarks from "./mobile/MobileBookmarks";
 
 export default function Bookmarks() {
+  const { isMobile } = useMobile();
   const { exam, subject } = useParams();
   const [bookmarks, setBookmarks] = useState([]);
 
@@ -26,6 +29,10 @@ export default function Bookmarks() {
       console.error("Error deleting bookmark:", err);
     }
   };
+
+  if (isMobile) {
+    return <MobileBookmarks />;
+  }
 
   return (
     <main className="dashboard-layout" style={{ background: '#f8fafc', minHeight: '100vh', padding: '40px', fontFamily: "'Inter', sans-serif" }}>

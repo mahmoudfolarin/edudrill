@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useMobile from "../hooks/useMobile";
+import MobileStudentOnboarding from "./mobile/MobileStudentOnboarding";
 
 function StudentOnboarding() {
+  const { isMobile } = useMobile();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -42,11 +45,16 @@ const response = await fetch(`${API_URL}/api/auth/onboard`, {
         setError(data.message || "Something went wrong.");
       }
     } catch (err) {
+      console.error(err);
       setError("Network error. Please try again.");
     } finally {
       setLoading(false);
     }
   };
+
+  if (isMobile) {
+    return <MobileStudentOnboarding />;
+  }
 
   return (
     <main style={{ 

@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import useMobile from "../hooks/useMobile";
+import MobilePractice from "./mobile/MobilePractice";
 
 function Practice() {
+  const { isMobile } = useMobile();
 
 
   const { exam, subject, topicId } = useParams()
@@ -114,6 +117,10 @@ function Practice() {
 
       return score
     }, 0)
+  }
+
+  if (isMobile) {
+    return <MobilePractice />
   }
 
   if (loading) {
