@@ -34,6 +34,7 @@ function ExamCBT() {
   const [showCalculator, setShowCalculator] = useState(false);
   const [showDictionary, setShowDictionary] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [showMobileNav, setShowMobileNav] = useState(false);
 
   const [selectedLitTexts, setSelectedLitTexts] = useState([]);
 
@@ -1357,7 +1358,11 @@ function ExamCBT() {
           </div>
 
           {/* Premium Side Navigation */}
-          <div className="question-navigator" style={{ width: '340px', background: 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(10px)', borderLeft: `1px solid rgba(255,255,255,0.2)`, display: 'flex', flexDirection: 'column', zIndex: 10 }}>
+          <div className={`question-navigator ${showMobileNav ? 'open' : ''}`} style={{ width: '340px', background: 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(10px)', borderLeft: `1px solid rgba(255,255,255,0.2)`, display: 'flex', flexDirection: 'column', zIndex: 100 }}>
+            
+            {/* Mobile Close Button */}
+            <button className="mobile-nav-close" onClick={() => setShowMobileNav(false)}>×</button>
+
             <div style={{ padding: '32px 24px', borderBottom: `1px solid rgba(0,0,0,0.05)`, background: 'rgba(240, 249, 255, 0.7)' }}>
               <h3 style={{ margin: '0 0 20px 0', color: theme.primary, fontSize: '18px', fontWeight: '800' }}>Question Navigator</h3>
               
@@ -1437,6 +1442,15 @@ function ExamCBT() {
           </div>
 
         </div>
+        
+        {/* Floating Action Button for Mobile */}
+        <button className="mobile-fab" onClick={() => setShowMobileNav(true)}>
+          <span style={{fontSize: '24px'}}>☰</span>
+        </button>
+
+        {/* Mobile Overlay */}
+        {showMobileNav && <div className="mobile-overlay" onClick={() => setShowMobileNav(false)}></div>}
+
         {showCalculator && <Calculator onClose={() => setShowCalculator(false)} />}
         {showDictionary && <Dictionary onClose={() => setShowDictionary(false)} />}
     </main>

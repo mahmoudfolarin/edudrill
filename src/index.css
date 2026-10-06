@@ -13892,6 +13892,92 @@ body {
   }
 }
 
+/* Mobile Navigator Drawer (Hidden on Desktop) */
+.mobile-fab, .mobile-overlay, .mobile-nav-close {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* Hide the desktop navigator and turn it into an off-canvas drawer */
+  .question-navigator {
+    position: fixed !important;
+    top: 0 !important;
+    right: -100% !important; /* hidden by default */
+    bottom: 0 !important;
+    width: 300px !important;
+    height: 100vh !important;
+    background: #ffffff !important;
+    border-left: 1px solid rgba(0,0,0,0.1) !important;
+    transition: right 0.3s ease-in-out !important;
+    z-index: 1000 !important;
+    box-shadow: -4px 0 15px rgba(0,0,0,0.1);
+  }
+
+  .question-navigator.open {
+    right: 0 !important;
+  }
+
+  .mobile-fab {
+    display: flex;
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #123b72;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    box-shadow: 0 4px 15px rgba(18, 59, 114, 0.4);
+    cursor: pointer;
+    z-index: 900;
+    transition: transform 0.2s ease;
+  }
+  
+  .mobile-fab:active {
+    transform: scale(0.95);
+  }
+
+  .mobile-nav-close {
+    display: block;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: transparent;
+    border: none;
+    font-size: 28px;
+    color: #4b5563;
+    cursor: pointer;
+    padding: 8px;
+    line-height: 1;
+  }
+
+  .mobile-overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.4);
+    z-index: 950;
+    animation: fadeIn 0.3s ease;
+  }
+
+  /* Make sure main question area uses full width on mobile */
+  .exam-cbt-page .exam-container > div[style*="flex: 1"],
+  .practice-page .practice-container > div[style*="flex: 1"] {
+    flex-direction: column !important;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 @media (max-width: 420px) {
   /* Ensure side navigation fits screen width */
   .exam-cbt-page .exam-container,
