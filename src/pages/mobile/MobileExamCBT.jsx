@@ -159,6 +159,58 @@ function MobileExamCBT() {
     ::-webkit-scrollbar-thumb:hover {
       background: ${theme.accent}; 
     }
+
+    /* Mobile UI Components */
+    .question-navigator {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 280px !important;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      z-index: 1000 !important;
+    }
+    .question-navigator.open {
+      transform: translateX(0);
+    }
+    .mobile-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+    }
+    .mobile-fab {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: ${theme.primary};
+      color: white;
+      border: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 900;
+      cursor: pointer;
+    }
+    .mobile-nav-close {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: none;
+      border: none;
+      font-size: 28px;
+      color: ${theme.textMain};
+      cursor: pointer;
+      z-index: 1001;
+    }
   `;
   
   const handleSubjectToggle = (subjectId) => {
@@ -1084,32 +1136,21 @@ function MobileExamCBT() {
        <style>{customStyles}</style>
        
        <header style={{ height: '70px', padding: '0 24px', background: `linear-gradient(90deg, ${theme.primary}, ${theme.secondary})`, color: theme.surface, display: 'flex', justifyContent: 'space-between', alignItems: 'center', boxShadow: '0 4px 20px rgba(11,36,71,0.15)', zIndex: 50 }}>
-           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-             <div style={{ width: 36, height: 36, background: 'rgba(255,255,255,0.1)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '18px' }}><img src="/assets/edudrill_logo.jpg" alt="EduDrill" style={{ width: "100%", height: "100%", borderRadius: "inherit" }} /></div>
+           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+             <div style={{ width: 28, height: 28, background: 'rgba(255,255,255,0.1)', borderRadius: 6, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '14px' }}><img src="/assets/edudrill_logo.jpg" alt="EduDrill" style={{ width: "100%", height: "100%", borderRadius: "inherit" }} /></div>
              <div>
-               <h1 style={{ margin: 0, fontSize: '16px', fontWeight: '600' }}>EduDrill CBT</h1>
-               <span style={{ fontSize: '12px', opacity: 0.8 }}>{exam?.toUpperCase()} Module</span>
+               <h1 style={{ margin: 0, fontSize: '14px', fontWeight: '600' }}>EduDrill CBT</h1>
              </div>
-             {isSubmitted && <span style={{ background: theme.surface, color: theme.primary, padding: '4px 10px', borderRadius: 16, fontSize: '11px', fontWeight: 'bold', marginLeft: '12px', letterSpacing: '1px' }}>REVIEW MODE</span>}
            </div>
            
-           <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
-             {!isSubmitted && (
-               <div style={{ fontSize: '13px', padding: '8px 16px', background: 'rgba(255,255,255,0.1)', borderRadius: '20px', display: 'flex', gap: '16px' }}>
-                 <span><strong>N</strong> Next</span>
-                 <span><strong>P</strong> Prev</span>
-                 <span><strong>A-D</strong> Select</span>
-                 <span><strong>S</strong> Submit</span>
-               </div>
-             )}
+           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               {(exam === 'jamb' || ['General Mathematics', 'Further Mathematics', 'Physics', 'Chemistry', 'Geography'].includes(currentQ?.subjectName)) && (
                 <button 
                   onClick={() => setShowCalculator(!showCalculator)} 
                   className="premium-btn"
-                  style={{ background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.4)', color: theme.surface, padding: '8px 16px', borderRadius: 8, cursor: 'pointer', fontWeight: '600', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '6px' }}
+                  style={{ background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.4)', color: theme.surface, padding: '6px', borderRadius: 8, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 >
-                  <img src="/assets/icons/calculator.svg" alt="calc" className="w-4 h-4" style={{ width: '16px', height: '16px', filter: 'invert(1)' }} />
-                  Calculator
+                  <img src="/assets/icons/calculator.svg" alt="calc" style={{ width: '18px', height: '18px', filter: 'invert(1)' }} />
                 </button>
               )}
 
@@ -1117,18 +1158,17 @@ function MobileExamCBT() {
                 <button 
                   onClick={() => setShowDictionary(!showDictionary)} 
                   className="premium-btn"
-                  style={{ background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.4)', color: theme.surface, padding: '8px 16px', borderRadius: 8, cursor: 'pointer', fontWeight: '600', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '6px' }}
+                  style={{ background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.4)', color: theme.surface, padding: '6px', borderRadius: 8, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477-4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
-                  Dictionary
+                  <svg style={{ width: '18px', height: '18px' }} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477-4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
                 </button>
               )}
-<button 
+             <button 
                onClick={() => { if(window.confirm("Are you sure you want to exit this exam?")) setIsStarted(false); }} 
                className="premium-btn"
-               style={{ background: 'transparent', border: '1px solid rgba(255,255,255,0.3)', color: theme.surface, padding: '8px 20px', borderRadius: 8, cursor: 'pointer', fontWeight: '600', fontSize: '14px' }}
+               style={{ background: 'transparent', border: 'none', color: theme.surface, padding: '6px', borderRadius: 8, cursor: 'pointer', fontWeight: '600', fontSize: '24px', lineHeight: 1 }}
              >
-               Exit CBT
+               ×
              </button>
            </div>
         </header>
@@ -1136,7 +1176,7 @@ function MobileExamCBT() {
         <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
           
           {/* Main Question Area */}
-          <div style={{ flex: 1, padding: '40px 5%', overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
+          <div style={{ flex: 1, padding: '20px 16px', overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
             
             {isSubmitted && currentIndex === 0 && (
               <div className="fade-in" style={{ maxWidth: 900, margin: '0 auto 32px', width: '100%', background: 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(10px)', padding: '32px', borderRadius: 24, textAlign: 'center', border: `1px solid rgba(255,255,255,0.4)`, boxShadow: '0 10px 30px rgba(0,0,0,0.15)' }}>
@@ -1147,16 +1187,16 @@ function MobileExamCBT() {
             )}
 
             {!isSubmitted && (
-              <div className="fade-in" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '12px', marginBottom: '24px', background: 'rgba(255, 255, 255, 0.9)', backdropFilter: 'blur(10px)', padding: '16px 32px', borderRadius: '16px', maxWidth: '300px', margin: '0 auto 24px', border: `2px solid ${timeLeft < 300 ? '#93c5fd' : theme.border}`, boxShadow: '0 4px 15px rgba(0,0,0,0.1)' }}>
-              <img src="/assets/icons/clock.svg" alt="clock" style={{ width: 24, height: 24, filter: timeLeft < 300 ? 'invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%)' : 'none' }} />
-                <span style={{ fontSize: '24px', fontWeight: '800', color: timeLeft < 300 ? '#93c5fd' : theme.primary, fontFamily: 'monospace' }}>
+              <div className="fade-in" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px', marginBottom: '20px', background: 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(10px)', padding: '12px 24px', borderRadius: '16px', maxWidth: '200px', margin: '0 auto 20px', border: `2px solid ${timeLeft < 300 ? '#93c5fd' : theme.border}`, boxShadow: '0 4px 10px rgba(0,0,0,0.05)' }}>
+              <img src="/assets/icons/clock.svg" alt="clock" style={{ width: 20, height: 20, filter: timeLeft < 300 ? 'invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%)' : 'none' }} />
+                <span style={{ fontSize: '18px', fontWeight: '800', color: timeLeft < 300 ? '#93c5fd' : theme.primary, fontFamily: 'monospace' }}>
                   {formatTime(timeLeft)}
                 </span>
               </div>
             )}
 
             {isJamb && examSubjects.length > 1 && (
-              <div className="fade-in" style={{ display: 'flex', gap: '8px', marginBottom: '24px', flexWrap: 'wrap', maxWidth: 900, margin: '0 auto 24px', width: '100%' }}>
+              <div className="fade-in" style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '8px', marginBottom: '16px', width: '100%', scrollbarWidth: 'none' }}>
                 {examSubjects.map(sub => {
                   const firstIndex = questions.findIndex(q => q.subjectName === sub);
                   const isActive = sub === currentSubject;
@@ -1165,16 +1205,16 @@ function MobileExamCBT() {
                       key={sub}
                       onClick={() => setCurrentIndex(firstIndex)}
                       style={{
-                        padding: '10px 20px',
+                        padding: '8px 16px',
                         background: isActive ? theme.primary : 'rgba(255,255,255,0.7)',
                         color: isActive ? theme.surface : theme.primary,
                         border: `1px solid ${isActive ? theme.primary : 'rgba(255,255,255,0.4)'}`,
-                        borderRadius: '12px',
+                        borderRadius: '20px',
                         cursor: 'pointer',
                         fontWeight: '700',
-                        fontSize: '14px',
-                        transition: 'all 0.2s',
-                        boxShadow: isActive ? '0 8px 16px rgba(11,36,71,0.15)' : '0 4px 6px rgba(0,0,0,0.05)'
+                        fontSize: '13px',
+                        whiteSpace: 'nowrap',
+                        boxShadow: isActive ? '0 4px 10px rgba(11,36,71,0.1)' : 'none'
                       }}
                     >
                       {sub}
@@ -1184,19 +1224,18 @@ function MobileExamCBT() {
               </div>
             )}
 
-            <div className="fade-in" key={currentIndex} style={{ flex: 1, maxWidth: 900, width: '100%', margin: '0 auto', background: 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(10px)', padding: '48px', borderRadius: 24, boxShadow: '0 30px 60px rgba(0, 0, 0, 0.15)', border: `1px solid rgba(255,255,255,0.4)`, display: 'flex', flexDirection: 'column' }}>
+            <div className="fade-in" key={currentIndex} style={{ flex: 1, width: '100%', background: 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(10px)', padding: '24px 16px', borderRadius: 20, boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)', border: `1px solid rgba(255,255,255,0.4)`, display: 'flex', flexDirection: 'column' }}>
                
-               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px' }}>
-                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                   <span style={{ background: theme.light, color: theme.primary, padding: '8px 16px', borderRadius: 12, fontWeight: '700', fontSize: '15px' }}>Question {localIndex + 1} / {totalInSubject}</span>
+               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                   <span style={{ background: theme.light, color: theme.primary, padding: '6px 12px', borderRadius: 12, fontWeight: '700', fontSize: '13px' }}>{localIndex + 1} / {totalInSubject}</span>
                    {currentQ?.litText && (
-                     <span style={{ background: theme.accent, color: theme.surface, padding: '8px 16px', borderRadius: 12, fontWeight: '700', fontSize: '15px' }}>{currentQ.litText}</span>
+                     <span style={{ background: theme.accent, color: theme.surface, padding: '6px 12px', borderRadius: 12, fontWeight: '700', fontSize: '12px' }}>{currentQ.litText}</span>
                    )}
                  </div>
-                 <span style={{ fontWeight: '600', color: theme.accent, fontSize: '15px', padding: '6px 16px', border: `1px solid ${theme.border}`, borderRadius: 20 }}>{currentQ?.subjectName}</span>
                </div>
                
-               <p style={{ fontSize: '22px', margin: '0 0 40px 0', color: theme.primary, lineHeight: 1.6, fontWeight: '500' }}>{currentQ?.question}</p>
+               <p style={{ fontSize: '16px', margin: '0 0 24px 0', color: theme.primary, lineHeight: 1.5, fontWeight: '500' }}>{currentQ?.question}</p>
                
                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', flex: 1 }}>
                  {currentQ?.options?.map((opt, i) => {
@@ -1247,7 +1286,7 @@ function MobileExamCBT() {
 
                     return (
                       <label key={i} className={isSubmitted ? "" : "option-label"} style={{ 
-                        padding: '16px 24px', 
+                        padding: '12px 16px', 
                         background: bg, 
                         color: color, 
                         borderRadius: 16, 
@@ -1255,9 +1294,9 @@ function MobileExamCBT() {
                         display: 'flex', 
                         alignItems: 'center', 
                         border: border, 
-                        fontSize: '16px',
+                        fontSize: '14px',
                         transition: 'all 0.2s',
-                        boxShadow: isSelected && !isSubmitted ? '0 4px 12px rgba(87,108,188,0.1)' : 'none'
+                        boxShadow: isSelected && !isSubmitted ? '0 2px 8px rgba(87,108,188,0.1)' : 'none'
                       }}>
                          <input 
                             type="radio" 
@@ -1270,9 +1309,9 @@ function MobileExamCBT() {
                          />
                          <span style={{ 
                            fontWeight: '700', 
-                           marginRight: '20px', 
-                           width: '32px', 
-                           height: '32px', 
+                           marginRight: '12px', 
+                           width: '28px', 
+                           height: '28px', 
                            display: 'flex', 
                            alignItems: 'center', 
                            justifyContent: 'center', 
@@ -1346,23 +1385,23 @@ function MobileExamCBT() {
                })()}
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '32px', maxWidth: 900, width: '100%', margin: '32px auto 0' }}>
+            <div style={{ display: 'flex', gap: '8px', marginTop: '24px', width: '100%' }}>
                <button 
                  className="premium-btn"
                  onClick={goPrev} 
                  disabled={currentIndex === 0}
-                 style={{ padding: '16px 32px', background: currentIndex === 0 ? theme.border : theme.surface, color: currentIndex === 0 ? theme.textMuted : theme.primary, border: `1px solid ${theme.border}`, borderRadius: 12, cursor: currentIndex === 0 ? 'not-allowed' : 'pointer', fontSize: '16px', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '8px' }}
+                 style={{ flex: 1, padding: '12px', background: currentIndex === 0 ? theme.border : theme.surface, color: currentIndex === 0 ? theme.textMuted : theme.primary, border: `1px solid ${theme.border}`, borderRadius: 12, fontSize: '14px', fontWeight: '700', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                >
-                 <span>←</span> Previous
+                 Prev
                </button>
 
                {!isSubmitted && (
                  <button 
                    className="premium-btn"
                    onClick={() => setShowConfirm(true)}
-                   style={{ padding: '16px 48px', background: theme.surface, color: theme.primary, border: `2px solid ${theme.primary}`, borderRadius: 12, cursor: 'pointer', fontSize: '16px', fontWeight: '800' }}
+                   style={{ flex: 1, padding: '12px', background: theme.surface, color: theme.primary, border: `2px solid ${theme.primary}`, borderRadius: 12, fontSize: '14px', fontWeight: '800' }}
                  >
-                   Submit Exam (S)
+                   Submit
                  </button>
                )}
 
@@ -1370,9 +1409,9 @@ function MobileExamCBT() {
                  className="premium-btn"
                  onClick={goNext} 
                  disabled={currentIndex === questions.length - 1}
-                 style={{ padding: '16px 40px', background: currentIndex === questions.length - 1 ? theme.border : theme.primary, color: currentIndex === questions.length - 1 ? theme.textMuted : theme.surface, border: 'none', borderRadius: 12, cursor: currentIndex === questions.length - 1 ? 'not-allowed' : 'pointer', fontSize: '16px', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '8px', boxShadow: currentIndex === questions.length - 1 ? 'none' : '0 8px 16px rgba(11,36,71,0.2)' }}
+                 style={{ flex: 1, padding: '12px', background: currentIndex === questions.length - 1 ? theme.border : theme.primary, color: currentIndex === questions.length - 1 ? theme.textMuted : theme.surface, border: 'none', borderRadius: 12, fontSize: '14px', fontWeight: '700', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                >
-                 Next <span>→</span>
+                 Next
                </button>
             </div>
 

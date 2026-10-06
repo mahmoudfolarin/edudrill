@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { isProductActivated } from "../../components/ActivationLock";
+import { isProductActivated, FREE_SUBJECTS } from "../../components/ActivationLock";
 import { FaLock } from "react-icons/fa";
 
 export default function MobilePastQuestionYears() {
@@ -93,7 +93,7 @@ export default function MobilePastQuestionYears() {
             {years.map((year, index) => {
               const yearPapers = groupedYears[year] || [];
               const hasVerified = yearPapers.some(p => p.verification_status === "verified");
-              const isLocked = !isProductActivated() && index >= 4;
+              const isLocked = !isProductActivated() && !FREE_SUBJECTS.includes(subject) && index >= 4;
 
               if (isLocked) {
                 return (

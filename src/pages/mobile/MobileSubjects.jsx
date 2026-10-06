@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { isProductActivated, FREE_SUBJECTS } from "../../components/ActivationLock";
+import { FaLock } from "react-icons/fa";
 
 function MobileSubjects() {
   const { exam } = useParams();
@@ -152,40 +154,60 @@ function MobileSubjects() {
                   {group}
                 </h2>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: '16px' }}>
-                  {groupedSubjects[group].map((subject, index) => (
+                  {groupedSubjects[group].map((subject, index) => {
+                    const isAllowed = isProductActivated() || FREE_SUBJECTS.includes(subject.slug || subject.id);
+                    return (
                     <Link
                       key={subject.id}
+                      onClick={(e) => {
+                        if (!isAllowed) {
+                          e.preventDefault();
+                          alert("Not yet Activated. Please activate to unlock this subject.");
+                        }
+                      }}
                       to={`/dashboard/${exam}/subjects/${subject.slug}`}
                       style={{
-                        background: 'white',
+                        background: !isAllowed ? '#f1f5f9' : 'white',
                         border: '1px solid #e2e8f0',
                         borderRadius: '20px',
                         padding: '20px',
                         textDecoration: 'none',
-                        color: '#1e293b',
+                        color: !isAllowed ? '#94a3b8' : '#1e293b',
                         display: 'flex',
                         flexDirection: 'column',
                         position: 'relative',
-                        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)'
+                        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)',
+                        opacity: !isAllowed ? 0.7 : 1
                       }}
                     >
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px' }}>
-                        <div style={{ fontSize: '32px', background: '#f0f9ff', width: '48px', height: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px' }}>
+                        <div style={{ fontSize: '32px', background: '#f0f9ff', width: '48px', height: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '12px', opacity: !isAllowed ? 0.5 : 1 }}>
                           {subject.icon || "📚"}
                         </div>
-                        {subject.is_new && (
+                        {subject.is_new && isAllowed && (
                           <span style={{ background: '#fee2e2', color: '#ef4444', fontSize: '10px', fontWeight: 'bold', padding: '2px 6px', borderRadius: '8px' }}>
                             NEW
                           </span>
                         )}
+                        {!isAllowed && (
+                          <FaLock style={{ color: '#cbd5e1', fontSize: '20px' }} />
+                        )}
                       </div>
                       <h4 style={{ margin: '0 0 8px 0', fontSize: '15px', fontWeight: '700', lineHeight: '1.2' }}>{subject.name}</h4>
-                      <div style={{ marginTop: 'auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span style={{ fontSize: '12px', color: '#64748b', fontWeight: '600' }}>Study</span>
-                        <span style={{ color: '#123b72', fontWeight: 'bold' }}>→</span>
-                      </div>
+                      
+                      {!isAllowed && (
+                        <div style={{ marginTop: 'auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <span style={{ fontSize: '11px', color: '#ef4444', fontWeight: 'bold' }}>Not yet Activated</span>
+                        </div>
+                      )}
+                      {isAllowed && (
+                        <div style={{ marginTop: 'auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <span style={{ fontSize: '12px', color: '#64748b', fontWeight: '600' }}>Study</span>
+                          <span style={{ color: '#123b72', fontWeight: 'bold' }}>→</span>
+                        </div>
+                      )}
                     </Link>
-                  ))}
+                  )})}
                 </div>
               </div>
             ))}

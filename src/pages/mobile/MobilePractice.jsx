@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { ActivationLock, FREE_SUBJECTS } from "../../components/ActivationLock";
+import { ActivationLock, FREE_SUBJECTS, isProductActivated } from "../../components/ActivationLock";
 
 export default function MobilePractice() {
   const { exam, subject, topicId } = useParams();
@@ -79,7 +79,7 @@ export default function MobilePractice() {
     setSubmitted(false);
   };
 
-  const isAllowed = FREE_SUBJECTS.includes(subject);
+  const isAllowed = isProductActivated() || FREE_SUBJECTS.includes(subject);
   if (!isAllowed) {
     return (
       <main style={{ minHeight: '100vh', background: '#f8fafc', display: 'flex', flexDirection: 'column' }}>

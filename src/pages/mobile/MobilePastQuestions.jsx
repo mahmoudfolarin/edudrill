@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { isProductActivated, FREE_SUBJECTS } from "../../components/ActivationLock";
+import { FaLock } from "react-icons/fa";
 
 export default function MobilePastQuestions() {
   const { exam } = useParams();
@@ -75,12 +77,20 @@ export default function MobilePastQuestions() {
           </div>
         ) : (
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px' }}>
-            {subjects.map((subject) => (
+            {subjects.map((subject) => {
+              const isAllowed = isProductActivated() || FREE_SUBJECTS.includes(subject.slug || subject.id);
+              return (
               <Link
                 key={subject.id}
+                onClick={(e) => {
+                  if (!isAllowed) {
+                    e.preventDefault();
+                    alert("Not yet Activated. Please activate to unlock this subject.");
+                  }
+                }}
                 to={`/dashboard/${exam}/past-questions/${subject.slug}`}
                 style={{
-                  background: 'white',
+                  background: !isAllowed ? '#f1f5f9' : 'white',
                   borderRadius: '16px',
                   padding: '16px',
                   textDecoration: 'none',
@@ -88,18 +98,26 @@ export default function MobilePastQuestions() {
                   flexDirection: 'column',
                   gap: '12px',
                   boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)',
-                  border: '1px solid #f1f5f9'
+                  border: '1px solid #f1f5f9',
+                  opacity: !isAllowed ? 0.7 : 1
                 }}
               >
-                <div style={{ width: '40px', height: '40px', background: '#f0f9ff', color: '#0ea5e9', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px' }}>
-                  {subject.icon || "📘"}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                  <div style={{ width: '40px', height: '40px', background: '#f0f9ff', color: '#0ea5e9', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px', opacity: !isAllowed ? 0.5 : 1 }}>
+                    {subject.icon || "📘"}
+                  </div>
+                  {!isAllowed && <FaLock style={{ color: '#cbd5e1', fontSize: '16px' }} />}
                 </div>
                 <div>
-                  <h3 style={{ margin: '0 0 4px 0', fontSize: '15px', color: '#1e293b', fontWeight: '800', lineHeight: 1.2 }}>{subject.name}</h3>
-                  <div style={{ fontSize: '11px', color: '#64748b', fontWeight: '600', textTransform: 'uppercase' }}>{subject.subject_group || "Subject"}</div>
+                  <h3 style={{ margin: '0 0 4px 0', fontSize: '15px', color: !isAllowed ? '#94a3b8' : '#1e293b', fontWeight: '800', lineHeight: 1.2 }}>{subject.name}</h3>
+                  {!isAllowed ? (
+                    <div style={{ fontSize: '11px', color: '#ef4444', fontWeight: 'bold' }}>Not yet Activated</div>
+                  ) : (
+                    <div style={{ fontSize: '11px', color: '#64748b', fontWeight: '600', textTransform: 'uppercase' }}>{subject.subject_group || "Subject"}</div>
+                  )}
                 </div>
               </Link>
-            ))}
+            )})}
           </div>
         )}
       </div>
