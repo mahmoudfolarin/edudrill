@@ -22,7 +22,10 @@ function EduDrillLogo() {
   )
 }
 
-function Home() {
+import MobileHome from "./mobile/MobileHome";
+import { useMobile } from "../hooks/useMobile";
+
+function DesktopHome() {
   const testimonials = [img1, img2, img3, img4, img5, img6, img7, img8, img1, img2];
   
   const testimonialsData = [
@@ -201,4 +204,7 @@ function Home() {
   )
 }
 
-export default Home
+export default function Home() {
+  const isMobile = useMobile();
+  return isMobile ? <MobileHome /> : <DesktopHome />;
+}
