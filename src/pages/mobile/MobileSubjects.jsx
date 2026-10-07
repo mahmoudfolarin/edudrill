@@ -154,7 +154,7 @@ function MobileSubjects() {
                   {group}
                 </h2>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: '16px' }}>
-                  {groupedSubjects[group].map((subject, index) => {
+                  {groupedSubjects[group].map((subject) => {
                     const isAllowed = isProductActivated() || FREE_SUBJECTS.includes(subject.slug || subject.id);
                     return (
                     <Link

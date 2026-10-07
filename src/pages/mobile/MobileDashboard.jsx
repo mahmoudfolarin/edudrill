@@ -1,8 +1,39 @@
 import { Link, useParams } from "react-router-dom"
+import { useState, useEffect } from "react"
 
 function MobileDashboard() {
   const { exam } = useParams()
   const examName = exam.toUpperCase()
+
+  const [performances, setPerformances] = useState([]);
+  const [bookmarksCount, setBookmarksCount] = useState(0);
+
+  useEffect(() => {
+    fetch('/api/user/performance')
+      .then(res => res.json())
+      .then(data => {
+        const filtered = data.filter(p => p.exam === exam);
+        setPerformances(filtered);
+      })
+      .catch(err => console.error(err));
+      
+    fetch('/api/user/bookmarks')
+      .then(res => res.json())
+      .then(data => {
+        const filtered = data.filter(b => b.exam === exam);
+        setBookmarksCount(filtered.length);
+      })
+      .catch(err => console.error(err));
+  }, [exam]);
+
+  const testsCompleted = performances.length;
+  const questionsPracticed = performances.reduce((acc, p) => acc + (p.total || 0), 0);
+  const topicsLearned = [...new Set(performances.map(p => p.topic_id).filter(Boolean))].length;
+  
+  const overallPercentage = testsCompleted > 0 
+    ? Math.round(performances.reduce((acc, p) => acc + p.percentage, 0) / testsCompleted) 
+    : 0;
+
 
   const actions = [
     { title: "Learn", desc: "Explore subjects and topics", icon: "book.svg", link: "subjects", color: "#e0e7ff", textColor: "#4338ca" },

@@ -78,7 +78,7 @@ function MobileExamPractice() {
     }
   ];
 
-  const adImages = [Ad1, Ad2, Ad3, Ad4, Ad5];
+
   const [isLoading, setIsLoading] = useState(false);
 
   // Premium UI Theme - Strictly Blues
@@ -300,9 +300,9 @@ function MobileExamPractice() {
   // Auto-start if a specific subject was passed in the URL
   useEffect(() => {
     if (subjectParam && !isPracticing && questions.length === 0) {
-      // eslint-disable-next-line
       startPractice(subjectParam);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [subjectParam]);
 
   const handleAnswerSelect = (qIndex, answer) => {
@@ -359,6 +359,7 @@ function MobileExamPractice() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isPracticing, currentIndex, questions]);
 
 

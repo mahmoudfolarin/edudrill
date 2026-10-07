@@ -26,7 +26,7 @@ const API_URL = rawUrl.replace(/\\+$/, '');
       } else {
         setError(data.message || "Invalid credentials or not an admin.")
       }
-    } catch (err) {
+    } catch {
       setError("Server error. Please try again later.")
     }
   }
