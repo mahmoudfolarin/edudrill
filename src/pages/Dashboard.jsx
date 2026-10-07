@@ -1,12 +1,42 @@
-import { Link, useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 import MobileDashboard from "./mobile/MobileDashboard"
 import useMobile from "../hooks/useMobile"
 
 function DesktopDashboard() {
   const { exam } = useParams()
-
   const examName = exam.toUpperCase()
+
+  const [performances, setPerformances] = useState([]);
+  const [bookmarksCount, setBookmarksCount] = useState(0);
+
+  useEffect(() => {
+    fetch('/api/user/performance')
+      .then(res => res.json())
+      .then(data => {
+        const filtered = data.filter(p => p.exam === exam);
+        setPerformances(filtered);
+      })
+      .catch(err => console.error(err));
+      
+    fetch('/api/user/bookmarks')
+      .then(res => res.json())
+      .then(data => {
+        const filtered = data.filter(b => b.exam === exam);
+        setBookmarksCount(filtered.length);
+      })
+      .catch(err => console.error(err));
+  }, [exam]);
+
+  const testsCompleted = performances.length;
+  const questionsPracticed = performances.reduce((acc, p) => acc + (p.total || 0), 0);
+  const topicsLearned = [...new Set(performances.map(p => p.topic_id).filter(Boolean))].length;
+  
+  const overallPercentage = testsCompleted > 0 
+    ? Math.round(performances.reduce((acc, p) => acc + p.percentage, 0) / testsCompleted) 
+    : 0;
+
 
   return (
     <main className="dashboard-page">
@@ -92,7 +122,7 @@ function DesktopDashboard() {
                 OVERALL PROGRESS
               </span>
 
-              <h2>0%</h2>
+              <h2>{overallPercentage}%</h2>
 
               <p>
                 You haven't started this preparation yet.
@@ -104,7 +134,7 @@ function DesktopDashboard() {
             <div className="progress-ring">
 
               <div>
-                <strong>0%</strong>
+                <strong>{overallPercentage}%</strong>
                 <span>Complete</span>
               </div>
 
