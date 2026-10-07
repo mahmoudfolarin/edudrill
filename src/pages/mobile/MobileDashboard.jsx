@@ -40,7 +40,7 @@ function MobileDashboard() {
         <span style={{ background: 'rgba(255,255,255,0.2)', padding: '4px 8px', borderRadius: '8px', fontSize: '10px', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px' }}>OVERALL PROGRESS</span>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginTop: '16px' }}>
           <div>
-            <h1 style={{ fontSize: '36px', margin: 0, fontWeight: '800' }}>0%</h1>
+            <h1 style={{ fontSize: '36px', margin: 0, fontWeight: '800' }}>{overallPercentage}%</h1>
             <p style={{ margin: '4px 0 0 0', fontSize: '14px', color: '#bfdbfe' }}>Complete</p>
           </div>
           <Link to={`/dashboard/${exam}/subjects`} style={{ background: 'white', color: '#1e40af', padding: '10px 16px', borderRadius: '12px', textDecoration: 'none', fontWeight: 'bold', fontSize: '14px' }}>
@@ -52,10 +52,10 @@ function MobileDashboard() {
       {/* STATS ROW */}
       <div style={{ display: 'flex', gap: '12px', overflowX: 'auto', padding: '0 16px', scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
         {[
-          { label: "Questions", val: "0" },
-          { label: "Tests", val: "0" },
-          { label: "Topics", val: "0" },
-          { label: "Bookmarks", val: "0" }
+          { label: "Questions", val: questionsPracticed },
+          { label: "Tests", val: testsCompleted },
+          { label: "Topics", val: topicsLearned },
+          { label: "Bookmarks", val: bookmarksCount }
         ].map(stat => (
           <div key={stat.label} style={{ minWidth: '100px', background: 'white', padding: '16px', borderRadius: '16px', border: '1px solid #e2e8f0', flexShrink: 0 }}>
             <strong style={{ display: 'block', fontSize: '20px', color: '#1e293b' }}>{stat.val}</strong>

@@ -146,22 +146,22 @@ function DesktopDashboard() {
           <div className="progress-stats">
 
             <div>
-              <strong>0</strong>
+              <strong>{questionsPracticed}</strong>
               <span>Questions Practiced</span>
             </div>
 
             <div>
-              <strong>0</strong>
+              <strong>{testsCompleted}</strong>
               <span>Tests Completed</span>
             </div>
 
             <div>
-              <strong>0</strong>
+              <strong>{topicsLearned}</strong>
               <span>Topics Learned</span>
             </div>
 
             <div>
-              <strong>0</strong>
+              <strong>{bookmarksCount}</strong>
               <span>Bookmarks</span>
             </div>
 
