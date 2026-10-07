@@ -6,6 +6,7 @@ import Ad2 from "../../assets/edudrill_ad_2.jpg";
 import Ad3 from "../../assets/edudrill_ad_3.jpg";
 import Ad4 from "../../assets/edudrill_ad_4.jpg";
 import Ad5 from "../../assets/edudrill_ad_5.jpg";
+import StudentsBg from "../../assets/students_bg.jpg";
 import Calculator from "../../components/Calculator";
 import Dictionary from "../../components/Dictionary";
 import { ActivationLock, FREE_SUBJECTS, isProductActivated } from "../../components/ActivationLock";
