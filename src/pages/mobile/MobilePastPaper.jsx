@@ -67,7 +67,8 @@ export default function MobilePastPaper() {
           topic_id: `${year} - ${paper.paper_title}`,
           score,
           total: paper.questions.length,
-          percentage
+          percentage,
+          user_id: getUserIdentifier()
         })
       });
     } catch (err) {

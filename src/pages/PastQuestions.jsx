@@ -43,7 +43,7 @@ function PastQuestions() {
     }
 
     fetchSubjects()
-  }, [])
+  }, [exam])
   if (isMobile) return <MobilePastQuestions />;
 
   return (

@@ -11,6 +11,7 @@ import Calculator from "../../components/Calculator";
 import Dictionary from "../../components/Dictionary";
 import { ActivationLock, FREE_SUBJECTS, isProductActivated } from "../../components/ActivationLock";
 import { FaLock } from "react-icons/fa";
+import { getUserIdentifier } from "../../utils/userScope";
 
 function MobileExamCBT() {
   const { exam } = useParams();
@@ -310,6 +311,7 @@ function MobileExamCBT() {
   }, [subjectParam]);
 
   const handleAnswerSelect = (qIndex, answer) => {
+    if (isSubmitted) return;
     setUserAnswers(prev => ({ ...prev, [qIndex]: answer }));
   };
 
@@ -329,7 +331,7 @@ function MobileExamCBT() {
   }, [currentIndex, isStarted]);
 
   useEffect(() => {
-    if (isStarted) {
+    if (isStarted && !isSubmitted) {
       if (timeLeft > 0) {
         const timerId = setInterval(() => setTimeLeft(prev => prev - 1), 1000);
         return () => clearInterval(timerId);
@@ -337,7 +339,7 @@ function MobileExamCBT() {
         handleConfirmSubmit();
       }
     }
-  }, [isStarted, timeLeft, questions]);
+  }, [isStarted, isSubmitted, timeLeft, questions]);
 
   useEffect(() => {
     if (!isStarted) return;
@@ -422,17 +424,31 @@ function MobileExamCBT() {
     setIsSubmitted(true);
     setShowConfirm(false);
     setShowResults(true);
+    setCurrentIndex(0);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     try {
       const stats = calculateDetailedScore();
+      const score = stats.totalScore;
+      const percentage = stats.percentage;
+      const maxScore = stats.maxScore;
+      const subjectName = isJamb ? 'Multiple Subjects' : (questions[0]?.subjectName || 'Mock Exam');
+
       const payload = {
         exam,
-        subjects: selectedSubjects,
-        score: stats.totalScore,
-        total: stats.maxScore,
-        timeSpent: timerDuration - timeLeft,
-        details: stats.subjectStats
+        subject: subjectName,
+        type: 'Mock Exam CBT',
+        topic_id: null,
+        score,
+        total: maxScore,
+        percentage,
+        correct_count: stats.totalCorrect,
+        wrong_count: stats.totalWrong,
+        unanswered_count: stats.totalUnanswered,
+        time_used: timerDuration - timeLeft,
+        detailed_responses: stats.detailedResponses,
+        user_id: getUserIdentifier()
       };
-      await fetch('/api/progress/cbt', {
+      await fetch('/api/user/performance', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -1115,19 +1131,60 @@ function MobileExamCBT() {
                 {currentQ?.options?.map((opt, i) => {
                    const letter = optionLetters[i];
                    const isSelected = userAnswers[currentIndex] === opt;
+
+                   let correctText = currentQ?.answer;
+                   if (typeof currentQ?.answer === 'string' && ['A','B','C','D'].includes(currentQ.answer.toUpperCase())) {
+                     correctText = currentQ.options[optionLetters.indexOf(currentQ.answer.toUpperCase())];
+                   }
+                   const isCorrectAnswer = (opt === correctText) || (opt === currentQ?.answer);
+
+                   let bg = isSelected ? '#f0f9ff' : 'white';
+                   let border = `2px solid ${isSelected ? '#123b72' : '#e2e8f0'}`;
+                   let color = isSelected ? '#123b72' : '#475569';
+                   let badgeBg = isSelected ? '#123b72' : '#f1f5f9';
+                   let badgeColor = isSelected ? 'white' : '#64748b';
+
+                   if (isSubmitted) {
+                     if (isCorrectAnswer) {
+                       bg = '#ecfdf5';
+                       border = '2px solid #10b981';
+                       color = '#065f46';
+                       badgeBg = '#10b981';
+                       badgeColor = 'white';
+                     } else if (isSelected && !isCorrectAnswer) {
+                       bg = '#fef2f2';
+                       border = '2px solid #ef4444';
+                       color = '#991b1b';
+                       badgeBg = '#ef4444';
+                       badgeColor = 'white';
+                     } else {
+                       bg = '#f8fafc';
+                       border = '1px solid #e2e8f0';
+                       color = '#94a3b8';
+                       badgeBg = '#f1f5f9';
+                       badgeColor = '#94a3b8';
+                     }
+                   }
                    
                    return (
-                     <button key={i} onClick={() => handleAnswerSelect(currentIndex, opt)} style={{ 
-                       padding: '16px', 
-                       background: isSelected ? '#f0f9ff' : 'white', 
-                       color: isSelected ? '#123b72' : '#475569', 
-                       borderRadius: '16px', 
-                       display: 'flex', 
-                       alignItems: 'center', 
-                       border: `2px solid ${isSelected ? '#123b72' : '#e2e8f0'}`,
-                       fontSize: '15px',
-                       textAlign: 'left'
-                     }}>
+                     <button 
+                       key={i} 
+                       onClick={isSubmitted ? undefined : () => handleAnswerSelect(currentIndex, opt)} 
+                       disabled={isSubmitted}
+                       style={{ 
+                         padding: '16px', 
+                         background: bg, 
+                         color: color, 
+                         borderRadius: '16px', 
+                         display: 'flex', 
+                         alignItems: 'center', 
+                         border: border, 
+                         fontSize: '15px',
+                         textAlign: 'left',
+                         cursor: isSubmitted ? 'default' : 'pointer',
+                         transition: 'all 0.2s'
+                       }}
+                     >
                         <span style={{ 
                           fontWeight: '800', 
                           marginRight: '16px', 
@@ -1136,18 +1193,78 @@ function MobileExamCBT() {
                           display: 'flex', 
                           alignItems: 'center', 
                           justifyContent: 'center', 
-                          background: isSelected ? '#123b72' : '#f1f5f9', 
+                          background: badgeBg, 
                           borderRadius: '8px', 
-                          color: isSelected ? 'white' : '#64748b',
+                          color: badgeColor,
                           flexShrink: 0
                         }}>
                           {letter}
                         </span>
-                        <span style={{ lineHeight: 1.4 }}>{opt}</span>
+                        <span style={{ flex: 1, lineHeight: 1.4, fontWeight: isSelected || (isSubmitted && isCorrectAnswer) ? '700' : '500' }}>
+                          {opt}
+                        </span>
+                        {isSubmitted && isCorrectAnswer && (
+                          <span style={{ color: '#10b981', fontWeight: '800', fontSize: '18px', marginLeft: '8px' }}>✓</span>
+                        )}
+                        {isSubmitted && isSelected && !isCorrectAnswer && (
+                          <span style={{ color: '#ef4444', fontWeight: '800', fontSize: '18px', marginLeft: '8px' }}>✗</span>
+                        )}
                      </button>
                    )
                 })}
               </div>
+
+              {isSubmitted && (() => {
+                 let correctText = currentQ?.answer;
+                 let correctLetter = '?';
+                 if (typeof currentQ?.answer === 'string' && ['A','B','C','D'].includes(currentQ.answer.toUpperCase())) {
+                   correctLetter = currentQ.answer.toUpperCase();
+                   correctText = currentQ.options[optionLetters.indexOf(correctLetter)];
+                 } else if (currentQ?.options?.includes(currentQ?.answer)) {
+                   correctLetter = optionLetters[currentQ.options.indexOf(currentQ.answer)];
+                 }
+
+                 const userAnsText = userAnswers[currentIndex];
+                 const isAnswered = !!userAnsText;
+                 const isCurrentCorrect = isAnswered && ((userAnsText === correctText) || (userAnsText === currentQ?.answer));
+                 
+                 let userLetter = '?';
+                 if (isAnswered && currentQ?.options?.includes(userAnsText)) {
+                   userLetter = optionLetters[currentQ.options.indexOf(userAnsText)];
+                 }
+
+                 return (
+                   <div style={{ marginTop: '20px', padding: '16px', background: isCurrentCorrect ? '#f0fdf4' : isAnswered ? '#fef2f2' : '#f8fafc', borderRadius: '16px', border: `1px solid ${isCurrentCorrect ? '#bbf7d0' : isAnswered ? '#fecaca' : '#e2e8f0'}` }}>
+                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
+                       <span style={{ fontWeight: '800', fontSize: '13px', color: isCurrentCorrect ? '#16a34a' : isAnswered ? '#dc2626' : '#64748b' }}>
+                         {isCurrentCorrect ? '✓ Correct Answer' : isAnswered ? '✗ Incorrect Answer' : '○ Unanswered'}
+                       </span>
+                       <button 
+                         onClick={() => { setShowResults(true); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                         style={{ background: 'transparent', border: 'none', color: '#123b72', fontWeight: '700', fontSize: '12px', cursor: 'pointer', textDecoration: 'underline' }}
+                       >
+                         Back to Results
+                       </button>
+                     </div>
+
+                     <div style={{ fontSize: '14px', color: '#1e293b', marginBottom: '6px' }}>
+                       <strong>Correct Option:</strong> {correctLetter} ({correctText})
+                     </div>
+
+                     {isAnswered && !isCurrentCorrect && (
+                       <div style={{ fontSize: '14px', color: '#dc2626', marginBottom: '6px' }}>
+                         <strong>Your Choice:</strong> {userLetter} ({userAnsText})
+                       </div>
+                     )}
+
+                     {currentQ?.explanation && (
+                       <div style={{ marginTop: '10px', paddingTop: '10px', borderTop: '1px dashed #cbd5e1', fontSize: '13px', color: '#334155', lineHeight: 1.5 }}>
+                         <strong>Explanation:</strong> {currentQ.explanation}
+                       </div>
+                     )}
+                   </div>
+                 );
+              })()}
 
 
            </div>
@@ -1211,7 +1328,28 @@ function MobileExamCBT() {
                   let color = '#64748b';
                   let border = '1px solid #e2e8f0';
                   
-                  if (isAnswered) {
+                  if (isSubmitted) {
+                    const qObj = questions[i];
+                    let cText = qObj?.answer;
+                    if (typeof qObj?.answer === 'string' && ['A','B','C','D'].includes(qObj.answer.toUpperCase())) {
+                      cText = qObj.options[optionLetters.indexOf(qObj.answer.toUpperCase())];
+                    }
+                    const userA = userAnswers[i];
+                    const isQCorrect = userA && ((userA === cText) || (userA === qObj?.answer));
+                    if (isQCorrect) {
+                      bg = '#10b981';
+                      color = 'white';
+                      border = '1px solid #10b981';
+                    } else if (userA) {
+                      bg = '#ef4444';
+                      color = 'white';
+                      border = '1px solid #ef4444';
+                    } else {
+                      bg = '#f1f5f9';
+                      color = '#94a3b8';
+                      border = '1px solid #e2e8f0';
+                    }
+                  } else if (isAnswered) {
                     bg = '#123b72';
                     color = 'white';
                     border = '1px solid #123b72';

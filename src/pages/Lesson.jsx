@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import useMobile from "../hooks/useMobile"
 import MobileLesson from "./mobile/MobileLesson"
+import { getUserIdentifier } from "../utils/userScope"
 
 function Lesson() {
   const { isMobile } = useMobile()
@@ -20,7 +21,8 @@ function Lesson() {
   // Load bookmark state on mount
   useEffect(() => {
     if (lessonId) {
-      fetch('/api/user/bookmarks')
+      const userId = getUserIdentifier();
+      fetch(`/api/user/bookmarks?userId=${encodeURIComponent(userId)}`)
         .then(res => res.json())
         .then(data => {
           setIsBookmarked(data.some(b => b.lesson_id === lessonId));
@@ -32,7 +34,8 @@ function Lesson() {
   const toggleBookmark = async () => {
     try {
       if (isBookmarked) {
-        await fetch(`/api/user/bookmarks/${lessonId}`, {
+        const userId = getUserIdentifier();
+        await fetch(`/api/user/bookmarks/${lessonId}?userId=${encodeURIComponent(userId)}`, {
           method: 'DELETE'
         });
         setIsBookmarked(false);
@@ -47,7 +50,8 @@ function Lesson() {
             exam,
             title: lesson?.title,
             topic_title: lesson?.topic_title,
-            subject_name: lesson?.subject_name
+            subject_name: lesson?.subject_name,
+            user_id: getUserIdentifier()
           })
         });
         setIsBookmarked(true);

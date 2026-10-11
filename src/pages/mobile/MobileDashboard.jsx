@@ -9,7 +9,8 @@ function MobileDashboard() {
   const [bookmarksCount, setBookmarksCount] = useState(0);
 
   useEffect(() => {
-    fetch('/api/user/performance')
+    const userId = getUserIdentifier();
+    fetch(`/api/user/performance?userId=${encodeURIComponent(userId)}`)
       .then(res => res.json())
       .then(data => {
         const filtered = data.filter(p => p.exam === exam);
@@ -17,7 +18,7 @@ function MobileDashboard() {
       })
       .catch(err => console.error(err));
       
-    fetch('/api/user/bookmarks')
+    fetch(`/api/user/bookmarks?userId=${encodeURIComponent(userId)}`)
       .then(res => res.json())
       .then(data => {
         const filtered = data.filter(b => b.exam === exam);

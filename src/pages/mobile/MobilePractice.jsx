@@ -67,7 +67,7 @@ export default function MobilePractice() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          exam, subject, type: 'Topic Practice', topic_id: topicId, score, total: questions.length, percentage
+          exam, subject, type: 'Topic Practice', topic_id: topicId, score, total: questions.length, percentage, user_id: getUserIdentifier()
         })
       });
     } catch (err) { console.error("Error saving performance", err); }

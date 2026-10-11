@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import useMobile from "../hooks/useMobile";
 import MobilePerformance from "./mobile/MobilePerformance";
+import { getUserIdentifier } from "../utils/userScope";
 
 export default function Performance() {
   const { isMobile } = useMobile();
@@ -10,7 +11,8 @@ export default function Performance() {
   const [selectedPerf, setSelectedPerf] = useState(null);
 
   useEffect(() => {
-    fetch('/api/user/performance')
+    const userId = getUserIdentifier();
+    fetch(`/api/user/performance?userId=${encodeURIComponent(userId)}`)
       .then(res => res.json())
       .then(data => {
         const filtered = data

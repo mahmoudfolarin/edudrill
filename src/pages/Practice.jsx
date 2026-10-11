@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import useMobile from "../hooks/useMobile";
+import { getUserIdentifier } from "../utils/userScope";
 import MobilePractice from "./mobile/MobilePractice";
 import { ActivationLock, FREE_SUBJECTS } from "../components/ActivationLock";
 

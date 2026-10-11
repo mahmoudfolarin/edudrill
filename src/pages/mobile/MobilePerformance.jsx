@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import { getUserIdentifier } from "../../utils/userScope";
 
 export default function MobilePerformance() {
   const { exam, subject } = useParams();
@@ -8,7 +9,8 @@ export default function MobilePerformance() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/api/user/performance')
+    const userId = getUserIdentifier();
+    fetch(`/api/user/performance?userId=${encodeURIComponent(userId)}`)
       .then(res => res.json())
       .then(data => {
         const filtered = data

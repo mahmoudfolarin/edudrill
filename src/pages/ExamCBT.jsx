@@ -14,6 +14,7 @@ import { isProductActivated, FREE_SUBJECTS } from "../components/ActivationLock"
 import { FaLock } from "react-icons/fa";
 
 import useMobile from "../hooks/useMobile";
+import { getUserIdentifier } from "../utils/userScope";
 import MobileExamCBT from "./mobile/MobileExamCBT";
 
 function ExamCBTDesktop() {
@@ -352,7 +353,8 @@ function ExamCBTDesktop() {
           wrong_count: stats.totalWrong,
           unanswered_count: stats.totalUnanswered,
           time_used: timerDuration - timeLeft,
-          detailed_responses: stats.detailedResponses
+          detailed_responses: stats.detailedResponses,
+          user_id: getUserIdentifier()
         })
       });
     } catch (err) {

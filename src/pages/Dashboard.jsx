@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 
 import MobileDashboard from "./mobile/MobileDashboard"
 import useMobile from "../hooks/useMobile"
+import { getUserIdentifier } from "../utils/userScope"
 
 function DesktopDashboard() {
   const { exam } = useParams()
@@ -12,7 +13,8 @@ function DesktopDashboard() {
   const [bookmarksCount, setBookmarksCount] = useState(0);
 
   useEffect(() => {
-    fetch('/api/user/performance')
+    const userId = getUserIdentifier();
+    fetch(`/api/user/performance?userId=${encodeURIComponent(userId)}`)
       .then(res => res.json())
       .then(data => {
         const filtered = data.filter(p => p.exam === exam);
@@ -20,7 +22,7 @@ function DesktopDashboard() {
       })
       .catch(err => console.error(err));
       
-    fetch('/api/user/bookmarks')
+    fetch(`/api/user/bookmarks?userId=${encodeURIComponent(userId)}`)
       .then(res => res.json())
       .then(data => {
         const filtered = data.filter(b => b.exam === exam);

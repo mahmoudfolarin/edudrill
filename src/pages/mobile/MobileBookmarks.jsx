@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import { getUserIdentifier } from "../../utils/userScope";
 
 export default function MobileBookmarks() {
   const { exam, subject } = useParams();
@@ -7,7 +8,8 @@ export default function MobileBookmarks() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/api/user/bookmarks')
+    const userId = getUserIdentifier();
+    fetch(`/api/user/bookmarks?userId=${encodeURIComponent(userId)}`)
       .then(res => res.json())
       .then(data => {
         const filtered = data.filter(b => b.exam === exam && b.subject === subject);
@@ -19,7 +21,8 @@ export default function MobileBookmarks() {
 
   const removeBookmark = async (lessonId) => {
     try {
-      await fetch(`/api/user/bookmarks/${lessonId}`, {
+      const userId = getUserIdentifier();
+      await fetch(`/api/user/bookmarks/${lessonId}?userId=${encodeURIComponent(userId)}`, {
         method: 'DELETE'
       });
       setBookmarks(prev => prev.filter(b => b.lesson_id !== lessonId));

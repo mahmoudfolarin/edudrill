@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import useMobile from "../hooks/useMobile"
+import { getUserIdentifier } from "../utils/userScope"
 import MobilePastPaper from "./mobile/MobilePastPaper"
 
 function PastPaper() {
@@ -55,7 +56,8 @@ function PastPaper() {
           topic_id: `${year} - ${paper.paper_title}`,
           score,
           total: paper.questions.length,
-          percentage
+          percentage,
+          user_id: getUserIdentifier()
         })
       });
     } catch (err) {
