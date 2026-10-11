@@ -21,7 +21,7 @@ export function getUserIdentifier() {
       localStorage.setItem("edudrill_device_id", deviceId);
     }
     return deviceId;
-  } catch (err) {
+  } catch {
     return "anonymous_device";
   }
 }

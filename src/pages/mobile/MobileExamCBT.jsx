@@ -1,11 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getOfflineQuestions, subjectsList } from "../../data/offlineQuestionBank";
-import Ad1 from "../../assets/edudrill_ad_1.jpg";
-import Ad2 from "../../assets/edudrill_ad_2.jpg";
-import Ad3 from "../../assets/edudrill_ad_3.jpg";
-import Ad4 from "../../assets/edudrill_ad_4.jpg";
-import Ad5 from "../../assets/edudrill_ad_5.jpg";
 import StudentsBg from "../../assets/students_bg.jpg";
 import Calculator from "../../components/Calculator";
 import Dictionary from "../../components/Dictionary";
@@ -83,8 +78,7 @@ function MobileExamCBT() {
     }
   ];
 
-  const adImages = [Ad1, Ad2, Ad3, Ad4, Ad5];
-  const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
   // Premium UI Theme - Strictly Blues
   const theme = {
@@ -305,9 +299,9 @@ function MobileExamCBT() {
   // Auto-start if a specific subject was passed in the URL
   useEffect(() => {
     if (subjectParam && !isStarted && questions.length === 0) {
-      // eslint-disable-next-line
-      startCBT(subjectParam);
+      setTimeout(() => startCBT(subjectParam), 0);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [subjectParam]);
 
   const handleAnswerSelect = (qIndex, answer) => {
@@ -330,41 +324,7 @@ function MobileExamCBT() {
     if (isStarted) setVisited(prev => ({ ...prev, [currentIndex]: true }));
   }, [currentIndex, isStarted]);
 
-  useEffect(() => {
-    if (isStarted && !isSubmitted) {
-      if (timeLeft > 0) {
-        const timerId = setInterval(() => setTimeLeft(prev => prev - 1), 1000);
-        return () => clearInterval(timerId);
-      } else if (timeLeft === 0 && questions.length > 0) {
-        handleConfirmSubmit();
-      }
-    }
-  }, [isStarted, isSubmitted, timeLeft, questions]);
 
-  useEffect(() => {
-    if (!isStarted) return;
-    const handleKeyDown = (e) => {
-      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-      const key = e.key.toUpperCase();
-      
-      if (key === 'N' || key === 'ARROWRIGHT') goNext();
-      if (key === 'P' || key === 'ARROWLEFT') goPrev();
-      if (key === 'S') setShowConfirm(true);
-      
-      const optionIndex = key.charCodeAt(0) - 65;
-      if (optionIndex >= 0 && optionIndex <= 3) {
-        const currentQ = questions[currentIndex];
-        if (currentQ && currentQ.options[optionIndex]) {
-          handleAnswerSelect(currentIndex, currentQ.options[optionIndex]);
-        }
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isStarted, currentIndex, questions]);
-
-
-  
   const calculateDetailedScore = () => {
     let totalCorrect = 0;
     let totalWrong = 0;
@@ -457,6 +417,50 @@ function MobileExamCBT() {
       console.error("Failed to record CBT score:", error);
     }
   };
+
+  useEffect(() => {
+    if (!isStarted || isSubmitted) return;
+    const timerId = setInterval(() => {
+      setTimeLeft(prev => {
+        if (prev <= 1) {
+          clearInterval(timerId);
+          setTimeout(() => {
+            if (questions.length > 0) handleConfirmSubmit();
+          }, 0);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+    return () => clearInterval(timerId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isStarted, isSubmitted]);
+
+  useEffect(() => {
+    if (!isStarted) return;
+    const handleKeyDown = (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      const key = e.key.toUpperCase();
+      
+      if (key === 'N' || key === 'ARROWRIGHT') goNext();
+      if (key === 'P' || key === 'ARROWLEFT') goPrev();
+      if (key === 'S') setShowConfirm(true);
+      
+      const optionIndex = key.charCodeAt(0) - 65;
+      if (optionIndex >= 0 && optionIndex <= 3) {
+        const currentQ = questions[currentIndex];
+        if (currentQ && currentQ.options[optionIndex]) {
+          handleAnswerSelect(currentIndex, currentQ.options[optionIndex]);
+        }
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isStarted, currentIndex, questions]);
+
+
+  
 
 
   // SETUP VIEW 1
