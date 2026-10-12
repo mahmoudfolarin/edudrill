@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router-dom"
 import { useState, useEffect } from "react"
+import { getUserIdentifier } from "../../utils/userScope"
 
 function MobileDashboard() {
   const { exam } = useParams()

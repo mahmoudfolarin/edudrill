@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { getUserIdentifier } from "../../utils/userScope";
 
 function MobileLesson() {
   const { exam, subject, topicId, lessonId } = useParams();

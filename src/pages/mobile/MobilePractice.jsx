@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ActivationLock, FREE_SUBJECTS, isProductActivated } from "../../components/ActivationLock";
+import { getUserIdentifier } from "../../utils/userScope";
 
 export default function MobilePractice() {
   const { exam, subject, topicId } = useParams();
