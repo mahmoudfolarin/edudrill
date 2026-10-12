@@ -186,7 +186,10 @@ function AdminDashboard() {
           <Link
             to="/admin"
             className="admin-logout"
-            onClick={() => localStorage.removeItem("admin_auth")}
+            onClick={() => {
+              localStorage.removeItem("admin_auth");
+              localStorage.removeItem("admin_token");
+            }}
           >
             Log Out
           </Link>

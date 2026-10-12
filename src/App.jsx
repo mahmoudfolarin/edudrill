@@ -34,6 +34,7 @@ import ErrorBoundary from "./components/ErrorBoundary"
 
 import StudentOnboarding from "./pages/StudentOnboarding"
 import UserHeader from "./components/UserHeader";
+import AdminProtectedRoute from "./components/AdminProtectedRoute";
 
 function App() {
   return ( <>
@@ -44,15 +45,15 @@ function App() {
       <Route path="/activate" element={<Activation />} />
 
       <Route path="/admin" element={<AdminLogin />} />
-      <Route path="/admin/dashboard" element={<AdminDashboard />} />
-      <Route path="/admin/activation-keys" element={<ActivationKeys />} />
-      <Route path="/admin/product-licenses" element={<ProductLicenses />} />
-      <Route path="/admin/questions" element={<AdminQuestions />} />
-      <Route path="/admin/ai-tutor" element={<AdminAITutor />} />
-      <Route path="/admin/users" element={<AdminUsers />} />
-      <Route path="/admin/subjects" element={<AdminSubjects />} />
-      <Route path="/admin/lessons" element={<AdminLessons />} />
-      <Route path="/admin/analytics" element={<AdminAnalytics />} />
+      <Route path="/admin/dashboard" element={<AdminProtectedRoute><AdminDashboard /></AdminProtectedRoute>} />
+      <Route path="/admin/activation-keys" element={<AdminProtectedRoute><ActivationKeys /></AdminProtectedRoute>} />
+      <Route path="/admin/product-licenses" element={<AdminProtectedRoute><ProductLicenses /></AdminProtectedRoute>} />
+      <Route path="/admin/questions" element={<AdminProtectedRoute><AdminQuestions /></AdminProtectedRoute>} />
+      <Route path="/admin/ai-tutor" element={<AdminProtectedRoute><AdminAITutor /></AdminProtectedRoute>} />
+      <Route path="/admin/users" element={<AdminProtectedRoute><AdminUsers /></AdminProtectedRoute>} />
+      <Route path="/admin/subjects" element={<AdminProtectedRoute><AdminSubjects /></AdminProtectedRoute>} />
+      <Route path="/admin/lessons" element={<AdminProtectedRoute><AdminLessons /></AdminProtectedRoute>} />
+      <Route path="/admin/analytics" element={<AdminProtectedRoute><AdminAnalytics /></AdminProtectedRoute>} />
 
       <Route path="/exams" element={<ExamSelection />} />
 
