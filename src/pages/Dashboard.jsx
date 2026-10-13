@@ -14,6 +14,23 @@ function DesktopDashboard() {
 
   useEffect(() => {
     const userId = getUserIdentifier();
+    if (window.desktopApi) {
+      window.desktopApi.getPerformance(userId)
+        .then(data => {
+          const filtered = (data || []).filter(p => p.exam === exam);
+          setPerformances(filtered);
+        })
+        .catch(err => console.error(err));
+
+      window.desktopApi.getBookmarks(userId)
+        .then(data => {
+          const filtered = (data || []).filter(b => b.exam === exam);
+          setBookmarksCount(filtered.length);
+        })
+        .catch(err => console.error(err));
+      return;
+    }
+
     fetch(`/api/user/performance?userId=${encodeURIComponent(userId)}`)
       .then(res => res.json())
       .then(data => {

@@ -21,7 +21,32 @@ function DesktopActivation() {
     async function initializeProduct() {
       try {
         // -------------------------------------------------
-        // 1. Check for an existing activated license
+        // 1. Check for desktop API license first
+        // -------------------------------------------------
+        if (window.desktopApi) {
+          try {
+            const deskStatus = await window.desktopApi.getLicenseStatus();
+            if (deskStatus && deskStatus.active && deskStatus.license) {
+              const parsed = deskStatus.license;
+              setLicense({
+                productKey: parsed.product_key,
+                activationKey: parsed.activation_key,
+                status: parsed.status,
+                activatedAt: parsed.activated_at,
+              });
+              setProductKey(parsed.product_key);
+              localStorage.setItem("edudrill_license", JSON.stringify(parsed));
+              localStorage.setItem("edudrill_product_key", parsed.product_key);
+              setLoadingProduct(false);
+              return;
+            }
+          } catch (e) {
+            console.error("Desktop license check error:", e);
+          }
+        }
+
+        // -------------------------------------------------
+        // 2. Check for an existing activated license in storage
         // -------------------------------------------------
 
         const savedLicense =
@@ -60,13 +85,22 @@ function DesktopActivation() {
         }
 
         // -------------------------------------------------
-        // 2. Get or create a Device Identifier
+        // 3. Get or create a Device Identifier
         // -------------------------------------------------
 
         let deviceIdentifier =
           localStorage.getItem(
             "edudrill_device_id",
           )
+
+        if (window.desktopApi) {
+          try {
+            deviceIdentifier = await window.desktopApi.getDeviceId();
+            localStorage.setItem("edudrill_device_id", deviceIdentifier);
+          } catch (e) {
+            console.error("Error getting desktop device id:", e);
+          }
+        }
 
         if (!deviceIdentifier) {
           deviceIdentifier =
@@ -79,11 +113,12 @@ function DesktopActivation() {
         }
 
         // -------------------------------------------------
-        // 3. Register / restore this device
+        // 4. Register / restore this device
         // -------------------------------------------------
 
+        const apiBase = window.desktopApi ? "https://edudrill-1.onrender.com" : "";
         const response = await fetch(
-          "/api/products/register",
+          `${apiBase}/api/products/register`,
           {
             method: "POST",
 
@@ -177,6 +212,39 @@ function DesktopActivation() {
     setLoading(true)
 
     try {
+      if (window.desktopApi) {
+        const deskResult = await window.desktopApi.activate({
+          productKey,
+          activationKey: activationKey.trim(),
+        });
+
+        if (!deskResult.success) {
+          setMessage(deskResult.message || "Activation failed.");
+          setLoading(false);
+          return;
+        }
+
+        const savedLicense = {
+          product_key: productKey,
+          activation_key: activationKey.trim(),
+          status: "Active",
+          activated_at: deskResult.license?.activated_at || new Date().toISOString(),
+        };
+
+        localStorage.setItem("edudrill_license", JSON.stringify(savedLicense));
+        localStorage.setItem("edudrill_product_key", productKey);
+
+        setLicense({
+          productKey,
+          activationKey: activationKey.trim(),
+          status: "Active",
+          activatedAt: savedLicense.activated_at,
+        });
+
+        setLoading(false);
+        return;
+      }
+
       const response = await fetch(
         "/api/activation-keys/activate",
         {

@@ -338,6 +338,19 @@ function ExamCBTDesktop() {
       const maxScore = stats.maxScore;
       const subjectName = isJamb ? 'Multiple Subjects' : (questions[0]?.subjectName || 'Mock Exam');
       
+      if (window.desktopApi) {
+        await window.desktopApi.savePerformance({
+          exam,
+          subject: subjectName,
+          type: 'Mock Exam CBT',
+          score,
+          total: maxScore,
+          percentage,
+          userId: getUserIdentifier()
+        });
+        return;
+      }
+
       await fetch('/api/user/performance', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

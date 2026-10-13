@@ -12,6 +12,17 @@ export default function Performance() {
 
   useEffect(() => {
     const userId = getUserIdentifier();
+    if (window.desktopApi) {
+      window.desktopApi.getPerformance(userId)
+        .then(data => {
+          const filtered = (data || [])
+            .filter(p => p.exam === exam && (!subject || p.subject === subject))
+            .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+          setPerformances(filtered);
+        })
+        .catch(err => console.error("Error fetching desktop performances:", err));
+      return;
+    }
     fetch(`/api/user/performance?userId=${encodeURIComponent(userId)}`)
       .then(res => res.json())
       .then(data => {

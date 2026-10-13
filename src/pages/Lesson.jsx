@@ -22,6 +22,12 @@ function Lesson() {
   useEffect(() => {
     if (lessonId) {
       const userId = getUserIdentifier();
+      if (window.desktopApi) {
+        window.desktopApi.getBookmarks(userId)
+          .then(data => setIsBookmarked(data.some(b => String(b.lesson_id) === String(lessonId))))
+          .catch(err => console.error("Error fetching desktop bookmarks:", err));
+        return;
+      }
       fetch(`/api/user/bookmarks?userId=${encodeURIComponent(userId)}`)
         .then(res => res.json())
         .then(data => {
@@ -33,8 +39,27 @@ function Lesson() {
 
   const toggleBookmark = async () => {
     try {
+      const userId = getUserIdentifier();
+      if (window.desktopApi) {
+        if (isBookmarked) {
+          await window.desktopApi.deleteBookmark(lessonId, userId);
+          setIsBookmarked(false);
+        } else {
+          await window.desktopApi.saveBookmark({
+            lesson_id: lessonId,
+            topic_id: topicId,
+            subject,
+            exam,
+            title: lesson?.title,
+            topic_title: lesson?.topic_title,
+            subject_name: lesson?.subject_name,
+            user_id: userId
+          });
+          setIsBookmarked(true);
+        }
+        return;
+      }
       if (isBookmarked) {
-        const userId = getUserIdentifier();
         await fetch(`/api/user/bookmarks/${lessonId}?userId=${encodeURIComponent(userId)}`, {
           method: 'DELETE'
         });
@@ -66,6 +91,22 @@ function Lesson() {
       try {
         setLoading(true)
         setError("")
+
+        if (window.desktopApi) {
+          try {
+            const deskSyl = await window.desktopApi.getSyllabus(exam, subject);
+            const foundTopic = deskSyl?.topics?.find(t => String(t.id) === String(topicId));
+            const foundLesson = foundTopic?.lessons?.find(l => String(l.id) === String(lessonId));
+            if (foundLesson) {
+              setLesson(foundLesson);
+              setTopicLessons(foundTopic.lessons || []);
+              setLoading(false);
+              return;
+            }
+          } catch (e) {
+            console.error("Desktop lesson error:", e);
+          }
+        }
 
         const lessonResponse = await fetch(
           `/api/topics/lessons/${lessonId}`,

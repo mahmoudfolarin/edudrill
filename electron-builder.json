@@ -1,0 +1,42 @@
+{
+  "appId": "com.edudrill.app",
+  "productName": "EduDrill",
+  "artifactName": "EduDrill_Setup_${version}.${ext}",
+  "directories": {
+    "output": "dist_desktop_installer"
+  },
+  "files": [
+    "desktop/**/*",
+    "dist_desktop_client/**/*",
+    "node_modules/sql.js/**/*",
+    "package.json"
+  ],
+  "extraResources": [
+    {
+      "from": "desktop/data/edudrill_initial.db",
+      "to": "edudrill_initial.db"
+    }
+  ],
+  "win": {
+    "target": [
+      {
+        "target": "nsis",
+        "arch": [
+          "x64"
+        ]
+      }
+    ],
+    "icon": "build/icon.ico"
+  },
+  "nsis": {
+    "oneClick": false,
+    "perMachine": false,
+    "allowToChangeInstallationDirectory": true,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "shortcutName": "EduDrill",
+    "installerIcon": "build/icon.ico",
+    "uninstallerIcon": "build/icon.ico",
+    "installerHeaderIcon": "build/icon.ico"
+  }
+}

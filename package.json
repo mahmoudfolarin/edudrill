@@ -1,25 +1,34 @@
 {
   "name": "edudrill",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:desktop:client": "vite build --config vite.desktop.config.js",
+    "build:desktop:data": "node desktop/data/generateOfflineDb.cjs",
+    "build:desktop:exe": "electron-builder --win",
+    "build:desktop": "npm run build:desktop:client && npm run build:desktop:data && npm run build:desktop:exe",
+    "start:desktop": "electron desktop/main.cjs",
     "lint": "eslint .",
     "preview": "vite preview"
   },
+  "main": "desktop/main.cjs",
   "dependencies": {
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-icons": "^5.7.0",
-    "react-router-dom": "^7.18.3"
+    "react-router-dom": "^7.18.3",
+    "sql.js": "^1.14.2"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.7",
     "@vitejs/plugin-react": "^6.1.1",
+    "electron": "^44.7.0",
+    "electron-builder": "^26.15.3",
     "eslint": "^10.10.0",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.6",

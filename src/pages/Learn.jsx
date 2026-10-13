@@ -35,6 +35,20 @@ function Learn() {
         setSyllabus(null)
         setTopics([])
 
+        if (window.desktopApi) {
+          try {
+            const deskData = await window.desktopApi.getSyllabus(exam, subject);
+            if (deskData && deskData.syllabus) {
+              setSyllabus(deskData.syllabus);
+              setTopics(deskData.topics || []);
+              setLoading(false);
+              return;
+            }
+          } catch (deskErr) {
+            console.error("Desktop syllabus error:", deskErr);
+          }
+        }
+
         // Get the active syllabus for this exam + subject
         const response = await fetch(
           `/api/syllabuses/${exam}/${subject}`,
