@@ -60,86 +60,72 @@ function MobileActivation() {
         // 2. Get or create a Device Identifier
         // -------------------------------------------------
 
-        let deviceIdentifier =
-          localStorage.getItem(
-            "edudrill_device_id",
-          )
+        let deviceIdentifier = localStorage.getItem("edudrill_device_id");
+
+        if (window.desktopApi?.getDeviceId) {
+          try {
+            deviceIdentifier = await window.desktopApi.getDeviceId();
+            localStorage.setItem("edudrill_device_id", deviceIdentifier);
+          } catch (_) {}
+        }
 
         if (!deviceIdentifier) {
-          deviceIdentifier =
-            crypto.randomUUID()
-
-          localStorage.setItem(
-            "edudrill_device_id",
-            deviceIdentifier,
-          )
+          deviceIdentifier = crypto.randomUUID();
+          localStorage.setItem("edudrill_device_id", deviceIdentifier);
         }
 
         // -------------------------------------------------
-        // 3. Register / restore this device
+        // 3. Get or generate persistent Product Key immediately (offline-ready)
         // -------------------------------------------------
 
-        const response = await fetch(
-          "/api/products/register",
-          {
-            method: "POST",
+        let currentProductKey = localStorage.getItem("edudrill_product_key");
 
-            headers: {
-              "Content-Type": "application/json",
-            },
-
-            body: JSON.stringify({
-              deviceIdentifier,
-              deviceName:
-                navigator.userAgent ||
-                "EduDrill Device",
-            }),
-          },
-        )
-
-        const data = await response.json()
-
-        if (!response.ok || !data.success) {
-          throw new Error(
-            data.message ||
-              "Failed to register this device",
-          )
+        if (window.desktopApi?.getProductKey) {
+          try {
+            currentProductKey = await window.desktopApi.getProductKey();
+          } catch (_) {}
         }
 
-        // -------------------------------------------------
-        // 4. Get Product Key from backend
-        // -------------------------------------------------
+        if (!currentProductKey) {
+          const characters = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+          const makePart = () => Array.from({ length: 4 }, () => characters[Math.floor(Math.random() * characters.length)]).join("");
+          currentProductKey = `EDU-PROD-${makePart()}-${makePart()}`;
+        }
 
-        const generatedProductKey =
-          data.product.product_key
-
-        // -------------------------------------------------
-        // 5. Save Product Key locally
-        // -------------------------------------------------
-
-        localStorage.setItem(
-          "edudrill_product_key",
-          generatedProductKey,
-        )
+        localStorage.setItem("edudrill_product_key", currentProductKey);
+        setProductKey(currentProductKey);
+        setLoadingProduct(false);
 
         // -------------------------------------------------
-        // 6. Display Product Key
+        // 4. Background sync with backend if online
         // -------------------------------------------------
 
-        setProductKey(
-          generatedProductKey,
-        )
+        if (typeof navigator !== "undefined" && navigator.onLine) {
+          try {
+            fetch("/api/products/register", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                deviceIdentifier,
+                deviceName: navigator.userAgent || "EduDrill Mobile Device",
+              }),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                if (data?.success && data?.product?.product_key) {
+                  setProductKey(data.product.product_key);
+                  localStorage.setItem("edudrill_product_key", data.product.product_key);
+                }
+              })
+              .catch(() => {});
+          } catch (_) {}
+        }
       } catch (error) {
-        console.error(
-          "Product initialization error:",
-          error,
-        )
-
-        setMessage(
-          "Unable to generate your Product Key. Please make sure the EduDrill server is running.",
-        )
+        console.error("Product initialization error:", error);
+        const fallbackKey = localStorage.getItem("edudrill_product_key") || "EDU-PROD-MOBILE-KEY";
+        setProductKey(fallbackKey);
       } finally {
-        setLoadingProduct(false)
+        setLoadingProduct(false);
       }
     }
 

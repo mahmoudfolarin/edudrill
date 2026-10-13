@@ -35,6 +35,27 @@ function getOrCreateDeviceId() {
   return newId
 }
 
+// Persistent product key in %APPDATA%\EduDrill
+function getOrCreateProductKey() {
+  const dataDir = path.join(app.getPath('userData'), 'EduDrillData')
+  if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true })
+  const keyFile = path.join(dataDir, 'product_key.txt')
+  if (fs.existsSync(keyFile)) {
+    return fs.readFileSync(keyFile, 'utf8').trim()
+  }
+  const characters = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'
+  function makePart() {
+    let part = ''
+    for (let i = 0; i < 4; i++) {
+      part += characters[Math.floor(Math.random() * characters.length)]
+    }
+    return part
+  }
+  const newKey = `EDU-PROD-${makePart()}-${makePart()}`
+  fs.writeFileSync(keyFile, newKey, 'utf8')
+  return newKey
+}
+
 // Cryptographic HMAC check for offline license record
 const LICENSE_HMAC_SALT = 'edudrill_desktop_offline_salt_v1'
 function generateLicenseSignature(licenseData) {
@@ -200,6 +221,18 @@ function setupIpcHandlers() {
     return getOrCreateDeviceId()
   })
 
+  ipcMain.handle('license:get-product-key', async () => {
+    return getOrCreateProductKey()
+  })
+
+  ipcMain.handle('db:save-profile', async (event, profile) => {
+    return dbManager.saveStudentProfile(profile)
+  })
+
+  ipcMain.handle('db:get-profile', async () => {
+    return dbManager.getStudentProfile()
+  })
+
   ipcMain.handle('license:get-status', async () => {
     const lic = dbManager.getLicense()
     if (!lic) return { active: false, license: null }
@@ -213,6 +246,17 @@ function setupIpcHandlers() {
   ipcMain.handle('license:activate', async (event, { productKey, activationKey }) => {
     const deviceId = getOrCreateDeviceId()
     try {
+      // 1. Ensure device & product are registered on backend first
+      try {
+        await fetch('https://edudrill-1.onrender.com/api/products/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            deviceIdentifier: deviceId,
+            deviceName: 'EduDrill Desktop App'
+          })
+        })
+      } catch (_) {}
       // Authoritative online request to production Render backend
       const response = await fetch('https://edudrill-1.onrender.com/api/activation-keys/activate', {
         method: 'POST',

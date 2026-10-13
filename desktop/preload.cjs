@@ -18,7 +18,11 @@ contextBridge.exposeInMainWorld('desktopApi', {
 
   getLicenseStatus: () => ipcRenderer.invoke('license:get-status'),
   getDeviceId: () => ipcRenderer.invoke('license:get-device-id'),
+  getProductKey: () => ipcRenderer.invoke('license:get-product-key'),
   activate: (data) => ipcRenderer.invoke('license:activate', data),
+
+  saveProfile: (profile) => ipcRenderer.invoke('db:save-profile', profile),
+  getProfile: () => ipcRenderer.invoke('db:get-profile'),
 
   isOnline: () => ipcRenderer.invoke('net:check-online'),
 

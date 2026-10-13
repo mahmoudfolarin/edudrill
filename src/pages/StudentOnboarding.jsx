@@ -27,27 +27,54 @@ function StudentOnboarding() {
     setError("");
 
     try {
-const rawUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-const API_URL = rawUrl.replace(/\/+$/, '');
-const response = await fetch(`${API_URL}/api/auth/onboard`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData)
-      });
-      const data = await response.json();
+      // 1. Prepare local student profile
+      const localUser = {
+        id: "student_" + Date.now(),
+        name: formData.name,
+        email: formData.email,
+        school: formData.school,
+        state: formData.state,
+        phone_number: formData.phone_number,
+        created_at: new Date().toISOString()
+      };
 
-      if (data.success) {
-        localStorage.setItem("student_registered", "true");
-        localStorage.setItem("student_token", data.token);
-        localStorage.setItem("student_data", JSON.stringify(data.user));
-        // Redirect to exams page
-        navigate("/exams");
-      } else {
-        setError(data.message || "Something went wrong.");
+      // 2. Persist locally immediately (zero internet required)
+      localStorage.setItem("student_registered", "true");
+      localStorage.setItem("student_token", "token_" + Date.now());
+      localStorage.setItem("student_data", JSON.stringify(localUser));
+
+      if (window.desktopApi?.saveProfile) {
+        try {
+          await window.desktopApi.saveProfile(localUser);
+        } catch (dbErr) {
+          console.warn("Could not save profile to SQLite:", dbErr);
+        }
       }
+
+      // 3. If online, attempt background sync with backend without blocking or failing
+      if (typeof navigator !== "undefined" && navigator.onLine) {
+        try {
+          const rawUrl = import.meta.env.VITE_API_URL || 'https://edudrill-1.onrender.com';
+          const API_URL = rawUrl.replace(/\/+$/, '');
+          fetch(`${API_URL}/api/auth/onboard`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData)
+          }).then(res => res.json()).then(data => {
+            if (data?.success && data?.user) {
+              localStorage.setItem("student_data", JSON.stringify(data.user));
+              if (data.token) localStorage.setItem("student_token", data.token);
+            }
+          }).catch(() => {});
+        } catch (_) {}
+      }
+
+      // 4. Navigate directly to exam selection
+      navigate("/exams");
     } catch (err) {
-      console.error(err);
-      setError("Network error. Please try again.");
+      console.error("Onboarding error:", err);
+      localStorage.setItem("student_registered", "true");
+      navigate("/exams");
     } finally {
       setLoading(false);
     }

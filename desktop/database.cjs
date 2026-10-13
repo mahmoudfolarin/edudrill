@@ -87,6 +87,16 @@ class DatabaseManager {
         signature TEXT,
         created_at TEXT NOT NULL DEFAULT (datetime('now'))
       );
+
+      CREATE TABLE IF NOT EXISTS student_profile (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        email TEXT,
+        school TEXT,
+        state TEXT,
+        phone_number TEXT,
+        created_at TEXT NOT NULL DEFAULT (datetime('now'))
+      );
     `)
   }
 
@@ -276,6 +286,34 @@ class DatabaseManager {
     stmt.free()
     this.persist()
     return { success: true }
+  }
+
+  saveStudentProfile(profile) {
+    const stmt = this.db.prepare(`
+      INSERT INTO student_profile (name, email, school, state, phone_number, created_at)
+      VALUES (?, ?, ?, ?, ?, ?)
+    `)
+    stmt.run([
+      profile.name || '',
+      profile.email || '',
+      profile.school || '',
+      profile.state || '',
+      profile.phone_number || '',
+      profile.created_at || new Date().toISOString()
+    ])
+    stmt.free()
+    this.persist()
+    return { success: true }
+  }
+
+  getStudentProfile() {
+    const res = this.db.exec("SELECT * FROM student_profile ORDER BY id DESC LIMIT 1")
+    if (!res || !res.length || !res[0].values.length) return null
+    const cols = res[0].columns
+    const row = res[0].values[0]
+    const obj = {}
+    cols.forEach((c, i) => { obj[c] = row[i] })
+    return obj
   }
 }
 
