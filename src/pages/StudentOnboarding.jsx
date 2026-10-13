@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useMobile from "../hooks/useMobile";
 import MobileStudentOnboarding from "./mobile/MobileStudentOnboarding";
+import edudrillLogo from "../assets/edudrill_logo.jpg";
 
 function StudentOnboarding() {
   const { isMobile } = useMobile();
@@ -77,7 +78,7 @@ const response = await fetch(`${API_URL}/api/auth/onboard`, {
       }}>
         
         <div style={{ textAlign: "center", marginBottom: "35px" }}>
-          <img src="/assets/edudrill_logo.jpg" alt="EduDrill" style={{ height: "70px", borderRadius: "50%", marginBottom: "15px", boxShadow: "0 4px 10px rgba(0,0,0,0.1)" }} />
+          <img src={edudrillLogo} alt="EduDrill" style={{ height: "70px", width: "70px", borderRadius: "50%", objectFit: "cover", marginBottom: "15px", boxShadow: "0 4px 10px rgba(0,0,0,0.1)" }} />
           <h1 style={{ color: "#0f2027", margin: 0, fontSize: "1.8rem", fontWeight: "800", letterSpacing: "-0.5px" }}>Welcome to EduDrill</h1>
           <p style={{ color: "#475569", marginTop: "8px", fontSize: "1rem" }}>Let's personalize your learning experience.</p>
         </div>

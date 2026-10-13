@@ -1,11 +1,26 @@
-const { app, BrowserWindow, ipcMain, net } = require('electron')
+const { app, BrowserWindow, ipcMain, net, protocol } = require('electron')
 const path = require('path')
 const fs = require('fs')
 const crypto = require('crypto')
+const { pathToFileURL } = require('url')
 const DatabaseManager = require('./database.cjs')
 
 let mainWindow = null
 let dbManager = null
+
+// Register custom scheme as standard & secure before app is ready
+protocol.registerSchemesAsPrivileged([
+  {
+    scheme: 'edudrill',
+    privileges: {
+      standard: true,
+      secure: true,
+      supportFetchAPI: true,
+      corsEnabled: true,
+      stream: true
+    }
+  }
+])
 
 // Persistent device identifier in %APPDATA%\EduDrill
 function getOrCreateDeviceId() {
@@ -41,11 +56,14 @@ function verifyLicenseSignature(license) {
 async function createWindow() {
   mainWindow = new BrowserWindow({
     width: 1280,
-    height: 800,
-    minWidth: 960,
-    minHeight: 640,
+    height: 820,
+    minWidth: 980,
+    minHeight: 660,
     title: 'EduDrill',
     icon: path.join(__dirname, '..', 'public', 'favicon-32x32.png'),
+    frame: false,
+    titleBarStyle: 'hidden',
+    backgroundColor: '#0c192c',
     webPreferences: {
       preload: path.join(__dirname, 'preload.cjs'),
       contextIsolation: true,
@@ -57,7 +75,7 @@ async function createWindow() {
 
   // Security: prevent opening external links in the same window
   mainWindow.webContents.on('will-navigate', (event, url) => {
-    if (!url.startsWith('file://')) {
+    if (!url.startsWith('edudrill://') && !url.startsWith('file://')) {
       event.preventDefault()
     }
   })
@@ -70,10 +88,10 @@ async function createWindow() {
   // Remove default application menu for a clean desktop experience
   mainWindow.setMenuBarVisibility(false)
 
-  // Load compiled student desktop client
+  // Load compiled student desktop client via custom edudrill scheme
   const indexPath = path.join(__dirname, '..', 'dist_desktop_client', 'index.desktop.html')
   if (fs.existsSync(indexPath)) {
-    mainWindow.loadFile(indexPath)
+    mainWindow.loadURL('edudrill://app/index.desktop.html')
   } else {
     mainWindow.loadURL('http://localhost:5173')
   }
@@ -85,6 +103,40 @@ async function createWindow() {
 
 // Application Lifecycle
 app.whenReady().then(async () => {
+  // Protocol handler for edudrill://app/...
+  protocol.handle('edudrill', (request) => {
+    try {
+      const url = new URL(request.url)
+      const clientDist = path.join(__dirname, '..', 'dist_desktop_client')
+      let decodedPath = decodeURIComponent(url.pathname)
+
+      if (decodedPath.startsWith('/')) {
+        decodedPath = decodedPath.slice(1)
+      }
+
+      let targetFile = path.join(clientDist, decodedPath)
+
+      // Fallback logic
+      if (!decodedPath || decodedPath === '') {
+        targetFile = path.join(clientDist, 'index.desktop.html')
+      } else if (!fs.existsSync(targetFile)) {
+        // If file doesn't exist directly, check assets folder by filename
+        const assetFallback = path.join(clientDist, 'assets', path.basename(decodedPath))
+        if (fs.existsSync(assetFallback)) {
+          targetFile = assetFallback
+        } else {
+          // SPA Route fallback
+          targetFile = path.join(clientDist, 'index.desktop.html')
+        }
+      }
+
+      return net.fetch(pathToFileURL(targetFile).toString())
+    } catch (err) {
+      console.error('[PROTOCOL ERROR]', err)
+      return new Response('Not found', { status: 404 })
+    }
+  })
+
   // Initialize local SQLite database
   dbManager = new DatabaseManager(app.getPath('userData'))
   await dbManager.init()
@@ -220,5 +272,24 @@ function setupIpcHandlers() {
   // 3. Network check
   ipcMain.handle('net:check-online', async () => {
     return net.isOnline()
+  })
+
+  // 4. Window Management
+  ipcMain.on('window:minimize', () => {
+    if (mainWindow) mainWindow.minimize()
+  })
+  ipcMain.on('window:maximize', () => {
+    if (!mainWindow) return
+    if (mainWindow.isMaximized()) {
+      mainWindow.unmaximize()
+    } else {
+      mainWindow.maximize()
+    }
+  })
+  ipcMain.on('window:close', () => {
+    if (mainWindow) mainWindow.close()
+  })
+  ipcMain.handle('window:is-maximized', () => {
+    return mainWindow ? mainWindow.isMaximized() : false
   })
 }

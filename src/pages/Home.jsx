@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // Import images for the background carousel
 import img1 from "../assets/testimony_1.jpg";
@@ -11,11 +11,12 @@ import img6 from "../assets/edudrill_ad_4.jpg";
 import img7 from "../assets/edudrill_ad_5.jpg";
 import img8 from "../assets/students_practicing.jpg";
 import newHero from "../assets/new_hero.jpg";
+import edudrillLogo from "../assets/edudrill_logo.jpg";
 
 function EduDrillLogo() {
   return (
     <div className="splash-logo">
-      <img src="/assets/edudrill_logo.jpg" alt="EduDrill Logo" className="splash-logo-icon" style={{ borderRadius: '50%' }} />
+      <img src={edudrillLogo} alt="EduDrill Logo" className="splash-logo-icon" style={{ borderRadius: '50%', objectFit: 'cover' }} />
       <h1>
         Edu<span>Drill</span>
       </h1>
@@ -27,6 +28,7 @@ import MobileHome from "./mobile/MobileHome";
 import useMobile from "../hooks/useMobile";
 
 function DesktopHome() {
+  const navigate = useNavigate();
   const testimonials = [newHero, img1, img2, img3, img4, img5, img6, img7, img8];
   
   const testimonialsData = [
@@ -145,7 +147,7 @@ function DesktopHome() {
             <button 
               onClick={() => {
                 const isRegistered = localStorage.getItem("student_registered");
-                window.location.href = isRegistered ? "/exams" : "/onboarding";
+                navigate(isRegistered ? "/exams" : "/onboarding");
               }} 
               className="get-started-button" 
               style={{ justifyContent: 'center', cursor: 'pointer', border: 'none', fontFamily: 'inherit', fontSize: '16px' }}>

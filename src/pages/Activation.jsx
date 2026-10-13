@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 import MobileActivation from "./mobile/MobileActivation"
 import useMobile from "../hooks/useMobile"
 
 function DesktopActivation() {
+  const navigate = useNavigate()
   const [productKey, setProductKey] = useState("")
   const [activationKey, setActivationKey] = useState("")
   const [loading, setLoading] = useState(false)
@@ -365,7 +366,7 @@ function DesktopActivation() {
   // =====================================================
 
   function closeActivation() {
-    window.location.href = "/"
+    navigate("/")
   }
 
   // =====================================================

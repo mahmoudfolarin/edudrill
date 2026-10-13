@@ -20,5 +20,11 @@ contextBridge.exposeInMainWorld('desktopApi', {
   getDeviceId: () => ipcRenderer.invoke('license:get-device-id'),
   activate: (data) => ipcRenderer.invoke('license:activate', data),
 
-  isOnline: () => ipcRenderer.invoke('net:check-online')
+  isOnline: () => ipcRenderer.invoke('net:check-online'),
+
+  // Window Controls
+  minimizeWindow: () => ipcRenderer.send('window:minimize'),
+  maximizeWindow: () => ipcRenderer.send('window:maximize'),
+  closeWindow: () => ipcRenderer.send('window:close'),
+  isMaximized: () => ipcRenderer.invoke('window:is-maximized')
 })
