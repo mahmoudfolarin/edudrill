@@ -90,102 +90,102 @@ function StudentOnboarding() {
       display: "flex", 
       alignItems: "center", 
       justifyContent: "center", 
-      background: "linear-gradient(135deg, #0f2027, #203a43, #2c5364)",
-      padding: "20px"
+      background: "#F8FAFC",
+      fontFamily: "'Inter', sans-serif",
+      padding: "24px"
     }}>
       <div style={{ 
-        backgroundColor: "rgba(255, 255, 255, 0.95)", 
-        padding: "50px 40px", 
+        backgroundColor: "#FFFFFF", 
+        padding: "48px 40px", 
         borderRadius: "20px", 
-        boxShadow: "0 20px 50px rgba(0,0,0,0.3)", 
+        boxShadow: "0 10px 30px -4px rgba(11, 33, 68, 0.08)", 
         width: "100%", 
         maxWidth: "500px",
-        backdropFilter: "blur(10px)",
-        border: "1px solid rgba(255,255,255,0.2)"
+        border: "1px solid #E2E8F0"
       }}>
         
-        <div style={{ textAlign: "center", marginBottom: "35px" }}>
-          <img src={edudrillLogo} alt="EduDrill" style={{ height: "70px", width: "70px", borderRadius: "50%", objectFit: "cover", marginBottom: "15px", boxShadow: "0 4px 10px rgba(0,0,0,0.1)" }} />
-          <h1 style={{ color: "#0f2027", margin: 0, fontSize: "1.8rem", fontWeight: "800", letterSpacing: "-0.5px" }}>Welcome to EduDrill</h1>
-          <p style={{ color: "#475569", marginTop: "8px", fontSize: "1rem" }}>Let's personalize your learning experience.</p>
+        <div style={{ textAlign: "center", marginBottom: "32px" }}>
+          <img src={edudrillLogo} alt="EduDrill" style={{ height: "64px", width: "64px", borderRadius: "14px", objectFit: "cover", marginBottom: "14px", border: "1px solid #E2E8F0", boxShadow: "0 4px 12px rgba(11, 33, 68, 0.06)" }} />
+          <h1 style={{ color: "#0B2144", margin: 0, fontSize: "1.75rem", fontWeight: "800", letterSpacing: "-0.5px" }}>Welcome to EduDrill</h1>
+          <p style={{ color: "#475569", marginTop: "8px", fontSize: "0.95rem" }}>Create your student profile to personalize your CBT drills.</p>
         </div>
 
-        {error && <div style={{ backgroundColor: "#fee2e2", color: "#991b1b", padding: "12px", borderRadius: "8px", marginBottom: "20px", textAlign: "center", fontWeight: "500" }}>{error}</div>}
+        {error && <div style={{ backgroundColor: "#FEE2E2", color: "#DC2626", padding: "12px", borderRadius: "10px", marginBottom: "20px", textAlign: "center", fontWeight: "600", fontSize: "14px" }}>{error}</div>}
 
-        <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+        <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
           
-          <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-            <label style={{ color: "#334155", fontWeight: "600", fontSize: "0.9rem" }}>Full Name <span style={{color: "#e11d48"}}>*</span></label>
+          <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+            <label style={{ color: "#0F172A", fontWeight: "700", fontSize: "0.9rem" }}>Full Name <span style={{color: "#DC2626"}}>*</span></label>
             <input 
               type="text" 
               name="name" 
               required 
               value={formData.name} 
               onChange={handleChange} 
-              style={{ width: "100%", padding: "14px", border: "1px solid #cbd5e1", borderRadius: "10px", fontSize: "1rem", outline: "none", transition: "border-color 0.2s" }}
+              style={{ width: "100%", padding: "13px 16px", border: "1.5px solid #CBD5E1", borderRadius: "10px", fontSize: "1rem", outline: "none", transition: "border-color 0.2s", color: "#0F172A", background: "#FFFFFF" }}
               placeholder="e.g. Mahmoud Olanrewaju"
-              onFocus={(e) => e.target.style.borderColor = "#0ea5e9"}
-              onBlur={(e) => e.target.style.borderColor = "#cbd5e1"}
+              onFocus={(e) => e.target.style.borderColor = "#2563EB"}
+              onBlur={(e) => e.target.style.borderColor = "#CBD5E1"}
             />
           </div>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-            <label style={{ color: "#334155", fontWeight: "600", fontSize: "0.9rem" }}>Email Address <span style={{color: "#e11d48"}}>*</span></label>
+          <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+            <label style={{ color: "#0F172A", fontWeight: "700", fontSize: "0.9rem" }}>Email Address <span style={{color: "#DC2626"}}>*</span></label>
             <input 
               type="email" 
               name="email" 
               required 
               value={formData.email} 
               onChange={handleChange} 
-              style={{ width: "100%", padding: "14px", border: "1px solid #cbd5e1", borderRadius: "10px", fontSize: "1rem", outline: "none", transition: "border-color 0.2s" }}
+              style={{ width: "100%", padding: "13px 16px", border: "1.5px solid #CBD5E1", borderRadius: "10px", fontSize: "1rem", outline: "none", transition: "border-color 0.2s", color: "#0F172A", background: "#FFFFFF" }}
               placeholder="e.g. mahmoud@example.com"
-              onFocus={(e) => e.target.style.borderColor = "#0ea5e9"}
-              onBlur={(e) => e.target.style.borderColor = "#cbd5e1"}
+              onFocus={(e) => e.target.style.borderColor = "#2563EB"}
+              onBlur={(e) => e.target.style.borderColor = "#CBD5E1"}
             />
           </div>
 
-          <div style={{ display: "flex", gap: "20px" }}>
-            <div style={{ display: "flex", flexDirection: "column", gap: "8px", flex: 1 }}>
-              <label style={{ color: "#334155", fontWeight: "600", fontSize: "0.9rem" }}>State <span style={{color: "#e11d48"}}>*</span></label>
+          <div style={{ display: "flex", gap: "16px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "6px", flex: 1 }}>
+              <label style={{ color: "#0F172A", fontWeight: "700", fontSize: "0.9rem" }}>State <span style={{color: "#DC2626"}}>*</span></label>
               <input 
                 type="text" 
                 name="state" 
                 required 
                 value={formData.state} 
                 onChange={handleChange} 
-                style={{ width: "100%", padding: "14px", border: "1px solid #cbd5e1", borderRadius: "10px", fontSize: "1rem", outline: "none", transition: "border-color 0.2s" }}
+                style={{ width: "100%", padding: "13px 16px", border: "1.5px solid #CBD5E1", borderRadius: "10px", fontSize: "1rem", outline: "none", transition: "border-color 0.2s", color: "#0F172A", background: "#FFFFFF" }}
                 placeholder="e.g. Lagos"
-                onFocus={(e) => e.target.style.borderColor = "#0ea5e9"}
-                onBlur={(e) => e.target.style.borderColor = "#cbd5e1"}
+                onFocus={(e) => e.target.style.borderColor = "#2563EB"}
+                onBlur={(e) => e.target.style.borderColor = "#CBD5E1"}
               />
             </div>
 
-            <div style={{ display: "flex", flexDirection: "column", gap: "8px", flex: 1 }}>
-              <label style={{ color: "#334155", fontWeight: "600", fontSize: "0.9rem" }}>Phone <span style={{color: "#94a3b8", fontSize: "0.8rem", fontWeight: "normal"}}>(Optional)</span></label>
+            <div style={{ display: "flex", flexDirection: "column", gap: "6px", flex: 1 }}>
+              <label style={{ color: "#0F172A", fontWeight: "700", fontSize: "0.9rem" }}>Phone <span style={{color: "#94A3B8", fontSize: "0.8rem", fontWeight: "normal"}}>(Optional)</span></label>
               <input 
                 type="tel" 
                 name="phone_number" 
                 value={formData.phone_number} 
                 onChange={handleChange} 
-                style={{ width: "100%", padding: "14px", border: "1px solid #cbd5e1", borderRadius: "10px", fontSize: "1rem", outline: "none", transition: "border-color 0.2s" }}
+                style={{ width: "100%", padding: "13px 16px", border: "1.5px solid #CBD5E1", borderRadius: "10px", fontSize: "1rem", outline: "none", transition: "border-color 0.2s", color: "#0F172A", background: "#FFFFFF" }}
                 placeholder="e.g. 0801..."
-                onFocus={(e) => e.target.style.borderColor = "#0ea5e9"}
-                onBlur={(e) => e.target.style.borderColor = "#cbd5e1"}
+                onFocus={(e) => e.target.style.borderColor = "#2563EB"}
+                onBlur={(e) => e.target.style.borderColor = "#CBD5E1"}
               />
             </div>
           </div>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-            <label style={{ color: "#334155", fontWeight: "600", fontSize: "0.9rem" }}>School <span style={{color: "#94a3b8", fontSize: "0.8rem", fontWeight: "normal"}}>(Optional)</span></label>
+          <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+            <label style={{ color: "#0F172A", fontWeight: "700", fontSize: "0.9rem" }}>School <span style={{color: "#94A3B8", fontSize: "0.8rem", fontWeight: "normal"}}>(Optional)</span></label>
             <input 
               type="text" 
               name="school" 
               value={formData.school} 
               onChange={handleChange} 
-              style={{ width: "100%", padding: "14px", border: "1px solid #cbd5e1", borderRadius: "10px", fontSize: "1rem", outline: "none", transition: "border-color 0.2s" }}
+              style={{ width: "100%", padding: "13px 16px", border: "1.5px solid #CBD5E1", borderRadius: "10px", fontSize: "1rem", outline: "none", transition: "border-color 0.2s", color: "#0F172A", background: "#FFFFFF" }}
               placeholder="e.g. King's College"
-              onFocus={(e) => e.target.style.borderColor = "#0ea5e9"}
-              onBlur={(e) => e.target.style.borderColor = "#cbd5e1"}
+              onFocus={(e) => e.target.style.borderColor = "#2563EB"}
+              onBlur={(e) => e.target.style.borderColor = "#CBD5E1"}
             />
           </div>
 
@@ -193,24 +193,22 @@ function StudentOnboarding() {
             type="submit" 
             disabled={loading}
             style={{ 
-              marginTop: "15px", 
+              marginTop: "12px", 
               width: "100%", 
               padding: "16px", 
-              background: "linear-gradient(to right, #0284c7, #2563eb)", 
-              color: "white", 
+              background: "#D97706", 
+              color: "#FFFFFF", 
               border: "none", 
-              borderRadius: "10px", 
-              fontSize: "1.1rem", 
-              fontWeight: "700", 
+              borderRadius: "12px", 
+              fontSize: "1.05rem", 
+              fontWeight: "800", 
               cursor: loading ? "not-allowed" : "pointer",
-              boxShadow: "0 4px 15px rgba(37, 99, 235, 0.3)",
-              transition: "transform 0.1s, box-shadow 0.1s",
+              boxShadow: "0 6px 18px rgba(217, 119, 6, 0.35)",
+              transition: "transform 0.15s, box-shadow 0.15s",
               opacity: loading ? 0.8 : 1
             }}
-            onMouseOver={(e) => { if(!loading) { e.target.style.transform = "translateY(-2px)"; e.target.style.boxShadow = "0 6px 20px rgba(37, 99, 235, 0.4)"; } }}
-            onMouseOut={(e) => { if(!loading) { e.target.style.transform = "translateY(0)"; e.target.style.boxShadow = "0 4px 15px rgba(37, 99, 235, 0.3)"; } }}
           >
-            {loading ? "Creating Profile..." : "Start Learning"}
+            {loading ? "Creating Profile..." : "Start Learning →"}
           </button>
         </form>
       </div>

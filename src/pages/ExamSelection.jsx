@@ -56,14 +56,14 @@ function ExamSelection() {
       {/* Header */}
       <header className="exam-header">
 
-        <Link to="/" className="exam-brand">
-          <div className="exam-brand-icon">
-            E
+        <Link to="/" className="exam-brand" style={{ display: 'flex', alignItems: 'center', gap: '14px', textDecoration: 'none' }}>
+          <div style={{ width: 44, height: 44, borderRadius: 10, overflow: 'hidden', border: '1px solid #E2E8F0' }}>
+            <img src="/assets/edudrill_logo.jpg" alt="EduDrill" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </div>
 
           <div>
-            <strong>EduDrill</strong>
-            <span>Smart Exam Preparation</span>
+            <strong style={{ display: 'block', fontSize: '18px', color: '#0B2144' }}>EduDrill</strong>
+            <span style={{ fontSize: '13px', color: '#2563EB', fontWeight: '600' }}>Smart Exam Preparation</span>
           </div>
         </Link>
 
