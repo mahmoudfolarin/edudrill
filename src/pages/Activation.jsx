@@ -4,8 +4,87 @@ import { Link, useNavigate } from "react-router-dom"
 import MobileActivation from "./mobile/MobileActivation"
 import useMobile from "../hooks/useMobile"
 import { launchPaystackPayment, getLivePaymentConfig } from "../utils/paystack"
+import "./Activation.css"
 
-function DesktopActivation() {
+// Icon Helpers
+function CopyIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+    </svg>
+  )
+}
+
+function CheckIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 20 20" fill="#10B981">
+      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+    </svg>
+  )
+}
+
+function BankIcon() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F172A" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <line x1="3" y1="21" x2="21" y2="21" />
+      <line x1="6" y1="18" x2="6" y2="11" />
+      <line x1="10" y1="18" x2="10" y2="11" />
+      <line x1="14" y1="18" x2="14" y2="11" />
+      <line x1="18" y1="18" x2="18" y2="11" />
+      <polygon points="12 3 2 9 22 9 12 3" />
+    </svg>
+  )
+}
+
+function OPayIcon() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F172A" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="5" width="18" height="14" rx="3" />
+      <line x1="3" y1="10" x2="21" y2="10" />
+      <circle cx="7" cy="14.5" r="1.5" fill="#0F172A" />
+    </svg>
+  )
+}
+
+function CardIcon() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F172A" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <line x1="3" y1="10" x2="21" y2="10" />
+      <line x1="7" y1="15" x2="11" y2="15" />
+    </svg>
+  )
+}
+
+function UssdIcon() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F172A" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="6" y="2" width="12" height="20" rx="3" />
+      <line x1="12" y1="18" x2="12.01" y2="18" strokeWidth="2.5" />
+    </svg>
+  )
+}
+
+function LockIcon({ size = 16, color = "currentColor" }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+    </svg>
+  )
+}
+
+function ShieldIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      <polyline points="9 12 11 14 15 10" />
+    </svg>
+  )
+}
+
+export function DesktopActivation() {
   const navigate = useNavigate()
   const [productKey, setProductKey] = useState("")
   const [activationKey, setActivationKey] = useState("")
@@ -46,9 +125,7 @@ function DesktopActivation() {
           if (cfg?.amountNaira) setPayAmount(cfg.amountNaira)
         })
 
-        // -------------------------------------------------
         // 1. Check for desktop API license first
-        // -------------------------------------------------
         if (window.desktopApi) {
           try {
             const deskStatus = await window.desktopApi.getLicenseStatus()
@@ -71,9 +148,7 @@ function DesktopActivation() {
           }
         }
 
-        // -------------------------------------------------
         // 2. Check for an existing activated license in storage
-        // -------------------------------------------------
         const savedLicense = localStorage.getItem("edudrill_license")
 
         if (savedLicense) {
@@ -95,9 +170,7 @@ function DesktopActivation() {
           }
         }
 
-        // -------------------------------------------------
         // 3. Get or generate a persistent Device Identifier
-        // -------------------------------------------------
         let deviceIdentifier = localStorage.getItem("edudrill_device_id")
 
         if (window.desktopApi?.getDeviceId) {
@@ -114,9 +187,7 @@ function DesktopActivation() {
           localStorage.setItem("edudrill_device_id", deviceIdentifier)
         }
 
-        // -------------------------------------------------
         // 4. Get or generate persistent Product Key immediately
-        // -------------------------------------------------
         let currentProductKey = localStorage.getItem("edudrill_product_key")
 
         if (window.desktopApi?.getProductKey) {
@@ -140,9 +211,7 @@ function DesktopActivation() {
         setProductKey(currentProductKey)
         setLoadingProduct(false)
 
-        // -------------------------------------------------
         // 5. Background sync with backend if online
-        // -------------------------------------------------
         if (typeof navigator !== "undefined" && navigator.onLine) {
           try {
             fetch(`${apiBase}/api/products/register`, {
@@ -219,7 +288,6 @@ function DesktopActivation() {
         localStorage.setItem("edudrill_license", JSON.stringify(savedLicense))
         localStorage.setItem("edudrill_product_key", savedLicense.product_key)
 
-        // If on Windows Desktop app, cryptographically sign & save into local SQLite database
         if (window.desktopApi?.saveOfflineLicense) {
           try {
             await window.desktopApi.saveOfflineLicense({
@@ -366,377 +434,297 @@ function DesktopActivation() {
     navigate("/")
   }
 
+  const whatsappMessage = `Hello Acadex Support 👋 I want to activate my EduDrill product and would like to purchase an Activation Key. 🔑 My Product Key: ${productKey || "[DYNAMIC_KEY]"} Please send me the payment information and activation key. Thank you. EduDrill | Acadex`
+  const whatsappUrl = `https://wa.me/2349135055095?text=${encodeURIComponent(whatsappMessage)}`
+
   // =====================================================
   // LOADING SCREEN
   // =====================================================
 
   if (loadingProduct) {
     return (
-      <main className="activation-page">
-        <div className="activation-card">
-          <div className="activation-logo">
-            <div>
-              <img
-                src="/assets/edudrill_logo.jpg"
-                alt="EduDrill"
-                style={{ width: "100%", height: "100%", borderRadius: "inherit" }}
-              />
-            </div>
-            <span>
-              Edu<span>Drill</span>
-            </span>
-          </div>
-
-          <div className="activation-heading">
-            <p>PRODUCT ACTIVATION</p>
-            <h1>
-              Preparing your<span> Product</span>
-            </h1>
-            <p className="activation-description">
-              EduDrill is securely preparing this installation.
-            </p>
-          </div>
-
-          <div className="activation-loading">Generating Product Key...</div>
+      <main className="act-wrapper">
+        <div className="act-card" style={{ textAlign: "center", padding: "48px 24px" }}>
+          <h1 className="act-title">Activate EduDrill</h1>
+          <p className="act-subtitle">Preparing this installation securely...</p>
+          <div style={{ margin: "24px 0", color: "#64748B", fontSize: "14px" }}>Generating your Product Key...</div>
         </div>
       </main>
     )
   }
 
-  const whatsappMessage = `Hello Acadex Support 👋 I want to activate my EduDrill product and would like to purchase an Activation Key. 🔑 My Product Key: ${productKey || "[DYNAMIC_KEY]"} Please send me the payment information and activation key. Thank you. EduDrill | Acadex`
-  const whatsappUrl = `https://wa.me/2349135055095?text=${encodeURIComponent(whatsappMessage)}`
-
   return (
-    <main className="activation-page">
+    <main className="act-wrapper">
       {!license ? (
-        <div className="activation-card">
-          <div className="activation-logo">
-            <div>
-              <img
-                src="/assets/edudrill_logo.jpg"
-                alt="EduDrill"
-                style={{ width: "100%", height: "100%", borderRadius: "inherit" }}
-              />
-            </div>
-            <span>
-              Edu<span>Drill</span>
-            </span>
-          </div>
+        <div className="act-card">
+          {/* TITLE & SUBTITLE */}
+          <h1 className="act-title">Activate EduDrill</h1>
+          <p className="act-subtitle">
+            One payment unlocks all exams, subjects and the AI Tutor on this device.
+          </p>
 
-          <div className="activation-heading">
-            <p>PRODUCT ACTIVATION</p>
-            <h1>
-              Activate your<span> EduDrill</span>
-            </h1>
-            <p className="activation-description">
-              Choose your preferred activation method below to unlock all exams, subjects, and the AI Tutor.
-            </p>
-          </div>
-
-          {/* PRODUCT KEY BOX */}
-          <div className="generated-product-box">
-            <div>
-              <span>YOUR PRODUCT KEY</span>
-              <strong>{productKey}</strong>
+          {/* YOUR PRODUCT KEY BOX */}
+          <div className="act-product-key-box">
+            <div className="act-product-key-info">
+              <span className="act-product-key-label">YOUR PRODUCT KEY</span>
+              <strong className="act-product-key-value">{productKey}</strong>
             </div>
-            <button type="button" onClick={() => copyKey(productKey, "product")}>
-              {copied === "product" ? "Copied" : "Copy"}
+            <button
+              type="button"
+              className="act-copy-btn"
+              onClick={() => copyKey(productKey, "product")}
+              aria-label="Copy Product Key"
+            >
+              <CopyIcon />
+              <span>{copied === "product" ? "Copied" : "Copy"}</span>
             </button>
           </div>
 
           {/* DUAL MODE TABS */}
-          <div
-            style={{
-              display: "flex",
-              background: "#F1F5F9",
-              padding: "5px",
-              borderRadius: "14px",
-              marginBottom: "22px",
-              gap: "6px",
-            }}
-          >
+          <div className="act-tabs" role="tablist">
             <button
               type="button"
+              role="tab"
+              aria-selected={activeTab === "pay"}
+              className={`act-tab-btn ${activeTab === "pay" ? "active" : ""}`}
               onClick={() => {
                 setActiveTab("pay")
                 setMessage("")
               }}
-              style={{
-                flex: 1,
-                padding: "11px 16px",
-                borderRadius: "10px",
-                border: "none",
-                fontWeight: "700",
-                fontSize: "13.5px",
-                cursor: "pointer",
-                transition: "all 0.2s ease",
-                background: activeTab === "pay" ? "#FFFFFF" : "transparent",
-                color: activeTab === "pay" ? "#0F172A" : "#64748B",
-                boxShadow: activeTab === "pay" ? "0 2px 8px rgba(0,0,0,0.08)" : "none",
-              }}
             >
-              ⚡ Instant Online Payment
+              Pay online
             </button>
             <button
               type="button"
+              role="tab"
+              aria-selected={activeTab === "manual_key"}
+              className={`act-tab-btn ${activeTab === "manual_key" ? "active" : ""}`}
               onClick={() => {
                 setActiveTab("manual_key")
                 setMessage("")
               }}
-              style={{
-                flex: 1,
-                padding: "11px 16px",
-                borderRadius: "10px",
-                border: "none",
-                fontWeight: "700",
-                fontSize: "13.5px",
-                cursor: "pointer",
-                transition: "all 0.2s ease",
-                background: activeTab === "manual_key" ? "#FFFFFF" : "transparent",
-                color: activeTab === "manual_key" ? "#0F172A" : "#64748B",
-                boxShadow: activeTab === "manual_key" ? "0 2px 8px rgba(0,0,0,0.08)" : "none",
-              }}
             >
-              🔑 Enter Activation Key
+              I have an activation key
             </button>
           </div>
 
           {/* =================================================
-             TAB 1: INSTANT AUTOMATED PAYMENT (PAYSTACK)
+             TAB 1: PAY ONLINE (PAYSTACK)
              ================================================= */}
           {activeTab === "pay" && (
-            <div className="paystack-activation-section">
-              <div
-                style={{
-                  background: "linear-gradient(135deg, #EFF6FF 0%, #F0FDF4 100%)",
-                  border: "1.5px solid #BFDBFE",
-                  borderRadius: "16px",
-                  padding: "18px 20px",
-                  marginBottom: "20px",
-                  textAlign: "center",
-                }}
-              >
-                <span
-                  style={{
-                    display: "inline-block",
-                    background: "#16A34A",
-                    color: "#FFFFFF",
-                    fontSize: "11px",
-                    fontWeight: "800",
-                    letterSpacing: "0.5px",
-                    padding: "3px 10px",
-                    borderRadius: "20px",
-                    textTransform: "uppercase",
-                    marginBottom: "8px",
-                  }}
-                >
-                  ● Automated Instant Activation
-                </span>
-                <div style={{ display: "flex", alignItems: "baseline", justifyContent: "center", gap: "6px" }}>
-                  <span style={{ fontSize: "32px", fontWeight: "900", color: "#0F172A", letterSpacing: "-0.5px" }}>
+            <div>
+              {/* BENEFIT / PRICING CARD */}
+              <div className="act-benefit-card">
+                <div className="act-benefit-header">
+                  <div>
+                    <div className="act-benefit-badge-title">Lifetime access</div>
+                    <div className="act-benefit-badge-subtitle">Single device, pay once</div>
+                  </div>
+                  <div className="act-benefit-price">
                     ₦{payAmount.toLocaleString()}
-                  </span>
-                  <span style={{ fontSize: "13px", color: "#64748B", fontWeight: "600" }}>
-                    / Lifetime Single Device
-                  </span>
+                  </div>
                 </div>
-                <p style={{ margin: "8px 0 0", fontSize: "13px", color: "#475569", lineHeight: "1.4" }}>
-                  Pay via <strong>Direct Bank Transfer</strong>, <strong>OPay</strong>, <strong>Card</strong>, or <strong>USSD</strong>. Unlocks immediately upon payment confirmation.
-                </p>
+
+                <div className="act-benefit-body">
+                  <div className="act-benefit-item">
+                    <span className="act-benefit-icon"><CheckIcon /></span>
+                    <span>All exams and subjects</span>
+                  </div>
+                  <div className="act-benefit-item">
+                    <span className="act-benefit-icon"><CheckIcon /></span>
+                    <span>The AI Tutor included</span>
+                  </div>
+                  <div className="act-benefit-item">
+                    <span className="act-benefit-icon"><CheckIcon /></span>
+                    <span>Unlocks the moment payment is confirmed</span>
+                  </div>
+                </div>
               </div>
 
-              <form onSubmit={handleOnlinePayment} style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
-                <div className="activation-field">
-                  <label htmlFor="studentEmail" style={{ display: "flex", justifyContent: "space-between" }}>
-                    <span>Your Email Address</span>
-                    <span style={{ color: "#64748B", fontSize: "11px", fontWeight: "normal" }}>For payment receipt</span>
-                  </label>
+              {/* PAY WITH CHANNELS */}
+              <span className="act-section-label">Pay with</span>
+              <div className="act-pay-channels">
+                <div className="act-channel-card">
+                  <div className="act-channel-icon"><BankIcon /></div>
+                  <span className="act-channel-name">Bank transfer</span>
+                </div>
+                <div className="act-channel-card">
+                  <div className="act-channel-icon"><OPayIcon /></div>
+                  <span className="act-channel-name">OPay</span>
+                </div>
+                <div className="act-channel-card">
+                  <div className="act-channel-icon"><CardIcon /></div>
+                  <span className="act-channel-name">Card</span>
+                </div>
+                <div className="act-channel-card">
+                  <div className="act-channel-icon"><UssdIcon /></div>
+                  <span className="act-channel-name">USSD</span>
+                </div>
+              </div>
+
+              {/* PAYMENT FORM */}
+              <form onSubmit={handleOnlinePayment}>
+                <div className="act-field">
+                  <label htmlFor="receiptEmail">Email for your receipt</label>
                   <input
-                    id="studentEmail"
+                    id="receiptEmail"
                     type="email"
-                    placeholder="e.g. student@gmail.com"
+                    className="act-input"
+                    placeholder="e.g. olanrewajumahmoud5@gmail.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     disabled={paying}
                     required
                   />
+                  <div className="act-help-text">
+                    We send your payment receipt here. Nothing else.
+                  </div>
                 </div>
 
-                {message && <div className="activation-message error">{message}</div>}
+                {message && <div className="act-message">{message}</div>}
 
                 <button
                   type="submit"
+                  className="act-cta-button"
                   disabled={paying || !productKey}
-                  style={{
-                    width: "100%",
-                    padding: "16px",
-                    background: paying ? "#94A3B8" : "linear-gradient(135deg, #16A34A 0%, #15803D 100%)",
-                    color: "#FFFFFF",
-                    border: "none",
-                    borderRadius: "12px",
-                    fontSize: "15px",
-                    fontWeight: "800",
-                    cursor: paying ? "not-allowed" : "pointer",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: "10px",
-                    boxShadow: "0 6px 18px rgba(22, 163, 74, 0.35)",
-                    transition: "all 0.2s ease",
-                  }}
                 >
-                  {paying ? (
-                    <span>Connecting to Paystack...</span>
-                  ) : (
-                    <>
-                      <span>⚡ Pay ₦{payAmount.toLocaleString()} & Activate Instantly</span>
-                      <span>→</span>
-                    </>
-                  )}
+                  <LockIcon size={16} />
+                  <span>
+                    {paying ? "Connecting to Paystack..." : `Pay ₦${payAmount.toLocaleString()} securely`}
+                  </span>
                 </button>
               </form>
 
               {/* TRUST BADGES */}
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: "14px",
-                  marginTop: "16px",
-                  color: "#64748B",
-                  fontSize: "11.5px",
-                  fontWeight: "600",
-                }}
-              >
-                <span>🔒 256-bit Bank Encryption</span>
-                <span>•</span>
-                <span>🏦 Direct Bank Transfer</span>
-                <span>•</span>
-                <span>Powered by Paystack</span>
+              <div className="act-trust-badges">
+                <div className="act-trust-item">
+                  <ShieldIcon />
+                  <span>256-bit encryption</span>
+                </div>
+                <div className="act-trust-item">
+                  <LockIcon size={13} color="#64748B" />
+                  <span>Payments by Paystack</span>
+                </div>
               </div>
             </div>
           )}
 
           {/* =================================================
-             TAB 2: MANUAL ACTIVATION KEY FORM
+             TAB 2: I HAVE AN ACTIVATION KEY
              ================================================= */}
           {activeTab === "manual_key" && (
-            <form className="activation-form" onSubmit={handleManualActivation}>
-              <div className="activation-field">
-                <label htmlFor="activationKey">Activation Key</label>
+            <form onSubmit={handleManualActivation}>
+              <div className="act-field">
+                <label htmlFor="manualActivationKey">Activation Key</label>
                 <input
-                  id="activationKey"
+                  id="manualActivationKey"
                   type="text"
+                  className="act-input"
+                  style={{
+                    fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
+                    letterSpacing: "0.06em",
+                    textTransform: "uppercase",
+                  }}
                   placeholder="XXXX-XXXX-XXXX-XXXX"
                   value={activationKey}
                   onChange={(event) => setActivationKey(event.target.value)}
                   disabled={loading}
                 />
+                <div className="act-help-text">
+                  Enter the 16-character license key issued by Acadex Support or your school.
+                </div>
               </div>
 
-              {message && <div className="activation-message error">{message}</div>}
+              {message && <div className="act-message">{message}</div>}
 
-              <button type="submit" className="activation-submit" disabled={loading}>
-                {loading ? "Activating..." : "Activate Product"}
-                <span>→</span>
+              <button
+                type="submit"
+                className="act-cta-button"
+                disabled={loading || !productKey}
+              >
+                <span>{loading ? "Activating Product..." : "Activate EduDrill Now"}</span>
               </button>
             </form>
           )}
 
-          {/* HELP & WHATSAPP FALLBACK */}
-          <div className="activation-help" style={{ marginTop: "24px" }}>
-            <span>Need assistance or want to order manually?</span>
-            <strong>Contact Acadex Support</strong>
+          {/* DIVIDER */}
+          <div className="act-divider" />
 
+          {/* FOOTER */}
+          <div className="act-footer">
+            <p className="act-footer-prompt">Need help, or prefer to pay manually?</p>
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              style={{
-                display: "inline-block",
-                marginTop: "12px",
-                background: "#25D366",
-                color: "white",
-                padding: "12px 24px",
-                borderRadius: "12px",
-                textDecoration: "none",
-                fontWeight: "bold",
-                fontSize: "14px",
-                boxShadow: "0 4px 10px rgba(37, 211, 102, 0.3)",
-              }}
+              className="act-support-link"
             >
-              Chat on WhatsApp
+              Contact Acadex Support
             </a>
-          </div>
 
-          {/* BACK LINK */}
-          <Link to="/" className="activation-back">
-            ← Back to EduDrill
-          </Link>
+            <div>
+              <Link to="/" className="act-back-link">
+                ← Back to EduDrill
+              </Link>
+            </div>
+          </div>
         </div>
       ) : (
         /* =================================================
            ALREADY ACTIVATED VIEW
            ================================================= */
-        <div className="activation-already-card">
-          <div className="activation-already-icon">✓</div>
+        <div className="act-card act-already-card">
+          <div className="act-already-icon">✓</div>
 
-          <div className="activation-already-heading">
-            <span>PRODUCT ACTIVATION</span>
-            <h1>
-              Product Successfully<strong> Activated!</strong>
-            </h1>
-            <p>
-              Your installation is linked to an active EduDrill license. All examination subjects, past papers, and the AI Tutor are completely unlocked.
-            </p>
-          </div>
-
-          <div className="activation-already-status">
+          <div className="act-status-badge">
             <span>●</span>
-            <strong>ACTIVE LICENSE</strong>
+            <span>ACTIVE LICENSE</span>
           </div>
 
-          {/* ACTIVATION INFORMATION */}
-          <div className="activation-info-box">
-            <div className="activation-info-row">
-              <div>
-                <span>ACTIVATION KEY</span>
-                <strong>{license.activationKey}</strong>
-              </div>
-              <button type="button" onClick={() => copyKey(license.activationKey, "activation")}>
-                {copied === "activation" ? "Copied" : "Copy"}
-              </button>
-            </div>
-
-            <div className="activation-info-divider" />
-
-            <div className="activation-info-row">
-              <div>
-                <span>PRODUCT KEY</span>
-                <strong>{license.productKey}</strong>
-              </div>
-              <button type="button" onClick={() => copyKey(license.productKey, "product")}>
-                {copied === "product" ? "Copied" : "Copy"}
-              </button>
-            </div>
-          </div>
-
-          {/* ALREADY ACTIVATED MESSAGE */}
-          <div className="activation-already-message">
-            <div>✓</div>
-            <p>This installation is verified and ready for learning and CBT practice.</p>
-          </div>
-
-          {/* CLOSE */}
-          <button type="button" className="activation-close-button" onClick={closeActivation}>
-            Continue to EduDrill
-            <span>→</span>
-          </button>
-
-          <p className="activation-success-note">
-            Your activation information is safely preserved for this device.
+          <h1 className="act-already-title">EduDrill Activated!</h1>
+          <p className="act-already-desc">
+            This installation is linked to an active EduDrill license. All examination subjects, past papers, and the AI Tutor are completely unlocked.
           </p>
+
+          {/* ACTIVATION DETAILS */}
+          <div className="act-product-key-box" style={{ marginBottom: "12px" }}>
+            <div className="act-product-key-info">
+              <span className="act-product-key-label">ACTIVATION KEY</span>
+              <strong className="act-product-key-value">{license.activationKey}</strong>
+            </div>
+            <button
+              type="button"
+              className="act-copy-btn"
+              onClick={() => copyKey(license.activationKey, "activation")}
+            >
+              <CopyIcon />
+              <span>{copied === "activation" ? "Copied" : "Copy"}</span>
+            </button>
+          </div>
+
+          <div className="act-product-key-box">
+            <div className="act-product-key-info">
+              <span className="act-product-key-label">PRODUCT KEY</span>
+              <strong className="act-product-key-value">{license.productKey}</strong>
+            </div>
+            <button
+              type="button"
+              className="act-copy-btn"
+              onClick={() => copyKey(license.productKey, "product")}
+            >
+              <CopyIcon />
+              <span>{copied === "product" ? "Copied" : "Copy"}</span>
+            </button>
+          </div>
+
+          <button
+            type="button"
+            className="act-cta-button"
+            style={{ marginTop: "22px" }}
+            onClick={closeActivation}
+          >
+            <span>Continue to EduDrill →</span>
+          </button>
         </div>
       )}
     </main>
