@@ -13,7 +13,8 @@
     "seed-preset-questions": "node scripts/seedPresetQuestionBank.js",
     "seed-core-lessons": "node scripts/seedEnglishMathLessons.js",
     "seed-draft-syllabuses": "node scripts/seedDraftSyllabuses.js",
-    "check-syllabus-coverage": "node checkSyllabusCoverage.js"
+    "check-syllabus-coverage": "node checkSyllabusCoverage.js",
+    "build": "echo 'Server build complete'"
   },
   "keywords": [],
   "author": "",
