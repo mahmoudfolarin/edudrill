@@ -1,0 +1,7 @@
+# EduDrill robots.txt
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /admin/*
+
+Sitemap: https://edudrill.vercel.app/sitemap.xml

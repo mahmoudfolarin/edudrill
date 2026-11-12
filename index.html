@@ -2,20 +2,212 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EduDrill - Smart Examination Preparation & CBT Platform (WAEC, JAMB, NECO)</title>
+
+    <!-- SEO & Indexing Meta Tags -->
+    <meta name="description" content="EduDrill is Nigeria's premier CBT exam preparation and e-learning platform for WAEC, JAMB UTME, NECO & GCE candidates. Practice 20+ years of verified past questions, timed mock tests, and 24/7 AI Tutor." />
+    <meta name="keywords" content="EduDrill, WAEC past questions, JAMB CBT practice, NECO past questions, GCE, offline CBT software, Nigerian exam prep, SSCE past questions, AI tutor, Acadex, CBT software Nigeria" />
+    <meta name="author" content="Acadex / EduDrill" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://edudrill.vercel.app/" />
+
+    <!-- Open Graph (WhatsApp, Facebook, LinkedIn, Discord Previews) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://edudrill.vercel.app/" />
+    <meta property="og:title" content="EduDrill - Smart Examination Preparation (WAEC, JAMB, NECO)" />
+    <meta property="og:description" content="Master WAEC, JAMB, NECO & GCE with timed CBT mocks, 1,890+ verified past questions, comprehensive syllabus summaries, and 24/7 AI tutoring." />
+    <meta property="og:image" content="https://edudrill.vercel.app/assets/edudrill_logo.jpg" />
+    <meta property="og:image:alt" content="EduDrill Examination Preparation Platform" />
+    <meta property="og:site_name" content="EduDrill" />
+    <meta property="og:locale" content="en_NG" />
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://edudrill.vercel.app/" />
+    <meta name="twitter:title" content="EduDrill - Smart Examination Preparation & CBT Practice" />
+    <meta name="twitter:description" content="Practice verified WAEC, JAMB, NECO questions with detailed step-by-step explanations, offline desktop CBT simulator, and AI Tutor." />
+    <meta name="twitter:image" content="https://edudrill.vercel.app/assets/edudrill_logo.jpg" />
+
+    <!-- Favicons & Mobile Web App -->
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.json" />
-    <meta name="theme-color" content="#2563eb" />
+    <meta name="theme-color" content="#0B2144" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="EduDrill" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EduDrill - Exam Prep & CBT Platform</title>
-      <script src="https://js.paystack.co/v1/inline.js"></script>
+
+    <!-- Paystack Inline Popup Library -->
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+
+    <!-- Structured Data (JSON-LD) for Google Search Engine Rich Snippets -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "EduDrill",
+      "url": "https://edudrill.vercel.app/",
+      "logo": "https://edudrill.vercel.app/assets/edudrill_logo.jpg",
+      "description": "Comprehensive Examination Preparation and Computer-Based Testing (CBT) platform for Nigerian students taking WAEC, JAMB UTME, NECO, and GCE examinations.",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "All, Windows, Web, Mobile",
+      "inLanguage": "en-NG",
+      "offers": {
+        "@type": "Offer",
+        "price": "2500",
+        "priceCurrency": "NGN",
+        "category": "SoftwareLicense",
+        "availability": "https://schema.org/InStock"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "ratingCount": "1420",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "provider": {
+        "@type": "EducationalOrganization",
+        "name": "Acadex",
+        "url": "https://edudrill.vercel.app/"
+      }
+    }
+    </script>
   </head>
   <body>
-    <div id="root"></div>
+    <!-- 
+      Pre-rendered Semantic HTML Shell for Search Engines, AI Scrapers & Social Previews.
+      When JavaScript is disabled or crawled by headless fetchers, this rich structured content
+      is immediately readable. When JavaScript runs, React mounts and hydrates dynamically.
+    -->
+    <div id="root">
+      <header style="background: #0B2144; color: #FFFFFF; padding: 24px; text-align: center; font-family: sans-serif;">
+        <nav style="max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <img src="/assets/edudrill_logo.jpg" alt="EduDrill Logo" width="44" height="44" style="border-radius: 50%;" />
+            <span style="font-size: 22px; font-weight: 800; letter-spacing: -0.5px;">Edu<span style="color: #38BDF8;">Drill</span></span>
+          </div>
+          <div style="display: flex; gap: 20px; font-weight: 600; font-size: 14px;">
+            <a href="/exams" style="color: #FFFFFF; text-decoration: none;">Examinations</a>
+            <a href="/activate" style="color: #38BDF8; text-decoration: none;">Activation</a>
+            <a href="/onboarding" style="color: #FFFFFF; text-decoration: none;">Get Started</a>
+          </div>
+        </nav>
+      </header>
+
+      <main style="max-width: 1100px; margin: 40px auto; padding: 0 20px; font-family: sans-serif; color: #0F172A; line-height: 1.6;">
+        <!-- HERO OVERVIEW -->
+        <section style="text-align: center; margin-bottom: 50px;">
+          <h1 style="font-size: 38px; font-weight: 900; color: #0B2144; margin-bottom: 16px;">
+            Smart Examination Preparation & CBT Testing
+          </h1>
+          <p style="font-size: 18px; color: #475569; max-width: 800px; margin: 0 auto 24px auto;">
+            Nigeria's leading high-performance examination preparation platform for <strong>WAEC (WASSCE)</strong>, <strong>JAMB (UTME)</strong>, <strong>NECO (SSCE)</strong>, and <strong>GCE</strong>. Practice over 20+ years of verified past questions, timed computer-based mock exams, and personalized 24/7 AI tutoring.
+          </p>
+          <div style="display: flex; justify-content: center; gap: 16px; margin-top: 24px;">
+            <a href="/exams" style="background: #2563EB; color: #FFFFFF; padding: 14px 28px; border-radius: 12px; font-weight: 700; text-decoration: none;">Start Free Practice →</a>
+            <a href="/activate" style="background: #16A34A; color: #FFFFFF; padding: 14px 28px; border-radius: 12px; font-weight: 700; text-decoration: none;">Activate Full Product (₦2,500)</a>
+          </div>
+        </section>
+
+        <!-- MAJOR EXAMINATIONS COVERED -->
+        <section style="margin-bottom: 50px;">
+          <h2 style="font-size: 26px; font-weight: 800; color: #0B2144; border-bottom: 2px solid #E2E8F0; padding-bottom: 12px; margin-bottom: 24px;">
+            Major National Examinations Covered
+          </h2>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px;">
+            <article style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 16px; padding: 24px;">
+              <h3 style="color: #0B2144; font-size: 20px; margin-top: 0;">JAMB UTME CBT</h3>
+              <p style="color: #475569; font-size: 14px;">Full 4-subject exam simulation with custom time limits, on-screen scientific calculator, literature novel summaries, and instant score ranking.</p>
+            </article>
+
+            <article style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 16px; padding: 24px;">
+              <h3 style="color: #0B2144; font-size: 20px; margin-top: 0;">WAEC SSCE & GCE</h3>
+              <p style="color: #475569; font-size: 14px;">Extensive past questions from 1988 to present across Science, Commercial, and Arts faculties with detailed solutions and examiner notes.</p>
+            </article>
+
+            <article style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 16px; padding: 24px;">
+              <h3 style="color: #0B2144; font-size: 20px; margin-top: 0;">NECO Senior School</h3>
+              <p style="color: #475569; font-size: 14px;">Complete curriculum coverage, syllabus guides, mock tests, and topic-by-topic breakdowns aligned with modern Nigerian ministry standards.</p>
+            </article>
+
+            <article style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 16px; padding: 24px;">
+              <h3 style="color: #0B2144; font-size: 20px; margin-top: 0;">Offline Windows App</h3>
+              <p style="color: #475569; font-size: 14px;">Fully functional standalone desktop application powered by an offline SQLite question bank. Practice anytime without spending mobile internet data.</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- SUBJECTS DIRECTORY -->
+        <section style="margin-bottom: 50px;">
+          <h2 style="font-size: 26px; font-weight: 800; color: #0B2144; border-bottom: 2px solid #E2E8F0; padding-bottom: 12px; margin-bottom: 24px;">
+            Comprehensive Subjects Available
+          </h2>
+          <p style="color: #475569; margin-bottom: 16px;">
+            EduDrill provides full mock tests, syllabuses, and question banks for all standard senior secondary school subjects:
+          </p>
+          <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; color: #1E293B; font-weight: 600;">
+            <li>English Language</li>
+            <li>General Mathematics</li>
+            <li>Physics</li>
+            <li>Chemistry</li>
+            <li>Biology</li>
+            <li>Economics</li>
+            <li>Government</li>
+            <li>Literature in English</li>
+            <li>Commerce</li>
+            <li>Financial Accounting</li>
+            <li>Civic Education</li>
+            <li>Agricultural Science</li>
+            <li>Geography</li>
+            <li>Christian Religious Studies (CRS)</li>
+            <li>Islamic Religious Studies (IRS)</li>
+            <li>Further Mathematics</li>
+          </ul>
+        </section>
+
+        <!-- PRODUCT ACTIVATION & PRICING -->
+        <section style="background: #EFF6FF; border: 1.5px solid #BFDBFE; border-radius: 20px; padding: 32px; text-align: center; margin-bottom: 50px;">
+          <h2 style="font-size: 28px; font-weight: 800; color: #0B2144; margin-top: 0;">
+            One-Time Product Activation — ₦2,500
+          </h2>
+          <p style="color: #334155; font-size: 16px; max-width: 650px; margin: 0 auto 20px auto;">
+            Enjoy permanent, unlimited access for your device. Automated instant activation supports Direct Nigerian Bank Transfer, OPay, Debit Cards, and USSD.
+          </p>
+          <a href="/activate" style="display: inline-block; background: #16A34A; color: #FFFFFF; padding: 14px 32px; border-radius: 12px; font-weight: 800; text-decoration: none; font-size: 16px;">
+            ⚡ Activate EduDrill Now (₦2,500) →
+          </a>
+        </section>
+
+        <!-- FREQUENTLY ASKED QUESTIONS -->
+        <section style="margin-bottom: 40px;">
+          <h2 style="font-size: 26px; font-weight: 800; color: #0B2144; border-bottom: 2px solid #E2E8F0; padding-bottom: 12px; margin-bottom: 24px;">
+            Frequently Asked Questions
+          </h2>
+          <article style="margin-bottom: 20px;">
+            <h3 style="font-size: 18px; color: #0F172A; margin-bottom: 6px;">Can I use EduDrill completely offline?</h3>
+            <p style="color: #475569; margin: 0;">Yes! The EduDrill Windows desktop application is packaged with an offline database containing all questions, syllabus summaries, and test simulators so you can study without internet access.</p>
+          </article>
+          <article style="margin-bottom: 20px;">
+            <h3 style="font-size: 18px; color: #0F172A; margin-bottom: 6px;">How does automated activation work?</h3>
+            <p style="color: #475569; margin: 0;">Simply navigate to the Activation page, select Instant Online Payment, and pay ₦2,500 via bank transfer or card. Your software confirms payment in 3 seconds and unlocks automatically without typing any key.</p>
+          </article>
+          <article>
+            <h3 style="font-size: 18px; color: #0F172A; margin-bottom: 6px;">Which examinations are supported?</h3>
+            <p style="color: #475569; margin: 0;">WAEC (WASSCE), JAMB (UTME), NECO, and GCE for Science, Commercial, and Arts students.</p>
+          </article>
+        </section>
+      </main>
+
+      <footer style="background: #0B2144; color: #94A3B8; text-align: center; padding: 30px 20px; font-family: sans-serif; font-size: 13px;">
+        <p>&copy; 2026 EduDrill | Acadex Education Technologies. All rights reserved.</p>
+        <p>Designed with educational accessibility standards. Helping Nigerian candidates achieve academic excellence.</p>
+      </footer>
+    </div>
+
+    <!-- Client-Side Hydration Script -->
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
