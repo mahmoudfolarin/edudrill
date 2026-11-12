@@ -4,6 +4,7 @@ require("dotenv").config()
 
 const pool = require("./src/config/database")
 
+const paymentRoutes = require("./src/routes/paymentRoutes")
 const activationRoutes = require("./src/routes/activationRoutes")
 const productRoutes = require("./src/routes/productRoutes")
 const subjectRoutes = require("./src/routes/subjectRoutes")
@@ -36,6 +37,9 @@ app.use(express.json())
 
 // Auth routes
 app.use("/api/auth", authRoutes)
+
+// Payment routes
+app.use("/api/payment", paymentRoutes)
 
 // Activation Key routes
 app.use(
@@ -113,13 +117,48 @@ app.post("/api/log", (req, res) => {
 // HEALTH CHECK
 // =====================================================
 
-app.get("/api/health", (req, res) => {
+app.get("/api/health", async (req, res) => {
+  let dbStatus = "connected";
+  try {
+    // Quick ping to keep PostgreSQL pool connection warm
+    await pool.query("SELECT 1");
+  } catch (err) {
+    dbStatus = "unavailable";
+    console.debug("[HEALTH CHECK] DB ping notice:", err.message);
+  }
+
   res.json({
     success: true,
+    status: "online",
+    db: dbStatus,
+    timestamp: new Date().toISOString(),
     message: "EduDrill backend is running",
-  })
-})
+  });
+});
 
+// =====================================================
+// RENDER KEEP-ALIVE (PREVENTS COLD STARTS)
+// =====================================================
+
+function startKeepAlive() {
+  const serviceUrl = process.env.RENDER_EXTERNAL_URL || "https://edudrill-1.onrender.com";
+  const PING_INTERVAL = 10 * 60 * 1000; // Ping every 10 minutes (Render sleeps at 15m)
+
+  console.log(`[KEEP-ALIVE] Scheduled background ping to ${serviceUrl}/api/health every 10 minutes.`);
+
+  setInterval(async () => {
+    try {
+      const response = await fetch(`${serviceUrl}/api/health`);
+      if (response.ok) {
+        console.log(`[KEEP-ALIVE] Auto-ping successful at ${new Date().toLocaleTimeString()}`);
+      } else {
+        console.warn(`[KEEP-ALIVE] Auto-ping returned HTTP ${response.status}`);
+      }
+    } catch (err) {
+      console.debug(`[KEEP-ALIVE] Auto-ping notice: ${err.message}`);
+    }
+  }, PING_INTERVAL);
+}
 
 // =====================================================
 // DATABASE CONNECTION TEST
@@ -161,5 +200,6 @@ const PORT = process.env.PORT || 5000
 app.listen(PORT, () => {
   console.log(
     `EduDrill server running on port ${PORT}`,
-  )
+  );
+  startKeepAlive();
 })

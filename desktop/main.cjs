@@ -243,6 +243,33 @@ function setupIpcHandlers() {
     }
   })
 
+  ipcMain.handle('license:save-offline', async (event, { productKey, activationKey, activatedAt }) => {
+    try {
+      const deviceId = getOrCreateDeviceId()
+      const timestamp = activatedAt || new Date().toISOString()
+      const signature = generateLicenseSignature({
+        productKey,
+        activationKey,
+        deviceIdentifier: deviceId,
+        activatedAt: timestamp
+      })
+
+      dbManager.saveLicense({
+        productKey,
+        activationKey,
+        status: 'Active',
+        deviceIdentifier: deviceId,
+        activatedAt: timestamp,
+        signature
+      })
+
+      return { success: true }
+    } catch (err) {
+      console.error('[OFFLINE LICENSE SAVE ERROR]', err)
+      return { success: false, error: err.message }
+    }
+  })
+
   ipcMain.handle('license:activate', async (event, { productKey, activationKey }) => {
     const deviceId = getOrCreateDeviceId()
     try {

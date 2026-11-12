@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { Routes, Route } from "react-router-dom"
 
 import Home from "./pages/Home"
@@ -37,12 +38,19 @@ import UserHeader from "./components/UserHeader";
 import AdminProtectedRoute from "./components/AdminProtectedRoute";
 
 function App() {
+  useEffect(() => {
+    // Silently pre-warm Render backend on initial app load
+    const apiBase = import.meta.env.VITE_API_URL || "https://edudrill-1.onrender.com";
+    fetch(`${apiBase.replace(/\/+$/, "")}/api/health`).catch(() => {});
+  }, []);
+
   return ( <>
     <UserHeader />
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/onboarding" element={<StudentOnboarding />} />
       <Route path="/activate" element={<Activation />} />
+      <Route path="/activation" element={<Activation />} />
 
       <Route path="/admin" element={<AdminLogin />} />
       <Route path="/admin/dashboard" element={<AdminProtectedRoute><AdminDashboard /></AdminProtectedRoute>} />

@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { Routes, Route, Navigate, useLocation } from "react-router-dom"
 
 import Home from "./pages/Home"
@@ -29,6 +30,12 @@ export default function DesktopApp() {
   const location = useLocation()
   const isSplash = location.pathname === "/"
 
+  useEffect(() => {
+    // Silently pre-warm Render backend on initial app load
+    const apiBase = import.meta.env.VITE_API_URL || "https://edudrill-1.onrender.com";
+    fetch(`${apiBase.replace(/\/+$/, "")}/api/health`).catch(() => {});
+  }, []);
+
   return (
     <div className="desktop-app-layout" style={{ minHeight: "100vh", display: "flex", flexDirection: "column", background: "#f8fafc" }}>
       <DesktopTitleBar />
@@ -38,6 +45,7 @@ export default function DesktopApp() {
           <Route path="/" element={<Home />} />
           <Route path="/onboarding" element={<StudentOnboarding />} />
           <Route path="/activate" element={<Activation />} />
+          <Route path="/activation" element={<Activation />} />
 
           <Route path="/exams" element={<ExamSelection />} />
           <Route path="/dashboard/:exam" element={<Dashboard />} />
