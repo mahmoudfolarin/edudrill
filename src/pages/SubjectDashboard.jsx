@@ -100,7 +100,7 @@ function SubjectDashboard() {
           className="subject-dashboard-brand"
         >
           <div className="subject-dashboard-logo">
-            E
+            <img src="/assets/edudrill_logo.jpg" alt="EduDrill" style={{ width: '100%', height: '100%', borderRadius: 'inherit', objectFit: 'cover' }} />
           </div>
 
           <div className="subject-dashboard-brand-text">

@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { isProductActivated, FREE_SUBJECTS } from "../../components/ActivationLock";
 import { FaLock } from "react-icons/fa";
 
 function MobileSubjects() {
+  const navigate = useNavigate();
   const { exam } = useParams();
 
   const [subjects, setSubjects] = useState([]);
@@ -162,22 +163,23 @@ function MobileSubjects() {
                       onClick={(e) => {
                         if (!isAllowed) {
                           e.preventDefault();
-                          alert("Not yet Activated. Please activate to unlock this subject.");
+                          navigate('/activate');
                         }
                       }}
                       to={`/dashboard/${exam}/subjects/${subject.slug}`}
                       style={{
-                        background: !isAllowed ? '#f1f5f9' : 'white',
-                        border: '1px solid #e2e8f0',
-                        borderRadius: '20px',
-                        padding: '20px',
+                        background: !isAllowed ? '#F8FAFC' : '#FFFFFF',
+                        border: !isAllowed ? '1.5px solid #CBD5E1' : '1.5px solid #E2E8F0',
+                        borderRadius: '16px',
+                        padding: '16px',
                         textDecoration: 'none',
-                        color: !isAllowed ? '#94a3b8' : '#1e293b',
+                        color: !isAllowed ? '#64748B' : '#0F172A',
                         display: 'flex',
                         flexDirection: 'column',
                         position: 'relative',
-                        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)',
-                        opacity: !isAllowed ? 0.7 : 1
+                        boxShadow: '0 2px 6px rgba(11, 33, 68, 0.04)',
+                        opacity: !isAllowed ? 0.8 : 1,
+                        transition: 'all 0.2s ease'
                       }}
                     >
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px' }}>

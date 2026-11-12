@@ -28,8 +28,8 @@ function MobileHome() {
   const testimonials = [newHero, img1, img2, img3, img4, img5, img6, img7, img8];
   
   const testimonialsData = [
-    { text: "The website is user-friendly and easy to navigate. i love how it makes accessing past questions and practicing much easier. Definitely a useful tool for students", name: "Tijani Hameedah", role: "Undergraduate", initial: "T" },
-    { text: "EduDrill looks really good and well put together. The design layout is okay and easy to navigate for sudent. Informations presented clearly, in a clean and professional appearance", name: "Akinleye Haleemah", role: "Undergraduate", initial: "A" }
+    { text: "The website is user-friendly and easy to navigate. I love how it makes accessing past questions and practicing much easier. Definitely a useful tool for students.", name: "Tijani Hameedah", role: "Undergraduate", initial: "T" },
+    { text: "EduDrill looks really good and well put together. The design layout is easy to navigate for students. Information is presented clearly, in a clean and professional appearance.", name: "Akinleye Haleemah", role: "Undergraduate", initial: "A" }
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -88,13 +88,16 @@ function MobileHome() {
         {/* Action Buttons */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '40px' }}>
           <button 
-            onClick={() => navigate('/exams')}
+            onClick={() => {
+              const isRegistered = localStorage.getItem("student_registered");
+              navigate(isRegistered ? '/exams' : '/onboarding');
+            }}
             style={{ 
               width: '100%', height: '56px', borderRadius: '16px', 
-              backgroundColor: '#123b72', color: 'white', 
+              background: 'linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%)', color: 'white', 
               fontSize: '16px', fontWeight: 'bold', border: 'none', 
               display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
-              boxShadow: '0 8px 20px rgba(18, 59, 114, 0.25)', cursor: 'pointer'
+              boxShadow: '0 8px 24px rgba(37, 99, 235, 0.3)', cursor: 'pointer'
             }}
           >
             Get Started <span>→</span>

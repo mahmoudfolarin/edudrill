@@ -16,9 +16,9 @@ function UserHeader() {
     return 'Guest';
   });
 
-  // Hide in dedicated exam and practice modes to preserve maximum vertical viewport
-  const isExamMode = location.pathname.includes('/cbt') || location.pathname.includes('/practice');
-  if (isExamMode) return null;
+  // Hide on landing page, onboarding, and dedicated exam/practice modes
+  const isHidden = location.pathname === '/' || location.pathname === '/onboarding' || location.pathname.includes('/cbt') || location.pathname.includes('/practice');
+  if (isHidden) return null;
 
   return (
     <header className="user-header" style={{ background: '#0B2144', color: '#FFFFFF', padding: '10px 24px', display: 'flex', justifyContent: 'flex-end', alignItems: 'center', fontFamily: "'Inter', sans-serif", fontSize: '14px', fontWeight: '600', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>

@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react"
-import { Link, useParams } from "react-router-dom"
+import { Link, useParams, useNavigate } from "react-router-dom"
 import useMobile from "../hooks/useMobile"
 import MobileSubjects from "./mobile/MobileSubjects"
 import { isProductActivated, FREE_SUBJECTS } from "../components/ActivationLock"
 
 function Subjects() {
+  const navigate = useNavigate()
   const { isMobile } = useMobile()
   const { exam } = useParams()
 
@@ -323,33 +324,33 @@ function Subjects() {
                           onClick={(e) => {
                             if (!isAllowed) {
                               e.preventDefault();
-                              alert("Not yet Activated. Please activate to unlock this subject.");
+                              navigate('/activate');
                             }
                           }}
                           style={{
-                            opacity: !isAllowed ? 0.6 : 1,
-                            cursor: !isAllowed ? 'not-allowed' : 'pointer'
+                            border: isAllowed ? '1px solid #E2E8F0' : '1px solid #CBD5E1',
+                            background: isAllowed ? '#FFFFFF' : '#F8FAFC',
+                            position: 'relative'
                           }}
                         >
 
-                          <div className="subject-card-top">
+                          <div className="subject-card-top" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
 
-                            <div className="subject-number">
-                              {String(index + 1).padStart(
-                                2,
-                                "0",
-                              )}
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                              <div className="subject-number">
+                                {String(index + 1).padStart(
+                                  2,
+                                  "0",
+                                )}
+                              </div>
+                              <div className="subject-icon">
+                                {subject.icon || "📚"}
+                              </div>
                             </div>
 
-                            <div className="subject-icon">
-                              {subject.icon || "📚"}
-                            </div>
-
-                            {subject.is_new && (
-                              <span className="subject-new">
-                                NEW
-                              </span>
-                            )}
+                            <span className={`edudrill-badge ${isAllowed ? 'edudrill-badge-free' : 'edudrill-badge-locked'}`} style={{ fontSize: '10px', padding: '3px 8px' }}>
+                              {isAllowed ? 'Available' : '🔒 Locked'}
+                            </span>
 
                           </div>
 

@@ -1,14 +1,247 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-* {
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+/* ==========================================================================
+   EDUDRILL DESIGN SYSTEM TOKENS & FOUNDATIONS
+   Adhering to commercial EdTech standards, WCAG 2.2 AA contrast, 8pt grid
+   ========================================================================== */
+:root {
+  /* Brand Palette - Primary Blues & Restrained Accent Red */
+  --brand-navy: #0B2144;
+  --brand-navy-deep: #061226;
+  --brand-navy-light: #1E3A8A;
+  --brand-blue: #2563EB;
+  --brand-blue-hover: #1D4ED8;
+  --brand-blue-subtle: #EFF6FF;
+  --brand-sky: #38BDF8;
+  
+  /* Restrained Red Accents (Time Alerts, Critical Actions, Lock Indicators) */
+  --accent-red: #DC2626;
+  --accent-red-hover: #B91C1C;
+  --accent-red-subtle: #FEF2F2;
+  --accent-red-border: #FECACA;
+
+  /* Feedback Colors */
+  --accent-green: #16A34A;
+  --accent-green-hover: #15803D;
+  --accent-green-subtle: #F0FDF4;
+  --accent-green-border: #BBF7D0;
+
+  --accent-amber: #D97706;
+  --accent-amber-subtle: #FFFBEB;
+  --accent-amber-border: #FDE68A;
+
+  /* Surfaces & Backgrounds */
+  --bg-canvas: #F8FAFC;
+  --bg-surface: #FFFFFF;
+  --bg-subtle: #F1F5F9;
+  --bg-elevated: #FFFFFF;
+
+  /* Text & Content */
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #64748B;
+  --text-inverse: #FFFFFF;
+
+  /* Borders & Dividers */
+  --border-light: #E2E8F0;
+  --border-medium: #CBD5E1;
+  --border-focus: #3B82F6;
+
+  /* 8-Point Spacing Scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* Typography Scale */
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Radii */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(11, 33, 68, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(11, 33, 68, 0.07), 0 2px 4px -2px rgba(11, 33, 68, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(11, 33, 68, 0.08), 0 4px 6px -4px rgba(11, 33, 68, 0.04);
+  --shadow-xl: 0 20px 25px -5px rgba(11, 33, 68, 0.1), 0 8px 10px -6px rgba(11, 33, 68, 0.04);
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 300ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Layout Boundaries */
+  --max-content-width: 1200px;
+  --max-prose-width: 72ch;
+}
+
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+html {
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  background: #f5f7fb;
-  color: #111827;
+  font-family: var(--font-sans);
+  background: var(--bg-canvas);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  direction: ltr;
+  text-rendering: optimizeLegibility;
+}
+
+/* Accessible Focus Indicators */
+:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+/* Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Standardized Component Utility Classes */
+.edudrill-container {
+  width: 100%;
+  max-width: var(--max-content-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+}
+
+.edudrill-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
+}
+
+.edudrill-card:hover {
+  border-color: var(--border-medium);
+  box-shadow: var(--shadow-md);
+}
+
+.edudrill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.edudrill-badge-free {
+  background: var(--accent-green-subtle);
+  color: var(--accent-green);
+  border: 1px solid var(--accent-green-border);
+}
+
+.edudrill-badge-locked {
+  background: var(--accent-red-subtle);
+  color: var(--accent-red);
+  border: 1px solid var(--accent-red-border);
+}
+
+.edudrill-badge-neutral {
+  background: var(--bg-subtle);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-light);
+}
+
+.edudrill-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 10px 20px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.edudrill-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.edudrill-btn-primary {
+  background: var(--brand-blue);
+  color: var(--text-inverse);
+  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+}
+
+.edudrill-btn-primary:hover {
+  background: var(--brand-blue-hover);
+  box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
+  transform: translateY(-1px);
+}
+
+.edudrill-btn-secondary {
+  background: var(--brand-navy);
+  color: var(--text-inverse);
+}
+
+.edudrill-btn-secondary:hover {
+  background: var(--brand-navy-light);
+  transform: translateY(-1px);
+}
+
+.edudrill-btn-outline {
+  background: transparent;
+  border-color: var(--border-medium);
+  color: var(--text-primary);
+}
+
+.edudrill-btn-outline:hover {
+  background: var(--bg-subtle);
+  border-color: var(--text-muted);
+}
+
+.edudrill-btn-danger {
+  background: var(--accent-red);
+  color: var(--text-inverse);
+}
+
+.edudrill-btn-danger:hover {
+  background: var(--accent-red-hover);
 }
 
 .app {
@@ -14011,8 +14244,13 @@ body {
     margin-top: 0.5rem;
   }
 
-  /* Increase button tap area and reduce empty space */
-  button {
-    min-height: 44px !important;
+  /* Increase interactive action button tap target without breaking small calculator/grid keys */
+  .edudrill-btn,
+  .start-button,
+  .exam-button,
+  .dashboard-action-button,
+  .back-button,
+  button:not(.grid-btn):not([class*="calc"]):not([style*="height: 36px"]):not([style*="height: 46px"]) {
+    min-height: 44px;
   }
 }

@@ -22,8 +22,8 @@ function DesktopHome() {
   const testimonials = [newHero, img1, img2, img3, img4, img5, img6, img7, img8];
   
   const testimonialsData = [
-    { text: "The website is user-friendly and easy to navigate. i love how it makes accessing past questions and practicing much easier. Definitely a useful tool for students", name: "Tijani Hameedah", role: "Undergraduate", initial: "T" },
-    { text: "EduDrill looks really good and well put together. The design layout is okay and easy to navigate for student. Informations presented clearly, in a clean and professional appearance", name: "Akinleye Haleemah", role: "Undergraduate", initial: "A" }
+    { text: "The website is user-friendly and easy to navigate. I love how it makes accessing past questions and practicing much easier. Definitely a useful tool for students.", name: "Tijani Hameedah", role: "Undergraduate", initial: "T" },
+    { text: "EduDrill looks really good and well put together. The design layout is easy to navigate for students. Information is presented clearly, in a clean and professional appearance.", name: "Akinleye Haleemah", role: "Undergraduate", initial: "A" }
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -298,7 +298,7 @@ function DesktopHome() {
                 gap: '12px',
                 padding: '15px 28px',
                 borderRadius: '12px',
-                background: 'linear-gradient(135deg, #d97706 0%, #b45309 100%)',
+                background: 'linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%)',
                 color: '#ffffff',
                 border: 'none',
                 cursor: 'pointer',
@@ -306,17 +306,17 @@ function DesktopHome() {
                 fontSize: '16px',
                 fontWeight: '700',
                 letterSpacing: '0.3px',
-                boxShadow: '0 12px 28px rgba(217, 119, 6, 0.35)',
+                boxShadow: '0 12px 28px rgba(37, 99, 235, 0.35)',
                 transition: 'transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.boxShadow = '0 16px 36px rgba(217, 119, 6, 0.45)';
+                e.currentTarget.style.boxShadow = '0 16px 36px rgba(37, 99, 235, 0.45)';
                 e.currentTarget.style.filter = 'brightness(1.08)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 12px 28px rgba(217, 119, 6, 0.35)';
+                e.currentTarget.style.boxShadow = '0 12px 28px rgba(37, 99, 235, 0.35)';
                 e.currentTarget.style.filter = 'brightness(1)';
               }}
             >

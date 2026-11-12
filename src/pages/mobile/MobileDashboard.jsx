@@ -38,12 +38,12 @@ function MobileDashboard() {
 
 
   const actions = [
-    { title: "Learn", desc: "Explore subjects and topics", icon: "book.svg", link: "subjects", color: "#e0e7ff", textColor: "#4338ca" },
-    { title: "Practice", desc: "Topic-based practice", icon: "practice.svg", link: "practice", color: "#dcfce7", textColor: "#15803d" },
-    { title: "Past Questions", desc: "Verified exam papers", icon: "document.svg", link: "past-questions", color: "#ffedd5", textColor: "#c2410c" },
-    { title: "CBT Tests", desc: "Timed exam-style tests", icon: "target.svg", link: "cbt", color: "#fce7f3", textColor: "#be185d" },
-    { title: "AI Tutor", desc: "Get help from AI", icon: "robot.svg", link: "ai-tutor", color: "#f3e8ff", textColor: "#7e22ce" },
-    { title: "Performance", desc: "View analytics", icon: "document.svg", link: "performance", color: "#e2e8f0", textColor: "#334155" }
+    { title: "Learn", desc: "Explore subjects and syllabus lessons", icon: "book.svg", link: "subjects", color: "#EFF6FF", textColor: "#1E3A8A" },
+    { title: "Practice", desc: "Topic-by-topic timed practice", icon: "practice.svg", link: "practice", color: "#EFF6FF", textColor: "#2563EB" },
+    { title: "Past Questions", desc: "Verified 20+ years examination papers", icon: "document.svg", link: "past-questions", color: "#F0FDF4", textColor: "#166534" },
+    { title: "CBT Tests", desc: "Full timed mock examination simulation", icon: "target.svg", link: "cbt", color: "#FEF2F2", textColor: "#DC2626" },
+    { title: "AI Tutor", desc: "Personalized 24/7 intelligent study guide", icon: "robot.svg", link: "ai-tutor", color: "#EFF6FF", textColor: "#1D4ED8" },
+    { title: "Performance", desc: "Detailed score analytics & history", icon: "document.svg", link: "performance", color: "#F8FAFC", textColor: "#334155" }
   ];
 
   const subjects = [
