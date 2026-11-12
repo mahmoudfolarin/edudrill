@@ -45,7 +45,7 @@ export async function getLivePaymentConfig(apiBase = "") {
 
   // Fallback defaults if offline / network error
   return {
-    publicKey: "pk_test_0cfaae914c051fd4b8ca4c940a4d6dc7bb1596fd",
+    publicKey: "pk_live_3f033e2c4a7d85168869097b44ee4b8b0ff292a5",
     amountNaira: 2500,
     currency: "NGN",
   }

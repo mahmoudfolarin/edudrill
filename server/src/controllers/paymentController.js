@@ -45,7 +45,7 @@ ensurePaymentTable()
 
 async function getPaymentConfig(req, res) {
   try {
-    const publicKey = process.env.PAYSTACK_PUBLIC_KEY || "pk_test_0cfaae914c051fd4b8ca4c940a4d6dc7bb1596fd"
+    const publicKey = process.env.PAYSTACK_PUBLIC_KEY || "pk_live_3f033e2c4a7d85168869097b44ee4b8b0ff292a5"
     const amountNaira = Number(process.env.ACTIVATION_FEE_NAIRA || 2500)
 
     res.json({
@@ -74,7 +74,7 @@ async function initializePayment(req, res) {
     })
   }
 
-  const secretKey = process.env.PAYSTACK_SECRET_KEY || "sk_test_c12a25d9f0eac0b79ee67bd9e829807e5c41be0b"
+  const secretKey = process.env.PAYSTACK_SECRET_KEY
   const amountNaira = Number(process.env.ACTIVATION_FEE_NAIRA || 2500)
   const amountKobo = amountNaira * 100 // Paystack uses Kobo
   const reference = `EDUPAY_${Date.now()}_${Math.random().toString(36).substring(2, 8).toUpperCase()}`
@@ -140,7 +140,7 @@ async function verifyPayment(req, res) {
     })
   }
 
-  const secretKey = process.env.PAYSTACK_SECRET_KEY || "sk_test_c12a25d9f0eac0b79ee67bd9e829807e5c41be0b"
+  const secretKey = process.env.PAYSTACK_SECRET_KEY
   const expectedNaira = Number(process.env.ACTIVATION_FEE_NAIRA || 2500)
   const expectedKobo = expectedNaira * 100
 
