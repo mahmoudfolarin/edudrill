@@ -40,7 +40,9 @@ export default function MobileStudentOnboarding() {
       if (window.desktopApi?.saveProfile) {
         try {
           await window.desktopApi.saveProfile(localUser);
-        } catch (_) {}
+        } catch (err) {
+          console.debug("Failed saving desktop profile:", err);
+        }
       }
 
       if (typeof navigator !== "undefined" && navigator.onLine) {
@@ -56,8 +58,12 @@ export default function MobileStudentOnboarding() {
               localStorage.setItem("student_data", JSON.stringify(data.user));
               if (data.token) localStorage.setItem("student_token", data.token);
             }
-          }).catch(() => {});
-        } catch (_) {}
+          }).catch((err) => {
+            console.debug("Background onboarding sync failed:", err);
+          });
+        } catch (err) {
+          console.debug("Background onboarding error:", err);
+        }
       }
 
       navigate("/exams");

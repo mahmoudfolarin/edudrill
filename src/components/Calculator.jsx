@@ -2,7 +2,6 @@ import { useState, useRef, useEffect } from 'react';
 
 export default function Calculator({ onClose }) {
   const [display, setDisplay] = useState('');
-  const [result, setResult] = useState(null);
   
   const [position, setPosition] = useState({ 
     x: window.innerWidth > 400 ? window.innerWidth - 340 : 20, 
@@ -51,13 +50,11 @@ export default function Calculator({ onClose }) {
         const calcResult = new Function('return ' + display.replace(/×/g, '*').replace(/÷/g, '/'))();
         const formatted = Number.isInteger(calcResult) ? calcResult : Number(calcResult.toFixed(6));
         setDisplay(String(formatted));
-        setResult(formatted);
-      } catch (error) {
+      } catch {
         setDisplay('Error');
       }
     } else if (value === 'C') {
       setDisplay('');
-      setResult(null);
     } else if (value === '⌫') {
       if (display === 'Error') setDisplay('');
       else setDisplay(prev => prev.slice(0, -1));

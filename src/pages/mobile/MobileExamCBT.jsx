@@ -320,7 +320,7 @@ function MobileExamCBT() {
   };
 
   useEffect(() => {
-    // eslint-disable-next-line
+     
     if (isStarted) setVisited(prev => ({ ...prev, [currentIndex]: true }));
   }, [currentIndex, isStarted]);
 

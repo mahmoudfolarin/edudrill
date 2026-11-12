@@ -39,6 +39,9 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="EduDrill" />
 
+    <!-- Fallback SEO Shell Styling -->
+    <link rel="stylesheet" href="/seo-shell.css" />
+
     <!-- Paystack Inline Popup Library -->
     <script src="https://js.paystack.co/v1/inline.js"></script>
 
@@ -83,72 +86,72 @@
       is immediately readable. When JavaScript runs, React mounts and hydrates dynamically.
     -->
     <div id="root">
-      <header style="background: #0B2144; color: #FFFFFF; padding: 24px; text-align: center; font-family: sans-serif;">
-        <nav style="max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">
-          <div style="display: flex; align-items: center; gap: 12px;">
-            <img src="/assets/edudrill_logo.jpg" alt="EduDrill Logo" width="44" height="44" style="border-radius: 50%;" />
-            <span style="font-size: 22px; font-weight: 800; letter-spacing: -0.5px;">Edu<span style="color: #38BDF8;">Drill</span></span>
+      <header class="seo-header">
+        <nav class="seo-nav">
+          <div class="seo-brand">
+            <img src="/assets/edudrill_logo.jpg" alt="EduDrill Logo" class="seo-brand-img" />
+            <span class="seo-brand-name">Edu<span class="seo-brand-highlight">Drill</span></span>
           </div>
-          <div style="display: flex; gap: 20px; font-weight: 600; font-size: 14px;">
-            <a href="/exams" style="color: #FFFFFF; text-decoration: none;">Examinations</a>
-            <a href="/activate" style="color: #38BDF8; text-decoration: none;">Activation</a>
-            <a href="/onboarding" style="color: #FFFFFF; text-decoration: none;">Get Started</a>
+          <div class="seo-nav-links">
+            <a href="/exams" class="seo-nav-link">Examinations</a>
+            <a href="/activate" class="seo-nav-link-accent">Activation</a>
+            <a href="/onboarding" class="seo-nav-link">Get Started</a>
           </div>
         </nav>
       </header>
 
-      <main style="max-width: 1100px; margin: 40px auto; padding: 0 20px; font-family: sans-serif; color: #0F172A; line-height: 1.6;">
+      <main class="seo-main">
         <!-- HERO OVERVIEW -->
-        <section style="text-align: center; margin-bottom: 50px;">
-          <h1 style="font-size: 38px; font-weight: 900; color: #0B2144; margin-bottom: 16px;">
+        <section class="seo-hero">
+          <h1 class="seo-hero-title">
             Smart Examination Preparation & CBT Testing
           </h1>
-          <p style="font-size: 18px; color: #475569; max-width: 800px; margin: 0 auto 24px auto;">
+          <p class="seo-hero-desc">
             Nigeria's leading high-performance examination preparation platform for <strong>WAEC (WASSCE)</strong>, <strong>JAMB (UTME)</strong>, <strong>NECO (SSCE)</strong>, and <strong>GCE</strong>. Practice over 20+ years of verified past questions, timed computer-based mock exams, and personalized 24/7 AI tutoring.
           </p>
-          <div style="display: flex; justify-content: center; gap: 16px; margin-top: 24px;">
-            <a href="/exams" style="background: #2563EB; color: #FFFFFF; padding: 14px 28px; border-radius: 12px; font-weight: 700; text-decoration: none;">Start Free Practice →</a>
-            <a href="/activate" style="background: #16A34A; color: #FFFFFF; padding: 14px 28px; border-radius: 12px; font-weight: 700; text-decoration: none;">Activate Full Product (₦2,500)</a>
+          <div class="seo-hero-actions">
+            <a href="/exams" class="seo-btn-primary">Start Free Practice →</a>
+            <a href="/activate" class="seo-btn-success">Activate Full Product (₦2,500)</a>
           </div>
         </section>
 
         <!-- MAJOR EXAMINATIONS COVERED -->
-        <section style="margin-bottom: 50px;">
-          <h2 style="font-size: 26px; font-weight: 800; color: #0B2144; border-bottom: 2px solid #E2E8F0; padding-bottom: 12px; margin-bottom: 24px;">
+        <section class="seo-section">
+          <h2 class="seo-section-title">
             Major National Examinations Covered
           </h2>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px;">
-            <article style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 16px; padding: 24px;">
-              <h3 style="color: #0B2144; font-size: 20px; margin-top: 0;">JAMB UTME CBT</h3>
-              <p style="color: #475569; font-size: 14px;">Full 4-subject exam simulation with custom time limits, on-screen scientific calculator, literature novel summaries, and instant score ranking.</p>
+          <div class="seo-grid">
+            <article class="seo-card">
+              <h3 class="seo-card-title">JAMB UTME CBT</h3>
+              <p class="seo-card-desc">Full 4-subject exam simulation with custom time limits, on-screen scientific calculator, literature novel summaries, and instant score ranking.</p>
             </article>
 
-            <article style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 16px; padding: 24px;">
-              <h3 style="color: #0B2144; font-size: 20px; margin-top: 0;">WAEC SSCE & GCE</h3>
-              <p style="color: #475569; font-size: 14px;">Extensive past questions from 1988 to present across Science, Commercial, and Arts faculties with detailed solutions and examiner notes.</p>
+            <article class="seo-card">
+              <h3 class="seo-card-title">WAEC SSCE & GCE</h3>
+              <p class="seo-card-desc">Extensive past questions from 1988 to present across Science, Commercial, and Arts faculties with detailed solutions and examiner notes.</p>
             </article>
 
-            <article style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 16px; padding: 24px;">
-              <h3 style="color: #0B2144; font-size: 20px; margin-top: 0;">NECO Senior School</h3>
-              <p style="color: #475569; font-size: 14px;">Complete curriculum coverage, syllabus guides, mock tests, and topic-by-topic breakdowns aligned with modern Nigerian ministry standards.</p>
+            <article class="seo-card">
+              <h3 class="seo-card-title">NECO Senior School</h3>
+              <p class="seo-card-desc">Complete curriculum coverage, syllabus guides, mock tests, and topic-by-topic breakdowns aligned with modern Nigerian ministry standards.</p>
             </article>
 
-            <article style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 16px; padding: 24px;">
-              <h3 style="color: #0B2144; font-size: 20px; margin-top: 0;">Offline Windows App</h3>
-              <p style="color: #475569; font-size: 14px;">Fully functional standalone desktop application powered by an offline SQLite question bank. Practice anytime without spending mobile internet data.</p>
+            <article class="seo-card">
+              <h3 class="seo-card-title">Offline Windows App</h3>
+              <p class="seo-card-desc">Fully functional standalone desktop application powered by an offline SQLite question bank. Practice anytime without spending mobile internet data.</p>
             </article>
           </div>
         </section>
 
         <!-- SUBJECTS DIRECTORY -->
-        <section style="margin-bottom: 50px;">
-          <h2 style="font-size: 26px; font-weight: 800; color: #0B2144; border-bottom: 2px solid #E2E8F0; padding-bottom: 12px; margin-bottom: 24px;">
+        <section class="seo-section">
+          <h2 class="seo-section-title">
             Comprehensive Subjects Available
           </h2>
-          <p style="color: #475569; margin-bottom: 16px;">
+          <p class="seo-subjects-desc">
             EduDrill provides full mock tests, syllabuses, and question banks for all standard senior secondary school subjects:
           </p>
-          <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; color: #1E293B; font-weight: 600;">
+          <ul class="seo-subjects-list">
             <li>English Language</li>
             <li>General Mathematics</li>
             <li>Physics</li>
@@ -169,39 +172,39 @@
         </section>
 
         <!-- PRODUCT ACTIVATION & PRICING -->
-        <section style="background: #EFF6FF; border: 1.5px solid #BFDBFE; border-radius: 20px; padding: 32px; text-align: center; margin-bottom: 50px;">
-          <h2 style="font-size: 28px; font-weight: 800; color: #0B2144; margin-top: 0;">
+        <section class="seo-banner">
+          <h2 class="seo-banner-title">
             One-Time Product Activation — ₦2,500
           </h2>
-          <p style="color: #334155; font-size: 16px; max-width: 650px; margin: 0 auto 20px auto;">
+          <p class="seo-banner-desc">
             Enjoy permanent, unlimited access for your device. Automated instant activation supports Direct Nigerian Bank Transfer, OPay, Debit Cards, and USSD.
           </p>
-          <a href="/activate" style="display: inline-block; background: #16A34A; color: #FFFFFF; padding: 14px 32px; border-radius: 12px; font-weight: 800; text-decoration: none; font-size: 16px;">
+          <a href="/activate" class="seo-btn-success">
             ⚡ Activate EduDrill Now (₦2,500) →
           </a>
         </section>
 
         <!-- FREQUENTLY ASKED QUESTIONS -->
-        <section style="margin-bottom: 40px;">
-          <h2 style="font-size: 26px; font-weight: 800; color: #0B2144; border-bottom: 2px solid #E2E8F0; padding-bottom: 12px; margin-bottom: 24px;">
+        <section class="seo-section">
+          <h2 class="seo-section-title">
             Frequently Asked Questions
           </h2>
-          <article style="margin-bottom: 20px;">
-            <h3 style="font-size: 18px; color: #0F172A; margin-bottom: 6px;">Can I use EduDrill completely offline?</h3>
-            <p style="color: #475569; margin: 0;">Yes! The EduDrill Windows desktop application is packaged with an offline database containing all questions, syllabus summaries, and test simulators so you can study without internet access.</p>
+          <article class="seo-faq-item">
+            <h3 class="seo-faq-q">Can I use EduDrill completely offline?</h3>
+            <p class="seo-faq-a">Yes! The EduDrill Windows desktop application is packaged with an offline database containing all questions, syllabus summaries, and test simulators so you can study without internet access.</p>
           </article>
-          <article style="margin-bottom: 20px;">
-            <h3 style="font-size: 18px; color: #0F172A; margin-bottom: 6px;">How does automated activation work?</h3>
-            <p style="color: #475569; margin: 0;">Simply navigate to the Activation page, select Instant Online Payment, and pay ₦2,500 via bank transfer or card. Your software confirms payment in 3 seconds and unlocks automatically without typing any key.</p>
+          <article class="seo-faq-item">
+            <h3 class="seo-faq-q">How does automated activation work?</h3>
+            <p class="seo-faq-a">Simply navigate to the Activation page, select Instant Online Payment, and pay ₦2,500 via bank transfer or card. Your software confirms payment in 3 seconds and unlocks automatically without typing any key.</p>
           </article>
-          <article>
-            <h3 style="font-size: 18px; color: #0F172A; margin-bottom: 6px;">Which examinations are supported?</h3>
-            <p style="color: #475569; margin: 0;">WAEC (WASSCE), JAMB (UTME), NECO, and GCE for Science, Commercial, and Arts students.</p>
+          <article class="seo-faq-item">
+            <h3 class="seo-faq-q">Which examinations are supported?</h3>
+            <p class="seo-faq-a">WAEC (WASSCE), JAMB (UTME), NECO, and GCE for Science, Commercial, and Arts students.</p>
           </article>
         </section>
       </main>
 
-      <footer style="background: #0B2144; color: #94A3B8; text-align: center; padding: 30px 20px; font-family: sans-serif; font-size: 13px;">
+      <footer class="seo-footer">
         <p>&copy; 2026 EduDrill | Acadex Education Technologies. All rights reserved.</p>
         <p>Designed with educational accessibility standards. Helping Nigerian candidates achieve academic excellence.</p>
       </footer>

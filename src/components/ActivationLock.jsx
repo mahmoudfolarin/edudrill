@@ -1,23 +1,9 @@
-import React from 'react';
 import { FaLock } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { isProductActivated, FREE_SUBJECTS } from '../utils/license';
 
-export const FREE_SUBJECTS = ['general-mathematics', 'english-language', 'use-of-english', 'civic-education'];
-
-export function isProductActivated() {
-  const licenseStr = localStorage.getItem("edudrill_license");
-  if (!licenseStr) return false;
-  try {
-    const license = JSON.parse(licenseStr);
-    console.log("EduDrill License found:", license);
-    const isActive = license.status && license.status.toLowerCase().includes('activ');
-    console.log("Is active?", isActive);
-    return isActive;
-  } catch(e) {
-    console.error("Error parsing license", e);
-    return false;
-  }
-}
+/* eslint-disable-next-line react-refresh/only-export-components */
+export { isProductActivated, FREE_SUBJECTS };
 
 export function ActivationLock({ children, isAllowed = false, message }) {
   if (isProductActivated() || isAllowed) {

@@ -13,16 +13,6 @@ import img8 from "../assets/students_practicing.jpg";
 import newHero from "../assets/new_hero.jpg";
 import edudrillLogo from "../assets/edudrill_logo.jpg";
 
-function EduDrillLogo() {
-  return (
-    <div className="splash-logo">
-      <img src={edudrillLogo} alt="EduDrill Logo" className="splash-logo-icon" style={{ borderRadius: '50%', objectFit: 'cover' }} />
-      <h1>
-        Edu<span>Drill</span>
-      </h1>
-    </div>
-  )
-}
 
 import MobileHome from "./mobile/MobileHome";
 import useMobile from "../hooks/useMobile";

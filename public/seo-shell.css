@@ -1,0 +1,217 @@
+/* EduDrill Pre-rendered Shell Styles (for Crawlers, Scrapers & Non-JS Clients) */
+
+.seo-header {
+  background: #0B2144;
+  color: #FFFFFF;
+  padding: 24px;
+  text-align: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.seo-nav {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.seo-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.seo-brand-img {
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+}
+
+.seo-brand-name {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.seo-brand-highlight {
+  color: #38BDF8;
+}
+
+.seo-nav-links {
+  display: flex;
+  gap: 20px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.seo-nav-link {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.seo-nav-link-accent {
+  color: #38BDF8;
+  text-decoration: none;
+}
+
+.seo-main {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  color: #0F172A;
+  line-height: 1.6;
+}
+
+.seo-hero {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.seo-hero-title {
+  font-size: 38px;
+  font-weight: 900;
+  color: #0B2144;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.seo-hero-desc {
+  font-size: 18px;
+  color: #475569;
+  max-width: 800px;
+  margin: 0 auto 24px auto;
+}
+
+.seo-hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.seo-btn-primary {
+  display: inline-block;
+  background: #2563EB;
+  color: #FFFFFF;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.seo-btn-success {
+  display: inline-block;
+  background: #16A34A;
+  color: #FFFFFF;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.seo-section {
+  margin-bottom: 50px;
+}
+
+.seo-section-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: #0B2144;
+  border-bottom: 2px solid #E2E8F0;
+  padding-bottom: 12px;
+  margin-bottom: 24px;
+}
+
+.seo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.seo-card {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.seo-card-title {
+  color: #0B2144;
+  font-size: 20px;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.seo-card-desc {
+  color: #475569;
+  font-size: 14px;
+  margin: 0;
+}
+
+.seo-subjects-desc {
+  color: #475569;
+  margin-bottom: 16px;
+}
+
+.seo-subjects-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  color: #1E293B;
+  font-weight: 600;
+  padding-left: 20px;
+}
+
+.seo-banner {
+  background: #EFF6FF;
+  border: 1.5px solid #BFDBFE;
+  border-radius: 20px;
+  padding: 32px;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.seo-banner-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #0B2144;
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.seo-banner-desc {
+  color: #334155;
+  font-size: 16px;
+  max-width: 650px;
+  margin: 0 auto 20px auto;
+}
+
+.seo-faq-item {
+  margin-bottom: 20px;
+}
+
+.seo-faq-q {
+  font-size: 18px;
+  color: #0F172A;
+  margin-bottom: 6px;
+}
+
+.seo-faq-a {
+  color: #475569;
+  margin: 0;
+}
+
+.seo-footer {
+  background: #0B2144;
+  color: #94A3B8;
+  text-align: center;
+  padding: 30px 20px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-size: 13px;
+}

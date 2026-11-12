@@ -65,8 +65,12 @@ function StudentOnboarding() {
               localStorage.setItem("student_data", JSON.stringify(data.user));
               if (data.token) localStorage.setItem("student_token", data.token);
             }
-          }).catch(() => {});
-        } catch (_) {}
+          }).catch((err) => {
+            console.debug("Background onboarding sync failed:", err);
+          });
+        } catch (err) {
+          console.debug("Background onboarding error:", err);
+        }
       }
 
       // 4. Navigate directly to exam selection

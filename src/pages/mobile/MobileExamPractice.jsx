@@ -1,11 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getOfflineQuestions, subjectsList } from "../../data/offlineQuestionBank";
-import Ad1 from "../../assets/edudrill_ad_1.jpg";
-import Ad2 from "../../assets/edudrill_ad_2.jpg";
-import Ad3 from "../../assets/edudrill_ad_3.jpg";
-import Ad4 from "../../assets/edudrill_ad_4.jpg";
-import Ad5 from "../../assets/edudrill_ad_5.jpg";
 import Calculator from "../../components/Calculator";
 import Dictionary from "../../components/Dictionary";
 import { ActivationLock, FREE_SUBJECTS, isProductActivated } from "../../components/ActivationLock";
@@ -322,7 +317,7 @@ function MobileExamPractice() {
   };
 
   useEffect(() => {
-    // eslint-disable-next-line
+     
     if (isPracticing) setVisited(prev => ({ ...prev, [currentIndex]: true }));
   }, [currentIndex, isPracticing]);
 
@@ -333,7 +328,7 @@ function MobileExamPractice() {
         return () => clearInterval(timerId);
       } else if (timeLeft === 0 && questions.length > 0) {
         alert("Time is up! Your practice session has ended.");
-        // eslint-disable-next-line
+         
         setIsPracticing(false);
       }
     }

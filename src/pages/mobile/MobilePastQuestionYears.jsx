@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { isProductActivated, FREE_SUBJECTS } from "../../components/ActivationLock";
+import { isProductActivated } from "../../components/ActivationLock";
 import { FaLock } from "react-icons/fa";
 
 export default function MobilePastQuestionYears() {

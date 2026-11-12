@@ -9,8 +9,8 @@ import Ad5 from "../assets/edudrill_ad_5.jpg";
 
 import Calculator from "../components/Calculator";
 import Dictionary from "../components/Dictionary";
-import { isProductActivated, FREE_SUBJECTS, ActivationLock } from "../components/ActivationLock";
-import { FaLock, FaCheck, FaCalculator, FaBook, FaClock, FaArrowLeft, FaArrowRight, FaQuestionCircle, FaTrophy, FaRedo, FaCheckCircle, FaTimesCircle, FaExclamationTriangle } from "react-icons/fa";
+import { isProductActivated, FREE_SUBJECTS } from "../components/ActivationLock";
+import { FaLock, FaCheck, FaCalculator, FaBook, FaClock, FaArrowLeft, FaArrowRight, FaQuestionCircle, FaTrophy, FaCheckCircle, FaTimesCircle, FaExclamationTriangle } from "react-icons/fa";
 
 import useMobile from "../hooks/useMobile";
 import { getUserIdentifier } from "../utils/userScope";

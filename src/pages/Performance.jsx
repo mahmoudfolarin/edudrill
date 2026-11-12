@@ -54,7 +54,6 @@ export default function Performance() {
   if (selectedPerf) {
     const cPct = (selectedPerf.correct_count / selectedPerf.total) * 100 || 0;
     const wPct = (selectedPerf.wrong_count / selectedPerf.total) * 100 || 0;
-    const uPct = (selectedPerf.unanswered_count / selectedPerf.total) * 100 || 0;
 
     return (
       <main style={{ minHeight: '100vh', background: '#F8FAFC', padding: '40px', fontFamily: "'Inter', sans-serif" }}>

@@ -10,7 +10,7 @@ function UserHeader() {
         const parsed = JSON.parse(stored);
         return parsed.name || 'Guest';
       }
-    } catch (e) {
+    } catch {
       // ignore errors
     }
     return 'Guest';
